@@ -5,18 +5,11 @@ import { connect } from 'dva';
 import LayoutRouter from '../utils/LayoutRouter';
 import ThemeSet from './set/setTheme';
 import Footer from '../components/footer';
-//import logo from '../assets/yinghe/矢量智能对象@2x.png';
 import styles from "./Layout.less";
 
 class LayoutPage extends React.Component {
-    componentWillMount(){
-        this.language = localStorage.getItem("language") || "China"
-    }
     componentDidMount() {
-        this.props.dispatch({
-            type: 'user/findUserInfo',
-            payload: [{}]
-        })
+        this.props.getUserId()
     }
 
     getData(data) {
@@ -28,7 +21,7 @@ class LayoutPage extends React.Component {
             case "set":
                 return this.props.save({ visible: true })
                 break;
-            case "yinghe":
+            case "home":
                 return this.props.pushRouter("/home")
                 break;
             case "kine":
@@ -41,9 +34,7 @@ class LayoutPage extends React.Component {
                 return this.props.pushRouter("/user/login")
                 break;
             case "language":
-                localStorage.setItem("language",this.language == "China" ? "English" : 'China');
-                window.location.reload();
-                //return this.props.save({ currtLanguage: this.props.currtLanguage == "China" ? "English" : 'China' })
+                return this.props.save({ currtLanguage: this.props.currtLanguage == "China" ? "English" : 'China' })
                 break;
             default:
                 break;
@@ -81,9 +72,9 @@ class LayoutPage extends React.Component {
                                 defaultSelectedKeys={[bashRedirect]}
                                 style={{ lineHeight: '80px' }}
                             >
-                                <Menu.Item key="yinghe"> <Icon type="home" />主页</Menu.Item>
+                                <Menu.Item key="home"> <Icon type="home" />主页</Menu.Item>
                                 <Menu.Item key="kine">币币交易</Menu.Item>
-                                <Menu.Item key="home"><Icon type="sound" />平台公告</Menu.Item>
+                                <Menu.Item key="helpcenter"><Icon type="sound" />平台公告</Menu.Item>
                                 <Menu.Item key="help">帮助中心</Menu.Item>
                             </Menu>
                             <Menu
@@ -97,7 +88,7 @@ class LayoutPage extends React.Component {
                                 <Menu.Item key="login">登陆</Menu.Item>
                                 <Menu.Item key="regis">注册</Menu.Item>
                                 <Menu.Item key="set"> <Icon type="setting" /></Menu.Item>
-                                <Menu.Item key="language">{this.language == "China" ? "English" : '简体中文'}</Menu.Item>
+                                <Menu.Item key="language">{this.props.currtLanguage == "China" ? "English" : '简体中文'}</Menu.Item>
                             </Menu>
                         </Row>
                     </div>
@@ -166,6 +157,11 @@ export default connect((state, props) => {
                 payload: {
                     ...parme
                 }
+            })
+        },
+        getUserId: () => {
+            dispatch({
+                type: 'user/getUserId'
             })
         },
         pushRouter: (url) => {

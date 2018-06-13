@@ -8,7 +8,8 @@ export default {
 
     state: {
         userInfo: {},
-        isLogin: false
+        isLogin: false,
+        userName: ''
     },
 
     effects: {
@@ -21,6 +22,10 @@ export default {
                     message.error(data.errorMsg)
                 }
             }
+        },
+
+        *getUserId({ payload }, { call, put }) {
+            const { data } = yield call(baseService, api.user.getUserId, [])
         },
 
         *findUserInfo({ payload }, { call, put }) {
