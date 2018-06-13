@@ -1,109 +1,107 @@
 
-.main {
-            margin: 100px 50px;
-            width: 300px;
-            margin: 0 auto;
-            text-align: center;
-            height: 500px;
-        }
+.login {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 420px;
+}
+
+.dl{
+    height:16px;
+    font-size:18px;
+    font-family:PingFangSC-Semibold;
+    line-height:16px;
+    margin-bottom: 20px;
+    color: #FDCC39;
+}
+
+.flex {
+    display: flex;
+    display: -webkit-flex;
+    margin-bottom: 10px;
+}
+
+.label {
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 13px;
+    font-family: PingFangSC-Regular;
+    color: rgba(255, 255, 255, 1);
+}
+
+.tooltip {
+    position: absolute;
+    top: 40px;
+    left: 450px;
+    width: 220px;
+    height: 300px;
+    div{
+      font-size: 13px;
+      line-height: 24px;
+      color: #FFFFFF;  
+    }
+}
 
 
-        .login {
-            position: absolute;
-            top: 200px;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            width: 420px;
-        }
+p{
+   height:13px;
+   font-size:12px;
+   font-family:PingFangSC-Regular;
+   color:rgba(255,66,0,1);
+   line-height:13px; 
+   margin: 10px 0px;
+}
+input {
+    width: 336px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    outline: none;
+    border-radius: 3px;
+    padding-left: 20px !important;
+    color: white !important;
+    font-size: 13px !important;
+}
 
-        .dl{
-            height:16px;
-            font-size:18px;
-            font-family:PingFangSC-Semibold;
-            line-height:16px;
-            margin-bottom: 20px;
-            color: #FDCC39;
-        }
+input:focus{
+    opacity:0.8;
+    border:1px solid rgba(253,204,57,1);
+}
+.errInput{
+    border:1px solid rgba(255,66,0,1);
+}
 
-        .flex {
-            display: flex;
-            display: -webkit-flex;
-        }
+.logBtn{
+    outline: none;
+    border: none;
+    width:336px;
+    height:40px;
+    background:rgba(253,204,57,1);
+    border-radius:4px;
+    font-size:14px;
+    font-family:Arial-BoldMT;
+    color:rgba(255,255,255,1);
+    line-height:40px;
+    margin-top: 15px;
+}
 
-        .label {
-            height: 50px;
-            line-height: 50px;
-            text-align: right;
-            padding-right: 20px;
-            font-size: 13px;
-            font-family: PingFangSC-Regular;
-            color: rgba(255, 255, 255, 1);
-        }
+ .logBtn:disabled{
+cursor:not-allowed;
+}
+.logBtn:hover{
+    background: #ffd965
+}
 
-        .tooltip {
-            position: absolute;
-            top: 0;
-            left: 450px;
-            width: 220px;
-            height: 300px;
-        }
-
-    
-        p{
-           height:13px;
-           font-size:12px;
-           font-family:PingFangSC-Regular;
-           color:rgba(255,66,0,1);
-           line-height:13px; 
-           margin: 10px 0px;
-        }
-        input {
-            width: 336px;
-            height: 40px;
-            background: transparent;
-            border: 1px solid #FFFFFF;
-            outline: none;
-            border-radius: 3px;
-            padding-left: 20px;
-            color: white
-        }
-
-        input:focus{
-            opacity:0.8;
-            border:1px solid rgba(253,204,57,1);
-        }
-        .errInput{
-            border:1px solid rgba(255,66,0,1);
-        }
-
-        .logBtn{
-            outline: none;
-            border: none;
-            width:336px;
-            height:40px;
-            background:rgba(253,204,57,1);
-            border-radius:4px;
-            font-size:14px;
-            font-family:Arial-BoldMT;
-            color:rgba(255,255,255,1);
-            line-height:40px;
-            margin-top: 15px;
-        }
-
-         .logBtn:disabled{
-        cursor:not-allowed;
-        }
-        .logBtn:hover{
-            background: #ffd965
-        }
-
-        a{
-            text-decoration: underline;
-            font-size: 13px;
-            color: #FFFFFF;
-        }
-        .logBtn:active{
-            top: 1px;
-            position: relative;
-        }
+a{
+    text-decoration: underline;
+    font-size: 13px;
+    color: #FFFFFF;
+}
+.logBtn:active{
+    top: 1px;
+    position: relative;
+}

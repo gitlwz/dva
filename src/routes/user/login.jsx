@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Modal, Form, Input, message, Row, Col, Checkbox, Icon } from "antd";
+import { routerRedux } from 'dva/router';
 import { connect } from 'dva';
+import md5 from "md5";
 import styles from './login.less'
 
 class Login extends React.Component {
@@ -8,100 +10,106 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            captcha: `http://192.168.100.180:8080/wxtoken/captcha?d=` + new Date().getTime(),
-            userName: 'user',
-            password: '12345678',
-            verification_code: ''
+            currLanguage: "China",
+            showEmailMsg: false,
+            showWordMsg: false,
+            errMsg: '',
+            userName: '',
+            password: "",
+
+        }
+    }
+
+    inputChange(value) {
+        var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+        if (!reg.test(value)) {
+            this.setState({ showEmailMsg: true, userName: value })
+        } else {
+            this.setState({ userName: value, showEmailMsg: false })
         }
     }
 
 
-    componentDidMount() {
-        this.props.dispatch({
-            type: 'user/getCaptcha'
-        })
+    LoginClick() {
+        if (this.state.userName != "" && this.state.password != "" && this.state.showEmailMsg == false) {
+            //LoginService.userLogon(this.state.userName, md5(this.state.password), "1234").then(res => this.pushRouter("/")).catch(err => this.setState({ errMsg: err.errorMsg, showWordMsg: true }))
+        } else {
+            if (this.state.userName == "") {
+                this.setState({ showEmailMsg: true });
+            }
+            if (this.state.password == "") {
+                this.setState({ showWordMsg: true, errMsg: '请输入密码' });
+            }
+            return;
+        }
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                this.props.dispatch({
-                    type: 'user/login',
-                    payload: values
-                })
-            } else {
-                message.error("请正确输入!")
-            }
-        });
+    pushRouter(url) {
+        console.log(this.props)
+        this.props.dispatch(routerRedux.push(url))
     }
+
+    forgetPass() {
+        let mail = this.state.userName;
+        var filter = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+        if (!filter.test(mail)) {
+            message.error("请输入邮箱!")
+            return;
+        }
+        this.pushRouter("./user/forgetPassword?mail=" + this.state.userName)
+    }
+
     render() {
-        const { getFieldDecorator } = this.props.form;
-        const formItemLayout = {
-            labelCol: {
-                xs: { span: 24 },
-                sm: { span: 8 },
-            },
-            wrapperCol: {
-                xs: { span: 24 },
-                sm: { span: 16 },
-            },
-        };
         return (
-            <div style={{ width: '100%', height: '100%' }}>
-                <div className={styles.main} >
-                    <Row>
-                        <Col>
-                            <h2 style={{ fontSize: '28px', marginTop: "100px" }}>数交在线业务管理系统</h2>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form onSubmit={this.handleSubmit} className="login-form">
-                                <Form.Item >
-                                    {getFieldDecorator('userName', {
-                                        initialValue: this.state.userName,
-                                        rules: [{ required: true, message: '请输入您的用户名!' }],
-                                    })(
-                                        <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
-                                        )}
-                                </Form.Item>
-                                <Form.Item>
-                                    {getFieldDecorator('password', {
-                                        initialValue: this.state.password,
-                                        rules: [{ required: true, message: '请输入您的密码!' }],
-                                    })(
-                                        <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
-                                        )}
-                                </Form.Item>
-                                <Form.Item>
-                                    <Row>
-                                        <Col span={12}>
-                                            {getFieldDecorator('verification_code', {
-                                                rules: [{ required: true, message: '请输入验证码!' }],
-                                            })(
-                                                <Input />
-                                                )}
-                                        </Col>
-                                        <Col span={12}>
-                                            <img src={this.state.captcha} style={{ width: 80, height: '30px' }} onClick={() => this.setState({ captcha: `http://192.168.100.180:8080/wxtoken/captcha?d=` + new Date().getTime() })} />
-                                        </Col>
-                                    </Row>
-                                </Form.Item>
-                                <Form.Item>
-                                    <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-                                        登陆
-                                  </Button>
-                                </Form.Item>
-                            </Form>
-                        </Col>
-                    </Row>
+            <div>
+                <div className={styles.login}>
+                    <div style={{ textAlign: 'center' }}>
+                        <p className={styles.dl}>登录</p>
+                    </div>
+                    <input type="password" style={{ display: 'none' }} />
+                    <div className={styles.flex}>
+                        <label style={{ flex: 1 }} className={styles.label}>邮箱地址</label>
+                        <input placeholder="请输入邮箱" type="text" value={this.state.userName} onChange={e => this.inputChange(e.target.value)} className={this.state.showEmailMsg ? styles.errInput : ''} />
+                    </div>
+                    {this.state.showEmailMsg == true ? <p style={{ textAlign: 'right', marginBottom: 10 }}>请输入有效的邮箱地址</p> : ''}
+
+                    <div className={styles.flex}>
+                        <label style={{ flex: 1 }} className={styles.label}>密码</label>
+                        <input placeholder="请输入密码" type="text" className={this.state.showWordMsg ? styles.errInput : ''} value={this.state.password} onChange={e => {
+                            e.target.type = "password";
+                            this.setState({ password: e.target.value, showWordMsg: false })
+                        }} />
+                    </div>
+                    {this.state.showWordMsg == true ? <p style={{ textAlign: 'right' }}>{this.state.errMsg}</p> : ""}
+
+                    <div className={styles.flex}>
+                        <label style={{ flex: 1 }}></label>
+                        <button className={styles.logBtn} style={{ color: '#FFF' }} onClick={() => this.LoginClick()}>登录</button>
+                    </div>
+
+                    <a style={{ textAlign: 'right', display: 'block', margin: '10px 0', color: 'white' }} href="javascript:void(0)" onClick={() => {
+                        if (this.state.userName != "" && this.state.showEmailMsg == false) {
+                            this.pushRouter("./user/forgetPassword?mail=" + this.state.userName)
+                        } else {
+                            this.setState({ showEmailMsg: true })
+                        }
+                    }}>忘记密码？</a>
+
+                    <div className={styles.tooltip}>
+                        <div>还没有账户？</div>
+                        <div>创建一个账户加入世界最活跃的交易平台</div>
+                        <a style={{ color: '#FDCC39', textDecoration: 'underline' }} onClick={() => this.pushRouter("/user/regis")}>点击注册</a>
+                    </div>
                 </div>
             </div>
+
         )
     }
+
 }
 
 export default connect((state, props) => {
-    return { props }
-})(Form.create()(Login));
+    return {
+        props
+    }
+})(Login);

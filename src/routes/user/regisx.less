@@ -1,124 +1,215 @@
-.main{
-     margin: 100px 50px;
-    width: 300px;
+.login {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    right: 0;
     margin: 0 auto;
-    text-align: center;
-    height: 500px;
+    width: 420px;
 }
 
-*{
-    padding: 0;
-    margin: 0;
+.zc{
+    height:16px;
+    font-size:18px;
+    font-family:PingFangSC-Semibold;
+    line-height:16px;
+    margin-bottom: 20px;
+    color: #FDCC39;
 }
 
-        .login {
-            position: absolute;
-            top: 200px;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            width: 420px;
-        }
+.flex {
+    display: flex;
+    display: -webkit-flex;
+    label {
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 13px;
+    font-family: PingFangSC-Regular;
+    color: rgba(255, 255, 255, 1);
+    margin-bottom: 10px;
+  }
 
-        .zc{
-            height:16px;
-            font-size:18px;
-            font-family:PingFangSC-Semibold;
-            line-height:16px;
-            margin-bottom: 20px;
-            color: #FDCC39;
-        }
+  .checkbox {
+    position: relative;
+    height: 30px;
+  }
+  .checkbox input[type='checkbox'] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    opacity: 0;
+    background-color: transparent;
+    z-index: 99;
+  }
+  .checkbox label {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    height: 16px;
+    line-height: 20px;
+    font-size: 13px;
+    color: #FFFFFF;
+    width: 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .checkbox label:before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #FDCC39;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    background-color: white;
+  }
+  .checkbox label:after {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 1px;
+    width: 6px;
+    height: 12px;
+    border: 0;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    background-color: transparent;
+  }
+  .checkbox input[type='checkbox']:checked + label:before {
+    background-color: #FDCC39;
+    border-color: #FDCC39;
+  }
+  .checkbox input[type='checkbox']:checked + label:after {
+    background-color: transparent;
+  }
+}
 
-        .flex {
-            display: flex;
-            display: -webkit-flex;
-            label {
-            height: 50px;
-            line-height: 50px;
-            text-align: right;
-            padding-right: 20px;
-            font-size: 13px;
-            font-family: PingFangSC-Regular;
-            color: rgba(255, 255, 255, 1);
-          }
-        }
 
-            input[type=checkbox]{
-    vertical-align: middle;
-    margin-top: 2px;
+.tooltip {
+    position: absolute;
+    top: 40px;
+    left: 450px;
+    width: 220px;
+    height: 300px;
+}
+
+
+p{
+   height:13px;
+   font-size:12px;
+   font-family:PingFangSC-Regular;
+   color:rgba(255,66,0,1);
+   line-height:13px; 
+   margin-top: 10px;
+}
+input,select{
+    width: 336px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    outline: none;
+    border-radius: 3px;
+    padding-left: 20px !important;
+   
+}
+
+select{
+    color: white !important;
+    //background: #6D6D6D
+}
+
+option{
+    background: #6D6D6D !important;
+   
+}
+input{
+    color: white !important;
+    font-size: 13px !important;
+}
+
+input:focus,select:focus{
+    opacity:0.8;
+    border:1px solid rgba(253,204,57,1);
+}
+
+.errInput{
+    border:1px solid rgba(255,66,0,1);
+}
+
+.logBtn{
+    outline: none;
+    border: none;
+    width:336px;
+    height:40px;
+    background:rgba(253,204,57,1);
+    border-radius:4px;
+    font-size:14px;
+    font-family:Arial-BoldMT;
+    color:rgba(255,255,255,1);
+    line-height:40px;
+}
+
+.logBtn:hover{
+    background: #ffd965
+}
+
+a{
+    text-decoration: underline !important;
+    font-size: 13px;
+    color: #FFFFFF !important;
+    font-family:ArialMT;
+}
+
+a:hover{
+    color: #FDCC39 !important;
+}
+
+.aSelect{
+    color: #FDCC39 !important;
+    margin: 0 10px;
+;        }
+
+.logBtn:active{
+    top: 1px;
+    position: relative;
+}
+
+.logBtn:disabled{
+cursor:not-allowed;
+}
+
+.mmbg{
+    background: url("../../assets/yinghe/mmbg.png") no-repeat;
+    width: 180px;
+    height: 74px;
+    text-align: right;
+    background-size:100% 100%;  
+    p{
+        padding-left: 5px;
+        text-align: left;
+        height:15px;
+        font-size:12px;
+        font-family:PingFangSC-Regular;
+        color:rgba(86,86,86,1);
+        line-height:15px;
+        margin:0 0;  
     }
-        
-
-        .tooltip {
-            position: absolute;
-            top: 40px;
-            left: 450px;
-            width: 220px;
-            height: 300px;
-        }
-
-    
-        p{
-           height:13px;
-           font-size:12px;
-           font-family:PingFangSC-Regular;
-           color:rgba(255,66,0,1);
-           line-height:13px; 
-           margin-top: 10px;
-        }
-        input,select{
-            width: 336px;
-            height: 40px;
-            background: transparent;
-            border: 1px solid #FFFFFF;
-            outline: none;
-            border-radius: 3px;
-            padding-left: 20px;
-            color: white;
-            margin-top: 10px;
-        }
-
-        input:focus,select:focus{
-            opacity:0.8;
-            border:1px solid rgba(253,204,57,1);
-        }
-
-        .errInput{
-            border:1px solid rgba(255,66,0,1);
-        }
-
-        .logBtn{
-            outline: none;
-            border: none;
-            width:336px;
-            height:40px;
-            background:rgba(253,204,57,1);
-            border-radius:4px;
-            font-size:14px;
-            font-family:Arial-BoldMT;
-            color:rgba(255,255,255,1);
-            line-height:40px;
-        }
-
-        .logBtn:hover{
-            background: #ffd965
-        }
-
-        a{
-            text-decoration: underline;
-            font-size: 13px;
-            color: #FFFFFF;
-            font-family:ArialMT;
-        }
-
-        a:hover{
-            color: #FDCC39
-        }
-        .logBtn:active{
-            top: 1px;
-            position: relative;
-        }
-
-        .logBtn:disabled{
-        cursor:not-allowed;
-        }
+    span{
+        color:rgba(255,66,0,1)
+    }
+}
