@@ -8,7 +8,7 @@ import { Route, Switch, Redirect } from 'dva/router';
 const UserRouter = [
     {
         path: '/user/login',
-        component: () => import('../routes/user/newLogon'),
+        component: () => import('../routes/user/login'),
     }, {
         path: '/user/regis',
         component: () => import('../routes/user/regis'),
