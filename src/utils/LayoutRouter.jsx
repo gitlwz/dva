@@ -26,5 +26,11 @@ const LayoutRouter = [
         path: '/downloadclient',
         component: () => import('../routes/detail/downloadclient')
     },
+    {
+        path: '/yhRate',
+        models: () => [import('../models/other')],
+        component: () => import('../routes/detail/yhrate')
+    },
+
 ]
 export default LayoutRouter;

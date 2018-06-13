@@ -68,15 +68,15 @@ class Header extends Component {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', marginRight: 50 }}>
                     {this.state.userId == null ? <div>
-                        <span style={{ borderRight: '1px solid rgba(86,86,86,1)', padding: '0 20px' }} onClick={() => this.pushNewPage("yhLogin/yhLogin.html")}>登录</span>
+                        <span style={{ borderRight: '1px solid rgba(86,86,86,1)', padding: '0 20px' }} onClick={() => this.pushNewPage("/user/login")}>登录</span>
                         <span style={{ padding: '0 20px' }} onClick={() => this.pushNewPage("/user/regis")}>注册</span>
                     </div> : <div style={{ display: 'flex', alignItems: 'center' }}>
 
                             <img src={selectBg} style={{ margin: '0 10px', width: 40 }} onClick={() => {
                                 if (this.state.userId) {
-                                    this.pushNewPage("account/account.html")
+                                    this.pushNewPage("/home")
                                 } else {
-                                    this.pushNewPage("yhLogin/yhLogin.html")
+                                    this.pushNewPage("/user/login")
                                 }
                             }} />
 

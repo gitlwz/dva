@@ -5,6 +5,7 @@ import { connect } from 'dva';
 import LayoutRouter from '../utils/LayoutRouter';
 import ThemeSet from './set/setTheme';
 import Footer from '../components/footer';
+//import logo from '../assets/yinghe/矢量智能对象@2x.png';
 import styles from "./Layout.less";
 
 class LayoutPage extends React.Component {
@@ -25,7 +26,7 @@ class LayoutPage extends React.Component {
                 return this.props.save({ visible: true })
                 break;
             case "yinghe":
-                return this.props.pushRouter("/yinghe")
+                return this.props.pushRouter("/home")
                 break;
             case "kine":
                 return this.props.pushRouter("/kine")

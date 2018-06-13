@@ -1,12 +1,110 @@
+.card{
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+  height: 140px;
+  background:rgba(255,255,255,1);
+  border-radius: 9px;
+  border: 1px solid #EBEBEB;
+  margin-right: 20px;
+  padding: 10px; 
+  justify-content: center;
+  font-size: 16px;
+  font-family:ArialMT;
+  color:rgba(62,62,62,1);
+  .text{
+      line-height: 40px;
+      height: 40px;
+      span{
+          font-weight: bold;
+      }
+  }
+ 
+}
 
-:global{
-    .ant-carousel .slick-slide {
-        text-align: center;
-        background: #364d79;
-        overflow: hidden;
-      }
-      
-    .ant-carousel .slick-slide h3 {
-        color: #fff;
-      }
+.upTrend{
+  background: #FF4200;
+  width: 68px;
+  line-height: 28px;
+  height: 28px;
+  text-align: center;
+  color: white;
+}
+.downTrend{
+  background: #349B00;
+  width: 68px;
+  line-height: 28px;
+  height: 28px;
+  text-align: center; 
+  color: white;
+}
+
+.currency{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 230px;
+  height: 40px;
+  margin-right: 20px;
+  background:rgba(255,255,255,1);
+  border-radius: 10px;
+  border: 1px solid #EBEBEB;
+  font-size:18px;
+  font-family:ArialMT;
+  color:rgba(86,86,86,1);
+}
+
+.zx{
+  background: url('../../assets/yinghe/圆角矩形 4@2x.png') no-repeat;
+  height:51px;
+  border: none;
+ span{
+  font-size:20px;
+  font-family:ArialMT;
+  color:rgba(86,86,86,1);
+}
+}
+
+.zx:active {
+position:relative;
+top:1px;
+}
+
+.search{
+  display: flex;
+  justify-content: space-between;
+}
+
+input{
+  border: none;
+  width: 100px;
+  height: 38px;
+}
+
+input:focus{
+  outline: none;
+}
+
+button{
+  outline: none;
+}
+
+button:active {
+position:relative;
+top:1px;
+}
+
+.searchBtn{
+width: 56px;
+line-height: 40px;
+text-align: center;
+color: #cdcdcd;
+font-size: 16px;
+background-color: #232323;
+//border: 1px solid #232323;
+border-radius: 0 10px 10px 0px; 
+}
+.searchBtn:active {
+position:relative;
+top:1px;
 }

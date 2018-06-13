@@ -32,7 +32,7 @@ class Footer extends Component {
 
                     <div style={{ ...borderStyle }}>
                         <p className={styles.title}>{dataJSON.GYConinX}</p>
-                        <p onClick={() => this.pushNewPage("./joinus")}>{dataJSON.JRWM}</p>
+                        <p onClick={() => this.pushNewPage("/joinus")}>{dataJSON.JRWM}</p>
                         <p onClick={() => this.pushNewPage("yhContactUs/yhContactUs.html")}>{dataJSON.LXWM}</p>
                         <p onClick={() => this.pushNewPage("./stipulation?application")}>{dataJSON.SSSQ}</p>
                     </div>
@@ -44,7 +44,7 @@ class Footer extends Component {
                     </div>
                     <div style={{ ...borderStyle }}>
                         <p className={styles.title}>{dataJSON.FZGJ}</p>
-                        <p onClick={() => this.pushNewPage("yhRate/yhRate.html")}>{dataJSON.FLSM}</p>
+                        <p onClick={() => this.pushNewPage("/yhRate")}>{dataJSON.FLSM}</p>
                         <p onClick={() => this.pushNewPage("/downloadclient")}>{dataJSON.KHDXZ}</p>
                         <p>{dataJSON.WDAPIXZ}</p>
                     </div>

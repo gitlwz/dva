@@ -5,22 +5,22 @@ export default {
     namespace: 'pollingTest',
 
     state: {
-        
+
     },
 
     subscriptions: {
-        
-        tianjia({dispatch}){
+
+        tianjia({ dispatch }) {
 
             //建立一个名为  tianjia (Array or string) 的轮询  建立轮询可以写在任何地方
-            PubSub.publish('Polling.addsubscribe',["tianjia"])
+            PubSub.publish('Polling.addsubscribe', ["tianjia"])
 
 
             //接受名为添加的轮询
-            return PubSub.subscribe("tianjia",()=>{
+            return PubSub.subscribe("tianjia", () => {
                 //dispatch请求
                 dispatch({
-                    type:"sendrequest"
+                    type: "sendrequest"
                 })
 
                 //或者
@@ -45,11 +45,11 @@ export default {
     },
 
     reducers: {
-        save(state,action){
+        save(state, action) {
             console.log("*******回调")
-            return { ...state};
+            return { ...state };
         }
     },
 
-    
+
 };
