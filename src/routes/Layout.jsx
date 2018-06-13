@@ -33,6 +33,9 @@ class LayoutPage extends React.Component {
             case "login":
                 return this.props.pushRouter("/user/login")
                 break;
+            case "help":
+                return this.props.pushRouter("/helpcenter")
+                break;
             case "language":
                 localStorage.setItem("language", this.language == "China" ? "English" : 'China');
                 window.location.reload();

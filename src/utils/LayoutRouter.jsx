@@ -35,6 +35,10 @@ const LayoutRouter = [
         path: '/helpcenter',
         component: () => import('../routes/helpcenter/helpcenter')
     },
+    {
+        path: '/helpdetail/:id',
+        component: () => import('../routes/helpcenter/helpdetail')
+    },
 
 ]
 export default LayoutRouter;
