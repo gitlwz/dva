@@ -22,8 +22,6 @@ class Bibi extends React.Component {
     }
 
     componentDidMount() {
-        console.log("币币交易!")
-        console.log(this.props)
         // WSClient.addEventListenerInstrument(subscribeSet.Topic_instrument + "public_instrument_KOG-CNHE,public_instrument_AIX-B…lic_instrument_ISQ-CNHE,public_instrument_ISQ-BTC");
         // webSocket.emitter.on(subscribeSet.Topic_instrument, (data) => {
         //     //console.log(data)

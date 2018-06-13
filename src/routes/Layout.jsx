@@ -3,20 +3,17 @@ import { Layout, Menu, Breadcrumb, Icon, Row, Col } from 'antd';
 import { routerRedux, Route, Switch, Redirect, Link } from 'dva/router';
 import { connect } from 'dva';
 import LayoutRouter from '../utils/LayoutRouter';
+import Header from '../components/header';
 import ThemeSet from './set/setTheme';
 import Footer from '../components/footer';
 import styles from "./Layout.less";
 
 class LayoutPage extends React.Component {
-    componentWillMount(){
+    componentWillMount() {
         this.language = localStorage.getItem("language") || "China"
     }
     componentDidMount() {
-        this.props.getUserId()
-    }
-
-    getData(data) {
-        console.log(data)
+        console.log(this.props)
     }
 
     menuClick = ({ item, key, keyPath }) => {
@@ -37,7 +34,7 @@ class LayoutPage extends React.Component {
                 return this.props.pushRouter("/user/login")
                 break;
             case "language":
-                localStorage.setItem("language",this.language == "China" ? "English" : 'China');
+                localStorage.setItem("language", this.language == "China" ? "English" : 'China');
                 window.location.reload();
                 //return this.props.save({ currtLanguage: this.props.currtLanguage == "China" ? "English" : 'China' })
                 break;
@@ -62,12 +59,12 @@ class LayoutPage extends React.Component {
     }
 
     render() {
-        const { language, currtLanguage } = this.props;
         const bashRedirect = this.getBashRedirect();
         return (
             <Layout>
                 <Layout.Header className={styles.Header}>
-                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    {/*
+                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                         <div className={styles.logo}></div>
                         <Row type="flex" justify="space-between" style={{ width: '100%' }} align="center">
                             <Menu
@@ -89,7 +86,7 @@ class LayoutPage extends React.Component {
                                 onClick={this.menuClick}
                                 style={{ lineHeight: '80px' }}
                             >
-                                <Menu.Item key="user"><Icon type="user" />席坤</Menu.Item>
+                                {userName != "" ? <Menu.Item key="user"><Icon type="user" />席坤</Menu.Item> : ''}
                                 <Menu.Item key="login">登陆</Menu.Item>
                                 <Menu.Item key="regis">注册</Menu.Item>
                                 <Menu.Item key="set"> <Icon type="setting" /></Menu.Item>
@@ -97,7 +94,10 @@ class LayoutPage extends React.Component {
                             </Menu>
                         </Row>
                     </div>
+                */}
+
                 </Layout.Header>
+                <Header />
                 <ThemeSet />
                 <Layout.Content style={{ minHeight: 700, background: "rgb(247, 247, 247)" }}>
                     {this.props.children}
@@ -150,8 +150,6 @@ export default connect((state, props) => {
     return {
         visible: state.app.visible,
         theme: state.app.theme,
-        language: state.app.language,
-        currtLanguage: state.app.currtLanguage,
         props
     }
 }, (dispatch, props) => {
@@ -162,11 +160,6 @@ export default connect((state, props) => {
                 payload: {
                     ...parme
                 }
-            })
-        },
-        getUserId: () => {
-            dispatch({
-                type: 'user/getUserId'
             })
         },
         pushRouter: (url) => {

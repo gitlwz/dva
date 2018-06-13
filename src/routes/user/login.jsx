@@ -32,6 +32,19 @@ class Login extends React.Component {
 
     LoginClick() {
         if (this.state.userName != "" && this.state.password != "" && this.state.showEmailMsg == false) {
+            this.props.dispatch({
+                type: 'user/login',
+                payload: {
+                    body: [this.state.userName, md5(this.state.password)],
+                    callback: (data) => {
+                        if (data.errorCode == "0") {
+                            this.pushRouter("/")
+                        } else {
+                            this.setState({ errMsg: data.errorMsg, showWordMsg: true })
+                        }
+                    }
+                }
+            })
             //LoginService.userLogon(this.state.userName, md5(this.state.password), "1234").then(res => this.pushRouter("/")).catch(err => this.setState({ errMsg: err.errorMsg, showWordMsg: true }))
         } else {
             if (this.state.userName == "") {
@@ -45,7 +58,6 @@ class Login extends React.Component {
     }
 
     pushRouter(url) {
-        console.log(this.props)
         this.props.dispatch(routerRedux.push(url))
     }
 

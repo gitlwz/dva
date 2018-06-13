@@ -10,9 +10,6 @@ class Regis extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currLanguage: "China",
-
-            countryList: [],
             showCountryMsg: false,
             showEmailMsg: false,
             showWordMsg: false,
@@ -26,6 +23,12 @@ class Regis extends React.Component {
 
             errMsg: ''
         }
+    }
+
+    componentDidMount() {
+        this.props.dispatch({
+            type: 'user/queryCountryList',
+        })
     }
 
     //动态校验提示
@@ -76,6 +79,20 @@ class Regis extends React.Component {
         if (this.state.country != "" && this.state.email != "" && this.state.password != "" & this.state.confirmWord != "" && this.state.showConformMsg == false &&
             this.state.showCountryMsg == false && this.state.showEmailMsg == false && this.state.showWordMsg == false) {
             // WebGeneralService.save(this.state.email, md5(this.state.password), this.state.country).then(res => this.pushRouter("/")).catch(err => this.setState({ errMsg: err.errorMsg }));
+            this.props.dispatch({
+                type: 'user/regis',
+                payload: {
+                    body: [this.state.email, md5(this.state.password), this.state.country],
+                    callback: (data) => {
+                        if (data.errorCode == "0") {
+                            this.pushRouter("/")
+                        } else {
+                            this.setState({ errMsg: data.errorMsg })
+                        }
+
+                    }
+                }
+            })
         } else {
             if (this.state.country == "") {
                 this.setState({ showCountryMsg: true })
@@ -124,8 +141,8 @@ class Regis extends React.Component {
                         <label style={{ flex: 1 }}>国籍</label>
                         <select value={this.state.country} className={showCountryMsg ? styles.errInput : ''} onChange={e => this.inputChange({ value: e.target.value, name: 'country' })} style={{ fontSize: '13px' }}>
                             <option value="">请选择国籍</option>
-                            {this.state.countryList.map(item => {
-                                return <option value={item.countryCN}>{item.countryCN}</option>
+                            {this.props.countryList.map(item => {
+                                return <option value={item.countryCN} key={item.id} style={{ fontSize: '13px' }}>{item.countryCN}</option>
                             })}
                         </select>
                     </div>
@@ -207,5 +224,8 @@ class Regis extends React.Component {
 }
 
 export default connect((state, props) => {
-    return { props }
+    return {
+        countryList: state.user.countryList,
+        props
+    }
 })(Regis);
