@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { routerRedux } from 'dva/router';
 import logo from '../../src/assets/yinghe/yhLog.png';
-import language from '../language';
+import language from '../language/language';
 
 import styles from './footer.less';
 import { connect } from 'dva';
@@ -22,7 +22,7 @@ class Footer extends Component {
     // 渲染
     render() {
         const borderStyle = { borderLeft: '1px solid rgba(86,86,86,1)', padding: '0 50px' };
-        const dataJSON = language
+        const dataJSON = language[this.props.currtLanguage]
         return (
             <div className={styles.footer}>
                 <div style={{ marginLeft: 200 }}>

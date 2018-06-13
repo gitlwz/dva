@@ -35,7 +35,7 @@ class Downloadclient extends Component {
                                 </div>
                             </div>
                             <div>
-                                <div style={{ textAlign: 'center', paddingTop: "100px" }}>
+                                <div style={{ textAlign: 'center', paddingTop: "65px" }}>
                                     <span className={styles.buttons + " " + styles.ios}>IOS</span>
                                     <span className={styles.buttons + " " + styles.and} style={{ marginLeft: "24px" }}>ANDROID</span>
                                 </div>

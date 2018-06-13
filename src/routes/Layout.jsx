@@ -8,10 +8,6 @@ import Footer from '../components/footer';
 import styles from "./Layout.less";
 
 class LayoutPage extends React.Component {
-
-    componentWillMount(){
-        this.language = localStorage.getItem("language") || "China"
-    }
     componentDidMount() {
         this.props.dispatch({
             type: 'user/findUserInfo',
@@ -41,9 +37,7 @@ class LayoutPage extends React.Component {
                 return this.props.pushRouter("/user/login")
                 break;
             case "language":
-                localStorage.setItem("language",this.language == "China" ? "English" : 'China');
-                window.location.reload();
-                // return this.props.save({ currtLanguage: this.props.currtLanguage == "China" ? "English" : 'China' })
+                return this.props.save({ currtLanguage: this.props.currtLanguage == "China" ? "English" : 'China' })
                 break;
             default:
                 break;
@@ -97,7 +91,7 @@ class LayoutPage extends React.Component {
                                 <Menu.Item key="login">登陆</Menu.Item>
                                 <Menu.Item key="regis">注册</Menu.Item>
                                 <Menu.Item key="set"> <Icon type="setting" /></Menu.Item>
-                                <Menu.Item key="language">{this.language == "China" ? "English" : '简体中文'}</Menu.Item>
+                                <Menu.Item key="language">{this.props.currtLanguage == "China" ? "English" : '简体中文'}</Menu.Item>
                             </Menu>
                         </Row>
                     </div>

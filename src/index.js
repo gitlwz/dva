@@ -1,6 +1,5 @@
 import dva from 'dva';
 import './index.css';
-import './utils/polling.js';
 import createLoading from 'dva-loading';
 import 'moment/locale/zh-cn';
 

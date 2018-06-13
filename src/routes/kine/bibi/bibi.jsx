@@ -10,7 +10,7 @@ import webSocket from '../../../services/webSocketConfig';
 import subscribeSet from '../../../services/subscribeSet';
 import styles from './bibi.less';
 /**
- * 比比主页布局
+ * 币币主页布局
  */
 class Bibi extends React.Component {
 
@@ -64,14 +64,16 @@ class Bibi extends React.Component {
                         </div>
                         <div style={{ marginTop: 10 }}>
                             <Row>
+                                {/*下单操作*/}
                                 <Col span="14">
                                     <div style={{ height: '470px' }}>
-                                        <div className={cardHeader}><span style={{ color: '#6C7F9C' }}>限价交易</span>  市价交易</div>
+                                        <div className={cardHeader}>限价交易<span style={{ color: '#6C7F9C' }}>  市价交易</span></div>
                                         <div className={bgColor} style={{ height: "420px", ...borderRadius }}>
                                             <Trade />
                                         </div>
                                     </div>
                                 </Col>
+                                {/*七档行情*/}
                                 <Col span="10">
                                     <div style={{ marginLeft: 10 }}>
                                         <div className={cardHeader}>七档行情</div>
@@ -84,10 +86,13 @@ class Bibi extends React.Component {
                         </div>
                         <div style={{ marginTop: 10 }} >
                             <Row>
+                                {/*我的委托*/}
                                 <Col span="17">
                                     <div className={cardHeader}>我的委托</div>
-                                    <div className={bgColor} style={{ height: '360px', ...borderRadius }}></div>
+                                    <div className={bgColor} style={{ height: '360px', ...borderRadius }}>
+                                    </div>
                                 </Col>
+                                {/*成交明细*/}
                                 <Col span="7">
                                     <div style={{ marginLeft: '10px' }}>
                                         <div className={cardHeader}>成交明细</div>

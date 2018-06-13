@@ -14,9 +14,9 @@
     "babel-plugin-import": "^1.6.7",
     "big-rational": "^0.10.7",
     "dva": "^2.1.0",
-    "pubsub-js": "^1.6.0",
     "dva-loading": "^1.0.4",
     "electron": "^2.0.0",
+    "md5": "^2.2.1",
     "moment": "^2.22.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"

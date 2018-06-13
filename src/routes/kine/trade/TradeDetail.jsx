@@ -3,9 +3,6 @@ import { connect } from 'dva';
 import { Row, Col } from 'antd';
 import moment from 'moment';
 import TradeComponent from '../../../components/tradDetail';
-import Table from '../../../components/CustomTable';
-import WebSocket from '../../../services/webSocketConfig'
-import subscribeSet from '../../../services/subscribeSet';
 
 //import styles from '../market/Market.less';
 /**
@@ -35,6 +32,7 @@ class TradDetal extends React.Component {
     render() {
         return <div >
             <TradeComponent trade dataList={this.state.dataSource} titleList={this.state.titleList} handleOk={price => console.log(price)} />
+           
         </div>
     }
 }
