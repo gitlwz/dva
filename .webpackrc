@@ -1,0 +1,22 @@
+{
+  "extraBabelPlugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": "css"
+      }
+    ]
+  ],
+  "theme": "./theme.js",
+  "proxy": {
+    "/wxtoken": {
+      "target": "http://192.168.31.81:8080/",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "": ""
+      }
+    }
+  }
+}
