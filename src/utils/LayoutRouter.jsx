@@ -31,6 +31,10 @@ const LayoutRouter = [
         models: () => [import('../models/other')],
         component: () => import('../routes/detail/yhrate')
     },
+    {
+        path: '/helpcenter',
+        component: () => import('../routes/helpcenter/helpcenter')
+    },
 
 ]
 export default LayoutRouter;
