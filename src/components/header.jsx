@@ -59,7 +59,7 @@ class Header extends Component {
                             <img src={require("../assets/yinghe/公告@2x.png")} />
                             <span>平台公告</span>
                         </div>
-                        <div className={styles.text}>
+                        <div onClick={() => this.pushNewPage("/helpcenter")} className={styles.text}>
                             <img src={require("../assets/yinghe/借贷－帮助中心@2x.png")} />
                             <span>帮助中心</span>
                         </div>

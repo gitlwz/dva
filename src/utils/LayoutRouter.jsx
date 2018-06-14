@@ -36,6 +36,10 @@ const LayoutRouter = [
         component: () => import('../routes/helpcenter/helpcenter')
     },
     {
+        path: '/searchresult',
+        component: () => import('../routes/helpcenter/searchresult')
+    },
+    {
         path: '/helpdetail/:id',
         component: () => import('../routes/helpcenter/helpdetail')
     },
