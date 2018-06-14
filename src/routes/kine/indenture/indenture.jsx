@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from 'dva';
 import { Row, Col } from 'antd';
-import TradeComponent from '../../../components/tradDetail';
-import CalculateFunc from '../../../tool/CalculateFunc';
+import star from "../../../assets/yinghe/形状 2 副本@2x.png";
+import selectStar from "../../../assets/yinghe/形状 2@2x.png";
 import styles from './indenture.less';
 
 /**
@@ -18,12 +18,27 @@ class Indenture extends React.Component {
             dataSource: []
         }
     }
+
+    getRandomStr() {
+        var result = [];
+        for (var i = 0; i < 3; i++) {
+            var ranNum = Math.ceil(Math.random() * 25); //生成一个0到25的数字
+            //大写字母'A'的ASCII是65,A~Z的ASCII码就是65 + 0~25;然后调用String.fromCharCode()传入ASCII值返回相应的字符并push进数组里
+            result.push(String.fromCharCode(65 + ranNum));
+        }
+        return result.join('');
+    }
     componentDidMount() {
         let dataSource = []
-        for (let i = 0; i < 10; i++) {
-            dataSource.push({ indenture: 'BTC', price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
+        this.props.getInstrumentIds()
+        for (let i = 0; i < this.props.instrumentIds.length; i++) {
+            dataSource.push({ instrumentId: this.props.instrumentIds[i], price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
         }
         this.setState({ dataSource })
+
+        // dataSource.push({ indenture: this.getRandomStr(), price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
+        let checkedArray = JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [];
+        this.setState({ dataSource: checkedArray })
     }
 
 
@@ -35,7 +50,33 @@ class Indenture extends React.Component {
         </div>
     }
 
-    
+    checked(instrumentId) {
+        let instrumentIds = this.state.dataSource;
+        let checkedArray = JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [];
+        // if (checkedArray.length > 0) {
+        //     for (let i = 0; i < checkedArray.length; i++) {
+        //         if (checkedArray[i].indenture == instrumentId) {
+
+        //         } else {
+
+        //         }
+
+        //     }
+
+        //     for (let i = 0; i < instrumentIds.length; i++) {
+        //         if (instrumentId == instrumentIds[i].indenture) {
+        //             instrumentIds[i]["check"] = true;
+        //         }
+        //     }
+
+        // } else {
+        //     checkedArray.push(instrumentIds.filter(item => item.indenture == instrumentId)[0])
+        // }
+
+        window.localStorage.setItem("instrumentIdCheck", JSON.stringify(instrumentIds));
+        this.setState({ dataSource: instrumentIds })
+    }
+
     render() {
         return <div className={styles.root}>
             <Row type="flex" justify="space-between">
@@ -48,11 +89,11 @@ class Indenture extends React.Component {
                 <Col className={styles.header} span={8} style={{ textAlign: 'right', paddingRight: 10 }}>涨幅</Col>
             </Row>
             {
-                this.state.dataSource.map(item => {
+                this.props.instrumentIds.map(item => {
                     return <Row className={styles.row} key={item.price}>
                         <Col className={styles.col} span={8}>
                             <div style={{ display: "flex", alignItems: 'center' }}>
-                                <img src={require("../../../assets/yinghe/形状 2@2x.png")} style={{ paddingRight: 10, alignSelf: 'center', marginTop: '-3px' }}/>
+                                <img src={item.check == true ? selectStar : star} style={{ paddingRight: 10, alignSelf: 'center', marginTop: '-3px' }} onClick={() => this.checked(item.indenture)} />
                                 <span> {item.indenture}</span>
                             </div>
 
@@ -69,17 +110,15 @@ class Indenture extends React.Component {
 
 export default connect((state, props) => {
     return {
+        instrumentIds: state.other.instrumentIds,
         props
     }
 }, (dispatch, props) => {
     return {
-        handleOk: (parms) => {
+        getInstrumentIds: (parms) => {
             dispatch({
-                type: 'trade/save',
-                payload: {
-                    ...parms
-                }
-            })
+                type: 'other/getInstrumentIds'
+            }).then(res => console.log(res))
         }
     }
 })(Indenture)

@@ -1,7 +1,3 @@
-import dynamic from 'dva/dynamic';
-import app from '../index'
-import { Route, Switch, Redirect } from 'dva/router';
-
 /**
  * 配置用户路由
  */

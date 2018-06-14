@@ -1,6 +1,3 @@
-import dynamic from 'dva/dynamic';
-import app from '../index'
-import { Route, Switch, Redirect } from 'dva/router';
 
 /**
  * 配置主页路由
@@ -8,10 +5,11 @@ import { Route, Switch, Redirect } from 'dva/router';
 const LayoutRouter = [
     {
         path: '/home',
+        models: () => [import('../models/other')],
         component: () => import('../routes/home/home'),
     }, {
         path: '/kine',
-        models: () => [import('../models/kine/trade')],
+        models: () => [import('../models/kine/trade'),import('../models/other')],
         component: () => import('../routes/kine/bibi/bibi'),
     },
     {

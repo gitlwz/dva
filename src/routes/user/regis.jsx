@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button, Modal, Form, Input, message, Row, Col, Checkbox, Icon } from "antd";
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
 import md5 from "md5";

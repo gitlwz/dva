@@ -1,8 +1,7 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb, Icon, Row, Col } from 'antd';
-import { routerRedux, Route, Switch, Redirect, Link } from 'dva/router';
+import { Layout } from 'antd';
+import { routerRedux } from 'dva/router';
 import { connect } from 'dva';
-import LayoutRouter from '../utils/LayoutRouter';
 import Header from '../components/header';
 import ThemeSet from './set/setTheme';
 import Footer from '../components/footer';

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'dva';
-import { Router, Route, Switch } from 'dva/router';
+import { Route, Switch } from 'dva/router';
 import dynamic from 'dva/dynamic';
 import app from '../../index'
 import UserRouter from '../../utils/UserRouter';

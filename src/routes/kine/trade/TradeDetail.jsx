@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from 'dva';
-import { Row, Col } from 'antd';
 import moment from 'moment';
 import TradeComponent from '../../../components/tradDetail';
 
@@ -26,13 +25,10 @@ class TradDetal extends React.Component {
         this.setState({ dataSource: array })
     }
 
-
-
-
     render() {
         return <div >
             <TradeComponent trade dataList={this.state.dataSource} titleList={this.state.titleList} handleOk={price => console.log(price)} />
-           
+
         </div>
     }
 }

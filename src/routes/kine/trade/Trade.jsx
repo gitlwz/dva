@@ -1,9 +1,6 @@
 import React from "react";
 import { connect } from 'dva';
 import { Row, Col, Input, Slider, Button } from 'antd';
-import WSClient from '../../../services/WSClient';
-import webSocket from '../../../services/webSocketConfig';
-import subscribeSet from '../../../services/subscribeSet';
 import styles from './Trade.less';
 /**
  * 模块:下单买卖操作
@@ -16,22 +13,21 @@ class Trade extends React.Component {
         }
     }
     componentDidMount() {
-        // WSClient.addEventListenerTradeDetail(subscribeSet.Topic_tradeDetail + "KOG-CNHE");
-        // webSocket.emitter.on(subscribeSet.Topic_tradeDetail, (data) => {
-        //     console.log(data)
-        // })
+
     }
+
+
 
     render() {
         const marks = {
-            0: 0,
-            26: 26,
-            37: 37,
-            100: {
+            0.1: 0,
+            26.5: 26,
+            37.55: 37,
+            100.6: {
                 style: {
                     color: 'white',
                 },
-                label: <strong>1001111</strong>,
+                label: <strong>满了</strong>,
             },
         };
         const { buyData, sellData, sliderChange, userInfo } = this.props;

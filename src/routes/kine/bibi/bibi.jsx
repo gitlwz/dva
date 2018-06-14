@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Input } from 'antd';
+import { Row, Col } from 'antd';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
 import Market from '../market/Market';

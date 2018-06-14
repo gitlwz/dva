@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from 'dva';
-import { Row, Col } from 'antd';
 import TradeComponent from '../../../components/tradDetail';
-import CalculateFunc from '../../../tool/CalculateFunc';
 
 /**
  * 模块:七档行情
