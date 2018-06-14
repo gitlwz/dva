@@ -12,15 +12,19 @@ export default {
     },
 
     effects: {
+        //获取费率
         *queryRateList({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.trad.rate, payload);
-            yield put({
-                type: 'save',
-                payload: {
-                    rateList: data
-                }
-            })
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        rateList: data
+                    }
+                })
+            }
         },
+       
     },
 
     reducers: {

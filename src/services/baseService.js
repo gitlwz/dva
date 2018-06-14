@@ -19,12 +19,22 @@ function toQueryString(obj) {
 
 export default function baseService(appConfig, payload) {
     if (appConfig.method && appConfig.method == "GET") {
-        return request(appConfig.url + "?" + urlUtil.urlEncode(payload),
-            {
-                method: "GET",
-                headers: requestConfig.headers,
-                credentials: 'include'
-            });
+        if (payload) {
+            return request(appConfig.url + "?" + urlUtil.urlEncode(payload),
+                {
+                    method: "GET",
+                    headers: requestConfig.headers,
+                    credentials: 'include'
+                });
+        } else {
+            return request(appConfig.url,
+                {
+                    method: "GET",
+                    headers: requestConfig.headers,
+                    credentials: 'include'
+                });
+        }
+
     } else {
         //此处处理JAVA要求传递字符串,正常情况直接传递body 对象即可
         var data = { 'params': JSON.stringify(payload) };

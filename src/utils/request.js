@@ -28,6 +28,7 @@ export default function request(url, options) {
         .then(checkStatus)
         .then(parseJSON)
         .then(data => {
+            // console.log(data)
             if (data.errorCode == 0) {
                 let resData = data;
                 if (resData != '' && resData.data != '')
@@ -35,6 +36,7 @@ export default function request(url, options) {
                 return resData;
             } else {
                 message.error(data.errorMsg)
+                return data
             }
         }).catch(err => {
             console.log("network error")

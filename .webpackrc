@@ -11,8 +11,8 @@
   ],
   "theme": "./theme.js",
   "proxy": {
-    "/wxtoken": {
-      "target": "http://192.168.31.84:8080/",
+    "/sundax": {
+      "target": "http://47.75.170.16/",  
       "changeOrigin": true,
       "pathRewrite": {
         "": ""

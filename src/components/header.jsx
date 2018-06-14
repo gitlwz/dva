@@ -19,70 +19,65 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userId: null
+            userId: null,
+            selectMenu: window.location.hash.split("#")[1]
         }
     }
 
     componentDidMount() {
-        //LoginService.getUserID().then(res => this.setState({ userId: res })).catch()
+        this.props.getUserId()
     }
 
     pushNewPage(pageName) {
         this.props.dispatch(routerRedux.push(pageName))
     }
 
-    logout() {
-        // LoginService.userLogout().then(res => LoginService.getUserID().then(res => {
-        //     this.setState({ userId: res });
-        //     this.pushNewPage("yinghe/yinghe.html")
-        // }).catch()).catch(error => { });
+
+
+    loadMenuItem() {
+        const menuArray = [{ img: require("../assets/yinghe/首页@2x.png"), title: '主页', url: '/home' }, { img: require("../assets/yinghe/BB交易logo@2x.png"), title: '币币交易', url: '/kine' },
+        { img: require("../assets/yinghe/公告@2x.png"), title: '平台公告', url: '/Platform' }, { img: require("../assets/yinghe/借贷－帮助中心@2x.png"), title: '帮助中心', url: '/helpcenter' }]
+        return <div style={{ display: "flex", flexDirection: 'row' }}>
+            {menuArray.map((item, index) => {
+                return <div className={styles.text} onClick={() => {
+                    this.setState({ selectMenu: item.url });
+                    this.pushNewPage(item.url)
+                }} key={item.title} >
+                    <img src={item.img} />
+                    <span style={{ color: this.state.selectMenu == item.url ? "#FECC39" : '' }}>{item.title}</span>
+                </div>
+            })}
+        </div>
     }
 
     // 渲染
     render() {
-        //const { dataJSON } = this.props;
         const dataJSON = {}
         return (
             <div className={styles.headerNa}>
                 <div className={styles.leftNav}>
                     <img src={logo} />
-                    <div style={{ display: "flex", flexDirection: 'row' }}>
-                        <div className={styles.text} onClick={() => this.pushNewPage("/home")}>
-                            <img src={require("../assets/yinghe/首页@2x.png")} />
-                            <span>主页</span>
-                        </div>
-                        <div className={styles.text} onClick={() => this.pushNewPage("/kine")}>
-                            <img src={require("../assets/yinghe/BB交易logo@2x.png")} />
-                            <span>币币交易</span>
-                        </div>
-                        <div className={styles.text}>
-                            <img src={require("../assets/yinghe/公告@2x.png")} />
-                            <span>平台公告</span>
-                        </div>
-                        <div className={styles.text}>
-                            <img src={require("../assets/yinghe/借贷－帮助中心@2x.png")} />
-                            <span>帮助中心</span>
-                        </div>
-
-                    </div>
+                    {this.loadMenuItem()}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', marginRight: 50 }}>
-                    {this.state.userId == null ? <div>
-                        <span style={{ borderRight: '1px solid rgba(86,86,86,1)', padding: '0 20px' }} onClick={() => this.pushNewPage("/user/login")}>登录</span>
-                        <span style={{ padding: '0 20px' }} onClick={() => this.pushNewPage("/user/regis")}>注册</span>
-                    </div> : <div style={{ display: 'flex', alignItems: 'center' }}>
-
+                    {this.props.userId == "" ?
+                        <div>
+                            <span style={{ borderRight: '1px solid rgba(86,86,86,1)', padding: '0 20px' }} onClick={() => this.pushNewPage("/user/login")}>登录</span>
+                            <span style={{ padding: '0 20px' }} onClick={() => this.pushNewPage("/user/regis")}>注册</span>
+                        </div> :
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
                             <img src={selectBg} style={{ margin: '0 10px', width: 40 }} onClick={() => {
-                                if (this.state.userId) {
+                                if (this.props.userId) {
                                     this.pushNewPage("/home")
                                 } else {
                                     this.pushNewPage("/user/login")
                                 }
                             }} />
 
-                            <span style={{ padding: '0 20px' }}>{this.state.userId}</span>
-                            <span onClick={() => this.logout()} style={{ paddingRight: '20' }}>退出</span>
-                        </div>}
+                            <span style={{ padding: '0 20px' }}>{this.props.userId}</span>
+                            <span onClick={() => this.props.logout()} style={{ marginRight: 20 }}>登出</span>
+                        </div>
+                    }
                     <div className={styles.language}>
                         <img src={languareBG} style={{ marginRight: 20, marginLeft: 10 }} />
                         <select value={this.props.currLanguage} onChange={e => console.log(e)} style={{ height: "26px", border: "none", outline: 'none', fontSize: "18px !important" }}>
@@ -96,4 +91,20 @@ class Header extends Component {
     }
 }
 
-export default connect()(Header);
+export default connect((state, props) => {
+    return {
+        userId: state.user.userId,
+        props
+    }
+}, (dispatch, props) => {
+    return {
+        getUserId: () => {
+            dispatch({
+                type: 'user/getUserId'
+            })
+        },
+        logout: () => dispatch({
+            type: 'user/logout'
+        }), dispatch
+    }
+})(Header)

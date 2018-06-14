@@ -2,10 +2,6 @@ import React from "react";
 import { connect } from 'dva';
 import { Row, Col } from 'antd';
 import TradeComponent from '../../../components/tradDetail';
-import Table from '../../../components/CustomTable';
-import WSClient from '../../../services/WSClient';
-import webSocket from '../../../services/webSocketConfig';
-import subscribeSet from '../../../services/subscribeSet';
 import CalculateFunc from '../../../tool/CalculateFunc';
 
 /**

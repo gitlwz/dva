@@ -8,35 +8,69 @@ export default {
 
     state: {
         userInfo: {},
+        countryList: [],
         isLogin: false,
-        userName: ''
+        userId: ''
     },
 
     effects: {
+        //登录
         *login({ payload }, { call, put }) {
-            const data = yield call(baseService, api.user.logon, payload);
+            const data = yield call(baseService, api.user.logon, payload.body);
+            if (data != undefined)
+                payload.callback(data)
+        },
+
+        //注册
+        *regis({ payload }, { call, put }) {
+            const data = yield call(baseService, api.user.regis, payload.body);
+            if (data != undefined)
+                payload.callback(data)
+        },
+        //登出
+        *logout({ payload }, { call, put }) {
+            const data = yield call(baseService, api.user.logout, []);
+            console.log(data)
             if (data != undefined) {
-                if (data.errorCode == 0) {
-                    yield put(routerRedux.push("./"))
+                if (data.errorCode == "0") {
+                    yield put({
+                        type: 'getUserId'
+                    })
+                    routerRedux.push("/")
                 } else {
-                    message.error(data.errorMsg)
+                    console.log("network err!")
                 }
             }
-        },
 
+        },
+        //获取当前登录人
         *getUserId({ payload }, { call, put }) {
-            const { data } = yield call(baseService, api.user.getUserId, [])
+            const { data } = yield call(baseService, api.user.getUserId, []);
+            console.log(data)
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        userId: data
+                    }
+                })
+            }
         },
-
+        //获取当前登陆人信息
         *findUserInfo({ payload }, { call, put }) {
-            // try {
-            //     const data = yield call(baseService, api.user.userInfo, payload);
-            //     console.log(data);
-            // } catch (error) {
-            //     console.log(error)
-            // }
             const data = yield call(baseService, api.user.userInfo, payload);
-        }
+        },
+        //获取国家列表
+        *queryCountryList({ payload }, { call, put }) {
+            const { data } = yield call(baseService, api.user.getCountry, []);
+            if (data != undefined)
+                yield put({
+                    type: 'save',
+                    payload: {
+                        countryList: data
+                    }
+                })
+        },
     },
 
     reducers: {
