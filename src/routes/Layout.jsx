@@ -13,7 +13,6 @@ class LayoutPage extends React.Component {
         this.language = localStorage.getItem("language") || "China"
     }
     componentDidMount() {
-        console.log(this.props)
     }
 
     menuClick = ({ item, key, keyPath }) => {

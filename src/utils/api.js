@@ -1,10 +1,14 @@
 let baseURL = "http://47.75.170.16/sundax/";
-let baseIP = "/wxtoken/"  //sundax  wxtoken
+let baseIP = "/sundax/"  //wxtoken  
 const apis = {
     "user": {
-        "logon": { url: 'logon', method: 'POST', description: '登陆' },
-        "getUserId": { url: 'service/logonInfoService/getUserID', method: 'POST', description: '获取当前等人信息' },
-        "userInfo": { url: baseIP + '/service/webGeneralService/queryClientApply', method: 'POST', description: '查询用户注册信息' }
+        "logon": { url: baseIP + 'logon', method: 'POST', description: '登陆' },
+        "logout": { url: baseIP + 'logout', method: 'DELETE', description: '登出' },
+        "regis": { url: baseIP + 'service/anonymousWebGeneralService/save', method: 'POST', description: '登陆' },
+        "getUserId": { url: baseIP + 'service/logonInfoService/getUserID', method: 'POST', description: '获取当前等人信息' },
+        "userInfo": { url: baseIP + '/service/webGeneralService/queryClientApply', method: 'POST', description: '查询用户注册信息' },
+        "getCountry": { url: baseIP + '/service/webGeneralService/findAllCountrys', method: 'POST', description: '查询国家列表' },
+
     },
     "trad": {
         rate: { url: baseIP + "service/webGeneralService/findAllFeeSet", method: 'POST', description: '查询费率' }
