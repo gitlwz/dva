@@ -40,24 +40,56 @@ let widgetOptions ={
  */
 export class TVChartContainer extends React.PureComponent {
 	static defaultProps = {
-		datafeedUrl:"https://demo_feed.tradingview.com",
-		symbol:'AAPL',
-    };
+		symbol: 'AAPL',
+		datafeedUrl: 'https://demo_feed.tradingview.com',
+	};
 	componentDidMount = () => {
+		widgetOptions ={
+			overrides:{
+				'paneProperties.background': "#181B2A",
+				'paneProperties.vertGridProperties.color':'#1D263D',
+				'paneProperties.horzGridProperties.color':'#1D263D',
+				'scalesProperties.textColor' : "#61688A",
+				'scalesProperties.showStudyLastValue':true,
+				linetoolbarspattern: {
+					singleChartOnly: true,
+					color:'rgba( 255, 0, 0, 1)',
+					mode:0,
+					mirrored:false,
+					flipped:false
+				}
+			},
+			// fullscreen: true,
+			
+			autosize:true,
+			toolbar_bg: '#1D263D',
+			container_id: "tv_chart_container",
+			library_path: '/charting_library/',
+			locale: 'zh',
+			supported_resolutions:["1", "15", "30", "1D", "1W"] ,
+			drawings_access: { type: 'black', tools: [ { name: "Regression Trend" } ] },
+			disabled_features: ["volume_force_overlay",'timeframes_toolbar','control_bar','pane_context_menu','show_hide_button_in_legend','header_undo_redo','timezone_menu','header_symbol_search','symbol_search_hot_key','header_interval_dialog_button','show_interval_dialog_on_key_press','header_compare','header_screenshot','compare_symbol','pane_context_menu','legend_context_menu','main_series_scale_menu','scales_context_menu','symbol_info'],
+			enabled_features:['hide_left_toolbar_by_default'],
+			loading_screen:{
+				backgroundColor :"#ffffff"
+			},
+			charts_storage_api_version: "1.1",
+			client_id: 'tradingview.com',
+			user_id: 'public_user',
+			timezone: "Asia/Shanghai",
+		}
 		//new UDFCompatibleDatafeed("https://demo_feed.tradingview.com")
-		widgetOptions.datafeed = new UDFCompatibleDatafeed(this.props.datafeedUrl);
+		widgetOptions.datafeed = new UDFCompatibleDatafeed(this.props.datafeedUrl),
 		widgetOptions.symbol =  this.props.symbol;
-		window.TradingView.onready(() => {
 			widget = window.tvWidget = new window.TradingView.widget(widgetOptions);
 			widget.onChartReady(()=> {
-				//添加分时按钮
 				this.insertBeforeBtn(); 
 				this.addMa(5,widget)
 				this.addMa(10,widget)
 				this.addMa(20,widget)
 				this.addMa(30,widget)
 			})
-		});
+		
 	}
 	componentWillReceiveProps = (nextProps) =>{
 		if(nextProps.symbol !== this.props.symbol && !!widget){
@@ -89,7 +121,7 @@ export class TVChartContainer extends React.PureComponent {
 	render() {
 		return (
 			<div
-				style={{height: '100%'}}
+				style={{height: '300px'}}
 				id="tv_chart_container"
 				className={'TVChartContainer'}
 			/>

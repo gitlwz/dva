@@ -8,6 +8,7 @@ import TradDetal from '../trade/TradeDetail';
 import WSClient from '../../../services/WSClient';
 import webSocket from '../../../services/webSocketConfig';
 import subscribeSet from '../../../services/subscribeSet';
+import {TVChartContainer } from '../../../components/TVChartContainer'
 import styles from './bibi.less';
 /**
  * 币币主页布局
@@ -58,7 +59,7 @@ class Bibi extends React.Component {
                     <div style={{ marginLeft: 10 }}>
                         <div className={cardHeader}>{tradDetail.instrumentName} 2.2492 ≈ 14.47 CNY 涨幅 -3.21% 高 2.3400 低 2.1945 24H量 2906862 IOTA</div>
                         <div style={{ minHeight: 300, ...borderRadius }} className={bgColor}>
-                            <span className={styles.center}>K线图展示</span>
+                            <TVChartContainer />
                         </div>
                         <div style={{ marginTop: 10 }}>
                             <Row>
