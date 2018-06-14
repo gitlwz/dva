@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link type="text/css" href="bundles/vendors.a94ef44ed5c201cefcf6ad7460788c1a.css" rel="stylesheet" />
+    <link type="text/css" href="bundles/library.a8de6f8cf4dda6895071c6ec45f900d9.css" rel="stylesheet" />
+    <style type="text/css">
+        .chart-page {
+            background: #181B2A;
+        }
+
+        .chart-page .pane-legend-icon-container svg {
+            fill: #61688A;
+        }
+
+        .chart-page .tv-side-toolbar .tools-group .button {
+            background-color: #181b2a;
+            border-color: #181b2a;
+        }
+
+        .chart-page .tv-side-toolbar .tools-group .button .main.text-as-icon {
+            color: #4e5b85;
+        }
+
+        .chart-page .tv-side-toolbar .tools-group .button svg {
+            fill: #4e5b85;
+        }
+
+        .chart-page .tv-side-toolbar .tools-group .button.selected,
+        .chart-page .tv-side-toolbar .tools-group .button:hover,
+        .chart-page .tv-side-toolbar .tools-group .button:active {
+            background-color: #2c3b59;
+            border-color: #2c3b59;
+        }
+
+        .chart-page .tv-side-toolbar .tools-group .button.selected svg,
+        .chart-page .tv-side-toolbar .tools-group .button:hover svg,
+        .chart-page .tv-side-toolbar .tools-group .button:active svg {
+            fill: #c7cce6;
+        }
+
+        .chart-page .tv-side-toolbar .tools-group .button.selected .main.text-as-icon,
+        .chart-page .tv-side-toolbar .tools-group .button:hover .main.text-as-icon,
+        .chart-page .tv-side-toolbar .tools-group .button:active .main.text-as-icon {
+            color: #c7cce6;
+        }
+
+        .chart-page .tv-side-toolbar .tools-group .button.selected .side,
+        .chart-page .tv-side-toolbar .tools-group .button:hover .side,
+        .chart-page .tv-side-toolbar .tools-group .button:active .side {
+            border-left: 1px solid transparent;
+        }
+
+        .chart-page .tv-side-toolbar .tools-group .button:active svg {
+            fill: #4e5b85;
+        }
+
+        .chart-page .charts-popup-list {
+            background-color: #181b2a;
+            color: #4e5b85;
+            border-color: #2c3b59;
+        }
+
+        .chart-page .charts-popup-list .separator {
+            border-top: 1px solid #c1c8ec;
+        }
+
+        .chart-page .charts-popup-list .item {
+            background-color: #181b2a;
+            color: #4e5b85;
+        }
+
+        .chart-page .charts-popup-list .item.active {
+            background-color: #2c3b59;
+            color: #c7cce6;
+        }
+
+        .chart-page .charts-popup-list .icon-wrap svg {
+            fill: #4e5b85;
+        }
+
+        .chart-page .list-inner .item {
+            background-color: #181b2a;
+        }
+
+        .chart-page .list-inner .item.active {
+            background-color: #2c3b59;
+        }
+
+        .chart-page .list-inner .item.active svg {
+            fill: #c7cce6;
+        }
+
+        .chart-page .list-inner .item.active span.title {
+            color: #c7cce6;
+        }
+
+        .chart-page .list-inner .item span.title {
+            color: #4e5b85;
+        }
+
+        .chart-page .favored-list-container span:hover {
+            background-color: #2C3B59;
+        }
+
+        .chart-page .tv-floating-toolbar {
+            background-color: #2c3b59;
+            border-color: #c7cce6;
+        }
+
+        .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper .tv-floating-toolbar__drag,
+        .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper input {
+            background-color: #181b2a;
+        }
+
+        .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper .tv-floating-toolbar__drag svg,
+        .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper input svg {
+            fill: #4e5b85;
+        }
+
+        .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper .tv-floating-toolbar__widget {
+            border-color: #181b2a;
+        }
+
+        .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper .tv-floating-toolbar__widget svg {
+            fill: #4e5b85;
+        }
+
+        .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper .tv-floating-toolbar__widget .bg {
+            fill: #181b2a;
+        }
+
+        .chart-page .apply-common-tooltip {
+            background-color: #181B2A;
+            border: 1px solid transparent;
+            color: #61688A;
+        }
+
+        .chart-page .apply-common-tooltip:before {
+            border: 1px solid transparent;
+        }
+
+        .chart-page .apply-common-tooltip svg {
+            fill: #4e5b85;
+        }
+
+        .chart-page .layout__area--left [class^="drawingToolbar-"] {
+            background: #181B2A !important;
+        }
+
+        .chart-page .layout__area--left [class^="separator-"] {
+            opacity: .2;
+        }
+
+        .chart-page [class^="menu-"] {
+            background: #181B2A !important;
+        }
+
+        .chart-page [class^="item-"] {
+            background: transparent !important;
+        }
+
+        .chart-page [class^="labelRow-"],
+        .chart-page [class^="icon-"] {
+            color: #61688A;
+        }
+
+        .chart-page [class^="labelRow-"] svg,
+        .chart-page [class^="icon-"] svg {
+            fill: #61688A;
+        }
+
+        .chart-page [class*="isActive-"]:hover [class^="bg-"] {
+            background: #181B2A !important;
+        }
+
+        .chart-page [class*="isActive-"] [class^="bg-"] {
+            background: transparent;
+        }
+
+        .chart-page .chart-controls-bar {
+            background-color: #181B2A;
+        }
+
+        .chart-page .tv-side-toolbar .tools-group .button:hover,
+        .chart-page .header-chart-panel .tools-group .button:hover {
+            background-color: #2C3B59;
+        }
+
+        .chart-page .tv-side-toolbar .button:hover,
+        .chart-page .header-chart-panel .button:hover {
+            background: #2C3B59;
+        }
+
+        .chart-page .tv-side-toolbar .group,
+        .chart-page .header-chart-panel .group {
+            float: left;
+        }
+
+        .chart-page .tv-side-toolbar .group .apply-common-tooltip,
+        .chart-page .header-chart-panel .group .apply-common-tooltip {
+            font-weight: normal;
+            color: #4e5b85;
+        }
+
+        .chart-page .tv-side-toolbar .group .apply-common-tooltip svg,
+        .chart-page .header-chart-panel .group .apply-common-tooltip svg {
+            fill: #4e5b85;
+        }
+
+        .chart-page .tv-side-toolbar .group .apply-common-tooltip:hover,
+        .chart-page .tv-side-toolbar .group .apply-common-tooltip.selected,
+        .chart-page .header-chart-panel .group .apply-common-tooltip:hover,
+        .chart-page .header-chart-panel .group .apply-common-tooltip.selected {
+            background: #2c3b59;
+            color: #c7cce6;
+        }
+
+        .chart-page .tv-side-toolbar .group .apply-common-tooltip:hover svg,
+        .chart-page .tv-side-toolbar .group .apply-common-tooltip.selected svg,
+        .chart-page .header-chart-panel .group .apply-common-tooltip:hover svg,
+        .chart-page .header-chart-panel .group .apply-common-tooltip.selected svg {
+            fill: #c7cce6;
+        }
+        .chart-page .tv-close-panel .top,
+        .chart-page .header-chart-panel .group .intervals-container.favored-list-container  .quick .apply-common-tooltip:last-child{
+            display: none;
+        }
+        .chart-page .tv-side-toolbar .group .apply-common-tooltip:active,
+        .chart-page .header-chart-panel .group .apply-common-tooltip:active {
+            color: #4e5b85;
+        }
+
+        .chart-page .tv-side-toolbar .group .apply-common-tooltip:active svg,
+        .chart-page .header-chart-panel .group .apply-common-tooltip:active svg {
+            fill: #4e5b85;
+        }
+
+        .chart-page .tv-side-toolbar .header-group-fullscreen,
+        .chart-page .header-chart-panel .header-group-fullscreen {
+            float: right;
+            padding-right: 5px;
+        }
+
+        .chart-page .tv-side-toolbar .header-group-properties,
+        .chart-page .tv-side-toolbar .header-group-indicators,
+        .chart-page .header-chart-panel .header-group-properties,
+        .chart-page .header-chart-panel .header-group-indicators {
+            float: none;
+        }
+
+        .chart-page .tv-side-toolbar .tools-group:not(:first-child):not(.no-delimiter):before {
+            background: #4e5b85;
+        }
+
+        .chart-page .button svg {
+            fill: #4e5b85;
+        }
+
+        .chart-page .tv-side-toolbar {
+            border-right: 1px solid #181B2A;
+            background-color: #181B2A;
+        }
+
+        .chart-page .tv-side-toolbar .tools-group .button.selected .side {
+            border-left: 1px solid transparent;
+        }
+
+        .chart-page .tv-side-toolbar .tools-group .button.selected .side,
+        .chart-page .tv-side-toolbar .tools-group .button.selected .main {
+            background: #2C3B59;
+        }
+
+        .chart-page .chart-container {
+            background-color: #181B2A;
+            border: 1px solid transparent;
+        }
+
+        .chart-page .tv-close-panel {
+            background-color: #2b304a;
+            border: none;
+        }
+
+        .chart-page .button {
+            background-color: #181B2A;
+            border-color: #181B2A;
+        }
+
+        .chart-page .button:hover {
+            background-color: #4e5b85;
+        }
+
+        .chart-page .button.selected,
+        .chart-page .button.active {
+            background-color: #4e5b85 !important;
+        }
+
+        .chart-page .button.selected svg,
+        .chart-page .button.active svg {
+            fill: #181B2A;
+        }
+    </style>
+</head>
+
+<body class="chart-page on-widget">
+    <div class="loading-indicator" id="loading-indicator"></div>
+    <script src="js/external/spin.min.js"></script>
+    <script>var JSServer = {}; var __initialEnabledFeaturesets = ["charting_library"];</script>
+    <script>(function () { window.urlParams = (function () { var j, h = /\+/g, m = /([^&=]+)=?([^&]*)/g, e = function (o) { return decodeURIComponent(o.replace(h, " ")).replace(/<\/?[^>]+(>|$)/g, "") }, k = function () { var p = location.href; var o = p.indexOf("#"); if (o >= 0) { return p.substring(o + 1) } else { throw "Unexpected use of this page" } }(), n = {}; while (j = m.exec(k)) { n[e(j[1])] = e(j[2]) } var l = window.parent[n.uid]; var i = ["datafeed", "customFormatters", "brokerFactory"]; for (var g in l) { if (i.indexOf(g) === -1) { n[g] = JSON.stringify(l[g]) } } return n })(); window.locale = urlParams.locale; window.language = urlParams.locale; window.addCustomCSSFile = function (e) { var g = document.createElement("link"); document.getElementsByTagName("head")[0].appendChild(g); g.setAttribute("type", "text/css"); g.setAttribute("rel", "stylesheet"); g.setAttribute("href", e) }; if (!!urlParams.customCSS) { window.addCustomCSSFile(urlParams.customCSS) } var f = {}; if (typeof urlParams.loading_screen === "string") { try { f = JSON.parse(urlParams.loading_screen) } catch (d) { } } var a = document.getElementById("loading-indicator"); if (f.backgroundColor) { a.style = "background-color: " + f.backgroundColor } var b = (f.foregroundColor) ? f.foregroundColor : "#00A2E2"; var c = new Spinner({ lines: 17, length: 0, width: 3, radius: 30, scale: 1, corners: 1, color: b, opacity: 0, rotate: 0, direction: 1, speed: 1.5, trail: 60, fps: 20, zIndex: 2000000000, className: "spinner", top: "50%", left: "50%", shadow: false, hwaccel: false }).spin(a) })();</script>
+    <script src="bundles/vendors.be39e0d831d7b65e9f31.js"></script>
+    <script src="bundles/library.77596ca6783cb5996d22.js"></script>
+</body>
+
+</html>

@@ -35,6 +35,7 @@ class Indenture extends React.Component {
         </div>
     }
 
+    
     render() {
         return <div className={styles.root}>
             <Row type="flex" justify="space-between">
