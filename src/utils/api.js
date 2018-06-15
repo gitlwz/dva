@@ -13,6 +13,9 @@ const apis = {
     "trad": {
         rate: { url: baseIP + "service/webGeneralService/findAllFeeSet", method: 'POST', description: '查询费率' },
         getInstrumentIds:{ url: baseIP + "service/webGeneralService/allInstrumentId", method: 'POST', description: '查询货币对集合' }
+    },
+    "asset":{
+        queryOperTradingAccount:{url: baseIP + "service/webGeneralService/queryOperTradingAccount", method: 'POST', description: '通过币种查询金额' }
     }
 }
 

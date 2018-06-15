@@ -43,6 +43,7 @@ const LayoutRouter = [
     },
     {
         path: '/asset',  //资产管理
+        models: () => [import('../models/asset')],
         component: () => import('../routes/asset/asset'),
     }
 ]
