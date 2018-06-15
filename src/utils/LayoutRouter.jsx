@@ -41,6 +41,9 @@ const LayoutRouter = [
         path: '/helpdetail/:id',
         component: () => import('../routes/helpcenter/helpdetail')
     },
-
+    {
+        path: '/asset',  //资产管理
+        component: () => import('../routes/asset/asset'),
+    }
 ]
 export default LayoutRouter;
