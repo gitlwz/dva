@@ -1,11 +1,12 @@
 import React from "react";
-import { Row, Col } from 'antd';
+import { Row, Col, Icon } from 'antd';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
 import Market from '../market/Market';
 import Trade from '../trade/Trade';
 import TradDetal from '../trade/TradeDetail';
 import Indenture from '../indenture/indenture';
+import LoginTooltip from '../../../components/loginTooltip'
 import { TVChartContainer } from '../../../components/TVChartContainer'
 import styles from './bibi.less';
 /**
@@ -16,6 +17,7 @@ class Bibi extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLook: false,
             tradDetail: {}
         }
     }
@@ -29,11 +31,14 @@ class Bibi extends React.Component {
 
     }
 
+    changLook() {
+        this.setState({ isLook: !this.state.isLook })
+    }
+
     render() {
         let bgColor = (this.props.theme == "dark" ? styles.bgDarkColor : styles.bgWhiteColor);
         let cardHeader = (this.props.theme == "dark" ? styles.darkCardHeader : styles.whiteCardHeader);
         const borderRadius = { borderRadius: '0 0 8px 8px' }
-        //const { language, currtLanguage } = this.props;
         const { tradDetail } = this.state;
         const { userId } = this.props;
         return <div style={{ padding: '10px 30px', backgroundColor: 'rgba(32,38,55,1)' }}>
@@ -41,10 +46,15 @@ class Bibi extends React.Component {
                 <Col span="5">
                     <div style={{ height: 90, borderRadius: '8px' }} className={bgColor}>
                         <Row style={{ marginLeft: 20, height: '100%', padding: '18px 0' }} type="flex" justify="center">
-                            <Col span={24}><div className={styles.assetDiv} style={{ color: 'rgba(120,173,255,1)' }}>净资产折合</div></Col>
+                            <Col span={24}>
+                                <Row>
+                                    <Col span={12}><div className={styles.assetDiv} style={{ color: 'rgba(120,173,255,1)' }}>净资产折合</div></Col>
+                                    <Col span={12}>{this.state.isLook ? <Icon type="eye" style={{ fontSize: 24, color: '#08c' }} onClick={() => this.changLook()} /> : <Icon type="eye-o" style={{ fontSize: 24, color: '#08c' }} onClick={() => this.changLook()} />} </Col>
+                                </Row>
+                            </Col>
                             {userId ?
                                 <Col span={24}><div className={styles.assetDiv}>15455 BTC CNY</div></Col> :
-                                <Col span={24}><div className={styles.assetDiv}>请<span className={styles.asset} onClick={() => this.props.pushRouter("/user/login")}>&nbsp;&nbsp;登录&nbsp;&nbsp;</span>或&nbsp;&nbsp;<span className={styles.asset} onClick={() => this.props.pushRouter("/user/regis")}>注册&nbsp;&nbsp;</span>后进行交易</div></Col>
+                                <Col span={24}><LoginTooltip /></Col>
                             }
                         </Row>
                     </div>
@@ -117,20 +127,13 @@ class Bibi extends React.Component {
 export default connect((state, props) => {
     return {
         theme: state.app.theme,
-        language: state.app.language,
-        currtLanguage: state.app.currtLanguage,
         userId: state.user.userId,
         props
     }
 }, (dispatch, props) => {
     return {
 
-        pushRouter: (url) => {
-            // if (props.location.pathname == url) {
-            //     return;
-            // }
-            dispatch(routerRedux.push(url))
-        },
+
     }
 
 })(Bibi)

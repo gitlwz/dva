@@ -5,11 +5,11 @@
 const LayoutRouter = [
     {
         path: '/home',
-        models: () => [import('../models/other')],
+        models: () => [import('../models/kine')],
         component: () => import('../routes/home/home'),
     }, {
         path: '/kine',
-        models: () => [import('../models/kine/trade'),import('../models/other')],
+        models: () => [import('../models/kine/trade'), import('../models/kine')],
         component: () => import('../routes/kine/bibi/bibi'),
     },
     {

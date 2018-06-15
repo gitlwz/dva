@@ -1,6 +1,6 @@
-import { routerRedux } from 'dva/router';
 import baseService from '../../services/baseService';
-import language from '../../language/language'
+import { message } from 'antd';
+import kineApi from '../../utils/kineApi';
 
 //下单模块
 export default {
@@ -10,19 +10,16 @@ export default {
         buyPrice: 20,
         buyVolume: 60.65,
         sellPrice: 10,
-        sellVolume: 20.3
+        sellVolume: 20.3,
+        instrumentIdData: {} //合约详情
     },
 
     effects: {
-        // *queryLogonList({ payload }, { call, put }) {
-        //     const { data } = yield call(baseService, api.system.logon, payload);
-        //     yield put({
-        //         type: 'save',
-        //         payload: {
-        //             dataList: data
-        //         }
-        //     })
-        // },
+        //下单
+        *orderInsert({ payload }, { call, put }) {
+            const data = yield call(baseService, kineApi.trade.orderInsert, [payload.orderData]);
+            payload.callback(data)
+        },
 
     },
 

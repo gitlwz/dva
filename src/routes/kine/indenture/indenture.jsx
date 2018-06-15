@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'dva';
-import { Row, Col } from 'antd';
+import { Row, Col, Spin } from 'antd';
 import star from "../../../assets/yinghe/形状 2 副本@2x.png";
 import selectStar from "../../../assets/yinghe/形状 2@2x.png";
 import styles from './indenture.less';
@@ -14,8 +14,7 @@ class Indenture extends React.Component {
         super(props);
         this.state = {
             dataSource: [],
-            currency: "USDT",//默认选中的货币对
-            dataSource: []
+            currency: 'USDT'
         }
     }
 
@@ -30,15 +29,6 @@ class Indenture extends React.Component {
     }
     componentDidMount() {
         let dataSource = []
-        const loadData = async () => {
-            await this.props.getInstrumentIds();
-            console.log(this.props.instrumentIds)
-        }
-        loadData();
-        for (let i = 0; i < this.props.instrumentIds.length; i++) {
-            dataSource.push({ instrumentId: this.props.instrumentIds[i], price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
-        }
-        this.setState({ dataSource })
 
         // dataSource.push({ indenture: this.getRandomStr(), price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
         let checkedArray = JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [];
@@ -78,51 +68,80 @@ class Indenture extends React.Component {
         // }
 
         window.localStorage.setItem("instrumentIdCheck", JSON.stringify(instrumentIds));
-        this.setState({ dataSource: instrumentIds })
+        //this.setState({ dataSource: instrumentIds })
+    }
+
+    //点击合约事件
+    changeInstrum(instrumId) {
+        this.props.dispatch({
+            type: 'kine/save',
+            payload: {
+                currentInstrument: instrumId,
+                markLoading: true
+            }
+        });
+        this.props.dispatch({
+            type: 'kine/findByInstrumentID',
+            payload: instrumId
+        })
+
+    }
+
+    loadInstrument() {
+        let dataSource = []
+        if (this.props.instrumentIds.length > 0) {
+            for (let i = 0; i < this.props.instrumentIds.length; i++) {
+                dataSource.push({ instrumentId: this.props.instrumentIds[i], price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
+            }
+            //this.setState({ dataSource })
+            return dataSource.filter(item => this.state.currency == item.instrumentId.split("-")[1]).map(item => {
+                return <Row className={styles.row} key={item.price} onClick={() => this.changeInstrum(item.instrumentId)}>
+                    <Col className={styles.col} span={8}>
+                        <div style={{ display: "flex", alignItems: 'center' }}>
+                            <img src={item.check == true ? selectStar : star} style={{ paddingRight: 10, alignSelf: 'center', marginTop: '-3px' }} onClick={() => this.checked(item.instrumentId)} />
+                            <span> {item.instrumentId}</span>
+                        </div>
+
+                    </Col>
+                    <Col className={styles.col} span={8} style={{ textAlign: 'center' }}>{item.price}</Col>
+                    <Col className={styles.col} span={8} style={{ textAlign: 'right', paddingRight: 10 }}>{item.rose}</Col>
+                </Row>
+            })
+        }
+
     }
 
     render() {
         return <div className={styles.root}>
-            <Row type="flex" justify="space-between">
-                <Col>{this.loadCurrencys()}</Col>
-                <Col style={{ paddingRight: 20 }}><span className={styles.currency}>自选</span></Col>
-            </Row>
-            <Row type="flex" style={{ margin: '10px 0' }} className={styles.header}>
-                <Col className={styles.header} span={8}>币种</Col>
-                <Col className={styles.header} span={8} style={{ textAlign: 'center' }}>最新价</Col>
-                <Col className={styles.header} span={8} style={{ textAlign: 'right', paddingRight: 10 }}>涨幅</Col>
-            </Row>
-            {
-                this.props.instrumentIds.map(item => {
-                    return <Row className={styles.row} key={item.price}>
-                        <Col className={styles.col} span={8}>
-                            <div style={{ display: "flex", alignItems: 'center' }}>
-                                <img src={item.check == true ? selectStar : star} style={{ paddingRight: 10, alignSelf: 'center', marginTop: '-3px' }} onClick={() => this.checked(item.indenture)} />
-                                <span> {item.indenture}</span>
-                            </div>
+            <Spin spinning={this.props.loading}>
+                <Row type="flex" justify="space-between">
+                    <Col>{this.loadCurrencys()}</Col>
+                    <Col style={{ paddingRight: 20 }}><span className={styles.currency}>自选</span></Col>
+                </Row>
 
-                        </Col>
-                        <Col className={styles.col} span={8} style={{ textAlign: 'center' }}>{item.price}</Col>
-                        <Col className={styles.col} span={8} style={{ textAlign: 'right', paddingRight: 10 }}>{item.rose}</Col>
-                    </Row>
-                })
-            }
+                <Row type="flex" style={{ margin: '10px 0' }} className={styles.header}>
+                    <Col className={styles.header} span={8}>币种</Col>
+                    <Col className={styles.header} span={8} style={{ textAlign: 'center' }}>最新价</Col>
+                    <Col className={styles.header} span={8} style={{ textAlign: 'right', paddingRight: 10 }}>涨幅</Col>
+                </Row>
 
+                {this.loadInstrument()}
+            </Spin>
         </div>
     }
 }
 
+
+
 export default connect((state, props) => {
     return {
-        instrumentIds: state.other.instrumentIds,
+        instrumentIds: state.kine.instrumentIds,
+        loading: state.kine.loading,
         props
     }
 }, (dispatch, props) => {
     return {
-        getInstrumentIds: (parms) => {
-            dispatch({
-                type: 'other/getInstrumentIds'
-            })
-        }
+        dispatch
+
     }
 })(Indenture)

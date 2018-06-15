@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import format from '../tool/formatNmber';
 import styles from './tradDetail.less';
 
 /**
@@ -22,11 +23,11 @@ export default class TradeComponent extends React.Component {
             })
         } else {
             return this.props.dataList.map((item, index) => {
-                return <div key={item.price} className={styles.header} onClick={() => this.props.handleOk(item.price)} onDoubleClick={() => alert(item.price)}>
-                    <span style={{ color: item.level == "0" ? "#5CAF70" : '#DD5D36' }}>{item.level == "0" ? "买" : '卖'}{index + 1}</span>
+                return <div key={index} className={styles.header} onClick={() => this.props.handleOk(item.price)} onDoubleClick={() => alert(item.price)}>
+                    <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买" : '卖'}{index + 1}</span>
                     <span>{item.price}</span>
                     <span>{item.volume}</span>
-                    <span>{item.price * item.volume}</span>
+                    <span>{format.multiply(item.price, item.volume, 2)}</span>
                 </div>
             })
         }
