@@ -52,7 +52,7 @@ class Trade extends React.Component {
                     </div>
                     <div className={styles.tradAction} style={{ marginTop: 35 }}>买入量</div>
                     <Input suffix={<span>ZEC</span>} value={buyVolume} onChange={e => sliderChange({ buyVolume: (this.formatNum(e.target.value)) })} className={styles.input} />
-                    <Slider style={{ margin: '20px 0', background: 'rgba(203,229,255,0.14)' }} marks={marks} value={buyVolume} onChange={value => sliderChange({ buyVolume: value })} className={styles.input} />
+                    <Slider step={0.01} style={{ margin: '20px 0', background: 'rgba(203,229,255,0.14)' }} marks={marks} value={buyVolume} onChange={value => sliderChange({ buyVolume: value })} className={styles.input} />
                     <div className={styles.sum}>交易额0.11111111</div>
                     <button className={styles.sellButton} disabled={userInfo.name ? false : true}>买入BTC</button>
                 </div>
