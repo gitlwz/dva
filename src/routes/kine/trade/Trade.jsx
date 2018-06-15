@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'dva';
 import { Row, Col, Input, Slider, Button } from 'antd';
+import format from '../../../tool/formatNmber';
 import styles from './Trade.less';
 /**
  * 模块:下单买卖操作
@@ -16,8 +17,16 @@ class Trade extends React.Component {
 
     }
 
+    //格式化数字
+    formatNum(value) {
+        console.log(value)
+        return format.NumberCheck({ value: value, pointNum: 2 })
+    }
 
-
+    toceshi(value) {
+        console.log(value);
+        return value * 1
+    }
     render() {
         const marks = {
             0.1: 0,
@@ -30,7 +39,7 @@ class Trade extends React.Component {
                 label: <strong>满了</strong>,
             },
         };
-        const { buyData, sellData, sliderChange, userInfo } = this.props;
+        const { buyPrice, buyVolume, sellPrice, sellVolume, sliderChange, userInfo } = this.props;
 
         return <Row type="flex" justify="space-between">
             <Col span="11">
@@ -38,12 +47,12 @@ class Trade extends React.Component {
                     <div className={styles.usable}>可用 1.5555BTC</div>
                     <div className={styles.tradAction}>买入价</div>
                     <div>
-                        <Input suffix={<span>USDT</span>} value={buyData.price} onChange={e => sliderChange({ buyData: { price: e.target.value.replace(/[^\d.]/g, "") } })} className={styles.input} />
+                        <Input suffix={<span>USDT</span>} value={buyPrice} onChange={e => sliderChange({ buyPrice: this.formatNum(e.target.value) })} className={styles.input} />
                         <div className={styles.fold}>≈≈3999 CNY</div>
                     </div>
                     <div className={styles.tradAction} style={{ marginTop: 35 }}>买入量</div>
-                    <Input suffix={<span>ZEC</span>} value={buyData.volume} onChange={e => sliderChange({ buyData: { volume: e.target.value.replace(/[^\d.]/g, "") } })} className={styles.input} />
-                    <Slider style={{ margin: '20px 0', background: 'rgba(203,229,255,0.14)' }} marks={marks} value={buyData.volume} onChange={value => sliderChange({ buyData: { volume: value } })} className={styles.input} />
+                    <Input suffix={<span>ZEC</span>} value={buyVolume} onChange={e => sliderChange({ buyVolume: (this.formatNum(e.target.value)) })} className={styles.input} />
+                    <Slider style={{ margin: '20px 0', background: 'rgba(203,229,255,0.14)' }} marks={marks} value={buyVolume} onChange={value => sliderChange({ buyVolume: value })} className={styles.input} />
                     <div className={styles.sum}>交易额0.11111111</div>
                     <button className={styles.sellButton} disabled={userInfo.name ? false : true}>买入BTC</button>
                 </div>
@@ -54,12 +63,12 @@ class Trade extends React.Component {
                     <div className={styles.usable}>可用 1.5555BTC</div>
                     <div className={styles.tradAction}>卖出价</div>
                     <div>
-                        <Input suffix={<span>USDT</span>} value={sellData.price} onChange={e => sliderChange({ sellData: { price: Number(e.target.value.replace(/[^\d.]/g, "")) } })} className={styles.input} />
+                        <Input suffix={<span>USDT</span>} value={sellPrice} onChange={e => sliderChange({ sellPrice: this.formatNum(e.target.value) })} className={styles.input} />
                         <div className={styles.fold}>≈≈3999 CNY</div>
                     </div>
                     <div className={styles.tradAction} style={{ marginTop: 35 }}>卖出量</div>
-                    <Input suffix={<span>ZEC</span>} value={sellData.volume} onChange={e => sliderChange({ sellData: { volume: Number(e.target.value.replace(/[^\d.]/g, "")) } })} className={styles.input} />
-                    <Slider style={{ margin: '20px 0', background: 'rgba(203,229,255,0.14)' }} marks={marks} value={sellData.volume} onChange={value => sliderChange({ sellData: { volume: value } })} />
+                    <Input suffix={<span>ZEC</span>} value={sellVolume} onChange={e => sliderChange({ sellVolume: e.target.value })} className={styles.input} />
+                    <Slider style={{ margin: '20px 0', background: 'rgba(203,229,255,0.14)' }} marks={marks} value={sellVolume} onChange={value => sliderChange({ sellVolume: value })} />
                     <div className={styles.sum}>交易额0.11111111</div>
                     <button disabled={userInfo.name ? false : true} className={styles.buyButton}>卖出BTC</button>
                 </div>
@@ -71,18 +80,23 @@ class Trade extends React.Component {
 
 export default connect((state, props) => {
     return {
-        buyData: state.trade.buyData,
-        sellData: state.trade.sellData,
+        buyPrice: state.trade.buyPrice,
+        buyVolume: state.trade.buyVolume,
+        sellPrice: state.trade.sellPrice,
+        sellVolume: state.trade.sellVolume,
         userInfo: state.app.userInfo,
         props
     }
 }, (dispatch, props) => {
     return {
         sliderChange: (parms) => {
+            console.log(parms)
+            for (const key in parms) {
+                parms[key] = parms[key] * 1
+            }
             dispatch({
                 type: 'trade/save',
                 payload: {
-                    ...props,
                     ...parms
                 }
             })

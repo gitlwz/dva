@@ -30,7 +30,11 @@ class Indenture extends React.Component {
     }
     componentDidMount() {
         let dataSource = []
-        this.props.getInstrumentIds()
+        const loadData = async () => {
+            await this.props.getInstrumentIds();
+            console.log(this.props.instrumentIds)
+        }
+        loadData();
         for (let i = 0; i < this.props.instrumentIds.length; i++) {
             dataSource.push({ instrumentId: this.props.instrumentIds[i], price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
         }
@@ -38,7 +42,7 @@ class Indenture extends React.Component {
 
         // dataSource.push({ indenture: this.getRandomStr(), price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
         let checkedArray = JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [];
-        this.setState({ dataSource: checkedArray })
+        //this.setState({ dataSource: checkedArray })
     }
 
 
@@ -118,7 +122,7 @@ export default connect((state, props) => {
         getInstrumentIds: (parms) => {
             dispatch({
                 type: 'other/getInstrumentIds'
-            }).then(res => console.log(res))
+            })
         }
     }
 })(Indenture)

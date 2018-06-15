@@ -121,7 +121,7 @@ export class TVChartContainer extends React.PureComponent {
 	render() {
 		return (
 			<div
-				style={{height: '300px'}}
+				style={{height: '450px'}}
 				id="tv_chart_container"
 				className={'TVChartContainer'}
 			/>

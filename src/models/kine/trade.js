@@ -7,14 +7,10 @@ export default {
     namespace: 'trade',
     state: {
         tradeType: '', //交易类型
-        buyData: {
-            price: 20,
-            volume: 60
-        },
-        sellData: {
-            price: 10,
-            volume: 20
-        }
+        buyPrice: 20,
+        buyVolume: 60.65,
+        sellPrice: 10,
+        sellVolume: 20.3
     },
 
     effects: {

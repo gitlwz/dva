@@ -9,7 +9,7 @@ export default {
 
     state: {
         rateList: [],  //费率
-        instrumentIds:[]
+        instrumentIds: []
     },
 
     effects: {
@@ -27,6 +27,7 @@ export default {
         },
         *getInstrumentIds({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.trad.getInstrumentIds, []);
+            console.log(data)
             if (data != undefined) {
                 yield put({
                     type: 'save',
@@ -36,7 +37,7 @@ export default {
                 })
             }
         },
-        
+
     },
 
     reducers: {

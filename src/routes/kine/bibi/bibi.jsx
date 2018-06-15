@@ -41,8 +41,6 @@ class Bibi extends React.Component {
                 <Col span="5">
                     <div style={{ height: 90, borderRadius: '8px' }} className={bgColor}>
                         <Row style={{ marginLeft: 20, height: '100%', padding: '18px 0' }} type="flex" justify="center">
-                            <Col span={24}><div className={styles.asset}>净资产折合</div></Col>
-                            <Col span={24}><div style={{ color: 'rgba(161,178,196,1)' }}>请<span className={styles.asset}>&nbsp;&nbsp;登录&nbsp;&nbsp;</span>或&nbsp;&nbsp;<span className={styles.asset}>注册&nbsp;&nbsp;</span>后进行交易</div></Col>
                             <Col span={24}><div className={styles.assetDiv} style={{ color: 'rgba(120,173,255,1)' }}>净资产折合</div></Col>
                             {userId ?
                                 <Col span={24}><div className={styles.assetDiv}>15455 BTC CNY</div></Col> :
@@ -52,7 +50,6 @@ class Bibi extends React.Component {
                     </div>
                     {/*合约*/}
                     <div style={{ height: 320, marginTop: 10, borderRadius: '8px' }} className={bgColor}>
-                        <div className={cardHeader}>市场</div>
                         <div className={cardHeader}> 市场 <input placeholder="搜索" className={styles.search} /> </div>
                         <div style={{ margin: "10px 20px", overflowY: 'scroll', height: 250 }}>
                             <Indenture />
@@ -66,7 +63,7 @@ class Bibi extends React.Component {
                 <Col span="19">
                     <div style={{ marginLeft: 10 }}>
                         <div className={cardHeader}>{tradDetail.instrumentName} 2.2492 ≈ 14.47 CNY 涨幅 -3.21% 高 2.3400 低 2.1945 24H量 2906862 IOTA</div>
-                        <div style={{ minHeight: 300, ...borderRadius }} className={bgColor}>
+                        <div style={{ minHeight: 450, ...borderRadius }} className={bgColor}>
                             <TVChartContainer />
                         </div>
                         <div style={{ marginTop: 10 }}>
