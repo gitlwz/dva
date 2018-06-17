@@ -30,8 +30,6 @@ const columns = [{
     }
 }];
 class AssetView extends Component {
-
-
     constructor(props) {
         super(props);
         this.currency = null; //代表全部
@@ -92,8 +90,10 @@ class AssetView extends Component {
     }
 }
 export default connect((state, props) => {
+    let {currentSelect,dataSource} = state.asset
     return {
-        ...state.asset,
+        currentSelect,
+        dataSource,
         ...props
     }
 })(AssetView);

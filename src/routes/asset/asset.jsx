@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import style from './asset.less'
-import { Row, Col, Select } from 'antd';
+import { Row, Col, Select ,Alert} from 'antd';
 import AssetView from './AssetView';
 import SecurityCenter from './SecurityCenter';
+import CashManagement from './CashManagement';
 import { connect } from 'dva';
 const Option = Select.Option;
 
@@ -34,9 +35,11 @@ class Asset extends Component {
         })
     }
     render() {
-        console.log("*****",this.props)
         return (
             <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
+                <div style={{display:this.props.topError?'black':"none"}} className={style.topError}>
+                    请先完成邮箱验证
+                </div>
                 <div className={style.accounContent}>
                     <Row gutter={16}>
                         <Col className="gutter-row" span={8}>
@@ -55,6 +58,7 @@ class Asset extends Component {
                         <Col className="gutter-row" span={16}>
                             <AssetView />
                             <SecurityCenter />
+                            <CashManagement />
                         </Col>
                     </Row>
                 </div>
