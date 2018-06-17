@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'dva';
-import moment from 'moment';
+import { Spin } from 'antd';
 import TradeComponent from '../../../components/tradDetail';
 
 //import styles from '../market/Market.less';
@@ -17,35 +17,48 @@ class TradDetal extends React.Component {
         }
     }
     componentDidMount() {
-        let array = []
-        for (let i = 0; i < 10; i++) {
-            let body = { time: moment().format("HH:MM:SS"), level: Math.random() > 0.5 ? "1" : "0", price: Math.random(1000).toFixed(2), volume: Math.random(1000).toFixed(4) };
-            array.push(body)
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.currentInstrument != nextProps.currentInstrument) {
+            this.queryOperTradeByInstrumentID(nextProps.currentInstrument)
         }
-        this.setState({ dataSource: array })
+    }
+
+    queryOperTradeByInstrumentID(currentInstrument) {
+        this.props.queryOperTradeByInstrumentID([{ "pageNo": 1, "pageSize": 100 }, currentInstrument])
     }
 
     render() {
-        return <div >
-            <TradeComponent trade dataList={this.state.dataSource} titleList={this.state.titleList} handleOk={price => console.log(price)} />
-
-        </div>
+        return <Spin spinning={this.props.tradeDetailLoding}>
+            <div style={{ height: "100%", paddingLeft: 20}}>
+                <TradeComponent trade dataList={this.props.operTradeByInstrumentIDList} titleList={this.state.titleList} handleOk={price => console.log(price)} />
+            </div>
+        </Spin>
     }
 }
 
 export default connect((state, props) => {
     return {
+        currentInstrument: state.kine.currentInstrument,
+        operTradeByInstrumentIDList: state.trade.operTradeByInstrumentIDList,
+        tradeDetailLoding: state.trade.tradeDetailLoding,
         props
     }
 }, (dispatch, props) => {
     return {
-        handleOk: (parms) => {
+        queryOperTradeByInstrumentID: (parms) => {
             dispatch({
-                type: 'trade/save',
-                payload: {
-                    ...parms
-                }
-            })
+                type: 'trade/queryOperTradeByInstrumentID',
+                payload: parms
+            }),
+                dispatch({
+                    type: 'trade/save',
+                    payload: {
+                        tradeDetailLoding: true
+                    }
+                })
         }
     }
 })(TradDetal)

@@ -26,7 +26,7 @@ class Trade extends React.Component {
 
     //下单操作
     orderInsert(direction) {
-        const { userInfo, instrumentIdData, buyPrice, buyVolume, sellPrice, sellVolume } = this.props;
+        const { userInfo, instrumentIdData, buyPrice, buyVolume, sellPrice, sellVolume, userId, currentInstrument } = this.props;
         let orderData = {};
         let limitPrice = "";
         let volumeTotalOriginal = ""
@@ -38,12 +38,13 @@ class Trade extends React.Component {
             volumeTotalOriginal = Number(format.multiply(sellVolume, instrumentIdData.volumeDivider))
         }
 
+        console.log(volumeTotalOriginal)
         if (userInfo && userInfo.id) {
             orderData.participantId = userInfo.clientID;
             orderData.clientId = userInfo.clientID;
             orderData.userId = userInfo.clientID;
 
-            orderData.instrumentId = instrumentIdData.instrumentId;
+            orderData.instrumentId = currentInstrument;
             orderData.orderPriceType = '2';
             orderData.direction = direction;
             orderData.combOffsetFlag = '0';
@@ -61,9 +62,18 @@ class Trade extends React.Component {
                 orderData: orderData,
                 callback: (data) => {
                     if (direction == "0") {
-                        message.success("买入成功!")
+                        message.success("委托买入成功!");
+                        //委托成功后查询委托列表
+                        this.props.dispatch({
+                            type: 'trade/queryOrderForClient',
+                            payload: [userId, currentInstrument, { "pageNo": 1, "pageSize": 10 }]
+                        })
                     } else {
-                        message.success("卖出成功!")
+                        message.success("委托卖出成功!")
+                        this.props.dispatch({
+                            type: 'trade/queryOrderForClient',
+                            payload: [userId, currentInstrument, { "pageNo": 1, "pageSize": 10 }]
+                        })
                     }
                 }
             }
@@ -131,7 +141,7 @@ export default connect((state, props) => {
         userId: state.user.userId,
         userInfo: state.user.userInfo,
         currentInstrument: state.kine.currentInstrument,
-        instrumentIdData: state.trade.instrumentIdData,
+        instrumentIdData: state.kine.instrumentIdData,
         props
     }
 }, (dispatch, props) => {

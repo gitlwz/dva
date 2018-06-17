@@ -11,11 +11,13 @@ export default {
     state: {
         instrumentIds: [], //全部合约
         currentInstrument: '',  //当前合约
+        Currency: "USDT", //货币对
         loading: true,
         instrumentIdData: {}, //合约详情
         sellList: [],
         buyList: [],
-        markLoading:true,
+        markLoading: true,
+        search: ''
     },
 
     effects: {
@@ -42,12 +44,13 @@ export default {
         //根据合约id查询详情
         *findByInstrumentID({ payload }, { call, put }) {
             const { data } = yield call(baseService, kineApi.trade.findByInstrumentID, [payload]);
-            yield put({
-                type: 'save',
-                payload: {
-                    instrumentIdData: data[0]
-                }
-            })
+            if (data != undefined)
+                yield put({
+                    type: 'save',
+                    payload: {
+                        instrumentIdData: data[0]
+                    }
+                })
         },
 
         //获取买档行情
@@ -57,7 +60,7 @@ export default {
                 type: 'save',
                 payload: {
                     buyList: data.length > 0 ? data : [],
-                    markLoading:false
+                    markLoading: false
                 }
             })
         },
@@ -84,10 +87,9 @@ export default {
         setup({ dispatch, history }) {
             if (history.location.pathname == "/kine") {
                 dispatch({
-                    type: 'kine/getInstrumentIds'
+                    type: 'getInstrumentIds'
                 })
             }
-            console.log(history)
         },
     },
 };

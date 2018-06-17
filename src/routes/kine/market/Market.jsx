@@ -18,16 +18,7 @@ class Market extends React.Component {
     }
     componentDidMount() {
         console.log("初始化一次!")
-        // WSClient.addEventListenerMarket(subscribeSet.Topic_change_mblmarketdata + "ISQ-BTC");
-        // webSocket.emitter.on(subscribeSet.Topic_change_mblmarketdata, (data) => {
-        //     if (data.length > 0) {
-        //         if (data && data[0].direction == '1') {
-        //             this.setState({ sellList: data })
-        //         } else {
-        //             this.setState({ buyList: data })
-        //         }
-        //     }
-        // })
+   
     }
 
     componentWillReceiveProps(nextProps) {
@@ -37,7 +28,7 @@ class Market extends React.Component {
         }
     }
     render() {
-        return <div>
+        return <div style={{ height: '100%' }}>
             <Spin spinning={this.props.markLoading}>
                 <TradeComponent dataList={this.props.buyList.slice(0, 7)} handleOk={price => this.props.handleOk({ buyPrice: price })} />
                 <div style={{ height: '1px', width: '100%', background: '#233044', margin: '5px 10px' }}></div>

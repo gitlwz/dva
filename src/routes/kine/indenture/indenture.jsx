@@ -14,7 +14,8 @@ class Indenture extends React.Component {
         super(props);
         this.state = {
             dataSource: [],
-            currency: 'USDT'
+            currency: 'USDT',
+            checkedArray: JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [],
         }
     }
 
@@ -28,47 +29,37 @@ class Indenture extends React.Component {
         return result.join('');
     }
     componentDidMount() {
-        let dataSource = []
 
-        // dataSource.push({ indenture: this.getRandomStr(), price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
-        let checkedArray = JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [];
-        //this.setState({ dataSource: checkedArray })
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.instrumentIds != nextProps.instrumentIds) {
+
+        }
+    }
 
     loadCurrencys() {
         const currencys = ["USDT", "BTC", "ETH"];
         return <div>{currencys.map(item => {
-            return <span className={styles.currency} style={{ marginRight: '20px', borderBottom: this.state.currency == item ? '2px solid rgb(120, 173, 255)' : '' }} onClick={() => this.setState({ currency: item })} key={item}>{item}</span>
+            return <span className={styles.currency} style={{ marginRight: '15px', borderBottom: this.props.Currency == item ? '2px solid rgb(120, 173, 255)' : '' }} onClick={() => this.props.saveCurrency({ Currency: item })} key={item}>{item}</span>
         })}
         </div>
     }
 
     checked(instrumentId) {
-        let instrumentIds = this.state.dataSource;
-        let checkedArray = JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [];
-        // if (checkedArray.length > 0) {
-        //     for (let i = 0; i < checkedArray.length; i++) {
-        //         if (checkedArray[i].indenture == instrumentId) {
-
-        //         } else {
-
-        //         }
-
-        //     }
-
-        //     for (let i = 0; i < instrumentIds.length; i++) {
-        //         if (instrumentId == instrumentIds[i].indenture) {
-        //             instrumentIds[i]["check"] = true;
-        //         }
-        //     }
-
-        // } else {
-        //     checkedArray.push(instrumentIds.filter(item => item.indenture == instrumentId)[0])
-        // }
-
-        window.localStorage.setItem("instrumentIdCheck", JSON.stringify(instrumentIds));
-        //this.setState({ dataSource: instrumentIds })
+        let checkedArray = this.state.checkedArray;
+        if (checkedArray.length > 0) {
+            if (checkedArray.indexOf(instrumentId) > -1) {
+                checkedArray.splice(checkedArray.indexOf(instrumentId), 1);
+            } else {
+                checkedArray.push(instrumentId);
+            }
+        } else {
+            checkedArray.push(instrumentId);
+        }
+        window.localStorage.setItem("instrumentIdCheck", JSON.stringify(checkedArray));
+        //window.location.reload();
+        this.setState({ checkedArray: checkedArray })
     }
 
     //点击合约事件
@@ -88,35 +79,43 @@ class Indenture extends React.Component {
     }
 
     loadInstrument() {
-        let dataSource = []
-        if (this.props.instrumentIds.length > 0) {
-            for (let i = 0; i < this.props.instrumentIds.length; i++) {
-                dataSource.push({ instrumentId: this.props.instrumentIds[i], price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
+        let dataSource = [];
+        let checkedArray = this.state.checkedArray;
+        for (let i = 0; i < this.props.instrumentIds.length; i++) {
+            dataSource.push({ instrumentId: this.props.instrumentIds[i], price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
+        }
+
+        for (let j = 0; j < checkedArray.length; j++) {
+            for (let i = 0; i < dataSource.length; i++) {
+                if (dataSource[i].instrumentId == checkedArray[j]) {
+                    dataSource[i]["checked"] = true
+                }
             }
-            //this.setState({ dataSource })
-            return dataSource.filter(item => this.state.currency == item.instrumentId.split("-")[1]).map(item => {
-                return <Row className={styles.row} key={item.price} onClick={() => this.changeInstrum(item.instrumentId)}>
+        }
+        //this.setState({ dataSource: dataSource })
+        if (dataSource.length > 0)
+            return dataSource.filter(item => this.props.Currency == item.instrumentId.split("-")[1]).map(item => {
+                return <Row className={styles.row} key={item.instrumentId} onClick={() => this.changeInstrum(item.instrumentId)}>
                     <Col className={styles.col} span={8}>
                         <div style={{ display: "flex", alignItems: 'center' }}>
-                            <img src={item.check == true ? selectStar : star} style={{ paddingRight: 10, alignSelf: 'center', marginTop: '-3px' }} onClick={() => this.checked(item.instrumentId)} />
-                            <span> {item.instrumentId}</span>
+                            <img src={item.checked == true ? selectStar : star} style={{ paddingRight: 10, alignSelf: 'center', marginTop: '-3px' }} onClick={() => this.checked(item.instrumentId)} />
+                            <span> {item.instrumentId.split("-")[0]}</span>
                         </div>
-
                     </Col>
                     <Col className={styles.col} span={8} style={{ textAlign: 'center' }}>{item.price}</Col>
                     <Col className={styles.col} span={8} style={{ textAlign: 'right', paddingRight: 10 }}>{item.rose}</Col>
                 </Row>
             })
-        }
+
 
     }
 
     render() {
-        return <div className={styles.root}>
+        return <div className={styles.root} style={{ height: '100%' }}>
             <Spin spinning={this.props.loading}>
                 <Row type="flex" justify="space-between">
                     <Col>{this.loadCurrencys()}</Col>
-                    <Col style={{ paddingRight: 20 }}><span className={styles.currency}>自选</span></Col>
+                    <Col style={{ paddingRight: 20 }}><span className={styles.currency} onClick={() => this.setState({ dataSource: this.state.dataSource.filter(item => item.checked == true) })}>自选</span></Col>
                 </Row>
 
                 <Row type="flex" style={{ margin: '10px 0' }} className={styles.header}>
@@ -137,11 +136,19 @@ export default connect((state, props) => {
     return {
         instrumentIds: state.kine.instrumentIds,
         loading: state.kine.loading,
+        Currency: state.kine.Currency,
         props
     }
 }, (dispatch, props) => {
     return {
+        saveCurrency: (parms) => {
+            dispatch({
+                type: 'kine/save',
+                payload: {
+                    ...parms
+                }
+            })
+        },
         dispatch
-
     }
 })(Indenture)

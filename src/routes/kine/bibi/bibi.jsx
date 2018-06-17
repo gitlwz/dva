@@ -6,7 +6,9 @@ import Market from '../market/Market';
 import Trade from '../trade/Trade';
 import TradDetal from '../trade/TradeDetail';
 import Indenture from '../indenture/indenture';
-import LoginTooltip from '../../../components/loginTooltip'
+import LoginTooltip from '../../../components/loginTooltip';
+import MyEntrust from '../entrust/myEntrust';
+import Notice from '../notice/notice';
 import { TVChartContainer } from '../../../components/TVChartContainer'
 import styles from './bibi.less';
 /**
@@ -39,8 +41,7 @@ class Bibi extends React.Component {
         let bgColor = (this.props.theme == "dark" ? styles.bgDarkColor : styles.bgWhiteColor);
         let cardHeader = (this.props.theme == "dark" ? styles.darkCardHeader : styles.whiteCardHeader);
         const borderRadius = { borderRadius: '0 0 8px 8px' }
-        const { tradDetail } = this.state;
-        const { userId } = this.props;
+        const { userId, search, searchByInstrum, currentInstrument, instrumentIds, Currency } = this.props;
         return <div style={{ padding: '10px 30px', backgroundColor: 'rgba(32,38,55,1)' }}>
             <Row>
                 <Col span="5">
@@ -60,7 +61,7 @@ class Bibi extends React.Component {
                     </div>
                     {/*合约*/}
                     <div style={{ height: 320, marginTop: 10, borderRadius: '8px' }} className={bgColor}>
-                        <div className={cardHeader}> 市场 <input placeholder="搜索" className={styles.search} /> </div>
+                        <div className={cardHeader}> 市场 <input placeholder="搜索" className={styles.search} value={search} onChange={e => searchByInstrum(instrumentIds, e.target.value, Currency)} /> </div>
                         <div style={{ margin: "10px 20px", overflowY: 'scroll', height: 250 }}>
                             <Indenture />
                         </div>
@@ -68,13 +69,14 @@ class Bibi extends React.Component {
                     {/*公告栏*/}
                     <div style={{ height: 800, marginTop: 10, borderRadius: '8px' }} className={bgColor}>
                         <div className={cardHeader}>公告栏</div>
+                        <Notice />
                     </div>
                 </Col>
                 <Col span="19">
                     <div style={{ marginLeft: 10 }}>
-                        <div className={cardHeader}>{tradDetail.instrumentName} 2.2492 ≈ 14.47 CNY 涨幅 -3.21% 高 2.3400 低 2.1945 24H量 2906862 IOTA</div>
+                        <div className={cardHeader}>{currentInstrument} 2.2492 ≈ 14.47 CNY 涨幅 -3.21% 高 2.3400 低 2.1945 24H量 2906862 IOTA</div>
                         <div style={{ minHeight: 450, ...borderRadius }} className={bgColor}>
-                            <TVChartContainer />
+                            {<TVChartContainer />}
                         </div>
                         <div style={{ marginTop: 10 }}>
                             <Row>
@@ -104,13 +106,14 @@ class Bibi extends React.Component {
                                 <Col span="17">
                                     <div className={cardHeader}>我的委托</div>
                                     <div className={bgColor} style={{ height: '360px', ...borderRadius }}>
+                                        <MyEntrust />
                                     </div>
                                 </Col>
                                 {/*成交明细*/}
                                 <Col span="7">
                                     <div style={{ marginLeft: '10px' }}>
                                         <div className={cardHeader}>成交明细</div>
-                                        <div className={bgColor} style={{ height: '360px', ...borderRadius }}>
+                                        <div className={bgColor} style={{ height: '360px', ...borderRadius,overflowY: 'scroll' }}>
                                             <TradDetal />
                                         </div>
                                     </div>
@@ -128,11 +131,37 @@ export default connect((state, props) => {
     return {
         theme: state.app.theme,
         userId: state.user.userId,
+        search: state.kine.search,
+        instrumentIds: state.kine.instrumentIds,
+        currentInstrument: state.kine.currentInstrument,
+        Currency: state.kine.Currency,
         props
     }
 }, (dispatch, props) => {
     return {
+        searchByInstrum: (instrumentIds, value, Currency) => {
+            if (value != "") {
+                dispatch({
+                    type: 'kine/save',
+                    payload: {
+                        instrumentIds: instrumentIds.filter(item => item.split("-")[0].match(value.toUpperCase())),
+                        search: value.toUpperCase()
+                    }
+                })
+            } else {
+                dispatch({
+                    type: 'kine/save',
+                    payload: {
+                        //instrumentIds: instrumentIds.filter(item => item.split("-")[1] == Currency),
+                        search: value
+                    }
+                }),
 
+                    dispatch({
+                        type: 'kine/getInstrumentIds'
+                    })
+            }
+        }
 
     }
 
