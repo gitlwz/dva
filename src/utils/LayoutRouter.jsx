@@ -16,6 +16,10 @@ const LayoutRouter = [
         path: '/joinus',
         component: () => import('../routes/detail/joinus')
     },
+  {
+    path: '/contactUs',
+    component: () => import('../routes/detail/contactUs')
+  },
     {
         path: '/stipulation',
         component: () => import('../routes/detail/Copyright')

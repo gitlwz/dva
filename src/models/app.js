@@ -1,6 +1,7 @@
 import { routerRedux } from 'dva/router';
 import baseService from '../services/baseService';
-import language from '../language/language'
+import language from '../language/language';
+import api from '../utils/api';
 
 //全局模块信息
 export default {
@@ -10,7 +11,21 @@ export default {
         visible: false,
         currtLanguage: 'China',
         language: language,
-        userInfo: {}
+        userInfo: {},
+
+      questionList: [],
+      questionParams: {
+        email: '',
+        problemBody: '',
+        problemType: "",
+      },
+
+      path: '',
+      TemplateFiles: {
+        problemPhoto: ''
+      },
+      resultFlag: '',
+      returnInfo: {}
     },
 
     effects: {
@@ -23,6 +38,20 @@ export default {
         //         }
         //     })
         // },
+
+      *findAllQuestions({ payload }, { call, put }){
+        const { data } = yield call(baseService, api.user.findAllQuestions, payload);
+        yield put({
+          type: 'save',
+          payload: {
+            questionList: data
+          }
+        })
+      },
+
+      *customerProblems({ payload }, { call }){
+        yield call(baseService, api.user.customerProblems, payload);
+      }
 
     },
 
