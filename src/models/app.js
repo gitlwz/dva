@@ -5,69 +5,69 @@ import api from '../utils/api';
 
 //全局模块信息
 export default {
-    namespace: 'app',
-    state: {
-        theme: 'dark', //当前主题颜色
-        visible: false,
-        currtLanguage: 'China',
-        language: language,
-        userInfo: {},
+  namespace: 'app',
+  state: {
+    theme: 'dark', //当前主题颜色
+    visible: false,
+    currtLanguage: 'China',
+    language: language,
+    userInfo: {},
 
-      questionList: [],
-      questionParams: {
-        email: '',
-        problemBody: '',
-        problemType: "",
-      },
-
-      path: '',
-      TemplateFiles: {
-        problemPhoto: ''
-      },
-      resultFlag: '',
-      returnInfo: {}
+    questionList: [],
+    questionParams: {
+      email: '',
+      problemBody: '',
+      problemType: "",
     },
 
-    effects: {
-        // *queryLogonList({ payload }, { call, put }) {
-        //     const { data } = yield call(baseService, api.system.logon, payload);
-        //     yield put({
-        //         type: 'save',
-        //         payload: {
-        //             dataList: data
-        //         }
-        //     })
-        // },
+    path: '',
+    TemplateFiles: {
+      problemPhoto: ''
+    },
+    resultFlag: '',
+    returnInfo: {}
+  },
 
-      *findAllQuestions({ payload }, { call, put }){
-        const { data } = yield call(baseService, api.user.findAllQuestions, payload);
-        yield put({
-          type: 'save',
-          payload: {
-            questionList: data
-          }
-        })
-      },
+  effects: {
+    // *queryLogonList({ payload }, { call, put }) {
+    //     const { data } = yield call(baseService, api.system.logon, payload);
+    //     yield put({
+    //         type: 'save',
+    //         payload: {
+    //             dataList: data
+    //         }
+    //     })
+    // },
 
-      *customerProblems({ payload }, { call }){
-        yield call(baseService, api.user.customerProblems, payload);
-      }
-
+    *findAllQuestions({ payload }, { call, put }) {
+      const { data } = yield call(baseService, api.user.findAllQuestions, payload);
+      yield put({
+        type: 'save',
+        payload: {
+          questionList: data
+        }
+      })
     },
 
-    reducers: {
-        save(state, action) {
-            return { ...state, ...action.payload };
-        },
-    },
+    *customerProblems({ payload }, { call }) {
+      yield call(baseService, api.user.customerProblems, payload);
+    }
 
-    subscriptions: {
-        setup({ dispatch, history }) {
-            return history.listen(({ pathname }) => {
-                if (pathname === '/kine') {
+  },
 
-                }
-            });
-        },
+  reducers: {
+    save(state, action) {
+      return { ...state, ...action.payload };
     },
+  },
+
+  subscriptions: {
+    setup({ dispatch, history }) {
+      return history.listen(({ pathname }) => {
+        if (pathname === '/kine') {
+
+        }
+      });
+    },
+  },
 };

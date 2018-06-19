@@ -81,6 +81,17 @@ export default {
                     }
                 })
         },
+        //获取邮箱验证码
+        *getVerification({ payload }, { call, put }) {
+            const data = yield call(baseService, api.user.getVerification, payload.email);
+            payload.callback(data)
+        },
+        //修改密码
+        *resetPassword({ payload }, { call, put }) {
+            const data = yield call(baseService, api.user.resetPassword, payload.body);
+            payload.callback(data)
+        },
+
     },
 
     reducers: {

@@ -97,7 +97,7 @@ class Trade extends React.Component {
         return <Row type="flex" justify="space-between">
             <Col span="11">
                 <div style={{ marginLeft: 20 }}>
-                    {userId ? <div className={styles.usable}>可用 1.5555  {currentInstrument}</div> : <LoginTooltip custStyle={{ marginTop: '14px' }} />}
+                    {userId ? <div className={styles.usable}>可用 6655.22  {currentInstrument}</div> : <div className={styles.usable} > <LoginTooltip /></div>}
 
                     <div className={styles.tradAction}>买入价</div>
                     <div>
@@ -108,7 +108,7 @@ class Trade extends React.Component {
                     <Input suffix={<span>{currentInstrument}</span>} value={buyVolume} onChange={e => sliderChange({ buyVolume: (this.formatNum(e.target.value)) })} className={styles.input} />
                     <Slider step={0.01} style={{ margin: '20px 0', background: 'rgba(203,229,255,0.14)' }} marks={marks} value={Number(buyVolume)} onChange={value => sliderChange({ buyVolume: value })} className={styles.input} />
                     <div className={styles.sum}>交易额 {format.multiply(buyPrice, buyVolume, 2)}</div>
-                    <button className={styles.sellButton} disabled={userId ? false : true} onClick={() => this.orderInsert("0")}>买入{currentInstrument}</button>
+                    <button className={styles.sellButton} disabled={userId ? false : true} onClick={() => this.orderInsert("0")}>买入 {currentInstrument}</button>
                 </div>
             </Col>
 

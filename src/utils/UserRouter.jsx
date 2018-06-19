@@ -8,6 +8,10 @@ const UserRouter = [
     }, {
         path: '/user/regis',
         component: () => import('../routes/user/regis'),
+    },
+    , {
+        path: '/user/forgetPassword',
+        component: () => import('../routes/user/forgetPassword'),
     }
 ]
 export default UserRouter;

@@ -141,7 +141,7 @@ class Regis extends React.Component {
                         <select value={this.state.country} className={showCountryMsg ? styles.errInput : ''} onChange={e => this.inputChange({ value: e.target.value, name: 'country' })} style={{ fontSize: '13px' }}>
                             <option value="">请选择国籍</option>
                             {this.props.countryList.map(item => {
-                                return <option value={item.countryCN} key={item.id} style={{ fontSize: '13px' }}>{item.countryCN}</option>
+                                return <option value={item.countryCN} key={item.id}>{item.countryCN}</option>
                             })}
                         </select>
                     </div>

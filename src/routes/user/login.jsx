@@ -99,13 +99,7 @@ class Login extends React.Component {
                         <button className={styles.logBtn} style={{ color: '#FFF' }} onClick={() => this.LoginClick()}>登录</button>
                     </div>
 
-                    <a style={{ textAlign: 'right', display: 'block', margin: '10px 0', color: 'white' }} href="javascript:void(0)" onClick={() => {
-                        if (this.state.userName != "" && this.state.showEmailMsg == false) {
-                            this.pushRouter("./user/forgetPassword?mail=" + this.state.userName)
-                        } else {
-                            this.setState({ showEmailMsg: true })
-                        }
-                    }}>忘记密码？</a>
+                    <a style={{ textAlign: 'right', display: 'block', margin: '10px 0', color: 'white' }} href="javascript:void(0)" onClick={() => this.pushRouter("/user/forgetPassword")}>忘记密码？</a>
 
                     <div className={styles.tooltip}>
                         <div>还没有账户？</div>

@@ -45,8 +45,10 @@ class YHTable extends Component {
     render() {
         return <div className={styles.table}>
             <table style={{ cellspacing: 0, cellpadding: 0, border: 0 }}>
-                <tr>{this.loadColumns()}</tr>
-                {this.loadDataSource()}
+                <tbody>
+                    <tr>{this.loadColumns()}</tr>
+                    {this.loadDataSource()}
+                </tbody>
             </table>
         </div>
     }
