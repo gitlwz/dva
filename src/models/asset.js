@@ -1,13 +1,17 @@
 import { routerRedux } from 'dva/router';
 import baseService from '../services/baseService';
 import api from '../utils/api';
+import { message } from 'antd';
 export default {
 
     namespace: 'asset',
 
     state: {
 
-        topError:false,
+        topError:{
+            show:false,
+            content:""
+        },
         currentSelect:"资产总览",
 
         //资产总览字段
@@ -49,13 +53,27 @@ export default {
         },
         *queryClientApply({ payload }, { call, put }){
             const { data } = yield call(baseService, api.asset.queryClientApply, []);
-            console.log("*%%%%%%%55",data)
+            let _data = data || {};
+            let topError = {show:false};
+            if(_data.applyStatus <= 1){
+                topError = {
+                    show:true,
+                    content:"请先完成邮箱验证"
+                }
+            }
             yield put({
                 type: 'save',
                 payload: {
-                    userInfo:data||{}
+                    userInfo:_data,
+                    topError
                 }
             })
+        },
+        *mailboxVerification({ payload }, { call, put }){
+            const { data } = yield call(baseService, api.asset.mailboxVerification, []);
+            if(!!data && data == true){
+                message.success('邮件已发送！请及时去邮箱处理！');
+            }
         }
     },
 

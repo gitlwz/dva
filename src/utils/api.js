@@ -20,6 +20,8 @@ const apis = {
         queryClientApply:{url: baseIP + "service/webGeneralService/queryClientApply", method: 'POST', description: '查询用户信息'},
         queryOperTradingAccount:{url: baseIP + "service/webGeneralService/queryOperTradingAccount", method: 'POST', description: '通过币种查询金额' },
         findTraderFundAddress:{url: baseIP + "service/webGeneralService/findTraderFundAddress", method: 'POST', description: '查询其他货币' },
+        mailboxVerification:{url: baseIP + "service/webGeneralService/mailboxVerification", method: 'POST', description: '发送邮箱' },
+        
     }
 }
 

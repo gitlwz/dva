@@ -37,8 +37,8 @@ class Asset extends Component {
     render() {
         return (
             <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
-                <div style={{display:this.props.topError?'black':"none"}} className={style.topError}>
-                    请先完成邮箱验证
+                <div style={{display:!!this.props.topError.show?'block':"none"}} className={style.topError}>
+                    {this.props.topError.content}
                 </div>
                 <div className={style.accounContent}>
                     <Row gutter={16}>

@@ -13,6 +13,12 @@ class SecurityCenter extends Component{
             type: 'asset/queryClientApply'
         })
     }
+    //发送验证邮箱
+    sendEmil = () => {
+        this.props.dispatch({
+            type: 'asset/mailboxVerification'
+        })
+    }
     //验证通过
     checkcOrrect = () => {
         return(
@@ -27,7 +33,20 @@ class SecurityCenter extends Component{
         if(applyStatus > 1){
             return this.checkcOrrect();
         }else{
-            return <div>邮箱验证未通过</div>
+            return (
+                <div>
+                    <div style={{marginTop:"20px"}}>
+                        请到您的收件箱查看激活邮件，并点击其中的激活链接进行激活
+                    </div>
+                    <div>
+                        如您未收到邮件，请点击「发送验证邮件」按钮重试。
+                    </div>
+                    <div style={{marginTop:"20px"}}>
+                        <Button onClick={this.sendEmil} className="asset_btn SecurityCenter_btn" type="primary">发送验证邮件</Button>
+                    </div>
+                    <br/> 
+                </div>
+            )
         }
 
     }
@@ -67,9 +86,15 @@ class SecurityCenter extends Component{
     }
     render() {
         let {clientID,clientName, registeredName, applyStatus,accountPassword} = this.props.userInfo;
-        if(!!clientID){
+        if(!!clientName){
             clientName ="**" + clientName.substr(clientName.length-1,1);
-            accountPassword = !!accountPassword?"******":"未设置";
+        }else{
+            clientName = "未完成身份验证";
+        }
+        if(!!accountPassword){
+            accountPassword = "******";
+        }else{
+            accountPassword = "未设置";
         }
         return (
             <div style={{ display: this.props.currentSelect == "安全中心" ? "block" : "none" ,paddingTop: '53px'}}>
@@ -78,7 +103,7 @@ class SecurityCenter extends Component{
                     安全中心
                     <span className={style.zh}>727770481@qq.com</span>
                 </div>
-                {!!clientID?<div className={style.right_bz}>
+                <div className={style.right_bz}>
                     <div className={styleA.card}>
                         <Row className={styleA.rowF}>
                             <Col className={styleA.rowF_title} span={4}>姓名</Col>
@@ -128,7 +153,7 @@ class SecurityCenter extends Component{
                         </div>
                         {this._renderTwoStepsVerify()}
                     </div>
-                </div>:null}
+                </div>
             </div>
         )
     }
