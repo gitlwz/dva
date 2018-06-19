@@ -273,7 +273,7 @@ class Home extends React.Component {
 
 export default connect((state, props) => {
     return {
-
+        instrumentIds: state.kine.instrumentIds,
         props
     }
 }, (dispatch, props) => {
@@ -283,14 +283,6 @@ export default connect((state, props) => {
                 type: 'kineApp/save',
                 payload: {
                     visible: false
-                }
-            })
-        },
-        radioChange: (e) => {
-            dispatch({
-                type: 'kineApp/save',
-                payload: {
-                    theme: e.target.value
                 }
             })
         }

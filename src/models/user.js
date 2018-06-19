@@ -30,7 +30,6 @@ export default {
         //登出
         *logout({ payload }, { call, put }) {
             const data = yield call(baseService, api.user.logout, []);
-            console.log(data)
             if (data != undefined) {
                 if (data.errorCode == "0") {
                     yield put({
@@ -46,7 +45,6 @@ export default {
         //获取当前登录人
         *getUserId({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.user.getUserId, []);
-            console.log(data)
             if (data != undefined) {
                 yield put({
                     type: 'save',
@@ -54,11 +52,23 @@ export default {
                         userId: data
                     }
                 })
+
+                yield put({
+                    type: 'findUserInfo'
+                })
             }
         },
         //获取当前登陆人信息
         *findUserInfo({ payload }, { call, put }) {
-            const data = yield call(baseService, api.user.userInfo, payload);
+            const data = yield call(baseService, api.user.userInfo, []);
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        userInfo: data.data
+                    }
+                })
+            }
         },
         //获取国家列表
         *queryCountryList({ payload }, { call, put }) {

@@ -1,4 +1,5 @@
 import { message } from 'antd';
+var bigRat = require("big-rational");
 /**
  * 格式化数字
  */
@@ -15,9 +16,14 @@ var format = {
         value = value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
         value = value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的
         value = value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+        //value = value.replace(/^(\-)*(\d+)\.(\d\d\d\d\d\d\d\d\d\d).*$/, '$1$2.$3');
         //处理 .xxx情况
         if (value.indexOf(".") == 0) {
             value = "0" + value;
+        }
+        //处理 000
+        if (value.indexOf("0") == 0 && value[1] != ".") {
+            value = value.substr(1, 1)
         }
         if (value == "") {
             return 0
@@ -60,8 +66,32 @@ var format = {
         }
 
         return value;
-    }
+    },
 
+    /**
+     * 创建人:席坤
+     * 日期:2018-3-30
+     * @param {*} num1  参数1
+     * @param {*} num2  参数2
+     * @param {*} points  保留小数位数
+     */
+    multiply(num1, num2, points) {
+        let Num = bigRat(num1).multiply(num2).toDecimal(points);
+        if (Num.indexOf(".") > -1) {
+            let s1 = Num.split(".")[1];
+            for (var i = s1.length; i < points; i++) {
+                Num += "0"
+            }
+        } else {
+            if (points > 0) {
+                Num += ".";
+                for (var i = 0; i < points; i++) {
+                    Num += "0"
+                }
+            }
+        }
+        return Num
+    }
 }
 
 

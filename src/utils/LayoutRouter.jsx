@@ -5,11 +5,11 @@
 const LayoutRouter = [
     {
         path: '/home',
-        models: () => [import('../models/other')],
+        models: () => [import('../models/kine')],
         component: () => import('../routes/home/home'),
     }, {
         path: '/kine',
-        models: () => [import('../models/kine/trade'),import('../models/other')],
+        models: () => [import('../models/kine/trade'), import('../models/kine')],
         component: () => import('../routes/kine/bibi/bibi'),
     },
     {
@@ -45,6 +45,10 @@ const LayoutRouter = [
         path: '/helpdetail/:id',
         component: () => import('../routes/helpcenter/helpdetail')
     },
-
+    {
+        path: '/asset',  //资产管理
+        models: () => [import('../models/asset')],
+        component: () => import('../routes/asset/asset'),
+    }
 ]
 export default LayoutRouter;

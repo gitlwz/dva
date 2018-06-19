@@ -20,7 +20,7 @@ let widgetOptions ={
 	interval: '1',
 	toolbar_bg: '#1D263D',
 	container_id: "tv_chart_container",
-	library_path: "charting_library/",
+	library_path: "./charting_library/",
 	locale: 'ZH',
 	supported_resolutions:["1", "15", "30", "1D", "1W"] ,
 	drawings_access: { type: 'black', tools: [ { name: "Regression Trend" } ] },
@@ -64,7 +64,7 @@ export class TVChartContainer extends React.PureComponent {
 			autosize:true,
 			toolbar_bg: '#1D263D',
 			container_id: "tv_chart_container",
-			library_path: '/charting_library/',
+			library_path: './charting_library/',
 			locale: 'zh',
 			supported_resolutions:["1", "15", "30", "1D", "1W"] ,
 			drawings_access: { type: 'black', tools: [ { name: "Regression Trend" } ] },
@@ -81,6 +81,7 @@ export class TVChartContainer extends React.PureComponent {
 		//new UDFCompatibleDatafeed("https://demo_feed.tradingview.com")
 		widgetOptions.datafeed = new UDFCompatibleDatafeed(this.props.datafeedUrl),
 		widgetOptions.symbol =  this.props.symbol;
+		
 			widget = window.tvWidget = new window.TradingView.widget(widgetOptions);
 			widget.onChartReady(()=> {
 				this.insertBeforeBtn(); 
