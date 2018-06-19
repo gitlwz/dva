@@ -66,7 +66,6 @@ class AssetView extends Component {
                     <span className={style.zh}>727770481@qq.com</span>
                 </div>
                 <div className={style.right_bz}>
-
                     <span className={style.right_currtext}>币种</span>
                     <Select defaultValue="全部" onChange={this.currencyChange} style={{ width: 200 }} >
                         <Option value="全部">全部</Option>
@@ -90,7 +89,7 @@ class AssetView extends Component {
     }
 }
 export default connect((state, props) => {
-    let {currentSelect,dataSource} = state.asset
+    let { currentSelect, dataSource } = state.asset
     return {
         currentSelect,
         dataSource,
