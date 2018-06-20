@@ -11,7 +11,7 @@ let Polling = {
     interval(){
         setInterval(()=>{
             Polling.pollingFun.forEach((name)=>{
-                PubSub.publish(name);
+                PubSub.publish(name.name,name.payload);
             })
         },Polling.time)
     },
@@ -24,9 +24,11 @@ let Polling = {
             _name = [names];
         }
         _name.forEach((__name)=>{
-            PubSub.publish(__name);
+            PubSub.publish(__name.name,__name.payload);
         })
-        Polling.pollingFun.push(..._name);
+        let _arr = Polling.pollingFun.filter((item)=>{ return !_name.find(ele=>ele.name === item.name) })
+        _arr.push(..._name);
+        Polling.pollingFun = _arr;
     },
 
     delsubscribe(names){
@@ -36,8 +38,8 @@ let Polling = {
         }else{
             _name = [names];
         }
-        for (let index = Polling.pollingFun.length; index >= 0; index--) {
-            if(_name.includes(Polling.pollingFun[index])){
+        for (let index = Polling.pollingFun.length-1; index >= 0; index--) {
+            if(_name.find(ele=>ele === Polling.pollingFun[index].name)){
                 Polling.pollingFun.splice(index,1);
             }
         }
