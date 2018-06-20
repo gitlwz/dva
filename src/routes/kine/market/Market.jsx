@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from 'dva';
 import { Spin } from 'antd';
 import TradeComponent from '../../../components/tradDetail';
-
+import PubSub from "pubsub-js";
 /**
  * 模块:七档行情
  */
@@ -23,8 +23,15 @@ class Market extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.currentInstrument != nextProps.currentInstrument) {
-            this.props.findBuyMarket(nextProps.currentInstrument);
-            this.props.findSellMarket(nextProps.currentInstrument);
+            PubSub.publish('Polling.addsubscribe', 
+                [
+                    {name:"findBuyMarket",payload:nextProps.currentInstrument},
+                    {name:"findSellMarket",payload:nextProps.currentInstrument}
+                ]
+            )
+
+            // this.props.findBuyMarket(nextProps.currentInstrument);
+            // this.props.findSellMarket(nextProps.currentInstrument);
         }
     }
     render() {

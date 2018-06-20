@@ -2,7 +2,7 @@ import { routerRedux } from 'dva/router';
 import baseService from '../services/baseService';
 import api from '../utils/api';
 import kineApi from '../utils/kineApi';
-
+import PubSub from "pubsub-js";
 //币币全局相关
 export default {
 
@@ -96,5 +96,21 @@ export default {
 
             }
         },
+        "名字随意取1"({ dispatch, history }){
+            return PubSub.subscribe("findBuyMarket", (name,payload) => {
+                dispatch({
+                    type:"findBuyMarket",
+                    payload
+                })
+            })
+        },
+        "名字随意取2"({ dispatch, history }){
+            return PubSub.subscribe("findSellMarket", (name,payload) => {
+                dispatch({
+                    type:"findSellMarket",
+                    payload
+                })
+            })
+        }
     },
 };
