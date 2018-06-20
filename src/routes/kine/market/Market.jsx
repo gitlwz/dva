@@ -18,7 +18,7 @@ class Market extends React.Component {
     }
     componentDidMount() {
         console.log("初始化一次!")
-   
+
     }
 
     componentWillReceiveProps(nextProps) {

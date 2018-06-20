@@ -29,7 +29,9 @@ class Indenture extends React.Component {
         return result.join('');
     }
     componentDidMount() {
-
+        this.props.dispatch({
+            type: 'kine/getInstrumentIds'
+        })
     }
 
     componentWillReceiveProps(nextProps) {

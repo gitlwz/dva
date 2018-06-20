@@ -86,9 +86,7 @@ export default {
     subscriptions: {
         setup({ dispatch, history }) {
             if (history.location.pathname == "/kine") {
-                dispatch({
-                    type: 'getInstrumentIds'
-                })
+               
             }
         },
     },
