@@ -1,6 +1,7 @@
 import React from 'react';
-import { message } from "antd";
+import InputLabel from './InputLabel';
 import { routerRedux } from 'dva/router';
+import Validator from '../../tool/Validator';
 import { connect } from 'dva';
 import md5 from "md5";
 import styles from './login.less'
@@ -10,7 +11,6 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currLanguage: "China",
             showEmailMsg: false,
             showWordMsg: false,
             errMsg: '',
@@ -21,8 +21,7 @@ class Login extends React.Component {
     }
 
     inputChange(value) {
-        var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
-        if (!reg.test(value)) {
+        if (!Validator.email(value)) {
             this.setState({ showEmailMsg: true, userName: value })
         } else {
             this.setState({ userName: value, showEmailMsg: false })
@@ -45,7 +44,6 @@ class Login extends React.Component {
                     }
                 }
             })
-            //LoginService.userLogon(this.state.userName, md5(this.state.password), "1234").then(res => this.pushRouter("/")).catch(err => this.setState({ errMsg: err.errorMsg, showWordMsg: true }))
         } else {
             if (this.state.userName == "") {
                 this.setState({ showEmailMsg: true });
@@ -62,13 +60,7 @@ class Login extends React.Component {
     }
 
     forgetPass() {
-        let mail = this.state.userName;
-        var filter = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
-        if (!filter.test(mail)) {
-            message.error("请输入邮箱!")
-            return;
-        }
-        this.pushRouter("./user/forgetPassword?mail=" + this.state.userName)
+        this.pushRouter("/user/forgetPassword")
     }
 
     render() {
@@ -79,26 +71,18 @@ class Login extends React.Component {
                         <p className={styles.dl}>登录</p>
                     </div>
                     <input type="password" style={{ display: 'none' }} />
-                    <div className={styles.flex}>
-                        <label style={{ flex: 1 }} className={styles.label}>邮箱地址</label>
-                        <input placeholder="请输入邮箱" type="text" value={this.state.userName} onChange={e => this.inputChange(e.target.value)} className={this.state.showEmailMsg ? styles.errInput : ''} />
-                    </div>
-                    {this.state.showEmailMsg == true ? <p style={{ textAlign: 'right', marginBottom: 10 }}>请输入有效的邮箱地址</p> : ''}
 
-                    <div className={styles.flex}>
-                        <label style={{ flex: 1 }} className={styles.label}>密码</label>
-                        <input placeholder="请输入密码" type="text" className={this.state.showWordMsg ? styles.errInput : ''} value={this.state.password} onChange={e => {
-                            e.target.type = "password";
-                            this.setState({ password: e.target.value, showWordMsg: false })
-                        }} />
-                    </div>
-                    {this.state.showWordMsg == true ? <p style={{ textAlign: 'right' }}>{this.state.errMsg}</p> : ""}
+                    <InputLabel lab="邮箱地址" placeholder="请输入邮箱" value={this.state.userName} inputChange={value => this.inputChange(value)} showBorder={this.state.showEmailMsg} />
 
-                    <div className={styles.flex}>
-                        <label style={{ flex: 1 }}></label>
-                        <button className={styles.logBtn} style={{ color: '#FFF' }} onClick={() => this.LoginClick()}>登录</button>
-                    </div>
 
+                    {this.state.showEmailMsg == true ? <p className={styles.errP}>请输入有效的邮箱地址</p> : ''}
+
+
+                    <InputLabel lab="密码" placeholder="请输入密码" value={this.state.password} type inputChange={value => this.setState({ password: value, showWordMsg: false })} showBorder={this.state.showWordMsg} />
+
+                    {this.state.showWordMsg == true ? <p className={styles.errP}>{this.state.errMsg}</p> : ""}
+
+                    <InputLabel isButton buttonName="登录" buttonClick={() => this.LoginClick()} />
                     <a style={{ textAlign: 'right', display: 'block', margin: '10px 0', color: 'white' }} href="javascript:void(0)" onClick={() => this.pushRouter("/user/forgetPassword")}>忘记密码？</a>
 
                     <div className={styles.tooltip}>

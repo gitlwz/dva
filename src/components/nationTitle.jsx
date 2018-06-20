@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
+/**
+ * 静态页面公共导航栏
+ */
 class NationTitle extends Component {
     render() {
         return (

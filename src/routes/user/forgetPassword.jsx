@@ -149,13 +149,18 @@ class ForgetPassword extends React.Component {
                 <p className={styles.title}>找回密码</p>
             </div>
             <InputLabel lab="邮件地址" placeholder="请输入邮箱" value={this.state.email} inputChange={value => this.inputChange({ value: value, name: "email" })} showBorder={this.state.showEmailMsg} />
+
             {this.state.showEmailMsg == true ? <p className={styles.errP}>请输入有效的邮箱地址</p> : ''}
+
             <div className={styleInput.flex}>
                 <label style={{ flex: 1 }} className={styleInput.label}>验证码</label>
                 <input type="text" className={styles.code} value={this.state.code} style={{ border: this.state.showCodeMsg ? '1px solid rgba(255,66,0,1)' : '' }} onChange={e => this.inputChange({ value: e.target.value, name: "code" })} />
                 {this.loadButton()}
             </div>
-            {this.state.showCodeMsg == true ? <p className={styles.errP}>请输入有限验证码</p> : ''}
+
+            {this.state.showCodeMsg == true ? <p className={styles.errP}>请输入有效验证码</p> : ''}
+            <input type="password" style={{ display: 'none' }} />
+
             <InputLabel lab="新密码" placeholder="请输入密码" type value={this.state.password} inputChange={value => this.inputChange({ value: value, name: "password" })} showBorder={this.state.showWordMsg} />
             {this.state.showWordMsg == true ?
                 <div className={styleInput.flex}>
@@ -167,8 +172,10 @@ class ForgetPassword extends React.Component {
                         <p><span>!</span>必须包含数字</p>
                     </div>
                 </div> : ''}
+
             <InputLabel lab="确认密码" placeholder="请输入密码" type value={this.state.confirmWord} inputChange={value => this.inputChange({ value: value, name: "confirmWord" })} showBorder={this.state.showConformMsg} />
             {this.state.showConformMsg == true ? <p className={styles.errP}>请输入相同密码</p> : ''}
+
             {this.state.errMsg != "" ?
                 <div className={styleInput.flex}>
                     <label style={{ flex: 1 }}></label>

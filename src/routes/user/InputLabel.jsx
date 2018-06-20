@@ -1,4 +1,7 @@
 import styles from './InputLabel.less';
+/**
+ * 登录注册修改密码统一输入框
+ */
 export default ({ lab, value, placeholder, type, inputChange, showBorder, isButton, buttonClick, buttonName }) => (
     <div className={styles.flex}>
         <label style={{ flex: 1 }} className={styles.label}>{lab}</label>
@@ -7,7 +10,6 @@ export default ({ lab, value, placeholder, type, inputChange, showBorder, isButt
                 onChange={e => {
                     type ? e.target.type = "password" : e.target.type = "text";
                     inputChange(e.target.value)
-                    // this.setState({ password: e.target.value, showWordMsg: false })
                 }} />}
     </div>
 )

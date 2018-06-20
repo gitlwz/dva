@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'dva';
+import InputLabel from './InputLabel';
 import { routerRedux } from 'dva/router';
+import Validator from '../../tool/Validator';
 import md5 from "md5";
 import styles from './regisx.less'
 
@@ -77,14 +79,13 @@ class Regis extends React.Component {
         }
         if (this.state.country != "" && this.state.email != "" && this.state.password != "" & this.state.confirmWord != "" && this.state.showConformMsg == false &&
             this.state.showCountryMsg == false && this.state.showEmailMsg == false && this.state.showWordMsg == false) {
-            // WebGeneralService.save(this.state.email, md5(this.state.password), this.state.country).then(res => this.pushRouter("/")).catch(err => this.setState({ errMsg: err.errorMsg }));
             this.props.dispatch({
                 type: 'user/regis',
                 payload: {
                     body: [this.state.email, md5(this.state.password), this.state.country],
                     callback: (data) => {
                         if (data.errorCode == "0") {
-                            this.pushRouter("/")
+                            this.pushRouter("/user/login")
                         } else {
                             this.setState({ errMsg: data.errorMsg })
                         }
@@ -138,22 +139,20 @@ class Regis extends React.Component {
 
                     <div className={styles.flex}>
                         <label style={{ flex: 1 }}>国籍</label>
-                        <select value={this.state.country} className={showCountryMsg ? styles.errInput : ''} onChange={e => this.inputChange({ value: e.target.value, name: 'country' })} style={{ fontSize: '13px' }}>
+                        <select value={this.state.country} className={styles.select} onChange={e => this.inputChange({ value: e.target.value, name: 'country' })} style={{ border: showCountryMsg ? styles.errInput : '' }}>
                             <option value="">请选择国籍</option>
                             {this.props.countryList.map(item => {
                                 return <option value={item.countryCN} key={item.id}>{item.countryCN}</option>
                             })}
                         </select>
                     </div>
-                    {this.state.showCountryMsg == true ? <p style={{ textAlign: 'right', marginBottom: 10 }}>请选择国籍</p> : ''}
+                    {showCountryMsg == true ? <p className={styles.errP}>请选择国籍</p> : ''}
 
-                    <div className={styles.flex}>
-                        <label style={{ flex: 1 }}>邮箱地址</label>
-                        <input placeholder="请输入邮箱" type="text" className={showEmailMsg ? styles.errInput : ''} value={this.state.email} onChange={e => this.inputChange({ value: e.target.value, name: 'email' })} />
-                    </div>
-                    {this.state.showEmailMsg == true ? <p style={{ textAlign: 'right', marginBottom: 10 }}>请输入有效的邮箱地址</p> : ''}
+                    <InputLabel lab="邮箱地址" placeholder="请输入邮箱" value={this.state.email} inputChange={value => this.inputChange({ value: value, name: 'email' })} showBorder={showEmailMsg} />
 
-                    {this.state.showWordMsg == true ?
+                    {showEmailMsg == true ? <p className={styles.errP}>请输入有效的邮箱地址</p> : ''}
+
+                    {showWordMsg == true ?
                         <div className={styles.flex}>
                             <div style={{ flex: 1 }}></div>
                             <div className={styles.mmbg}>
@@ -164,23 +163,12 @@ class Regis extends React.Component {
                             </div>
                         </div> : ''}
                     <input type="password" style={{ display: 'none' }} />
-                    <div className={styles.flex}>
-                        <label style={{ flex: 1 }}>密码</label>
-                        <input placeholder="请输入密码" type="text" className={showWordMsg ? styles.errInput : ''} value={this.state.password} onChange={e => {
-                            e.target.type = "password";
-                            this.inputChange({ value: e.target.value, name: 'password' })
-                        }} />
-                    </div>
 
-                    <div className={styles.flex}>
-                        <label style={{ flex: 1 }}>确认密码</label>
-                        <input placeholder="请确认密码" type="text" className={showConformMsg ? styles.errInput : ''} value={this.state.confirmWord} onChange={e => {
-                            e.target.type = "password";
-                            this.inputChange({ value: e.target.value, name: 'confirmWord' })
-                        }} />
-                    </div>
+                    <InputLabel lab="密码" placeholder="请输入密码" type value={this.state.password} inputChange={value => this.inputChange({ value: value, name: 'password' })} showBorder={showWordMsg} />
 
-                    {this.state.showConformMsg == true ? <p style={{ textAlign: 'right' }}>请输入相同密码</p> : ''}
+                    <InputLabel lab="确认密码" placeholder="请确认密码" type value={this.state.confirmWord} inputChange={value => this.inputChange({ value: value, name: 'confirmWord' })} showBorder={showConformMsg} />
+
+                    {showConformMsg == true ? <p className={styles.errP}>请输入相同密码</p> : ''}
 
                     <div className={styles.flex}>
                         <label style={{ flex: 1 }}></label>
@@ -189,22 +177,19 @@ class Regis extends React.Component {
                                 <input type="checkbox" id="checkbox" checked={this.state.check} value={this.state.check} onChange={e => this.setState({ check: e.target.checked })} />
                                 <label >我已阅读并同意</label>
                             </div>
-                            {/*<span>我已阅读并同意</span>*/}
                         </div>
                     </div>
 
                     {this.state.errMsg != "" ?
                         <div className={styles.flex}>
                             <label style={{ flex: 1 }}></label>
-                            <p style={{ width: '336px' }}>{this.state.errMsg}</p>
+                            <p style={{ width: '336px' }} className={styles.errP}>{this.state.errMsg}</p>
                         </div> : ''}
 
-                    <div className={styles.flex}>
-                        <label style={{ flex: 1 }}></label>
-                        <button className={styles.logBtn} style={{ color: '#FFF' }} onClick={() => this.regis()}>注册</button>
-                    </div>
+                    <InputLabel isButton buttonName="注册" buttonClick={() => this.regis()} />
 
-                    <div style={{ textAlign: 'right', marginTop: 10 }}>
+
+                    <div className={styles.errP}>
                         <a>免费声明</a>
                         <a className={styles.aSelect}>服务条款</a>
                         <a>隐私保护</a>

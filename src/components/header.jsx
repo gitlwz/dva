@@ -35,15 +35,17 @@ class Header extends Component {
 
 
     loadMenuItem() {
-        const menuArray = [{ img: require("../assets/yinghe/首页@2x.png"), title: '主页', url: '/home' }, { img: require("../assets/yinghe/BB交易logo@2x.png"), title: '币币交易', url: '/kine' },
-        { img: require("../assets/yinghe/公告@2x.png"), title: '平台公告', url: '/Platform' }, { img: require("../assets/yinghe/借贷－帮助中心@2x.png"), title: '帮助中心', url: '/helpcenter' }]
+        const menuArray = [{ img: require("../assets/yinghe/home.png"), title: '主页', url: '/home', selectImg: require("../assets/yinghe/helpSelect.png") },
+        { img: require("../assets/yinghe/bibi.png"), title: '币币交易', url: '/kine', selectImg: require("../assets/yinghe/bibiSelect.png") },
+        { img: require("../assets/yinghe/notice.png"), title: '平台公告', url: '/Platform', selectImg: require("../assets/yinghe/noticeSelect.png") },
+        { img: require("../assets/yinghe/help.png"), title: '帮助中心', url: '/helpcenter', selectImg: require("../assets/yinghe/helpSelect.png") }]
         return <div style={{ display: "flex", flexDirection: 'row' }}>
             {menuArray.map((item, index) => {
                 return <div className={styles.text} onClick={() => {
                     this.setState({ selectMenu: item.url });
                     this.pushNewPage(item.url)
                 }} key={item.title} >
-                    <img src={item.img} />
+                    <img src={this.state.selectMenu == item.url ? item.selectImg : item.img} />
                     <span style={{ color: this.state.selectMenu == item.url ? "#FECC39" : '' }}>{item.title}</span>
                 </div>
             })}

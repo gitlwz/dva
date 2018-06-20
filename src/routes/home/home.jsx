@@ -30,6 +30,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         let instrumentIds = '';
+        this.props.findAllSlideshow();
         // YHeService.findAllExchangeRateUse().then(res => this.setState({ rateList: res })).catch(err => console.log(err));
         this.getAllInstrumentId()
     }
@@ -214,6 +215,7 @@ class Home extends React.Component {
         const dataSource = [{ currency: 'BTC-AXD', newPrice: '6.44', newPrice: '56.11', isUp: true, trad: '0.12%', HPrice: '153.65', LPrice: '2.12', volume: '1555' }, { currency: 'BTC-AXD', newPrice: '6.44', newPrice: '56.11', trad: '0.12%', HPrice: '153.65', LPrice: '2.12', volume: '1555' }]
         return <div style={{ padding: '30px 0px', background: '#f7f7f7', display: 'flex', justifyContent: 'center' }}>
             <div>
+                <a> 1111 1111 1111</a>
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                     {this.getDataArray().map(item => {
                         if (item.instrumentId == "BTC-USDT" || item.instrumentId == "ETH-USDT" || item.instrumentId == "BTC-ETH" || item.instrumentId == "EHT-BTC")
@@ -279,12 +281,10 @@ export default connect((state, props) => {
     }
 }, (dispatch, props) => {
     return {
-        handleOk: () => {
+        findAllSlideshow: () => {
             dispatch({
-                type: 'kineApp/save',
-                payload: {
-                    visible: false
-                }
+                type: 'app/findAllSlideshow',
+                payload: []
             })
         }
     }
