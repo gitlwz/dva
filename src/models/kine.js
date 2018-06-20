@@ -75,6 +75,13 @@ export default {
                 }
             })
         },
+
+        //查询单个合约深度行情
+        *getMarketDataByInstrumentId({ payload }, { call, put }) {
+            const { data } = yield call(baseService, kineApi.instrument.getMarketDataByInstrumentId, payload);
+            console.log(data)
+        },
+
     },
 
     reducers: {
@@ -86,7 +93,7 @@ export default {
     subscriptions: {
         setup({ dispatch, history }) {
             if (history.location.pathname == "/kine") {
-               
+
             }
         },
     },

@@ -33,6 +33,15 @@ class Bibi extends React.Component {
 
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.currentInstrument != nextProps.currentInstrument) {
+            this.props.dispatch({
+                type: 'kine/getMarketDataByInstrumentId',
+                payload: [nextProps.currentInstrument]
+            })
+        }
+    }
+
     changLook() {
         this.setState({ isLook: !this.state.isLook })
     }
@@ -161,7 +170,8 @@ export default connect((state, props) => {
                         type: 'kine/getInstrumentIds'
                     })
             }
-        }
+        },
+        dispatch
 
     }
 
