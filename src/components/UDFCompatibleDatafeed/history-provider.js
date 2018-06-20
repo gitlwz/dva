@@ -38,7 +38,6 @@ var HistoryProvider = /** @class */ (function () {
                             high: Number(response.c[i]),
                             low: Number(response.c[i]),
                         };
-                        console.log('----',new Date(barValue.time))
                         if (ohlPresent) {
                             barValue.open = Number(response.o[i]);
                             barValue.high = Number(response.h[i]);

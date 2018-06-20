@@ -13,7 +13,7 @@ function extractField(data, field, arrayIndex) {
  */
 var UDFCompatibleDatafeedBase = /** @class */ (function () {
     function UDFCompatibleDatafeedBase(datafeedURL, quotesProvider, requester, updateFrequency) {
-        if (updateFrequency === void 0) { updateFrequency = 10000000 * 1000; }
+        if (updateFrequency === void 0) { updateFrequency = 3 * 1000; }
         var _this = this;
         this._configuration = defaultConfiguration();
         this._symbolsStorage = null;
@@ -163,6 +163,7 @@ var UDFCompatibleDatafeedBase = /** @class */ (function () {
     };
     UDFCompatibleDatafeedBase.prototype.resolveSymbol = function (symbolName, onResolve, onError) {
         logMessage('Resolve requested');
+        console.log("******88",arguments)
         var resolveRequestStartTime = Date.now();
         function onResultReady(symbolInfo) {
             logMessage("Symbol resolved: " + (Date.now() - resolveRequestStartTime) + "ms");
@@ -172,21 +173,20 @@ var UDFCompatibleDatafeedBase = /** @class */ (function () {
             var params = {
                 symbol: symbolName,
             };
-
             onResultReady({
-                "name": "BTC-ETH",
+                "name": symbolName,
                 "exchange-traded": "NasdaqNM",
                 "exchange-listed": "NasdaqNM",
                 'timezone': "Asia/Shanghai",
                 "minmov": 1, "minmov2": 0,
                 "pointvalue": 1,
-                "session": "0000-2400",
+                "session": "0000-2400:1234567",
                 "has_intraday": true,
                 "description": "Apple Inc.", 
                 "type": "stock",
-                "supported_resolutions": ["1", "15", "30", "1D", "1W"], 
+                "supported_resolutions": ["1", "15", "30","60","240", "1D","5D", "1W","1M"] , 
                 "pricescale": 100, 
-                "ticker": "BTC-ETH"
+                "ticker": symbolName
             });
             return;
             this._send('symbols', params)
@@ -195,7 +195,7 @@ var UDFCompatibleDatafeedBase = /** @class */ (function () {
                         onError('unknown_symbol');
                     }
                     else {
-                        response.supported_resolutions = ["1", "15", "30", "1D", "1W"] 
+                        response.supported_resolutions = ["1", "15", "30","60","240", "1D","5D", "1W","1M"] 
                         onResultReady({
                             "name": "BTC-ETH",
                             "exchange-traded": "NasdaqNM",
@@ -203,12 +203,12 @@ var UDFCompatibleDatafeedBase = /** @class */ (function () {
                             timezone: "Asia/Shanghai",
                             "minmov": 1, "minmov2": 0,
                             "pointvalue": 1,
-                            "session": "0930-1630",
+                            "session": "0000-2400:1234567",
                             "has_intraday": true,
                             "has_no_volume": false,
                             "description": "Apple Inc.", 
                             "type": "stock",
-                            "supported_resolutions": ["1", "15", "30", "1D", "1W"], 
+                            "supported_resolutions":["1", "15", "30","60","240", "1D","5D", "1W","1M"] , 
                             "pricescale": 100, 
                             "ticker": "BTC-ETH"
                         });
@@ -276,6 +276,6 @@ function defaultConfiguration() {
         'timezone': "Asia/Shanghai",
         "exchanges": [{ "value": "", "name": "All Exchanges", "desc": "" }, { "value": "NasdaqNM", "name": "NasdaqNM", "desc": "NasdaqNM" }, { "value": "NYSE", "name": "NYSE", "desc": "NYSE" }, { "value": "NCM", "name": "NCM", "desc": "NCM" }, { "value": "NGM", "name": "NGM", "desc": "NGM" }], 
         "symbols_types": [{ "name": "All types", "value": "" }, { "name": "Stock", "value": "stock" }, { "name": "Index", "value": "index" }], 
-        "supported_resolutions": ["1", "15", "30", "1D", "1W"] 
+        "supported_resolutions": ["1", "15", "30","60","240", "1D","5D", "1W","1M"] 
     };
 }

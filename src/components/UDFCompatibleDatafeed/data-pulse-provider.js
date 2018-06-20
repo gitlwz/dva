@@ -4,7 +4,7 @@ var DataPulseProvider = /** @class */ (function () {
         this._subscribers = {};
         this._requestsPending = 0;
         this._historyProvider = historyProvider;
-        setInterval(this._updateData.bind(this), 10000000000);
+        setInterval(this._updateData.bind(this), 1000);
     }
     DataPulseProvider.prototype.subscribeBars = function (symbolInfo, resolution, newDataCallback, listenerGuid) {
         if (this._subscribers.hasOwnProperty(listenerGuid)) {

@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
-import { Row, Col,Button,Icon } from 'antd';
+import { Row, Col,Button,Icon,Select  } from 'antd';
 import style from './asset.less';
 import styleA from './SecurityCenter.less';
+const Option = Select.Option;
+
 class SecurityCenter extends Component{
 
     constructor(props) {
@@ -18,6 +20,10 @@ class SecurityCenter extends Component{
         this.props.dispatch({
             type: 'asset/mailboxVerification'
         })
+    }
+    //身份选择
+    SelecthandleChange = () =>{
+        
     }
     //验证通过
     checkcOrrect = () => {
@@ -56,10 +62,25 @@ class SecurityCenter extends Component{
         if(applyStatus > 2){
             return this.checkcOrrect();
         }else{
-            return <div>身份验证未通过</div>
+            return <div>
+                        <div style={{marginTop:"20px"}}>
+                        按照有关部门规定，也为了更好地保护您的资产安全，请完成以下身份验证。身份验证资料经审核通过后不可更改。
+                        </div>
+                        <div>
+                        请选择身份验证类型
+                        </div>
+                        <div style={{marginTop:"20px"}}>
+                            <Select defaultValue="1" style={{ width: '60%' }} onChange={this.SelecthandleChange}>
+                                <Option value="1">身份证验证</Option>
+                                <Option value="2">护照验证</Option>
+                                <Option value="3">机构客户验证</Option>
+                            </Select>
+                            <Button className="asset_btn SecurityCenter_btn" type="primary">提交验证文件</Button>
+                        </div>
+                        <br/>
+                    </div>
         }
     }
-
     //两步验证
     _renderTwoStepsVerify = () =>{
         let {applyStatus} = this.props.userInfo;
@@ -68,18 +89,67 @@ class SecurityCenter extends Component{
             case "2":
             case "3":
                 return(
-                    <div>两步验证未通过</div>
+                    <div>
+                        <div style={{marginTop:"20px"}}>
+                            两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
+                        </div>
+                        <div style={{marginTop:"20px"}}>
+                            <Button className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启谷歌两步验证</Button>
+                        </div>
+                        <div style={{marginTop:"20px"}}>
+                            <Button className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启手机两步验证</Button>
+                        </div>
+                        <br/>
+                    </div>
                 )
             case "4":
                 return(
-                    <div>谷歌验证未开启 | 短信验证已开启</div>
+                    // <div>谷歌验证未开启 | 短信验证已开启</div>
+                    <div>
+                        <div style={{marginTop:"20px"}}>
+                            两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
+                        </div>
+                        <div style={{marginTop:"20px"}}>
+                            <Button className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启谷歌两步验证</Button>
+                        </div>
+                        <div style={{marginTop:"20px"}}>
+                            <Button className="asset_btn SecurityCenter_btn_yz">关闭手机短信验证</Button>
+                        </div>
+                        <br/>
+                    </div>
+                    
                 )
             case "5":
                 return(
-                    <div>谷歌验证已开启 | 短信验证未开启</div>
+                    // <div>谷歌验证已开启 | 短信验证未开启</div>
+                    <div>
+                        <div style={{marginTop:"20px"}}>
+                            两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
+                        </div>
+                        <div style={{marginTop:"20px"}}>
+                            <Button className="asset_btn SecurityCenter_btn_yz">关闭谷歌两步验证</Button>
+                        </div>
+                        <div style={{marginTop:"20px"}}>
+                            <Button className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启手机短信验证</Button>
+                        </div>
+                        <br/>
+                    </div>
                 )
             case "6":
-                return this.checkcOrrect();
+                return (
+                <div>
+                    <div style={{marginTop:"20px"}}>
+                        两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
+                    </div>
+                    <div style={{marginTop:"20px"}}>
+                        <Button className="asset_btn SecurityCenter_btn_yz">关闭谷歌两步验证</Button>
+                    </div>
+                    <div style={{marginTop:"20px"}}>
+                        <Button className="asset_btn SecurityCenter_btn_yz">关闭手机短信验证</Button>
+                    </div>
+                    <br/>
+                </div>
+                )
             default:
                 break;
         }

@@ -1,4 +1,56 @@
 
+:global{
+    .header_dropdown{
+        padding:0px; 
+        overflow: hidden;
+    }
+    .header_dropdown .ant-dropdown-menu-item-divider{
+        margin: 0px;
+    }
+    .header_dropdown .ant-dropdown-menu-item:hover{
+        background-color: #FECC39 !important;
+    }
+}
+.header_dropdown_item{
+    height:39px;
+    position: relative;
+    padding-left: 54px;
+}
+.header_dropdown_text{
+    font-size:14px;
+    font-family:Adobe Heiti Std R;
+    color:rgba(86,86,86,1);
+    line-height:39px;
+}
+.header_dropdown_text::before{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 18px;
+    top: 13px;
+    width: 15px;
+    height: 15px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.header_dropdown_zc::before{
+    background-image: url('./../assets/header/资产@2x.png')
+}
+.header_dropdown_dd::before{
+    background-image: url('./../assets/header/订单管理@2x.png')
+}
+.header_dropdown_tcb::before{
+    background-image: url('./../assets/header/交易@2x.png')
+}
+.header_dropdown_sf::before{
+    background-image: url('./../assets/header/身份认证@2x.png')
+}
+.header_dropdown_aq::before{
+    background-image: url('./../assets/header/安全中心@2x.png')
+}
+.header_dropdown_tc::before{
+    background-image: url('./../assets/header/退出@2x.png')
+}
 .headerNa{
     display: flex;
     justify-content:space-between ; 
