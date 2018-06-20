@@ -75,8 +75,8 @@ class Bibi extends React.Component {
                 <Col span="19">
                     <div style={{ marginLeft: 10 }}>
                         <div className={cardHeader}>{currentInstrument} 2.2492 ≈ 14.47 CNY 涨幅 -3.21% 高 2.3400 低 2.1945 24H量 2906862 IOTA</div>
-                        <div style={{ minHeight: 450, ...borderRadius }} className={bgColor}>
-                            {<TVChartContainer />}
+                        <div style={{ height: 450, ...borderRadius }} className={bgColor}>
+                            {<TVChartContainer symbol={currentInstrument} />}
                         </div>
                         <div style={{ marginTop: 10 }}>
                             <Row>
@@ -113,7 +113,7 @@ class Bibi extends React.Component {
                                 <Col span="7">
                                     <div style={{ marginLeft: '10px' }}>
                                         <div className={cardHeader}>成交明细</div>
-                                        <div className={bgColor} style={{ height: '360px', ...borderRadius,overflowY: 'scroll' }}>
+                                        <div className={bgColor} style={{ height: '360px', ...borderRadius, overflowY: 'scroll' }}>
                                             <TradDetal />
                                         </div>
                                     </div>
