@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { Carousel } from 'antd';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
+import { Menu, Dropdown } from 'antd';
+
 import logo from '../assets/yinghe/矢量智能对象@2x.png';
 //import bgLogon from '../assets/yinghe/图层 1@2x.png';
 import selectBg from '../assets/yinghe/圆角矩形 6@3x.png'
@@ -31,8 +33,57 @@ class Header extends Component {
     pushNewPage(pageName) {
         this.props.dispatch(routerRedux.push(pageName))
     }
-
-
+    menuClick = ({key})=>{
+        switch (key) {
+            case "0":
+            this.props.dispatch(routerRedux.push("/asset"))
+                break;
+        
+            default:
+                break;
+        }
+    }
+    menu() {
+        return (
+            <Menu onClick={this.menuClick} className="header_dropdown">
+                <Menu.Item key="0">
+                    <div className={styles.header_dropdown_item}>
+                        <span className={styles.header_dropdown_text +" " + styles.header_dropdown_zc}>资产总览</span>
+                    </div>
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="1">
+                    <div className={styles.header_dropdown_item}>
+                        <span className={styles.header_dropdown_text +" " + styles.header_dropdown_dd}>订单管理</span>
+                    </div>
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="2">
+                    <div className={styles.header_dropdown_item}>
+                        <span className={styles.header_dropdown_text +" " + styles.header_dropdown_tcb}>充币&提币</span>
+                    </div>
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="3">
+                    <div className={styles.header_dropdown_item}>
+                        <span className={styles.header_dropdown_text +" " + styles.header_dropdown_sf}>身份认证</span>
+                    </div>
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="4">
+                    <div className={styles.header_dropdown_item}>
+                        <span className={styles.header_dropdown_text +" " + styles.header_dropdown_aq}>安全中心</span>
+                    </div>
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="5">
+                    <div className={styles.header_dropdown_item}>
+                        <span className={styles.header_dropdown_text +" " + styles.header_dropdown_tc}>退出</span>
+                    </div>
+                </Menu.Item>
+            </Menu>
+        )
+    }
 
     loadMenuItem() {
         const menuArray = [{ img: require("../assets/yinghe/首页@2x.png"), title: '主页', url: '/home' }, { img: require("../assets/yinghe/BB交易logo@2x.png"), title: '币币交易', url: '/kine' },
@@ -73,8 +124,10 @@ class Header extends Component {
                                     this.pushNewPage("/user/login")
                                 }
                             }} />
+                            <Dropdown  overlay={this.menu()}>
+                                <span style={{ padding: '0 20px' }}>{this.props.userId}</span>
+                            </Dropdown>
 
-                            <span style={{ padding: '0 20px' }}>{this.props.userId}</span>
                             <span onClick={() => this.props.logout()} style={{ marginRight: 20 }}>登出</span>
                         </div>
                     }

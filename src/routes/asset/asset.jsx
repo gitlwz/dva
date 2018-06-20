@@ -37,7 +37,7 @@ class Asset extends Component {
     render() {
         return (
             <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
-                <div style={{display:!!this.props.topError.show?'block':"none"}} className={style.topError}>
+                <div style={{display:!!this.props.topError.show&&this.props.currentSelect==="安全中心"?'block':"none"}} className={style.topError}>
                     {this.props.topError.content}
                 </div>
                 <div className={style.accounContent}>

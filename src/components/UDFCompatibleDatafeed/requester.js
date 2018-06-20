@@ -24,7 +24,6 @@ var Requester = /** @class */ (function () {
         return fetch(datafeedUrl + "/" + urlPath, options)
             .then(function (response) { return response.text(); })
             .then(function (responseTest) { 
-                
                 return JSON.parse(JSON.parse(responseTest).data)
                 return JSON.parse(responseTest); });
     };

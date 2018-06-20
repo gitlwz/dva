@@ -61,6 +61,13 @@ export default {
                     content:"请先完成邮箱验证"
                 }
             }
+            console.log("*******",_data.applyStatus)
+            if(_data.applyStatus == 2){
+                topError = {
+                    show:true,
+                    content:"请先完成身份验证"
+                }
+            }
             yield put({
                 type: 'save',
                 payload: {
