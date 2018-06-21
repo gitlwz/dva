@@ -17,7 +17,8 @@ export default {
         sellList: [],
         buyList: [],
         markLoading: true,
-        search: ''
+        search: '',
+        dataByInstrumentId: {} //合约深度行情
     },
 
     effects: {
@@ -56,30 +57,40 @@ export default {
         //获取买档行情
         *findBuyMarket({ payload }, { call, put }) {
             const { data } = yield call(baseService, kineApi.trade.findBuyMarket, payload);
-            yield put({
-                type: 'save',
-                payload: {
-                    buyList: data.length > 0 ? data : [],
-                    markLoading: false
-                }
-            })
+            if (data != undefined)
+                yield put({
+                    type: 'save',
+                    payload: {
+                        buyList: data.length > 0 ? data : [],
+                        markLoading: false
+                    }
+                })
         },
 
         //获取卖档行情
         *findSellMarket({ payload }, { call, put }) {
             const { data } = yield call(baseService, kineApi.trade.findSellMarket, payload);
-            yield put({
-                type: 'save',
-                payload: {
-                    sellList: data.length > 0 ? data : []
-                }
-            })
+            if (data != undefined)
+                yield put({
+                    type: 'save',
+                    payload: {
+                        sellList: data.length > 0 ? data : []
+                    }
+                })
         },
 
         //查询单个合约深度行情
-        *getMarketDataByInstrumentId({ payload }, { call, put }) {
-            const { data } = yield call(baseService, kineApi.instrument.getMarketDataByInstrumentId, payload);
+        *getLastDayKline({ payload }, { call, put }) {
+            const { data } = yield call(baseService, kineApi.instrument.getLastDayKline, payload);
             console.log(data)
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        dataByInstrumentId: data
+                    }
+                })
+            }
         },
 
     },
@@ -92,25 +103,32 @@ export default {
 
     subscriptions: {
         setup({ dispatch, history }) {
-            if (history.location.pathname == "/kine") {
 
-            }
         },
-        "名字随意取1"({ dispatch, history }){
-            return PubSub.subscribe("findBuyMarket", (name,payload) => {
+        findBuyMarket({ dispatch, history }) {
+            return PubSub.subscribe("findBuyMarket", (name, payload) => {
                 dispatch({
-                    type:"findBuyMarket",
-                    payload
+                    type: "findBuyMarket",
+                    payload: [payload]
                 })
             })
         },
-        "名字随意取2"({ dispatch, history }){
-            return PubSub.subscribe("findSellMarket", (name,payload) => {
+        findSellMarket({ dispatch, history }) {
+            return PubSub.subscribe("findSellMarket", (name, payload) => {
                 dispatch({
-                    type:"findSellMarket",
-                    payload
+                    type: "findSellMarket",
+                    payload: [payload]
                 })
             })
-        }
+        },
+        getLastDayKline({ dispatch, history }) {
+            return PubSub.subscribe("findSellMarket", (name, payload) => {
+                dispatch({
+                    type: 'getLastDayKline',
+                    payload: [payload]
+                })
+            })
+        },
+
     },
 };

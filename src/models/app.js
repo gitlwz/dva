@@ -32,6 +32,7 @@ export default {
   effects: {
     //查询轮播图列表
     *findAllSlideshow({ payload }, { call, put }) {
+      console.log("发送")
       const { data } = yield call(baseService, api.baseConfig.findAllSlideshow, payload);
       yield put({
         type: 'save',
@@ -43,12 +44,13 @@ export default {
 
     * findAllQuestions({ payload }, { call, put }) {
       const { data } = yield call(baseService, api.user.findAllQuestions, payload);
-      yield put({
-        type: 'save',
-        payload: {
-          questionList: data
-        }
-      })
+      if (data != undefined)
+        yield put({
+          type: 'save',
+          payload: {
+            questionList: data
+          }
+        })
     },
 
     * customerProblems({ payload }, { call }) {
@@ -65,11 +67,10 @@ export default {
 
   subscriptions: {
     setup({ dispatch, history }) {
-      return history.listen(({ pathname }) => {
-        if (pathname === '/kine') {
-
-        }
-      });
+      // return dispatch({
+      //   type: 'findAllSlideshow',
+      //   payload: []
+      // })
     },
   },
 };

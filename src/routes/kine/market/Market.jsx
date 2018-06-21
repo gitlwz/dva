@@ -23,17 +23,20 @@ class Market extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.currentInstrument != nextProps.currentInstrument) {
-            PubSub.publish('Polling.addsubscribe', 
+            PubSub.publish('Polling.addsubscribe',
                 [
-                    {name:"findBuyMarket",payload:nextProps.currentInstrument},
-                    {name:"findSellMarket",payload:nextProps.currentInstrument}
+                    { name: "findBuyMarket", payload: nextProps.currentInstrument },
+                    { name: "findSellMarket", payload: nextProps.currentInstrument }
                 ]
             )
-
-            // this.props.findBuyMarket(nextProps.currentInstrument);
-            // this.props.findSellMarket(nextProps.currentInstrument);
         }
     }
+
+    componentWillUnmount() {
+        PubSub.publish('Polling.delsubscribe', ["findBuyMarket"])
+        PubSub.publish('Polling.delsubscribe', ["findSellMarket"])
+    }
+
     render() {
         return <div style={{ height: '100%' }}>
             <Spin spinning={this.props.markLoading}>

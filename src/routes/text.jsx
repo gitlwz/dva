@@ -1,10 +1,19 @@
 import React from "react";
-import { Radio, Carousel } from 'antd';
+import { Button } from 'antd';
+import UploadComponent from '../components/upload';
+
 import { connect } from 'dva';
 /**
  * 模块设置页面主题
  */
 class Text extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            img: ''
+        }
+    }
 
     componentDidMount() {
 
@@ -12,15 +21,10 @@ class Text extends React.Component {
 
     render() {
         const { radioChange, handleOk } = this.props;
-        return <div>
-            <Carousel autoplay>
-                <div><h3>1测试</h3></div>
-                <div><h3>2</h3></div>
-                <div><h3>3</h3></div>
-                <div><h3>4</h3></div>
-            </Carousel>
-           
-        </div>
+        return <UploadComponent callback={(data, img) => this.setState({ img })}>
+            <Button>上传</Button>
+            <img src={this.state.img} />
+        </UploadComponent>
     }
 }
 
@@ -31,7 +35,7 @@ export default connect((state, props) => {
     }
 }, (dispatch, props) => {
     return {
-       
+
     }
 
 })(Text)

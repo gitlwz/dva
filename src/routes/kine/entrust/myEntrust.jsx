@@ -21,25 +21,13 @@ class MyEntrust extends React.Component {
     }
 
     componentDidMount() {
-        let array = []
-        for (let i = 0; i < 10; i++) {
-            let element = {
-                time: moment().format("HH:MM:SS"), instrumentId: 'BTC', direction: Math.random() > 0.5 ? "1" : "0",
-                price: format.multiply(Math.random(1000).toFixed(2), i + 1, 2), volume: format.multiply(Math.random(1000).toFixed(4), i + 1, 2)
-            }
-            array.push(element);
-        }
-        this.setState({ dataSource: array });
-
-        setTimeout(() => {
-            this.setState({ loading: false })
-        }, (2000))
 
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.currentInstrument != nextProps.currentInstrument) {
-            this.props.queryOrderForClient([nextProps.userId, nextProps.currentInstrument, { "pageNo": 1, "pageSize": 10 }])
+            if (!!this.props.userId)
+                this.props.queryOrderForClient([nextProps.userId, nextProps.currentInstrument, { "pageNo": 1, "pageSize": 10 }])
         }
     }
 
@@ -87,7 +75,6 @@ class MyEntrust extends React.Component {
 
 export default connect((state, props) => {
     return {
-        userId: state.user.userId,
         currentInstrument: state.kine.currentInstrument,
         userInfo: state.user.userInfo,
         userId: state.user.userId,

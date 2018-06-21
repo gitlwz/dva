@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Icon } from 'antd';
 import { connect } from 'dva';
-import { routerRedux } from 'dva/router';
+import formatData from '../../../tool/formatNmber';
 import Market from '../market/Market';
 import Trade from '../trade/Trade';
 import TradDetal from '../trade/TradeDetail';
@@ -10,6 +10,7 @@ import LoginTooltip from '../../../components/loginTooltip';
 import MyEntrust from '../entrust/myEntrust';
 import Notice from '../notice/notice';
 import { TVChartContainer } from '../../../components/TVChartContainer'
+import PubSub from "pubsub-js";
 import styles from './bibi.less';
 /**
  * 币币主页布局
@@ -20,37 +21,41 @@ class Bibi extends React.Component {
         super(props);
         this.state = {
             isLook: false,
-            tradDetail: {}
         }
     }
 
     componentDidMount() {
-        // WSClient.addEventListenerInstrument(subscribeSet.Topic_instrument + "public_instrument_KOG-CNHE,public_instrument_AIX-B…lic_instrument_ISQ-CNHE,public_instrument_ISQ-BTC");
-        // webSocket.emitter.on(subscribeSet.Topic_instrument, (data) => {
-        //     //console.log(data)
-        //     this.setState({ tradDetail: data })
-        // })
+        this.props.dispatch({
+            type: 'asset/currencyChange',
+            payload: []
+        })
 
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.currentInstrument != nextProps.currentInstrument) {
-            this.props.dispatch({
-                type: 'kine/getMarketDataByInstrumentId',
-                payload: [nextProps.currentInstrument]
-            })
+            PubSub.publish('Polling.addsubscribe',
+                [
+                    { name: "getLastDayKline", payload: nextProps.currentInstrument },
+                ]
+            )
         }
+    }
+
+    componentWillUnmount() {
+        PubSub.publish('Polling.delsubscribe', ["getLastDayKline"])
     }
 
     changLook() {
         this.setState({ isLook: !this.state.isLook })
     }
 
+
     render() {
         let bgColor = (this.props.theme == "dark" ? styles.bgDarkColor : styles.bgWhiteColor);
         let cardHeader = (this.props.theme == "dark" ? styles.darkCardHeader : styles.whiteCardHeader);
         const borderRadius = { borderRadius: '0 0 8px 8px' }
-        const { userId, search, searchByInstrum, currentInstrument, instrumentIds, Currency } = this.props;
+        const { userId, search, searchByInstrum, currentInstrument, instrumentIds, Currency, dataByInstrumentId } = this.props;
         return <div style={{ padding: '10px 30px', backgroundColor: 'rgba(32,38,55,1)' }}>
             <Row>
                 <Col span="5">
@@ -83,9 +88,9 @@ class Bibi extends React.Component {
                 </Col>
                 <Col span="19">
                     <div style={{ marginLeft: 10 }}>
-                        <div className={cardHeader}>{currentInstrument} 2.2492 ≈ 14.47 CNY 涨幅 -3.21% 高 2.3400 低 2.1945 24H量 2906862 IOTA</div>
-                        <div style={{ height: 450, ...borderRadius }} className={bgColor}>
-                            {<TVChartContainer symbol="EHT-BTC" />}
+                        <div className={cardHeader} style={{ color: '#FFF' }}>{currentInstrument} {dataByInstrumentId.lastPrice} ≈ 14.47 CNY 涨幅 {formatData.changePrice(dataByInstrumentId.lastPrice, dataByInstrumentId.openPrice)} 高 {dataByInstrumentId.highestPrice} 低 {dataByInstrumentId.lowestPrice} 24H量 {dataByInstrumentId.volume}</div>
+                        <div style={{ height: '450px', ...borderRadius }} className={bgColor}>
+                            {!!currentInstrument ? <TVChartContainer symbol={currentInstrument} /> : ''}
                         </div>
                         <div style={{ marginTop: 10 }}>
                             <Row>
@@ -144,6 +149,7 @@ export default connect((state, props) => {
         instrumentIds: state.kine.instrumentIds,
         currentInstrument: state.kine.currentInstrument,
         Currency: state.kine.Currency,
+        dataByInstrumentId: state.kine.dataByInstrumentId,
         props
     }
 }, (dispatch, props) => {

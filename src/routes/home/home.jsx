@@ -282,6 +282,7 @@ export default connect((state, props) => {
 }, (dispatch, props) => {
     return {
         findAllSlideshow: () => {
+            console.log("加载!")
             dispatch({
                 type: 'app/findAllSlideshow',
                 payload: []

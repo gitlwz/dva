@@ -1,5 +1,5 @@
 import baseService from '../../services/baseService';
-import { message } from 'antd';
+import PubSub from "pubsub-js";
 import kineApi from '../../utils/kineApi';
 
 //下单模块
@@ -92,11 +92,15 @@ export default {
 
     subscriptions: {
         setup({ dispatch, history }) {
-            return history.listen(({ pathname }) => {
-                if (pathname === '/kine') {
 
-                }
-            });
+        },
+        queryOperTradeByInstrumentID({ dispatch, history }) {
+            return PubSub.subscribe("queryOperTradeByInstrumentID", (name, payload) => {
+                // dispatch({
+                //     type: "queryOperTradeByInstrumentID",
+                //     payload: payload
+                // })
+            })
         },
     },
 };

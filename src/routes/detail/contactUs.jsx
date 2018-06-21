@@ -43,6 +43,7 @@ class ContactUs extends Component {
       errTip4: this.props.questionParams.problemBody == "" ? '请添加问题描述！' : ''
     })
     if(this.props.questionParams.problemType && this.props.questionParams.email && context && this.props.questionParams.problemBody){
+      //problemPhoto
       this.props.dispatch({
         type: 'app/customerProblems',
         payload: [

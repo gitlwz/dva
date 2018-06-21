@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'dva';
 import { Spin } from 'antd';
+import PubSub from "pubsub-js";
 import TradeComponent from '../../../components/tradDetail';
 
 //import styles from '../market/Market.less';
@@ -22,17 +23,22 @@ class TradDetal extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.currentInstrument != nextProps.currentInstrument) {
-            this.queryOperTradeByInstrumentID(nextProps.currentInstrument)
+            PubSub.publish('Polling.addsubscribe',
+                [
+                    { name: "queryOperTradeByInstrumentID", payload: [{ "pageNo": 1, "pageSize": 100 }, nextProps.currentInstrument] },
+                ]
+            )
         }
     }
 
-    queryOperTradeByInstrumentID(currentInstrument) {
-        this.props.queryOperTradeByInstrumentID([{ "pageNo": 1, "pageSize": 100 }, currentInstrument])
+    componentWillUnmount() {
+        PubSub.publish('Polling.delsubscribe', ["queryOperTradeByInstrumentID"])
     }
+
 
     render() {
         return <Spin spinning={this.props.tradeDetailLoding}>
-            <div style={{ height: "100%", paddingLeft: 20}}>
+            <div style={{ height: "100%", paddingLeft: 20 }}>
                 <TradeComponent trade dataList={this.props.operTradeByInstrumentIDList} titleList={this.state.titleList} handleOk={price => console.log(price)} />
             </div>
         </Spin>

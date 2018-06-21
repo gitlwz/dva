@@ -12,7 +12,7 @@ var format = {
      * @param {*} min 最小
      */
     NumberCheck({ value: value, pointNum: pointNum, leftPoint: leftPoint, max: max, min: min }) {
-
+        //console.log(value, max)
         value = value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
         value = value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的
         value = value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
@@ -43,6 +43,7 @@ var format = {
                 value = max;
                 message.error("超过最大值" + max + "请重新输入");
             }
+            return;
         }
         if (min) {
             if (parseFloat(value) < parseFloat(min)) {
@@ -91,7 +92,36 @@ var format = {
             }
         }
         return Num
+    },
+
+
+    /**
+     * 计算涨跌幅
+     * @param {*} 当前价格
+     * @param {*} 开盘价
+     */
+    changePrice(closePrice, openPrice) {
+        let num = (closePrice - openPrice) / openPrice;
+        // return (num * 100).toFixed(2) + "%";
+    },
+
+    /**
+     * 计算最大购买量
+     * @param {*} total 
+     * @param {*} price 
+     */
+    buyMax(total, price) {
+        // console.log(total, price)
+        if (price != 0) {
+            if (!!total && total > 0) {
+                return Number(this.multiply(total / price, 1, 2));
+            } else {
+                return 0
+            }
+        }
+
     }
+
 }
 
 

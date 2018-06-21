@@ -73,11 +73,12 @@ class Indenture extends React.Component {
                 markLoading: true
             }
         });
-        this.props.dispatch({
-            type: 'kine/findByInstrumentID',
-            payload: instrumId
-        })
-
+        if (!!this.props.userId) {
+            this.props.dispatch({
+                type: 'kine/findByInstrumentID',
+                payload: instrumId
+            })
+        }
     }
 
     loadInstrument() {
@@ -139,6 +140,7 @@ export default connect((state, props) => {
         instrumentIds: state.kine.instrumentIds,
         loading: state.kine.loading,
         Currency: state.kine.Currency,
+        userId: state.user.userId,
         props
     }
 }, (dispatch, props) => {

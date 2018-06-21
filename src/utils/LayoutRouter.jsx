@@ -5,21 +5,21 @@
 const LayoutRouter = [
     {
         path: '/home',
-        models: () => [import('../models/kine')],
+        models: () => [import('../models/kine'), import('../models/asset')],
         component: () => import('../routes/home/home'),
     }, {
         path: '/kine',
-        models: () => [import('../models/kine/trade'), import('../models/kine')],
+        models: () => [import('../models/kine/trade'), import('../models/kine'), import('../models/asset')],
         component: () => import('../routes/kine/bibi/bibi'),
     },
     {
         path: '/joinus',
         component: () => import('../routes/detail/joinus')
     },
-  {
-    path: '/contactUs',
-    component: () => import('../routes/detail/contactUs')
-  },
+    {
+        path: '/contactUs',
+        component: () => import('../routes/detail/contactUs')
+    },
     {
         path: '/stipulation',
         component: () => import('../routes/detail/Copyright')
@@ -44,6 +44,10 @@ const LayoutRouter = [
     {
         path: '/helpdetail/:id',
         component: () => import('../routes/helpcenter/helpdetail')
+    },
+    {
+        path: '/text',
+        component: () => import('../routes/text')
     },
     {
         path: '/asset',  //资产管理

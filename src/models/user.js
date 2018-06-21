@@ -7,7 +7,7 @@ export default {
     namespace: 'user',
 
     state: {
-        userInfo: {},
+        userInfo: {},//用户信息
         countryList: [],
         isLogin: false,
         userId: ''
