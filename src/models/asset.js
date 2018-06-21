@@ -8,11 +8,8 @@ export default {
     namespace: 'asset',
 
     state: {
-
-        topError:{
-            show:false,
-            content:""
-        },
+        loading:false,
+        
         currentSelect:"资产总览",
 
         //资产总览字段
@@ -24,7 +21,7 @@ export default {
 
         //提现管理
         QBotherAddress:{}, //其他充币地址
-        TXotherAddress:[], //其他提现地址
+        TXotherAddress:{}, //其他提现地址
         currentCollapse:null, //当前打开的折叠面板
     },
 
@@ -35,7 +32,8 @@ export default {
             yield put({
                 type: 'save',
                 payload: {
-                    dataSource: data
+                    dataSource: data,
+                    loading:false
                 }
             })
         },
@@ -48,33 +46,8 @@ export default {
                 type: 'save',
                 payload: {
                     QBotherAddress:QBotherAddress.data || {},
-                    TXotherAddress:TXotherAddress.data || {}
-                }
-            })
-        },
-        *queryClientApply({ payload }, { call, put }){
-            console.log("*******",arguments)
-
-            const { data } = yield call(baseService, api.asset.queryClientApply, []);
-            let _data = data || {};
-            let topError = {show:false};
-            if(_data.applyStatus <= 1){
-                topError = {
-                    show:true,
-                    content:"请先完成邮箱验证"
-                }
-            }
-            if(_data.applyStatus == 2){
-                topError = {
-                    show:true,
-                    content:"请先完成身份验证"
-                }
-            }
-            yield put({
-                type: 'save',
-                payload: {
-                    userInfo:_data,
-                    topError
+                    TXotherAddress:TXotherAddress.data || {},
+                    loading:false
                 }
             })
         },
@@ -82,6 +55,16 @@ export default {
             const { data } = yield call(baseService, api.asset.mailboxVerification, []);
             if(!!data && data == true){
                 message.success('邮件已发送！请及时去邮箱处理！');
+            }
+        },
+        *createAddress({ payload }, { call, put }){
+            try{
+                const { data } = yield call(baseService, api.asset.createAddress, payload.params);
+                yield put({
+                    type: 'findTraderFundAddress'
+                })
+            }catch(err){
+                console.log(err)
             }
         }
     },

@@ -11,9 +11,7 @@ class SecurityCenter extends Component{
         super(props);
     }
     componentWillMount = () =>{
-        this.props.dispatch({
-            type: 'asset/queryClientApply'
-        })
+        
     }
     //发送验证邮箱
     sendEmil = () => {
@@ -229,8 +227,8 @@ class SecurityCenter extends Component{
     }
 }
 export default connect((state, props) => {
-    let {currentSelect,userInfo} = state.asset
-    let {userId} = state.user
+    let {currentSelect} = state.asset
+    let {userId,userInfo} = state.user
     return {
         userInfo,
         currentSelect,

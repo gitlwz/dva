@@ -39,6 +39,9 @@ class HelpCenter extends Component {
     }
     render() {
         let titleArr = Array.from(new Set(this.props.findAll.map((ele)=> ele.questionType)));
+        if(titleArr.length > 3){
+            titleArr.length = 3;
+        }
         return (
             <div style={{ backgroundColor: "#F7F7F7" }}>
                 <div className={styles.body}>

@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import style from './asset.less'
-import { Row, Col, Select ,Alert} from 'antd';
+import { Row, Col, Select ,Alert,Spin, Icon} from 'antd';
 import AssetView from './AssetView';
 import SecurityCenter from './SecurityCenter';
 import CashManagement from './CashManagement';
 import { connect } from 'dva';
+const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
 const Option = Select.Option;
 
 /**
@@ -35,14 +36,28 @@ class Asset extends Component {
         })
     }
     render() {
+        let topError = {show:false};
+        if(this.props.userInfo.applyStatus <= 1){
+            topError = {
+                show:true,
+                content:"请先完成邮箱验证"
+            }
+        }
+        if(this.props.userInfo.applyStatus == 2){
+            topError = {
+                show:true,
+                content:"请先完成身份验证"
+            }
+        }
         return (
+            <Spin size="large" spinning={this.props.loading} indicator={antIcon} >        
             <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
-                <div style={{display:!!this.props.topError.show&&this.props.currentSelect==="安全中心"?'block':"none"}} className={style.topError}>
-                    {this.props.topError.content}
+                <div style={{display:!!topError.show&&this.props.currentSelect==="安全中心"?'block':"none"}} className={style.topError}>
+                    {topError.content}
                 </div>
                 <div className={style.accounContent}>
                     <Row gutter={16}>
-                        <Col className="gutter-row" span={8}>
+                        <Col className="gutter-row" span={6}>
                             <div className={style.gutter_letft}>
                                 <div className={style.left_card}>
                                     {this.state.leftMenu.map((item,index)=>{
@@ -55,7 +70,7 @@ class Asset extends Component {
                                 </div>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={16}>
+                        <Col className="gutter-row" span={18}>
                             <AssetView />
                             <SecurityCenter />
                             <CashManagement />
@@ -63,13 +78,17 @@ class Asset extends Component {
                     </Row>
                 </div>
             </div>
+            </Spin>
 
         )
     }
 }
 export default connect((state, props) => {
+    let {userInfo} = state.user
     return {
+        
         ...state.asset,
-        ...props
+        ...props,
+        userInfo
     }
 })(Asset);
