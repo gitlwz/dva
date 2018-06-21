@@ -2,16 +2,19 @@ import { routerRedux } from 'dva/router';
 import baseService from '../services/baseService';
 import api from '../utils/api';
 import { message } from 'antd';
+import PubSub from "pubsub-js";
 export default {
 
     namespace: 'asset',
 
     state: {
-
         topError: {
             show: false,
             content: ""
         },
+        currentSelect: "资产总览",
+        loading: false,
+
         currentSelect: "资产总览",
 
         //资产总览字段
@@ -25,6 +28,9 @@ export default {
         QBotherAddress: {}, //其他充币地址
         TXotherAddress: [], //其他提现地址
         currentCollapse: null, //当前打开的折叠面板
+        QBotherAddress: {}, //其他充币地址
+        TXotherAddress: {}, //其他提现地址
+        currentCollapse: null, //当前打开的折叠面板
     },
 
     effects: {
@@ -34,11 +40,11 @@ export default {
                 yield put({
                     type: 'save',
                     payload: {
-                        dataSource: data
+                        dataSource: data,
+                        loading: false
                     }
                 })
             }
-
         },
         *findTraderFundAddress({ payload }, { call, put }) {
             const [QBotherAddress, TXotherAddress] = yield [
@@ -74,7 +80,10 @@ export default {
                 type: 'save',
                 payload: {
                     userInfo: _data,
-                    topError
+                    topError,
+                    // QBotherAddress: QBotherAddress.data || {},
+                    // TXotherAddress: TXotherAddress.data || {},
+                    loading: false
                 }
             })
         },
@@ -82,6 +91,16 @@ export default {
             const { data } = yield call(baseService, api.asset.mailboxVerification, []);
             if (!!data && data == true) {
                 message.success('邮件已发送！请及时去邮箱处理！');
+            }
+        },
+        *createAddress({ payload }, { call, put }) {
+            try {
+                const { data } = yield call(baseService, api.asset.createAddress, payload.params);
+                yield put({
+                    type: 'findTraderFundAddress'
+                })
+            } catch (err) {
+                console.log(err)
             }
         }
     },
@@ -96,6 +115,5 @@ export default {
     },
 
     subscriptions: {
-
     },
 };

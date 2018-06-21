@@ -35,14 +35,17 @@ const LayoutRouter = [
     },
     {
         path: '/helpcenter',
+        models: () => [import('../models/helpcenter')],
         component: () => import('../routes/helpcenter/helpcenter')
     },
     {
-        path: '/searchresult',
+        path: '/searchresult/:search',
+        models: () => [import('../models/helpcenter')],
         component: () => import('../routes/helpcenter/searchresult')
     },
     {
         path: '/helpdetail/:id',
+        models: () => [import('../models/helpcenter')],
         component: () => import('../routes/helpcenter/helpdetail')
     },
     {

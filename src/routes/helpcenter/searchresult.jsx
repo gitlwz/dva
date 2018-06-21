@@ -3,7 +3,7 @@ import styles from './helpcenter.less';
 import Logo from "../../assets/帮助中心.png";
 import { Row, Col,Button ,Icon,Input} from 'antd';
 import stylesmy from './searchresult.less';
-
+import { connect } from 'dva';
 const Search = Input.Search;
 /**
  * 帮助中心
@@ -14,7 +14,22 @@ class SearchResult extends Component {
 
     }
     componentWillMount = () => {
-
+        this.props.dispatch({
+            type: 'helpcenter/findAllPushHelpCenterByCondition',
+            payload: {
+                params :this.props.match.params.search
+            }
+        })
+    }
+    onSearch = (value) =>{
+        if(!!value){
+            this.props.history.push("/searchresult/"+value)
+        }
+    }
+    itemClick = (id) =>{
+        if(!!id){
+            this.props.history.push("/helpdetail/"+id)
+        }
     }
     render() {
         return (
@@ -25,7 +40,7 @@ class SearchResult extends Component {
                         <div className={styles.searchcontent + " searchcontent"}>
                             <Search
                                 placeholder="输入搜索内容"
-                                onSearch={value => console.log(value)}
+                                onSearch={this.onSearch}
                                 enterButton
                             />
                         </div>
@@ -45,10 +60,10 @@ class SearchResult extends Component {
                         <div className={styles.bottom}>
                             <Row gutter={192}>
                                 <Col className="gutter-row" span={14}>
-                                    <div className={styles.gutter_box_title}>搜索结果<span className={stylesmy.result}>结果项：7条</span></div>
-
-                                    <div className={styles.gutter_box}>222</div>
-                                    <div className={styles.gutter_box}>2222</div>
+                                    <div className={styles.gutter_box_title}>搜索结果<span className={stylesmy.result}>结果项：{this.props.findAllSearch.length}条</span></div>
+                                    {this.props.findAllSearch.map((ele=>(
+                                        <div key={ele.Id} onClick={()=>this.itemClick(ele.Id)} className={styles.gutter_box}>{ele.helpTitle}</div>
+                                    )))}
                                 </Col>
                                 <Col className="gutter-row" span={10}>
                                     <div className={stylesmy.content}>
@@ -69,4 +84,10 @@ class SearchResult extends Component {
     }
 }
 
-export default SearchResult
+export default connect((state, props) => {
+    let { findAllSearch } = state.helpcenter
+    return {
+        findAllSearch,
+        ...props
+    }
+})(SearchResult);

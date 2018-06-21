@@ -11,9 +11,7 @@ class SecurityCenter extends Component{
         super(props);
     }
     componentWillMount = () =>{
-        this.props.dispatch({
-            type: 'asset/queryClientApply'
-        })
+        
     }
     //发送验证邮箱
     sendEmil = () => {
@@ -198,7 +196,7 @@ class SecurityCenter extends Component{
                             <Col className={styleA.rowF_title} span={4}>资金密码</Col>
                             <Col span={20}>
                                 <span>{accountPassword}</span>
-                                <Button className="asset_btn SecurityCenter_btn" type="primary">重置密码</Button>
+                                {this.props.userInfo.applyStatus>=6?<Button className="asset_btn SecurityCenter_btn" type="primary">重置密码</Button>:null}
                             </Col>
                         </Row>
                     </div>
@@ -229,8 +227,8 @@ class SecurityCenter extends Component{
     }
 }
 export default connect((state, props) => {
-    let {currentSelect,userInfo} = state.asset
-    let {userId} = state.user
+    let {currentSelect} = state.asset
+    let {userId,userInfo} = state.user
     return {
         userInfo,
         currentSelect,
