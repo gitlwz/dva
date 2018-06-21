@@ -28,6 +28,9 @@ const apis = {
         findAllPushHelpCenterByCondition:{url: baseIP + "service/anonymousWebGeneralService/findAllPushHelpCenterByCondition", method: 'POST', description: '帮助中心问题名称集合'},
         getHelpCenterById:{url: baseIP + "service/anonymousWebGeneralService/getHelpCenterById", method: 'POST', description: '帮助中心问题详情'}
     },
+    "otherRecharge":{
+        findFundAddress:{url: baseIP + "service/webGeneralService/findFundAddress", method: 'POST', description: '查询提币地址'},
+    },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
     }
