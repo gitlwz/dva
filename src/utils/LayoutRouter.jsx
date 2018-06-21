@@ -56,6 +56,10 @@ const LayoutRouter = [
         path: '/asset',  //资产管理
         models: () => [import('../models/asset')],
         component: () => import('../routes/asset/asset'),
+    },{
+        path: '/otherRecharge/:type',  //其他货币充值
+        models: () => [import('../models/otherRecharge')],
+        component: () => import('../routes/otherRecharge/otherRecharge'),
     }
 ]
 export default LayoutRouter;

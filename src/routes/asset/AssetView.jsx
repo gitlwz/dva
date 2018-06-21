@@ -19,12 +19,12 @@ const columns = [{
 }, {
     title: '操作',
     dataIndex: 'operation',
-    render: () => {
+    render: (text, record, index) => {
         return (
             <div>
-                <a href="#">充值</a>
+                <a href={"#/otherRecharge/" + record.currency} style={{color:"rgba(253,204,57,1)"}}>充值</a>
                 <Divider type="vertical" />
-                <a href="#">提现</a>
+                <a href="#" style={{color:"rgba(253,204,57,1)"}}>提现</a>
             </div>
         )
     }
