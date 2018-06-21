@@ -41,7 +41,7 @@ let widgetOptions ={
  */
 export class TVChartContainer extends React.PureComponent {
 	static defaultProps = {
-		datafeedUrl:"sundax/restfulservice/tradingViewService/",
+		datafeedUrl:"sundax/restfulservice/tradingViewService",
 		symbol:'BTC-ETH',
     };
 	componentDidMount = () => {

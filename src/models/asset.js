@@ -2,6 +2,7 @@ import { routerRedux } from 'dva/router';
 import baseService from '../services/baseService';
 import api from '../utils/api';
 import { message } from 'antd';
+import PubSub from "pubsub-js";
 export default {
 
     namespace: 'asset',
@@ -52,6 +53,8 @@ export default {
             })
         },
         *queryClientApply({ payload }, { call, put }){
+            console.log("*******",arguments)
+
             const { data } = yield call(baseService, api.asset.queryClientApply, []);
             let _data = data || {};
             let topError = {show:false};
@@ -61,7 +64,6 @@ export default {
                     content:"请先完成邮箱验证"
                 }
             }
-            console.log("*******",_data.applyStatus)
             if(_data.applyStatus == 2){
                 topError = {
                     show:true,
@@ -94,6 +96,5 @@ export default {
     },
 
     subscriptions: {
-        
     },
 };

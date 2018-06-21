@@ -198,7 +198,7 @@ class SecurityCenter extends Component{
                             <Col className={styleA.rowF_title} span={4}>资金密码</Col>
                             <Col span={20}>
                                 <span>{accountPassword}</span>
-                                <Button className="asset_btn SecurityCenter_btn" type="primary">重置密码</Button>
+                                {this.props.userInfo.applyStatus>=6?<Button className="asset_btn SecurityCenter_btn" type="primary">重置密码</Button>:null}
                             </Col>
                         </Row>
                     </div>
