@@ -173,7 +173,7 @@ class SecurityCenter extends Component{
             accountPassword = "未设置";
         }
         return (
-            <div style={{ display: this.props.currentSelect == "安全中心" ? "block" : "none" ,paddingTop: '53px'}}>
+            <div style={{ paddingTop: '53px'}}>
                 
                 <div className={style.right_title}>
                     安全中心

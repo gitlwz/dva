@@ -60,7 +60,7 @@ class AssetView extends Component {
     }
     render() {
         return (
-            <div style={{ display: this.props.currentSelect == "资产总览" ? "block" : "none" }} className={style.gutte_right}>
+            <div className={style.gutte_right}>
                 <div className={style.right_title}>
                     资产总览
                     <span className={style.zh}>727770481@qq.com</span>

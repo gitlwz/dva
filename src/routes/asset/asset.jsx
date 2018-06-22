@@ -5,7 +5,6 @@ import AssetView from './AssetView';
 import SecurityCenter from './SecurityCenter';
 import CashManagement from './CashManagement';
 import { connect } from 'dva';
-const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
 const Option = Select.Option;
 
 /**
@@ -37,7 +36,6 @@ class Asset extends Component {
     }
     render() {
         let topError = {show:false};
-        console.log("*******88",this.props.userInfo)
         if(this.props.userInfo.applyStatus <= 1){
             topError = {
                 show:true,
@@ -51,7 +49,7 @@ class Asset extends Component {
             }
         }
         return (
-            <Spin size="large" spinning={this.props.loading} indicator={antIcon} >        
+            <Spin size="large" spinning={this.props.loading} >        
             <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
                 <div style={{display:!!topError.show&&this.props.currentSelect==="安全中心"?'block':"none"}} className={style.topError}>
                     {topError.content}
@@ -72,9 +70,9 @@ class Asset extends Component {
                             </div>
                         </Col>
                         <Col className="gutter-row" span={18}>
-                            <AssetView  history={this.props.history}/>
-                            <SecurityCenter  history={this.props.history}/>
-                            <CashManagement history={this.props.history}/>
+                            {this.props.currentSelect === "资产总览"&&<AssetView  history={this.props.history}/>}
+                            {this.props.currentSelect === "安全中心"&&<SecurityCenter  history={this.props.history}/>}
+                            {this.props.currentSelect === "充提管理"&&<CashManagement history={this.props.history}/>}
                         </Col>
                     </Row>
                 </div>

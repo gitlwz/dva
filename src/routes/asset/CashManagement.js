@@ -24,12 +24,6 @@ class CashManagement extends Component {
     }
     componentWillMount = () => {
         this.props.dispatch({
-            type: 'asset/save',
-            payload: {
-                loading:true
-            }
-        })
-        this.props.dispatch({
             type: 'asset/findTraderFundAddress'
         })
     }
@@ -66,12 +60,6 @@ class CashManagement extends Component {
     }
     //立即生效
     comeClick = (key) => {
-        this.props.dispatch({
-            type: 'asset/save',
-            payload: {
-                loading:true
-            }
-        })
         this.props.dispatch({
             type: 'asset/createAddress',
             payload: {
@@ -219,7 +207,7 @@ class CashManagement extends Component {
     }
     render() {
         return (
-            <div style={{ display: this.props.currentSelect == "充提管理" ? "block" : "none", paddingTop: '53px' }}>
+            <div style={{  paddingTop: '53px' }}>
                 <div className={style.right_title}>
                     充提管理
                     <span className={style.zh}>727770481@qq.com</span>

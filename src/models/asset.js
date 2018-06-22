@@ -27,8 +27,14 @@ export default {
 
     effects: {
         *currencyChange({ payload }, { call, put }) {
+            yield put({
+                type: 'save',
+                payload: {
+                    loading: true
+                }
+            })
             const { data } = yield call(baseService, api.asset.queryOperTradingAccount, [payload.currency]);
-            if (data != undefined)
+            if (data != undefined){ //成功
                 yield put({
                     type: 'save',
                     payload: {
@@ -36,8 +42,23 @@ export default {
                         loading: false
                     }
                 })
+            }else{ // 不知名错误
+                yield put({
+                    type: 'save',
+                    payload: {
+                        loading: false
+                    }
+                })
+            }
+                
         },
         *findTraderFundAddress({ payload }, { call, put }) {
+            yield put({
+                type: 'save',
+                payload: {
+                    loading: true
+                }
+            })
             const [QBotherAddress, TXotherAddress] = yield [
                 call(baseService, api.asset.findTraderFundAddress, ["1", null]),
                 call(baseService, api.asset.findTraderFundAddress, ["2", null])
@@ -52,9 +73,29 @@ export default {
             })
         },
         *mailboxVerification({ payload }, { call, put }) {
+            yield put({
+                type: 'save',
+                payload: {
+                    loading: true
+                }
+            })
             const { data } = yield call(baseService, api.asset.mailboxVerification, []);
-            if (!!data && data == true) {
+            if (!!data && data == true) { //成功
                 message.success('邮件已发送！请及时去邮箱处理！');
+                yield put({
+                    type: 'save',
+                    payload: {
+                        loading: false
+                    }
+                })
+            }else{ //失败
+                message.success('邮件发送失败！');
+                yield put({
+                    type: 'save',
+                    payload: {
+                        loading: false
+                    }
+                })
             }
         },
         *createAddress({ payload }, { call, put }) {
