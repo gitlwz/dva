@@ -24,15 +24,16 @@ const apis = {
         mailboxVerification: { url: baseIP + "service/webGeneralService/mailboxVerification", method: 'POST', description: '发送邮箱' },
         createAddress: { url: baseIP + "service/webGeneralService/createAddress", method: 'POST', description: '立即生效' },
     },
-    "helpcenter":{
-        findAllPushHelpCenterByCondition:{url: baseIP + "service/anonymousWebGeneralService/findAllPushHelpCenterByCondition", method: 'POST', description: '帮助中心问题名称集合'},
-        getHelpCenterById:{url: baseIP + "service/anonymousWebGeneralService/getHelpCenterById", method: 'POST', description: '帮助中心问题详情'}
+    "helpcenter": {
+        findAllPushHelpCenterByCondition: { url: baseIP + "service/anonymousWebGeneralService/findAllPushHelpCenterByCondition", method: 'POST', description: '帮助中心问题名称集合' },
+        getHelpCenterById: { url: baseIP + "service/anonymousWebGeneralService/getHelpCenterById", method: 'POST', description: '帮助中心问题详情' }
     },
-    "otherRecharge":{
-        findFundAddress:{url: baseIP + "service/webGeneralService/findFundAddress", method: 'POST', description: '查询提币地址'},
+    "otherRecharge": {
+        findFundAddress: { url: baseIP + "service/webGeneralService/findFundAddress", method: 'POST', description: '查询提币地址' },
     },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
+        findPushNotice: { url: baseIP + "service/anonymousWebGeneralService/findPushNotice", method: 'POST', description: '查询轮播公告' },
     }
 }
 

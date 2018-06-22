@@ -1,8 +1,11 @@
 import React from 'react';
 import InputLabel from './InputLabel';
-import { routerRedux } from 'dva/router';
+import { routerRedux, Route, Switch, Link } from 'dva/router';
 import Validator from '../../tool/Validator';
 import { connect } from 'dva';
+import Text from "../text"
+import Text1 from "../text1"
+import Text2 from "../text2"
 import md5 from "md5";
 import styles from './login.less'
 
@@ -91,6 +94,22 @@ class Login extends React.Component {
                         <a style={{ color: '#FDCC39', textDecoration: 'underline' }} onClick={() => this.pushRouter("/user/regis")}>点击注册</a>
                     </div>
                 </div>
+                <ul>
+                    <li>
+                        <Link to='/user/login/rendering'>Rendering with React</Link>
+                    </li>
+                    <li>
+                        <Link to="/user/login/components">Components</Link>
+                    </li>
+                    <li>
+                        <Link to="/user/login/props-v-state">Props v. State</Link>
+                    </li>
+                </ul>
+                <Switch>
+                    <Route exact path='/user/login/rendering' component={Text} />
+                    <Route exact path="/user/login/components" component={Text1} />
+                    <Route exact path="/user/login/props-v-state" component={Text2} />
+                </Switch>
             </div>
 
         )

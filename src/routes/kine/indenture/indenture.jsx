@@ -74,11 +74,12 @@ class Indenture extends React.Component {
             }
         });
         if (!!this.props.userId) {
-            this.props.dispatch({
-                type: 'kine/findByInstrumentID',
-                payload: instrumId
-            })
+
         }
+        this.props.dispatch({
+            type: 'kine/findByInstrumentID',
+            payload: instrumId
+        })
     }
 
     loadInstrument() {
@@ -101,7 +102,7 @@ class Indenture extends React.Component {
                 return <Row className={styles.row} key={item.instrumentId} onClick={() => this.changeInstrum(item.instrumentId)}>
                     <Col className={styles.col} span={8}>
                         <div style={{ display: "flex", alignItems: 'center' }}>
-                            <img src={item.checked == true ? selectStar : star} style={{ paddingRight: 10, alignSelf: 'center', marginTop: '-3px' }} onClick={() => this.checked(item.instrumentId)} />
+                            <img src={item.checked == true ? selectStar : star} style={{ paddingRight: 10, alignSelf: 'center' }} onClick={() => this.checked(item.instrumentId)} />
                             <span> {item.instrumentId.split("-")[0]}</span>
                         </div>
                     </Col>

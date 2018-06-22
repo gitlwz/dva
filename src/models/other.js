@@ -9,6 +9,7 @@ export default {
 
     state: {
         rateList: [],  //费率
+        noticeList: [],  //平台公告列表
     },
 
     effects: {
@@ -24,8 +25,20 @@ export default {
                 })
             }
         },
-       
 
+        //平台公告列表
+        *findPushNotice({ payload }, { call, put }) {
+            const { data } = yield call(baseService, api.baseConfig.findPushNotice, []);
+            console.log(data)
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        noticeList: data
+                    }
+                })
+            }
+        },
     },
 
     reducers: {

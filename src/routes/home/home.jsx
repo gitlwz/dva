@@ -31,6 +31,7 @@ class Home extends React.Component {
     componentDidMount() {
         let instrumentIds = '';
         this.props.findAllSlideshow();
+        this.props.findPushNotice();
         // YHeService.findAllExchangeRateUse().then(res => this.setState({ rateList: res })).catch(err => console.log(err));
         this.getAllInstrumentId()
     }
@@ -277,15 +278,20 @@ class Home extends React.Component {
 export default connect((state, props) => {
     return {
         instrumentIds: state.kine.instrumentIds,
+        noticeList: state.other.noticeList,
         props
     }
 }, (dispatch, props) => {
     return {
         findAllSlideshow: () => {
-            console.log("加载!")
             dispatch({
                 type: 'app/findAllSlideshow',
                 payload: []
+            })
+        },
+        findPushNotice: () => {
+            dispatch({
+                type: 'other/findPushNotice'
             })
         }
     }

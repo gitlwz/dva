@@ -31,7 +31,7 @@ function RouterConfig({ history, app }) {
                     />
                 ))
             }
-            {/*<Redirect to="/login" />*/}
+            <Redirect to="/home" />
         </Layout>
     )
 
@@ -40,6 +40,7 @@ function RouterConfig({ history, app }) {
             <Router history={history}>
                 <Switch>
                     <Route path="/user" component={require("./routes/user/UserLayout").default} />
+
                     <Route path="/" component={MainComponent} />
                 </Switch>
             </Router>

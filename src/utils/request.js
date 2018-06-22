@@ -7,8 +7,13 @@ function parseJSON(response) {
 }
 
 function checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
+    //console.log(response.headers.get('error_code'));
+    let code = response.headers.get('error_code')
+    console.log(code)
+    if (code >= 200 && code < 300) {
         return response;
+    } else {
+        message.error(code)
     }
 
     const error = new Error(response.statusText);
@@ -28,7 +33,6 @@ export default function request(url, options) {
         .then(checkStatus)
         .then(parseJSON)
         .then(data => {
-            // console.log(data)
             if (data.errorCode == 0) {
                 let resData = data;
                 if (resData != '' && resData.data != '')
