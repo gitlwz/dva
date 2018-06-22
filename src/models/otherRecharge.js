@@ -5,7 +5,7 @@ export default {
     namespace: 'otherRecharge',
 
     state: {
-        AddressValue:""
+        AddressValue:{}
     },
 
     subscriptions: {
@@ -16,14 +16,19 @@ export default {
         *findFundAddress({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.otherRecharge.findFundAddress, [...payload.params]);
             if (data != undefined) {
-                console.log("^^^^^^^^6",data)
+                yield put({
+                    type: 'save',
+                    payload:{
+                        AddressValue:data[0]||{}
+                    }
+                })
             }
         },
     },
 
     reducers: {
         save(state, action) {
-            return { ...state };
+            return { ...state, ...action.payload };
         }
     },
 
