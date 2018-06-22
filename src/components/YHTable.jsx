@@ -21,15 +21,15 @@ class YHTable extends Component {
             }
         }
         for (let i = 0; i < dataSource.length; i++) {
-            var tr = []
+            var tr = [];
             for (let j = 0; j < columns.length; j++) {
-                if (columns[j].render) {
-                    tr.push(<td>{columns[j].render(dataSource[i], i)}</td>)
+                if (!!columns[j].render) {
+                    tr.push(<td key={dataSource[i].instrumentId + columns[j].title}>{columns[j].render(dataSource[i], i)}</td>)
                 } else {
-                    tr.push(<td>{dataSource[i][columns[j].dataIndex]}</td>)
+                    tr.push(<td key={dataSource[i].instrumentId + columns[j].title}>{dataSource[i][columns[j].dataIndex]}</td>)
                 }
             }
-            trs.push(<tr>{tr}</tr>)
+            trs.push(<tr key={dataSource[i].instrumentId}>{tr}</tr>)
 
         }
         return trs;

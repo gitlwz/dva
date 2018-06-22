@@ -2,8 +2,9 @@ let baseIP = "/sundax/"  //wxtoken
 const Api = {
     instrument: {
         listInstrument: { url: 'service/tradeService/listInstrument', method: 'POST', description: '查询合约列表' },
-        getLastDayKline: { url: baseIP + 'restfulservice/pollingService/getLastDayKline', method: 'POST', description: '查询单个合约深度详情' },
+        getLastDayKline: { url: baseIP + 'service/pollingService/getLastDayKline', method: 'POST', description: '查询单个合约深度详情' },
         getListDayKline: { url: baseIP + 'service/pollingService/getListDayKline', method: 'POST', description: '查询全部合约深度详情' },
+        list24HVolume: { url: baseIP + 'service/pollingService/list24HVolume', method: 'POST', description: '查询24小时成交量' }
     },
     trade: {
         findBuyMarket: { url: baseIP + 'service/tradeService/listBidMBLMarketData', method: "POST", description: '查询买百档行情' },

@@ -50,12 +50,11 @@ class Bibi extends React.Component {
         this.setState({ isLook: !this.state.isLook })
     }
 
-
     render() {
         let bgColor = (this.props.theme == "dark" ? styles.bgDarkColor : styles.bgWhiteColor);
         let cardHeader = (this.props.theme == "dark" ? styles.darkCardHeader : styles.whiteCardHeader);
         const borderRadius = { borderRadius: '0 0 8px 8px' }
-        const { userId, search, searchByInstrum, currentInstrument, instrumentIds, Currency, dataByInstrumentId } = this.props;
+        const { userId, search, searchByInstrum, currentInstrument, dataByInstrumentId } = this.props;
         return <div style={{ padding: '10px 30px', backgroundColor: 'rgba(32,38,55,1)' }}>
             <Row>
                 <Col span="5">
@@ -75,7 +74,7 @@ class Bibi extends React.Component {
                     </div>
                     {/*合约*/}
                     <div style={{ height: 320, marginTop: 10, borderRadius: '8px' }} className={bgColor}>
-                        <div className={cardHeader}> 市场 <input placeholder="搜索" className={styles.search} value={search} onChange={e => searchByInstrum(instrumentIds, e.target.value, Currency)} /> </div>
+                        <div className={cardHeader}> 市场 <input placeholder="搜索" className={styles.search} value={search} onChange={e => searchByInstrum(e.target.value.toUpperCase())} /> </div>
                         <div style={{ margin: "10px 20px", overflowY: 'scroll', height: 250 }}>
                             <Indenture />
                         </div>
@@ -88,7 +87,7 @@ class Bibi extends React.Component {
                 </Col>
                 <Col span="19">
                     <div style={{ marginLeft: 10 }}>
-                        <div className={cardHeader} style={{ color: '#FFF' }}>{currentInstrument} {dataByInstrumentId.lastPrice} ≈ 14.47 CNY 涨幅 {formatData.changePrice(dataByInstrumentId.lastPrice, dataByInstrumentId.openPrice)} 高 {dataByInstrumentId.highestPrice} 低 {dataByInstrumentId.lowestPrice} 24H量 {dataByInstrumentId.volume}</div>
+                        <div className={cardHeader} style={{ color: '#FFF' }}>{currentInstrument} {dataByInstrumentId.closePrice} ≈ 14.47 CNY 涨幅 {formatData.changePrice(dataByInstrumentId.closePrice, dataByInstrumentId.openPrice)} 高 {dataByInstrumentId.highestPrice} 低 {dataByInstrumentId.lowestPrice} 24H量 {dataByInstrumentId.volume}</div>
                         <div style={{ height: '450px', ...borderRadius }} className={bgColor}>
                             {!!currentInstrument ? <TVChartContainer symbol={currentInstrument} /> : ''}
                         </div>
@@ -142,7 +141,6 @@ class Bibi extends React.Component {
 }
 
 export default connect((state, props) => {
-    console.log(state.kine.dataByInstrumentId)
     return {
         theme: state.app.theme,
         userId: state.user.userId,
@@ -155,28 +153,14 @@ export default connect((state, props) => {
     }
 }, (dispatch, props) => {
     return {
-        searchByInstrum: (instrumentIds, value, Currency) => {
-            if (value != "") {
-                dispatch({
-                    type: 'kine/save',
-                    payload: {
-                        instrumentIds: instrumentIds.filter(item => item.split("-")[0].match(value.toUpperCase())),
-                        search: value.toUpperCase()
-                    }
-                })
-            } else {
-                dispatch({
-                    type: 'kine/save',
-                    payload: {
-                        //instrumentIds: instrumentIds.filter(item => item.split("-")[1] == Currency),
-                        search: value
-                    }
-                }),
-
-                    dispatch({
-                        type: 'kine/getInstrumentIds'
-                    })
-            }
+        searchByInstrum: (value) => {
+            dispatch({
+                type: 'kine/save',
+                payload: {
+                    //instrumentIds: instrumentIds.filter(item => item.split("-")[1] == Currency),
+                    search: value
+                }
+            })
         },
         dispatch
 

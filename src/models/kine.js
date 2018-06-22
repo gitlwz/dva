@@ -11,14 +11,14 @@ export default {
     state: {
         instrumentIds: [], //全部合约
         currentInstrument: '',  //当前合约
-        Currency: "USDT", //货币对
         loading: true,
         instrumentIdData: {}, //合约详情
         sellList: [],
         buyList: [],
         markLoading: true,
         search: '',
-        dataByInstrumentId: {} //合约深度行情
+        dataByInstrumentId: {}, //合约深度行情
+        list24HVolumeList: []  //24小时市场行情
     },
 
     effects: {
@@ -82,7 +82,6 @@ export default {
         //查询单个合约深度行情
         *getLastDayKline({ payload }, { call, put }) {
             const { data } = yield call(baseService, kineApi.instrument.getLastDayKline, payload);
-            console.log(data)
             if (data != undefined) {
                 yield put({
                     type: 'save',
@@ -92,6 +91,19 @@ export default {
                 })
             }
         },
+
+        //查询24小时市场成交
+        *list24HVolume({ payload }, { call, put }) {
+            const { data } = yield call(baseService, kineApi.instrument.list24HVolume, []);
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        list24HVolumeList: data
+                    }
+                })
+            }
+        }
 
     },
 
@@ -129,6 +141,12 @@ export default {
                 })
             })
         },
-
+        list24HVolume({ dispatch, history }) {
+            return PubSub.subscribe("list24HVolume", (name, payload) => {
+                dispatch({
+                    type: 'list24HVolume'
+                })
+            })
+        },
     },
 };

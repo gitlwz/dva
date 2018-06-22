@@ -31,7 +31,7 @@ function RouterConfig({ history, app }) {
                     />
                 ))
             }
-            <Redirect to="/home" />
+            
         </Layout>
     )
 

@@ -4,10 +4,7 @@ import { connect } from 'dva';
 import dataJSON from '../../language/index'
 import CalculateFunc from '../../tool/CalculateFunc';
 import YHTable from '../../components/YHTable';
-// import WebGeneralService from '../../../service/WebGeneralService'
-// import WSClient from '../../../service/WSClient';
-// import CalculateFunc from '../../../utils/CalculateFunc';
-// import YHeService from '../../../service/YHeService';
+import PubSub from "pubsub-js";
 import styles from './home.less'
 /**
  * 模块设置页面主题
@@ -25,52 +22,21 @@ class Home extends React.Component {
 
             search: ''
         }
-        this.dataArray = []
+        this.dataArray = [];
     }
 
     componentDidMount() {
-        let instrumentIds = '';
         this.props.findAllSlideshow();
         this.props.findPushNotice();
-        // YHeService.findAllExchangeRateUse().then(res => this.setState({ rateList: res })).catch(err => console.log(err));
-        this.getAllInstrumentId()
+        PubSub.publish('Polling.addsubscribe',
+            [
+                { name: "list24HVolume" },
+            ]
+        )
     }
 
     componentWillUnmount() {
-        // WSClient.delePublic_24h_volume(this.state.currencyList)
-    }
-
-    //获取货币对
-    getAllInstrumentId() {
-        // WebGeneralService.allInstrumentId().then(res => {
-        //     for (let i = 0; i < res.length; i++) {
-        //         let element = { "instrumentId": "A", "tradingDay": "20180529", "highestPrice": "---", "lowestPrice": "---", "openPrice": "---", "closePrice": "---", "volume": "---" };
-        //         element.instrumentId = res[i];
-        //         this.dataArray.push(element);
-        //     }
-        //     WSClient.addPublic_24h_volume(res);
-        //     this.setState({ currencyList: res, dataArray: this.dataArray })
-        // }).catch();
-        // WSClient.getEmitter().on("public_24h_volume", data => this.forMateData(data));
-    }
-
-    //获取推送数据
-    forMateData(data) {
-        let checkedArray = JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [];
-        for (let i = 0; i < this.dataArray.length; i++) {
-            if (this.dataArray[i].instrumentId == data.instrumentId) {
-                this.dataArray[i] = data;
-            }
-        }
-        //读取缓存的数组 
-        for (let i = 0; i < this.dataArray.length; i++) {
-            for (let j = 0; j < checkedArray.length; j++) {
-                if (this.dataArray[i].instrumentId == checkedArray[j]) {
-                    this.dataArray[i]["checked"] = true
-                }
-            }
-        }
-        this.setState({ dataArray: this.dataArray })
+        PubSub.publish('Polling.delsubscribe', ["list24HVolume"])
     }
 
     //计算涨跌幅
@@ -95,7 +61,25 @@ class Home extends React.Component {
 
     //返回统一数据
     getDataArray() {
-        return this.state.dataArray;
+        let dataArray = []
+        for (let key in this.props.list24HVolumeList) {
+            dataArray.push(this.props.list24HVolumeList[key])
+        }
+
+        let checkedArray = JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [];
+        //读取缓存的数组 
+        for (let i = 0; i < dataArray.length; i++) {
+            for (let j = 0; j < checkedArray.length; j++) {
+                if (dataArray[i].instrumentId == checkedArray[j]) {
+                    dataArray[i]["checked"] = true
+                }
+            }
+        }
+
+        if (dataArray.length > 0) {
+            return dataArray
+        }
+        return []
     }
 
     //选中操作
@@ -104,9 +88,9 @@ class Home extends React.Component {
         if (checkedArray.length > 0) {
             if (checkedArray.indexOf(instrumentId) > -1) {
                 //改掉原来数据的checked状态
-                for (let i = 0; i < this.dataArray.length; i++) {
-                    if (this.dataArray[i].instrumentId == instrumentId) {
-                        this.dataArray[i]["checked"] = false
+                for (let i = 0; i < this.getDataArray().length; i++) {
+                    if (this.getDataArray()[i].instrumentId == instrumentId) {
+                        this.getDataArray()[i]["checked"] = false
                     }
                 }
                 checkedArray.splice(checkedArray.indexOf(instrumentId), 1);
@@ -157,7 +141,7 @@ class Home extends React.Component {
     }
 
     render() {
-        //const { dataJSON } = this.props;
+
         const columns = [
             {
                 title: dataJSON.JYD,
@@ -212,8 +196,6 @@ class Home extends React.Component {
                 }
             },
         ]
-
-        const dataSource = [{ currency: 'BTC-AXD', newPrice: '6.44', newPrice: '56.11', isUp: true, trad: '0.12%', HPrice: '153.65', LPrice: '2.12', volume: '1555' }, { currency: 'BTC-AXD', newPrice: '6.44', newPrice: '56.11', trad: '0.12%', HPrice: '153.65', LPrice: '2.12', volume: '1555' }]
         return <div style={{ padding: '30px 0px', background: '#f7f7f7', display: 'flex', justifyContent: 'center' }}>
             <div>
                 <a> 1111 1111 1111</a>
@@ -239,7 +221,7 @@ class Home extends React.Component {
                     </div>
                     <div className={styles.currency + " " + styles.search}>
                         <img src={require("../../assets/yinghe/搜索@2x.png")} style={{ marginLeft: 15 }} />
-                        <input value={this.state.search} onChange={e => this.setState({ search: e.target.value })} />
+                        <input value={this.state.search} onChange={e => this.setState({ search: e.target.value.toUpperCase() })} />
                         {/* <div className={styles.searchBtn} onClick={() => {
                             // if (this.state.search != "") {
                             //     let newArray = this.getDataArray().filter(item => {
@@ -266,7 +248,6 @@ class Home extends React.Component {
                             } else {
                                 return this.state.currency == item.instrumentId.split("-")[1]
                             }
-
                         }
                     })} />
                 </div>
@@ -279,6 +260,7 @@ export default connect((state, props) => {
     return {
         instrumentIds: state.kine.instrumentIds,
         noticeList: state.other.noticeList,
+        list24HVolumeList: state.kine.list24HVolumeList,
         props
     }
 }, (dispatch, props) => {
@@ -292,6 +274,11 @@ export default connect((state, props) => {
         findPushNotice: () => {
             dispatch({
                 type: 'other/findPushNotice'
+            })
+        },
+        list24HVolume: () => {
+            dispatch({
+                type: 'kine/list24HVolume'
             })
         }
     }

@@ -7,10 +7,10 @@ export default {
     namespace: 'trade',
     state: {
         tradeType: '', //交易类型
-        buyPrice: 20,
-        buyVolume: 60.65,
-        sellPrice: 10,
-        sellVolume: 20.3,
+        buyPrice: 0,
+        buyVolume: 0,
+        sellPrice: 0,
+        sellVolume: 0,
         instrumentIdData: {},//合约详情
         operTradeList: [], //个人成交明细
         orderForClientList: [], //个人委托列表

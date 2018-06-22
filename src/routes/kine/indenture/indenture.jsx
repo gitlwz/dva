@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'dva';
 import { Row, Col, Spin } from 'antd';
+import PubSub from "pubsub-js";
 import star from "../../../assets/yinghe/形状 2 副本@2x.png";
 import selectStar from "../../../assets/yinghe/形状 2@2x.png";
 import styles from './indenture.less';
@@ -19,19 +20,15 @@ class Indenture extends React.Component {
         }
     }
 
-    getRandomStr() {
-        var result = [];
-        for (var i = 0; i < 3; i++) {
-            var ranNum = Math.ceil(Math.random() * 25); //生成一个0到25的数字
-            //大写字母'A'的ASCII是65,A~Z的ASCII码就是65 + 0~25;然后调用String.fromCharCode()传入ASCII值返回相应的字符并push进数组里
-            result.push(String.fromCharCode(65 + ranNum));
-        }
-        return result.join('');
-    }
     componentDidMount() {
         this.props.dispatch({
             type: 'kine/getInstrumentIds'
-        })
+        });
+        PubSub.publish('Polling.addsubscribe',
+            [
+                { name: "list24HVolume" },
+            ]
+        )
     }
 
     componentWillReceiveProps(nextProps) {
@@ -40,10 +37,14 @@ class Indenture extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        PubSub.publish('Polling.delsubscribe', ["list24HVolume"])
+    }
+
     loadCurrencys() {
         const currencys = ["USDT", "BTC", "ETH"];
         return <div>{currencys.map(item => {
-            return <span className={styles.currency} style={{ marginRight: '15px', borderBottom: this.props.Currency == item ? '2px solid rgb(120, 173, 255)' : '' }} onClick={() => this.props.saveCurrency({ Currency: item })} key={item}>{item}</span>
+            return <span className={styles.currency} style={{ marginRight: '15px', borderBottom: this.state.currency == item ? '2px solid rgb(120, 173, 255)' : '' }} onClick={() => this.setState({ currency: item })} key={item}>{item}</span>
         })}
         </div>
     }
@@ -74,12 +75,11 @@ class Indenture extends React.Component {
             }
         });
         if (!!this.props.userId) {
-
+            this.props.dispatch({
+                type: 'kine/findByInstrumentID',
+                payload: instrumId
+            })
         }
-        this.props.dispatch({
-            type: 'kine/findByInstrumentID',
-            payload: instrumId
-        })
     }
 
     loadInstrument() {
@@ -98,7 +98,18 @@ class Indenture extends React.Component {
         }
         //this.setState({ dataSource: dataSource })
         if (dataSource.length > 0)
-            return dataSource.filter(item => this.props.Currency == item.instrumentId.split("-")[1]).map(item => {
+            return dataSource.filter(item => {
+                if (this.state.currency == "ZX") {
+                    return item.checked == true;
+                } else {
+                    if (this.props.search != "") {
+                        return (this.state.currency == item.instrumentId.split("-")[1] && item.instrumentId.split("-")[0].match(this.props.search))
+                    } else {
+                        return this.state.currency == item.instrumentId.split("-")[1]
+                    }
+
+                }
+            }).map(item => {
                 return <Row className={styles.row} key={item.instrumentId} onClick={() => this.changeInstrum(item.instrumentId)}>
                     <Col className={styles.col} span={8}>
                         <div style={{ display: "flex", alignItems: 'center' }}>
@@ -119,7 +130,7 @@ class Indenture extends React.Component {
             <Spin spinning={this.props.loading}>
                 <Row type="flex" justify="space-between">
                     <Col>{this.loadCurrencys()}</Col>
-                    <Col style={{ paddingRight: 20 }}><span className={styles.currency} onClick={() => this.setState({ dataSource: this.state.dataSource.filter(item => item.checked == true) })}>自选</span></Col>
+                    <Col style={{ paddingRight: 20 }}><span className={styles.currency} onClick={() => this.setState({ currency: 'ZX' })}>自选</span></Col>
                 </Row>
 
                 <Row type="flex" style={{ margin: '10px 0' }} className={styles.header}>
@@ -140,20 +151,12 @@ export default connect((state, props) => {
     return {
         instrumentIds: state.kine.instrumentIds,
         loading: state.kine.loading,
-        Currency: state.kine.Currency,
         userId: state.user.userId,
+        search: state.kine.search,
         props
     }
 }, (dispatch, props) => {
     return {
-        saveCurrency: (parms) => {
-            dispatch({
-                type: 'kine/save',
-                payload: {
-                    ...parms
-                }
-            })
-        },
         dispatch
     }
 })(Indenture)

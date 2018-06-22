@@ -101,8 +101,13 @@ var format = {
      * @param {*} 开盘价
      */
     changePrice(closePrice, openPrice) {
-        let num = (closePrice - openPrice) / openPrice;
-        // return (num * 100).toFixed(2) + "%";
+        if (!!closePrice && !!openPrice) {
+            let num = (closePrice - openPrice) / openPrice;
+            return (num * 100).toFixed(2) + "%";
+        } else {
+            return "--"
+        }
+
     },
 
     /**
@@ -115,13 +120,10 @@ var format = {
         if (price != 0) {
             if (!!total && total > 0) {
                 return Number(this.multiply(total / price, 1, 2));
-            } else {
-                return 0
             }
         }
-
+        return 0
     }
-
 }
 
 

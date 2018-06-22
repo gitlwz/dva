@@ -9,11 +9,10 @@ function parseJSON(response) {
 function checkStatus(response) {
     //console.log(response.headers.get('error_code'));
     let code = response.headers.get('error_code')
-    console.log(code)
     if (code >= 200 && code < 300) {
         return response;
     } else {
-        message.error(code)
+        // message.error(code)
     }
 
     const error = new Error(response.statusText);

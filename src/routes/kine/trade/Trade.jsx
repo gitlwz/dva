@@ -98,6 +98,7 @@ class Trade extends React.Component {
             }
             return 0;
         }
+        return 0;
     }
 
     render() {
