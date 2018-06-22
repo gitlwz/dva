@@ -31,6 +31,11 @@ const apis = {
     "otherRecharge": {
         findFundAddress: { url: baseIP + "service/webGeneralService/findFundAddress", method: 'POST', description: '查询提币地址' },
     },
+    "reopenGoogle":{
+        gooleCheckBegin: { url: baseIP + "service/anonymousWebGeneralService/gooleCheckBegin", method: 'POST', description: '获取谷歌验证码' },
+        gooleCheckOver: { url: baseIP + "service/anonymousWebGeneralService/gooleCheckOver", method: 'POST', description: '开启谷歌验证' },
+    },
+
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
         findPushNotice: { url: baseIP + "service/anonymousWebGeneralService/findPushNotice", method: 'POST', description: '查询轮播公告' },

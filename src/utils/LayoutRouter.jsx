@@ -60,6 +60,14 @@ const LayoutRouter = [
         path: '/otherRecharge/:type',  //其他货币充值
         models: () => [import('../models/otherRecharge')],
         component: () => import('../routes/otherRecharge/otherRecharge'),
+    }, {
+        path: '/reopenGoogle/:name',  //其他货币充值
+        models: () => [import('../models/reopenGoogle')],
+        component: () => import('../routes/reopenGoogle/reopenGoogle'),
+    },{
+        path: '/smSverification',  //其他货币充值
+        models: () => [import('../models/smSverification')],
+        component: () => import('../routes/smSverification/smSverification'),
     }
 ]
 export default LayoutRouter;

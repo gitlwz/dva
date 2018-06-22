@@ -37,6 +37,7 @@ class Asset extends Component {
     }
     render() {
         let topError = {show:false};
+        console.log("*******88",this.props.userInfo)
         if(this.props.userInfo.applyStatus <= 1){
             topError = {
                 show:true,
@@ -71,9 +72,9 @@ class Asset extends Component {
                             </div>
                         </Col>
                         <Col className="gutter-row" span={18}>
-                            <AssetView />
-                            <SecurityCenter />
-                            <CashManagement />
+                            <AssetView  history={this.props.history}/>
+                            <SecurityCenter  history={this.props.history}/>
+                            <CashManagement history={this.props.history}/>
                         </Col>
                     </Row>
                 </div>
@@ -84,7 +85,7 @@ class Asset extends Component {
     }
 }
 export default connect((state, props) => {
-    let {userInfo} = state.user
+    let {userInfo={}} = state.user
     return {
         
         ...state.asset,

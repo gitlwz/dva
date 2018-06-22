@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
-import { Row, Col,Button,Icon,Select  } from 'antd';
+import { Row, Col,Button,Icon,Select ,message } from 'antd';
 import style from './asset.less';
 import styleA from './SecurityCenter.less';
 const Option = Select.Option;
@@ -11,7 +11,6 @@ class SecurityCenter extends Component{
         super(props);
     }
     componentWillMount = () =>{
-        
     }
     //发送验证邮箱
     sendEmil = () => {
@@ -22,6 +21,14 @@ class SecurityCenter extends Component{
     //身份选择
     SelecthandleChange = () =>{
         
+    }
+    //开启谷歌验证码
+    openGo = (path) =>{
+        if(!this.props.userInfo.email){
+            message.warning('请先登录账号！');
+            return;
+        }
+        this.props.history.push(path)
     }
     //验证通过
     checkcOrrect = () => {
@@ -92,32 +99,15 @@ class SecurityCenter extends Component{
                             两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
                         </div>
                         <div style={{marginTop:"20px"}}>
-                            <Button className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启谷歌两步验证</Button>
+                            <Button onClick={()=>this.openGo("/reopenGoogle/"+this.props.userInfo.email)} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启谷歌两步验证</Button>
                         </div>
                         <div style={{marginTop:"20px"}}>
-                            <Button className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启手机两步验证</Button>
+                            <Button onClick={()=>this.openGo("/smSverification")} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启手机两步验证</Button>
                         </div>
                         <br/>
                     </div>
                 )
             case "4":
-                return(
-                    // <div>谷歌验证未开启 | 短信验证已开启</div>
-                    <div>
-                        <div style={{marginTop:"20px"}}>
-                            两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
-                        </div>
-                        <div style={{marginTop:"20px"}}>
-                            <Button className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启谷歌两步验证</Button>
-                        </div>
-                        <div style={{marginTop:"20px"}}>
-                            <Button className="asset_btn SecurityCenter_btn_yz">关闭手机短信验证</Button>
-                        </div>
-                        <br/>
-                    </div>
-                    
-                )
-            case "5":
                 return(
                     // <div>谷歌验证已开启 | 短信验证未开启</div>
                     <div>
@@ -128,7 +118,25 @@ class SecurityCenter extends Component{
                             <Button className="asset_btn SecurityCenter_btn_yz">关闭谷歌两步验证</Button>
                         </div>
                         <div style={{marginTop:"20px"}}>
-                            <Button className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启手机短信验证</Button>
+                            <Button  onClick={()=>this.openGo("/smSverification")} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启手机短信验证</Button>
+                        </div>
+                        <br/>
+                    </div>
+                    
+                    
+                )
+            case "5":
+                return(
+                    // <div>谷歌验证未开启 | 短信验证已开启</div>
+                    <div>
+                        <div style={{marginTop:"20px"}}>
+                            两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
+                        </div>
+                        <div style={{marginTop:"20px"}}>
+                            <Button onClick={()=>this.openGo("/reopenGoogle/"+this.props.userInfo.email)} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启谷歌两步验证</Button>
+                        </div>
+                        <div style={{marginTop:"20px"}}>
+                            <Button className="asset_btn SecurityCenter_btn_yz">关闭手机短信验证</Button>
                         </div>
                         <br/>
                     </div>
@@ -228,7 +236,7 @@ class SecurityCenter extends Component{
 }
 export default connect((state, props) => {
     let {currentSelect} = state.asset
-    let {userId,userInfo} = state.user
+    let {userId,userInfo={}} = state.user
     return {
         userInfo,
         currentSelect,
