@@ -142,6 +142,7 @@ class Bibi extends React.Component {
 }
 
 export default connect((state, props) => {
+    console.log(state.kine.dataByInstrumentId)
     return {
         theme: state.app.theme,
         userId: state.user.userId,

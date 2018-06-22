@@ -26,7 +26,7 @@ class UserLayout extends React.Component {
                         UserRouter.map(({ path, ...dynamics }, key) => (
                             <Route
                                 key={key}
-                                
+                                exact
                                 path={path}
                                 component={dynamic({
                                     app,
