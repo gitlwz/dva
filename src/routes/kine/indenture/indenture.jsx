@@ -49,7 +49,13 @@ class Indenture extends React.Component {
         </div>
     }
 
-    checked(instrumentId) {
+    checked(e, instrumentId) {
+        e = e || window.event;
+        if (e.stopPropagation) { //W3C阻止冒泡方法  
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true; //IE阻止冒泡方法  
+        }
         let checkedArray = this.state.checkedArray;
         if (checkedArray.length > 0) {
             if (checkedArray.indexOf(instrumentId) > -1) {
@@ -113,7 +119,7 @@ class Indenture extends React.Component {
                 return <Row className={styles.row} key={item.instrumentId} onClick={() => this.changeInstrum(item.instrumentId)}>
                     <Col className={styles.col} span={8}>
                         <div style={{ display: "flex", alignItems: 'center' }}>
-                            <img src={item.checked == true ? selectStar : star} style={{ paddingRight: 10, alignSelf: 'center' }} onClick={() => this.checked(item.instrumentId)} />
+                            <img src={item.checked == true ? selectStar : star} style={{ paddingRight: 10, alignSelf: 'center' }} onClick={(e) => this.checked(e, item.instrumentId)} />
                             <span> {item.instrumentId.split("-")[0]}</span>
                         </div>
                     </Col>

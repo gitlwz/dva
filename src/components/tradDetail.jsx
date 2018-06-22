@@ -45,8 +45,8 @@ class TradeComponent extends React.Component {
     isTradeDetail() {
         if (this.props.trade) {
             return this.props.dataList.map((item, index) => {
-                return <div key={item.tradeId} className={styles.header}>
-                    <span style={{ textAlign: 'left' }}>{item.tradeTime.split(" ")[1]}</span>
+                return <div key={item.id} className={styles.header}>
+                    <span style={{ textAlign: 'left' }}>{item.tradeTime}</span>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买入" : '卖出'}</span>
                     <span>{item.price.toFixed(4)}</span>
                     <span>{item.volume}</span>

@@ -25,21 +25,21 @@ class TradDetal extends React.Component {
         if (this.props.currentInstrument != nextProps.currentInstrument) {
             PubSub.publish('Polling.addsubscribe',
                 [
-                    { name: "queryOperTradeByInstrumentID", payload: [{ "pageNo": 1, "pageSize": 100 }, nextProps.currentInstrument] },
+                    { name: "getTradeDetail", payload: [nextProps.currentInstrument] },
                 ]
             )
         }
     }
 
     componentWillUnmount() {
-        PubSub.publish('Polling.delsubscribe', ["queryOperTradeByInstrumentID"])
+        PubSub.publish('Polling.delsubscribe', ["getTradeDetail"])
     }
 
 
     render() {
         return <Spin spinning={this.props.tradeDetailLoding}>
             <div style={{ height: "100%", paddingLeft: 20 }}>
-                <TradeComponent trade dataList={this.props.operTradeByInstrumentIDList} titleList={this.state.titleList} handleOk={price => console.log(price)} />
+                <TradeComponent trade dataList={this.props.getTradeDetailList} titleList={this.state.titleList} handleOk={price => console.log(price)} />
             </div>
         </Spin>
     }
@@ -48,23 +48,12 @@ class TradDetal extends React.Component {
 export default connect((state, props) => {
     return {
         currentInstrument: state.kine.currentInstrument,
-        operTradeByInstrumentIDList: state.trade.operTradeByInstrumentIDList,
+        getTradeDetailList: state.trade.getTradeDetailList,
         tradeDetailLoding: state.trade.tradeDetailLoding,
         props
     }
-}, (dispatch, props) => {
+}, (dispatch) => {
     return {
-        queryOperTradeByInstrumentID: (parms) => {
-            dispatch({
-                type: 'trade/queryOperTradeByInstrumentID',
-                payload: parms
-            }),
-                dispatch({
-                    type: 'trade/save',
-                    payload: {
-                        tradeDetailLoding: true
-                    }
-                })
-        }
+        dispatch
     }
 })(TradDetal)

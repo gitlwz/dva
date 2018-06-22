@@ -1,5 +1,5 @@
 import React from "react";
-import { Radio, Carousel } from 'antd';
+import { Row, Col, Radio, Carousel } from 'antd';
 import { connect } from 'dva';
 import dataJSON from '../../language/index'
 import CalculateFunc from '../../tool/CalculateFunc';
@@ -19,15 +19,13 @@ class Home extends React.Component {
             instrumentIds: '',
             currencyList: [],
             rateList: [],
-
+            checkedArray: JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [],
             search: ''
         }
         this.dataArray = [];
     }
 
     componentDidMount() {
-        this.props.findAllSlideshow();
-        this.props.findPushNotice();
         PubSub.publish('Polling.addsubscribe',
             [
                 { name: "list24HVolume" },
@@ -61,12 +59,12 @@ class Home extends React.Component {
 
     //返回统一数据
     getDataArray() {
-        let dataArray = []
+        let dataArray = [];
+        let checkedArray = this.state.checkedArray;
         for (let key in this.props.list24HVolumeList) {
             dataArray.push(this.props.list24HVolumeList[key])
         }
 
-        let checkedArray = JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [];
         //读取缓存的数组 
         for (let i = 0; i < dataArray.length; i++) {
             for (let j = 0; j < checkedArray.length; j++) {
@@ -84,7 +82,7 @@ class Home extends React.Component {
 
     //选中操作
     checked(instrumentId) {
-        let checkedArray = JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [];
+        let checkedArray = this.state.checkedArray;
         if (checkedArray.length > 0) {
             if (checkedArray.indexOf(instrumentId) > -1) {
                 //改掉原来数据的checked状态
@@ -101,6 +99,7 @@ class Home extends React.Component {
             checkedArray.push(instrumentId)
         }
         window.localStorage.setItem("instrumentIdCheck", JSON.stringify(checkedArray));
+        this.setState({ checkedArray })
     }
 
 
@@ -198,7 +197,6 @@ class Home extends React.Component {
         ]
         return <div style={{ padding: '30px 0px', background: '#f7f7f7', display: 'flex', justifyContent: 'center' }}>
             <div>
-                <a> 1111 1111 1111</a>
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                     {this.getDataArray().map(item => {
                         if (item.instrumentId == "BTC-USDT" || item.instrumentId == "ETH-USDT" || item.instrumentId == "BTC-ETH" || item.instrumentId == "EHT-BTC")
@@ -259,23 +257,11 @@ class Home extends React.Component {
 export default connect((state, props) => {
     return {
         instrumentIds: state.kine.instrumentIds,
-        noticeList: state.other.noticeList,
         list24HVolumeList: state.kine.list24HVolumeList,
         props
     }
-}, (dispatch, props) => {
+}, (dispatch) => {
     return {
-        findAllSlideshow: () => {
-            dispatch({
-                type: 'app/findAllSlideshow',
-                payload: []
-            })
-        },
-        findPushNotice: () => {
-            dispatch({
-                type: 'other/findPushNotice'
-            })
-        },
         list24HVolume: () => {
             dispatch({
                 type: 'kine/list24HVolume'

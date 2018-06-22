@@ -14,7 +14,7 @@ export default {
         instrumentIdData: {},//合约详情
         operTradeList: [], //个人成交明细
         orderForClientList: [], //个人委托列表
-        operTradeByInstrumentIDList: [], //行情全部成交明细
+        getTradeDetailList: [], //行情全部成交明细
 
         tradeDetailLoding: true,
         orderForClientLoading: true
@@ -67,13 +67,14 @@ export default {
         },
 
         //查询行情成交明细
-        *queryOperTradeByInstrumentID({ payload }, { call, put }) {
-            const { data } = yield call(baseService, kineApi.trade.queryOperTradeByInstrumentID, payload);
+        *getTradeDetail({ payload }, { call, put }) {
+            const { data } = yield call(baseService, kineApi.trade.getTradeDetail, payload);
+            console.log(data)
             if (data != undefined) {
                 yield put({
                     type: 'save',
                     payload: {
-                        operTradeByInstrumentIDList: data.content,
+                        getTradeDetailList: data || [],
                         tradeDetailLoding: false
                     }
                 })
@@ -94,12 +95,12 @@ export default {
         setup({ dispatch, history }) {
 
         },
-        queryOperTradeByInstrumentID({ dispatch, history }) {
-            return PubSub.subscribe("queryOperTradeByInstrumentID", (name, payload) => {
-                // dispatch({
-                //     type: "queryOperTradeByInstrumentID",
-                //     payload: payload
-                // })
+        getTradeDetail({ dispatch, history }) {
+            return PubSub.subscribe("getTradeDetail", (name, payload) => {
+                dispatch({
+                    type: "getTradeDetail",
+                    payload: payload
+                })
             })
         },
     },

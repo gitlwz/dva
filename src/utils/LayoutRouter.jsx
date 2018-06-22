@@ -6,7 +6,7 @@ const LayoutRouter = [
     {
         path: '/home',
         models: () => [import('../models/kine'), import('../models/asset'), import('../models/other')],
-        component: () => import('../routes/home/home'),
+        component: () => import('../routes/home/yinghe'),
     }, {
         path: '/kine',
         models: () => [import('../models/kine/trade'), import('../models/kine'), import('../models/asset')],
