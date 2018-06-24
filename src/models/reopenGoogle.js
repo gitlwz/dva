@@ -69,7 +69,7 @@ export default {
                             }
                         }
                     })
-                }else if(data.result === 0){ //成功
+                }else if(data.result == 0){ //成功
                     routerRedux.push("/asset")
                 }
             }else{                      //不知名失败

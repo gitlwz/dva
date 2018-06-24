@@ -61,7 +61,7 @@ const LayoutRouter = [
         models: () => [import('../models/otherRecharge')],
         component: () => import('../routes/otherRecharge/otherRecharge'),
     }, {
-        path: '/reopenGoogle/:name',  //其他货币充值
+        path: '/reopenGoogle/:name',  //谷歌验证开启页
         models: () => [import('../models/reopenGoogle')],
         component: () => import('../routes/reopenGoogle/reopenGoogle'),
     }, {
@@ -73,6 +73,15 @@ const LayoutRouter = [
         path: '/record',  //
         models: () => [import('../models/record')],
         component: () => import('../routes/recordSearch/recordSearch'),
+    }, {
+        path: '/smSverification',  //短信验证开启页
+        models: () => [import('../models/smSverification')],
+        component: () => import('../routes/smSverification/smSverification'),
     },
+    {
+        path: '/setMoneyPassword',  //修改资金密码页
+        models: () => [import('../models/setMoneyPassword')],
+        component: () => import('../routes/setMoneyPassword/setMoneyPassword'),
+    }
 ]
 export default LayoutRouter;
