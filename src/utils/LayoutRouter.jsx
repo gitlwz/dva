@@ -82,6 +82,10 @@ const LayoutRouter = [
         path: '/setMoneyPassword',  //修改资金密码页
         models: () => [import('../models/setMoneyPassword')],
         component: () => import('../routes/setMoneyPassword/setMoneyPassword'),
+    },{
+        path: '/submitMessage',  //身份证验证
+        models: () => [import('../models/submitMessage')],
+        component: () => import('../routes/submitMessage/submitMessage'),
     }
 ]
 export default LayoutRouter;

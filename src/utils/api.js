@@ -49,6 +49,9 @@ const apis = {
         bankBindingMessageSent: { url: baseIP + "service/anonymousWebGeneralService/bankBindingMessageSent", method: 'POST', description: '发送短信验证' },
         setAccountPassword: { url: baseIP + "service/webGeneralService/setAccountPassword", method: 'POST', description: '修改资金密码' },
     },
+    "submitMessage":{
+        authentication: { url: baseIP + "service/clientApplyService/authentication", method: 'POST', description: '发送短信验证' },
+    },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
         findPushNotice: { url: baseIP + "service/anonymousWebGeneralService/findPushNotice", method: 'POST', description: '查询轮播公告' },
