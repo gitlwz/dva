@@ -18,6 +18,8 @@ const apis = {
         getInstrumentIds: { url: baseIP + "service/webGeneralService/allInstrumentId", method: 'POST', description: '查询货币对集合' },
     },
     "asset": {
+        stopCheck: { url: baseIP + "service/webGeneralService/stopCheck", method: 'POST', description: '查找用户信息：资金密码' },
+        findByUserID: { url: baseIP + "service/webGeneralService/findByUserID", method: 'POST', description: '查找用户信息：资金密码' },
         queryClientApply: { url: baseIP + "service/webGeneralService/queryClientApply", method: 'POST', description: '查询用户信息' },
         queryOperTradingAccount: { url: baseIP + "service/webGeneralService/queryOperTradingAccount", method: 'POST', description: '通过币种查询金额' },
         findTraderFundAddress: { url: baseIP + "service/webGeneralService/findTraderFundAddress", method: 'POST', description: '查询其他货币' },
@@ -35,7 +37,16 @@ const apis = {
         gooleCheckBegin: { url: baseIP + "service/anonymousWebGeneralService/gooleCheckBegin", method: 'POST', description: '获取谷歌验证码' },
         gooleCheckOver: { url: baseIP + "service/anonymousWebGeneralService/gooleCheckOver", method: 'POST', description: '开启谷歌验证' },
     },
-
+    "smSverification":{
+        resetGooleOrMessageCheck: { url: baseIP + "service/webGeneralService/resetGooleOrMessageCheck", method: 'POST', description: '发送短信验证' },
+        bankBindingMessageSent: { url: baseIP + "service/anonymousWebGeneralService/bankBindingMessageSent", method: 'POST', description: '发送短信验证' },
+        registrerMessageSent: { url: baseIP + "service/anonymousWebGeneralService/registrerMessageSent", method: 'POST', description: '发送短信验证' },
+        messageCheck: { url: baseIP + "service/anonymousWebGeneralService/messageCheck", method: 'POST', description: '提交' },
+    },
+    "setMoneyPassword":{
+        bankBindingMessageSent: { url: baseIP + "service/anonymousWebGeneralService/bankBindingMessageSent", method: 'POST', description: '发送短信验证' },
+        setAccountPassword: { url: baseIP + "service/webGeneralService/setAccountPassword", method: 'POST', description: '修改资金密码' },
+    },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
         findPushNotice: { url: baseIP + "service/anonymousWebGeneralService/findPushNotice", method: 'POST', description: '查询轮播公告' },

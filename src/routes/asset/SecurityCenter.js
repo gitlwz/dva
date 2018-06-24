@@ -11,6 +11,9 @@ class SecurityCenter extends Component{
         super(props);
     }
     componentWillMount = () =>{
+        this.props.dispatch({
+            type: 'asset/findByUserID'
+        })
     }
     //发送验证邮箱
     sendEmil = () => {
@@ -22,6 +25,19 @@ class SecurityCenter extends Component{
     SelecthandleChange = () =>{
         
     }
+    //关闭两步验证
+    cloceCheck = (val) =>{
+        if(this.props.userInfo.applyStatus == 6){
+            this.props.dispatch({
+                type: 'asset/stopCheck',
+                payload:{
+                    params:[this.props.userInfo.registeredName,val]
+                }
+            })
+            return;
+        }
+        message.warning("两步验证必须有一个保持开启！")
+    }   
     //开启谷歌验证码
     openGo = (path) =>{
         if(!this.props.userInfo.email){
@@ -37,6 +53,10 @@ class SecurityCenter extends Component{
                 <Icon className={styleA.yz_check} type="check" />
             </div> 
         )
+    }
+    //重置资金密码
+    resetPasswords = () =>{
+        this.props.history.push("/setMoneyPassword")
     }
     //邮箱验证
     _renderEmailVerify = () => {
@@ -115,7 +135,7 @@ class SecurityCenter extends Component{
                             两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
                         </div>
                         <div style={{marginTop:"20px"}}>
-                            <Button className="asset_btn SecurityCenter_btn_yz">关闭谷歌两步验证</Button>
+                            <Button onClick={() =>this.cloceCheck('4')} className="asset_btn SecurityCenter_btn_yz">关闭谷歌两步验证</Button>
                         </div>
                         <div style={{marginTop:"20px"}}>
                             <Button  onClick={()=>this.openGo("/smSverification")} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启手机短信验证</Button>
@@ -136,7 +156,7 @@ class SecurityCenter extends Component{
                             <Button onClick={()=>this.openGo("/reopenGoogle/"+this.props.userInfo.email)} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启谷歌两步验证</Button>
                         </div>
                         <div style={{marginTop:"20px"}}>
-                            <Button className="asset_btn SecurityCenter_btn_yz">关闭手机短信验证</Button>
+                            <Button onClick={() =>this.cloceCheck('5')} className="asset_btn SecurityCenter_btn_yz">关闭手机短信验证</Button>
                         </div>
                         <br/>
                     </div>
@@ -148,10 +168,10 @@ class SecurityCenter extends Component{
                         两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
                     </div>
                     <div style={{marginTop:"20px"}}>
-                        <Button className="asset_btn SecurityCenter_btn_yz">关闭谷歌两步验证</Button>
+                        <Button onClick={() =>this.cloceCheck('4')}  className="asset_btn SecurityCenter_btn_yz">关闭谷歌两步验证</Button>
                     </div>
                     <div style={{marginTop:"20px"}}>
-                        <Button className="asset_btn SecurityCenter_btn_yz">关闭手机短信验证</Button>
+                        <Button onClick={() =>this.cloceCheck('5')} className="asset_btn SecurityCenter_btn_yz">关闭手机短信验证</Button>
                     </div>
                     <br/>
                 </div>
@@ -167,7 +187,7 @@ class SecurityCenter extends Component{
         }else{
             clientName = "未完成身份验证";
         }
-        if(!!accountPassword){
+        if(!!this.props.findByUserID.accountPassword){
             accountPassword = "******";
         }else{
             accountPassword = "未设置";
@@ -197,14 +217,14 @@ class SecurityCenter extends Component{
                             <Col className={styleA.rowF_title} span={4}>登录密码</Col>
                             <Col span={20}>
                                 <span>{"******"}</span>
-                                <Button className="asset_btn SecurityCenter_btn" type="primary">修改</Button>
+                                <Button onClick={()=>this.props.history.push("/user/forgetPassword")} className="asset_btn SecurityCenter_btn" type="primary">修改</Button>
                             </Col>
                         </Row>
                         <Row className={styleA.rowF}>
                             <Col className={styleA.rowF_title} span={4}>资金密码</Col>
                             <Col span={20}>
                                 <span>{accountPassword}</span>
-                                {this.props.userInfo.applyStatus>=6?<Button className="asset_btn SecurityCenter_btn" type="primary">重置密码</Button>:null}
+                                {this.props.userInfo.applyStatus>=4?<Button onClick={this.resetPasswords} className="asset_btn SecurityCenter_btn" type="primary">重置密码</Button>:null}
                             </Col>
                         </Row>
                     </div>
@@ -235,11 +255,12 @@ class SecurityCenter extends Component{
     }
 }
 export default connect((state, props) => {
-    let {currentSelect} = state.asset
+    let {currentSelect,findByUserID} = state.asset
     let {userId,userInfo={}} = state.user
     return {
         userInfo,
         currentSelect,
+        findByUserID,
         accountPassword:userId.accountPassword,
         ...props
     }

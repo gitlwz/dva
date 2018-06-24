@@ -18,6 +18,7 @@ export default {
 
         //安全中心
         userInfo: {},    //用户信息
+        findByUserID:{}, //用户资金密码
 
         //提现管理
         QBotherAddress: {}, //其他充币地址
@@ -26,6 +27,64 @@ export default {
     },
 
     effects: {
+        *stopCheck({ payload }, { call, put }) {
+            yield put({
+                type: 'save',
+                payload: {
+                    loading: true
+                }
+            })
+            const { data } = yield call(baseService, api.asset.stopCheck, [...payload.params]);
+            if(!!data && data.result == 1){
+                if(payload.params[1] == 5){
+                    message.success("短信验证关闭成功")
+                }
+                if(payload.params[1] == 4){
+                    message.success("谷歌验证关闭成功")
+                }
+                yield put({
+                    type: 'save',
+                    payload: {
+                        loading: false
+                    }
+                })
+                setTimeout(()=>{
+                    window.location.reload();
+                },1000)
+            }else{
+                yield put({
+                    type: 'save',
+                    payload: {
+                        loading: false
+                    }
+                })
+            }
+        },
+        *findByUserID({ payload }, { call, put }) {
+            yield put({
+                type: 'save',
+                payload: {
+                    loading: true
+                }
+            })
+            const { data } = yield call(baseService, api.asset.findByUserID, []);
+            if(!!data){
+                yield put({
+                    type: 'save',
+                    payload: {
+                        findByUserID:data,
+                        loading: false
+                    }
+                })
+            }else{
+                yield put({
+                    type: 'save',
+                    payload: {
+                        loading: false
+                    }
+                })
+            }
+        },
         *currencyChange({ payload }, { call, put }) {
             yield put({
                 type: 'save',
