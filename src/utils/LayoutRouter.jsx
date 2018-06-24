@@ -9,7 +9,7 @@ const LayoutRouter = [
         component: () => import('../routes/home/yinghe'),
     }, {
         path: '/kine',
-        models: () => [import('../models/kine/trade'), import('../models/kine'), import('../models/asset')],
+        models: () => [import('../models/kine/trade'), import('../models/kine'), import('../models/asset'), import('../models/other')],
         component: () => import('../routes/kine/bibi/bibi'),
     },
     {
@@ -64,10 +64,15 @@ const LayoutRouter = [
         path: '/reopenGoogle/:name',  //其他货币充值
         models: () => [import('../models/reopenGoogle')],
         component: () => import('../routes/reopenGoogle/reopenGoogle'),
-    },{
+    }, {
         path: '/smSverification',  //其他货币充值
         models: () => [import('../models/smSverification')],
         component: () => import('../routes/smSverification/smSverification'),
-    }
+    },
+    {
+        path: '/record',  //
+        models: () => [import('../models/record')],
+        component: () => import('../routes/recordSearch/recordSearch'),
+    },
 ]
 export default LayoutRouter;

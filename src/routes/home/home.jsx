@@ -59,12 +59,8 @@ class Home extends React.Component {
 
     //返回统一数据
     getDataArray() {
-        let dataArray = [];
+        let dataArray = this.props.list24HVolumeList["24hInstrument"] || [];
         let checkedArray = this.state.checkedArray;
-        for (let key in this.props.list24HVolumeList) {
-            dataArray.push(this.props.list24HVolumeList[key])
-        }
-
         //读取缓存的数组 
         for (let i = 0; i < dataArray.length; i++) {
             for (let j = 0; j < checkedArray.length; j++) {
@@ -110,6 +106,22 @@ class Home extends React.Component {
                 onClick={() => this.setState({ currency: item })} key={item}>{item}</button>
         })
     }
+
+    getHotInstrument() {
+        let dataArray = this.props.list24HVolumeList["hotInstrument"] || [];
+        console.log(dataArray)
+        return dataArray.map(item => {
+            return <div className={styles.card} key={item.instrumentId}>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }} className={styles.text}>
+                    <span>{item.instrumentId}</span>
+                    {this.loadChangeVie(item)}
+                </div>
+                <div className={styles.text}>{item.closePrice != "---" ? parseFloat(item.closePrice.toFixed(4)) : ""}{this.convertCNY(item)}</div>
+                <div className={styles.text}>24H量 {item.volume != "---" ? parseInt(item.volume) : '---'}</div>
+            </div>
+        })
+    }
+
 
     //计算当前兑换人民币
     convertCNY(item) {
@@ -157,9 +169,9 @@ class Home extends React.Component {
             },
             {
                 title: dataJSON.ZXJ,
-                dataIndex: 'closePrice',
+                dataIndex: 'closePriceString',
                 render: (item) => {
-                    if (item.closePrice != "---") {
+                    if (item.closePriceString != "---") {
                         return <div>{parseFloat(item.closePrice.toFixed(4))}</div>
                     } else {
                         return <div>---</div>
@@ -168,7 +180,7 @@ class Home extends React.Component {
             },
             {
                 title: dataJSON.ZF,
-                dataIndex: 'openPrice',
+                dataIndex: 'openPriceString',
                 render: (item) => {
                     return <div style={{ display: "flex", justifyContent: "center" }}>
                         {this.loadChangeVie(item)}
@@ -177,17 +189,17 @@ class Home extends React.Component {
             },
             {
                 title: dataJSON.ZGJ,
-                dataIndex: 'highestPrice',
+                dataIndex: 'highestPriceString',
             },
             {
                 title: dataJSON.ZDJ,
-                dataIndex: 'lowestPrice',
+                dataIndex: 'lowestPriceString',
             },
             {
                 title: dataJSON.LXSCJ,
-                dataIndex: 'volume',
+                dataIndex: 'volumeString',
                 render: (item) => {
-                    if (item.volume != "---") {
+                    if (item.volumeString != "---") {
                         return <div>{parseInt(item.volume)}</div>
                     } else {
                         return <div>---</div>
@@ -198,17 +210,7 @@ class Home extends React.Component {
         return <div style={{ padding: '30px 0px', background: '#f7f7f7', display: 'flex', justifyContent: 'center' }}>
             <div>
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    {this.getDataArray().map(item => {
-                        if (item.instrumentId == "BTC-USDT" || item.instrumentId == "ETH-USDT" || item.instrumentId == "BTC-ETH" || item.instrumentId == "EHT-BTC")
-                            return <div className={styles.card} key={item.instrumentId}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between' }} className={styles.text}>
-                                    <span>{item.instrumentId}</span>
-                                    {this.loadChangeVie(item)}
-                                </div>
-                                <div className={styles.text}>{item.closePrice != "---" ? parseFloat(item.closePrice.toFixed(4)) : ""}{this.convertCNY(item)}</div>
-                                <div className={styles.text}>24H量 {item.volume != "---" ? parseInt(item.volume) : '---'}</div>
-                            </div>
-                    })}
+                    {this.getHotInstrument()}
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'row', margin: '30px 0', justifyContent: 'center', }}>

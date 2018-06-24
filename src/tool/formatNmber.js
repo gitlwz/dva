@@ -102,12 +102,18 @@ var format = {
      */
     changePrice(closePrice, openPrice) {
         if (!!closePrice && !!openPrice) {
-            let num = (closePrice - openPrice) / openPrice;
-            return (num * 100).toFixed(2) + "%";
-        } else {
-            return "--"
+            if (closePrice - openPrice > 0) {
+                let num = (closePrice - openPrice) / openPrice;
+                return (num * 100).toFixed(2);
+            }
+            else if (closePrice - openPrice < 0) {
+                let num = (closePrice - openPrice) / openPrice;
+                return (num * 100).toFixed(2);
+            }
+            else {
+                return <div>---</div>
+            }
         }
-
     },
 
     /**

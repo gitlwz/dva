@@ -1,25 +1,37 @@
 import React from 'react';
 import styles from './notice.less';
+import { connect } from 'dva';
 
 class Notice extends React.Component {
+    componentDidMount() {
+        this.props.dispatch({
+            type: 'other/findMessageList',
+        })
+    }
+
+    loadMessage() {
+        if (this.props.messageList.length > 0) {
+            return this.props.messageList.map(item => {
+                return <div className={styles.root} key={item.msgID}>
+                    <div className={styles.msg}>{item.msgTitle}</div>
+                    <div className={styles.time}>{item.operateDate + "-" + item.operateTime}</div>
+                </div>
+            })
+        }
+    }
+
     render() {
         return (
             <div style={{ padding: '13px 20px' }}>
-                <div className={styles.root}>
-                    <div className={styles.msg}>新闻标题新闻标题新闻标题新闻标题新闻标题新闻标题新闻标题新闻标题新闻标题新闻标题新闻标</div>
-                    <div className={styles.time}>2018-05-22</div>
-                </div>
-                <div className={styles.root}>
-                    <div className={styles.msg}>题新闻标题新闻标题新闻标题新闻标题新闻标题新闻标</div>
-                    <div className={styles.time}>2018-05-22</div>
-                </div>
-                <div className={styles.root}>
-                    <div className={styles.msg}>新闻标题新闻标题新闻标题新闻标题新闻标题新闻标题新闻标题新闻标题新闻标题</div>
-                    <div className={styles.time}>2018-05-22</div>
-                </div>
+                {this.loadMessage()}
             </div>
         )
     }
 }
 
-export default Notice
+export default connect((state, props) => {
+    return {
+        messageList: state.other.messageList,
+        props
+    }
+})(Notice)

@@ -9,7 +9,8 @@ export default {
 
     state: {
         rateList: [],  //费率
-        noticeList: [],  //平台公告列表
+        noticeList: [],  //主页公告列表
+        messageList: []   //平台公告
     },
 
     effects: {
@@ -26,7 +27,7 @@ export default {
             }
         },
 
-        //平台公告列表
+        //主页公告列表
         *findPushNotice({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.baseConfig.findPushNotice, []);
             console.log(data)
@@ -39,6 +40,19 @@ export default {
                 })
             }
         },
+        //获取平台公告
+        *findMessageList({ payload }, { call, put }) {
+            const { data } = yield call(baseService, api.baseConfig.findMessageList, [{ "msgType": "", "startDate": "", "endDate": "" }, { "pageNo": 1, "pageSize": 10 }]);
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        messageList: data.content || []
+                    }
+                })
+            }
+        },
+
     },
 
     reducers: {

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from 'dva';
 import { Row, Col, Spin } from 'antd';
 import PubSub from "pubsub-js";
+import formatData from '../../../tool/formatNmber';
 import star from "../../../assets/yinghe/形状 2 副本@2x.png";
 import selectStar from "../../../assets/yinghe/形状 2@2x.png";
 import styles from './indenture.less';
@@ -89,11 +90,11 @@ class Indenture extends React.Component {
     }
 
     loadInstrument() {
-        let dataSource = [];
+        let dataSource = this.props.list24HVolumeList["24hInstrument"] || [];
         let checkedArray = this.state.checkedArray;
-        for (let i = 0; i < this.props.instrumentIds.length; i++) {
-            dataSource.push({ instrumentId: this.props.instrumentIds[i], price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
-        }
+        // for (let i = 0; i < this.props.instrumentIds.length; i++) {
+        //     dataSource.push({ instrumentId: this.props.instrumentIds[i], price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
+        // }
 
         for (let j = 0; j < checkedArray.length; j++) {
             for (let i = 0; i < dataSource.length; i++) {
@@ -116,6 +117,18 @@ class Indenture extends React.Component {
 
                 }
             }).map(item => {
+                let rose = formatData.changePrice(item.closePriceString, item.lowestPriceString);
+                console.log(rose)
+                const roseTitle = () => {
+                    if (rose > 0) {
+                        return <span style={{ color: '#FF4200' }}>+{rose}%</span>
+                    } else if (rose.charAt(0) == "-") {
+                        return <span style={{ color: '#349B00' }}>-{rose}%</span>
+                    } else {
+                        return <div>---</div>
+                    }
+                }
+
                 return <Row className={styles.row} key={item.instrumentId} onClick={() => this.changeInstrum(item.instrumentId)}>
                     <Col className={styles.col} span={8}>
                         <div style={{ display: "flex", alignItems: 'center' }}>
@@ -123,8 +136,8 @@ class Indenture extends React.Component {
                             <span> {item.instrumentId.split("-")[0]}</span>
                         </div>
                     </Col>
-                    <Col className={styles.col} span={8} style={{ textAlign: 'center' }}>{item.price}</Col>
-                    <Col className={styles.col} span={8} style={{ textAlign: 'right', paddingRight: 10 }}>{item.rose}</Col>
+                    <Col className={styles.col} span={8} style={{ textAlign: 'center' }}>{item.closePriceString}</Col>
+                    <Col className={styles.col} span={8} style={{ textAlign: 'right', paddingRight: 10 }}>{roseTitle()}</Col>
                 </Row>
             })
 
@@ -156,6 +169,7 @@ class Indenture extends React.Component {
 export default connect((state, props) => {
     return {
         instrumentIds: state.kine.instrumentIds,
+        list24HVolumeList: state.kine.list24HVolumeList,
         loading: state.kine.loading,
         userId: state.user.userId,
         search: state.kine.search,

@@ -32,14 +32,14 @@ export default {
   effects: {
     //查询轮播图列表
     *findAllSlideshow({ payload }, { call, put }) {
-      console.log("发送")
       const { data } = yield call(baseService, api.baseConfig.findAllSlideshow, payload);
-      yield put({
-        type: 'save',
-        payload: {
-          imgList: data
-        }
-      })
+      if (data != undefined)
+        yield put({
+          type: 'save',
+          payload: {
+            imgList: data
+          }
+        })
     },
 
     * findAllQuestions({ payload }, { call, put }) {

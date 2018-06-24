@@ -24,25 +24,21 @@ class YingHe extends Component {
     }
 
     //加载轮播图
-    // loadBanner() {
-    //     if (this.state.currLanguage == "China") {
-    //         return <Carousel autoplay autoplaySpeed={5000}>
-    //             <div> <img src={Chinalogo} style={{ width: '100%' }} /></div>
-    //             <div> <img src={EnglishLogon} style={{ width: '100%' }} /></div>
-    //         </Carousel>
-    //     } else {
-    //         return <Carousel autoplay autoplaySpeed={5000}>
-    //             <img src={EnglishLogon} style={{ width: '100%' }} />
-    //         </Carousel>
-    //     }
-    // }
+    loadBanner() {
+        if (this.props.imgList.length > 0) {
+            return this.props.imgList.map(item => {
+                return <div key={item.id}> <img src={item.postPhoto} style={{ width: '100%', height: '100%' }} /></div>
+            })
+        }
+    }
+
 
     loadCarousel(noticeList, name) {
         if (!!noticeList) {
             let data = noticeList[name];
             if (!!data && data.length > 0) {
                 return data.map(item => {
-                    <div key={item.msgID}>{item.msgTitle}</div>
+                    return <div key={item.msgID} style={{ color: 'white' }}>{item.msgTitle}</div>
                 })
             }
         }
@@ -51,10 +47,13 @@ class YingHe extends Component {
     // 渲染
     render() {
         const { noticeList } = this.props;
-        console.log(noticeList)
         return (
             <div>
-                <div style={{ width: '100%', height: 100 }}></div>
+                <div style={{ width: '100%' }}>
+                    <Carousel autoplay autoplaySpeed={5000}>
+                        {this.loadBanner()}
+                    </Carousel>
+                </div>
                 <div style={{ background: 'rgba(35,35,35,1)' }}>
                     <Row type="flex" justify="space-around" align="middle" style={{ fontSize: 14, color: '#CDCDCD', height: 60 }}>
                         <Col span={8}>
@@ -63,13 +62,12 @@ class YingHe extends Component {
                             </Carousel>
                         </Col>
                         <Col span={8}>
-                            <Carousel autoplay={true} autoplaySpeed={4000} vertical dots={false}>
-                                <div>邀请好友注册，轻松享受50%返佣</div>
+                            <Carousel autoplay={true} autoplaySpcentereed={4000} vertical dots={false}>
+                                {this.loadCarousel(noticeList, "center")}
                             </Carousel></Col>
                         <Col span={8}>
                             <Carousel autoplay autoplaySpeed={4000} vertical dots={false}>
-                                <div>邀请好友注册，轻松享受50%返佣</div>
-                                <div>赢和点卡功能震撼上线，等价USDT，现开放购买，优惠多多</div>
+                                {this.loadCarousel(noticeList, "right")}
                             </Carousel></Col>
                     </Row>
                 </div>
@@ -86,6 +84,7 @@ class YingHe extends Component {
 export default connect((state, props) => {
     return {
         noticeList: state.other.noticeList,
+        imgList: state.app.imgList,
         props
     }
 }, (dispatch) => {

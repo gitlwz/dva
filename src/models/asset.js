@@ -34,7 +34,7 @@ export default {
                 }
             })
             const { data } = yield call(baseService, api.asset.queryOperTradingAccount, [payload.currency]);
-            if (data != undefined){ //成功
+            if (data != undefined) { //成功
                 yield put({
                     type: 'save',
                     payload: {
@@ -42,7 +42,7 @@ export default {
                         loading: false
                     }
                 })
-            }else{ // 不知名错误
+            } else { // 不知名错误
                 yield put({
                     type: 'save',
                     payload: {
@@ -50,7 +50,7 @@ export default {
                     }
                 })
             }
-                
+
         },
         *findTraderFundAddress({ payload }, { call, put }) {
             yield put({
@@ -88,7 +88,7 @@ export default {
                         loading: false
                     }
                 })
-            }else{ //失败
+            } else { //失败
                 message.success('邮件发送失败！');
                 yield put({
                     type: 'save',
@@ -120,5 +120,7 @@ export default {
     },
 
     subscriptions: {
+
+       
     },
 };

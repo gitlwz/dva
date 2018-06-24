@@ -18,7 +18,7 @@ export default {
         markLoading: true,
         search: '',
         dataByInstrumentId: {}, //合约深度行情
-        list24HVolumeList: []  //24小时市场行情
+        list24HVolumeList: {}  //24小时市场行情
     },
 
     effects: {
@@ -42,6 +42,32 @@ export default {
             }
         },
 
+        *currencyChange({ payload }, { call, put }) {
+            // yield put({
+            //     type: 'save',
+            //     payload: {
+            //         loading: true
+            //     }
+            // })
+            const { data } = yield call(baseService, api.asset.queryOperTradingAccount, payload);
+            if (data != undefined) { //成功
+                yield put({
+                    type: 'save',
+                    payload: {
+                        dataSource: data,
+                        loading: false
+                    }
+                })
+            } else { // 不知名错误
+                yield put({
+                    type: 'save',
+                    payload: {
+                        loading: false
+                    }
+                })
+            }
+
+        },
         //根据合约id查询详情
         *findByInstrumentID({ payload }, { call, put }) {
             const { data } = yield call(baseService, kineApi.trade.findByInstrumentID, [payload]);
@@ -56,6 +82,7 @@ export default {
 
         //获取买档行情
         *findBuyMarket({ payload }, { call, put }) {
+            console.log("发送")
             const { data } = yield call(baseService, kineApi.trade.findBuyMarket, payload);
             if (data != undefined)
                 yield put({
@@ -145,6 +172,14 @@ export default {
             return PubSub.subscribe("list24HVolume", (name, payload) => {
                 dispatch({
                     type: 'list24HVolume'
+                })
+            })
+        },
+        getAcountAsset({ dispatch, history }) {
+            return PubSub.subscribe("getAcountAsset", (name, payload) => {
+                dispatch({
+                    type: "currencyChange",
+                    payload: [payload]
                 })
             })
         },

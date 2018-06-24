@@ -25,11 +25,7 @@ class Bibi extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch({
-            type: 'asset/currencyChange',
-            payload: []
-        })
-
+        this.getAcountAsset();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -38,12 +34,25 @@ class Bibi extends React.Component {
                 [
                     { name: "getLastDayKline", payload: nextProps.currentInstrument },
                 ]
-            )
+            );
+        }
+
+        if (this.props.userInfo != nextProps.userInfo && nextProps.userInfo.clientID) {
+            this.getAcountAsset(nextProps.userInfo.clientID)
         }
     }
 
+    getAcountAsset(clientID) {
+        PubSub.publish('Polling.addsubscribe',
+            [
+                { name: "getAcountAsset", payload: clientID },
+            ]
+        );
+
+    }
+
     componentWillUnmount() {
-        PubSub.publish('Polling.delsubscribe', ["getLastDayKline"])
+        PubSub.publish('Polling.delsubscribe', ["getLastDayKline,getAcountAsset"])
     }
 
     changLook() {
@@ -80,7 +89,7 @@ class Bibi extends React.Component {
                         </div>
                     </div>
                     {/*公告栏*/}
-                    <div style={{ height: 800, marginTop: 10, borderRadius: '8px' }} className={bgColor}>
+                    <div style={{ mineHeight: 800, marginTop: 10, borderRadius: '8px' }} className={bgColor}>
                         <div className={cardHeader}>公告栏</div>
                         <Notice />
                     </div>
@@ -144,10 +153,10 @@ export default connect((state, props) => {
     return {
         theme: state.app.theme,
         userId: state.user.userId,
+        userInfo: state.user.userInfo,
         search: state.kine.search,
         instrumentIds: state.kine.instrumentIds,
         currentInstrument: state.kine.currentInstrument,
-        Currency: state.kine.Currency,
         dataByInstrumentId: state.kine.dataByInstrumentId,
         props
     }
@@ -157,7 +166,6 @@ export default connect((state, props) => {
             dispatch({
                 type: 'kine/save',
                 payload: {
-                    //instrumentIds: instrumentIds.filter(item => item.split("-")[1] == Currency),
                     search: value
                 }
             })

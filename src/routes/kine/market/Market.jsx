@@ -33,8 +33,7 @@ class Market extends React.Component {
     }
 
     componentWillUnmount() {
-        PubSub.publish('Polling.delsubscribe', ["findBuyMarket"])
-        PubSub.publish('Polling.delsubscribe', ["findSellMarket"])
+        PubSub.publish('Polling.delsubscribe', ["findBuyMarket,findSellMarket"])
     }
 
     render() {

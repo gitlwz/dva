@@ -19,10 +19,12 @@ const apis = {
     },
     "asset": {
         queryClientApply: { url: baseIP + "service/webGeneralService/queryClientApply", method: 'POST', description: '查询用户信息' },
-        queryOperTradingAccount: { url: baseIP + "service/webGeneralService/queryOperTradingAccount", method: 'POST', description: '通过币种查询金额' },
+        queryOperTradingAccount: { url: baseIP + "service/pollingService/getTraderBalanceDetail", method: 'POST', description: '查询资金列表' },
         findTraderFundAddress: { url: baseIP + "service/webGeneralService/findTraderFundAddress", method: 'POST', description: '查询其他货币' },
         mailboxVerification: { url: baseIP + "service/webGeneralService/mailboxVerification", method: 'POST', description: '发送邮箱' },
         createAddress: { url: baseIP + "service/webGeneralService/createAddress", method: 'POST', description: '立即生效' },
+        rechargeList: { url: baseIP + "service/webGeneralService/queryMoneyIO", method: 'POST', description: '充提币记录' },
+        entrustList: { url: baseIP + "service/orderQueryService/queryOrder", method: 'POST', description: '委托查询' },
     },
     "helpcenter": {
         findAllPushHelpCenterByCondition: { url: baseIP + "service/anonymousWebGeneralService/findAllPushHelpCenterByCondition", method: 'POST', description: '帮助中心问题名称集合' },
@@ -31,7 +33,7 @@ const apis = {
     "otherRecharge": {
         findFundAddress: { url: baseIP + "service/webGeneralService/findFundAddress", method: 'POST', description: '查询提币地址' },
     },
-    "reopenGoogle":{
+    "reopenGoogle": {
         gooleCheckBegin: { url: baseIP + "service/anonymousWebGeneralService/gooleCheckBegin", method: 'POST', description: '获取谷歌验证码' },
         gooleCheckOver: { url: baseIP + "service/anonymousWebGeneralService/gooleCheckOver", method: 'POST', description: '开启谷歌验证' },
     },
@@ -39,6 +41,7 @@ const apis = {
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
         findPushNotice: { url: baseIP + "service/anonymousWebGeneralService/findPushNotice", method: 'POST', description: '查询轮播公告' },
+        findMessageList: { url: baseIP + "service/webGeneralService/findMessageAsPage", method: 'POST', description: '查询平台公告' },
     }
 }
 
