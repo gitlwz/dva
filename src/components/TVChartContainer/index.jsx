@@ -76,6 +76,14 @@ export class TVChartContainer extends React.PureComponent {
 			console.log(guid);
 		})
 	}
+	componentWillUnmount = () =>{
+		if(!window.TVChartContainer){
+            window.TVChartContainer = [];
+        }
+        window.TVChartContainer.forEach((ele)=>{
+            window.clearInterval(ele);
+        })
+	}
 	//添加分时按钮
 	insertBeforeBtn = () => {
 		// let iframeDocument = document.querySelector("#tv_chart_container iframe").contentDocument

@@ -94,6 +94,10 @@ const LayoutRouter = [
         path: '/submitMessageCompany',  //机构
         models: () => [import('../models/submitMessageCompany')],
         component: () => import('../routes/submitMessageCompany/submitMessageCompany'),
+    },{
+        path: '/otherPresent/:type',  //机构
+        models: () => [import('../models/otherPresent')],
+        component: () => import('../routes/otherPresent/otherPresent'),
     }
 ]
 export default LayoutRouter;

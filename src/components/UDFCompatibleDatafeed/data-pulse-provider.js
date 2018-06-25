@@ -4,7 +4,13 @@ var DataPulseProvider = /** @class */ (function () {
         this._subscribers = {};
         this._requestsPending = 0;
         this._historyProvider = historyProvider;
-        setInterval(this._updateData.bind(this), 1000);
+        if(!window.TVChartContainer){
+            window.TVChartContainer = [];
+        }
+        window.TVChartContainer.forEach((ele)=>{
+            window.clearInterval(ele);
+        })
+        window.TVChartContainer.push(setInterval(this._updateData.bind(this), 1000));
     }
     DataPulseProvider.prototype.subscribeBars = function (symbolInfo, resolution, newDataCallback, listenerGuid) {
         if (this._subscribers.hasOwnProperty(listenerGuid)) {
