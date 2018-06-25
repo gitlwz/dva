@@ -20,7 +20,14 @@ class Asset extends Component {
 
     }
     componentWillMount = () => {
-
+        if(this.props.history.location.search === "?type=2"){
+            this.props.dispatch({
+                type: 'asset/selectMenu',
+                payload: {
+                    currentSelect: "安全中心"
+                }
+            }) 
+        }
     }
     callback = (key) => {
         console.log(key)
