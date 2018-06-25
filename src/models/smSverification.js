@@ -76,7 +76,7 @@ export default {
                 }
             })
             const { data } = yield call(baseService, api.smSverification.messageCheck, [...payload]);
-            if (data !== undefined) {    //成功
+            if (!!data) {    //成功
                 message.success("开启成功")
                 setTimeout(()=>{
                     routerRedux.push("/asset")

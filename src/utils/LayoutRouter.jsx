@@ -64,10 +64,6 @@ const LayoutRouter = [
         path: '/reopenGoogle/:name',  //谷歌验证开启页
         models: () => [import('../models/reopenGoogle')],
         component: () => import('../routes/reopenGoogle/reopenGoogle'),
-    }, {
-        path: '/smSverification',  //其他货币充值
-        models: () => [import('../models/smSverification')],
-        component: () => import('../routes/smSverification/smSverification'),
     },
     {
         path: '/record',  //
@@ -99,8 +95,12 @@ const LayoutRouter = [
         models: () => [import('../models/otherPresent')],
         component: () => import('../routes/otherPresent/otherPresent'),
     },{
-        path: '/minerFee',  //矿工寿命
+        path: '/minerFee',  //矿工说明
         component: () => import('../routes/minerFee/minerFee'),
+    },{
+        path: '/bindingAddress/:type',  //绑定提现地址
+        models: () => [import('../models/bindingAddress')],
+        component: () => import('../routes/bindingAddress/bindingAddress'),
     }
 ]
 export default LayoutRouter;
