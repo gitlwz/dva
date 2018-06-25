@@ -26,7 +26,7 @@ const apis = {
         mailboxVerification: { url: baseIP + "service/webGeneralService/mailboxVerification", method: 'POST', description: '发送邮箱' },
         createAddress: { url: baseIP + "service/webGeneralService/createAddress", method: 'POST', description: '立即生效' },
         rechargeList: { url: baseIP + "service/webGeneralService/queryMoneyIO", method: 'POST', description: '充提币记录' },
-        entrustList: { url: baseIP + "service/orderQueryService/queryOperTrade", method: 'POST', description: '成交查询' },
+        entrustList: { url: baseIP + "service/webGeneralService/queryOperTrade", method: 'POST', description: '成交查询' },
     },
     "helpcenter": {
         findAllPushHelpCenterByCondition: { url: baseIP + "service/anonymousWebGeneralService/findAllPushHelpCenterByCondition", method: 'POST', description: '帮助中心问题名称集合' },
@@ -64,12 +64,12 @@ const apis = {
         "otherPresent": {
             findByCurrencyAndAddressType: { url: baseIP + "service/webGeneralService/findByCurrencyAndAddressType", method: 'POST', description: '发送短信验证' },
         },
-        baseConfig: {
-            findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
-            findPushNotice: { url: baseIP + "service/anonymousWebGeneralService/findPushNotice", method: 'POST', description: '查询轮播公告' },
-            findMessageList: { url: baseIP + "service/webGeneralService/findMessageAsPage", method: 'POST', description: '查询平台公告' },
-            findAllExchangeRateUse: { url: baseIP + "service/webGeneralService/findAllExchangeRateUse", method: 'POST', description: '查询兑换人民币换算汇率' },
-        }
+    },
+    baseConfig: {
+        findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
+        findPushNotice: { url: baseIP + "service/anonymousWebGeneralService/findPushNotice", method: 'POST', description: '查询轮播公告' },
+        findMessageList: { url: baseIP + "service/webGeneralService/findMessageAsPage", method: 'POST', description: '查询平台公告' },
+        findAllExchangeRateUse: { url: baseIP + "service/webGeneralService/findAllExchangeRateUse", method: 'POST', description: '查询兑换人民币换算汇率' },
     }
 }
 export default apis;

@@ -56,6 +56,7 @@ export default {
 
         //查询汇率换算
         *findAllExchangeRateUse({ payload }, { call, put }) {
+            console.log("***************************")
             const { data } = yield call(baseService, api.baseConfig.findAllExchangeRateUse, []);
             if (data != undefined) {
                 yield put({

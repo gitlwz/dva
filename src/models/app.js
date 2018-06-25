@@ -33,6 +33,7 @@ export default {
     //查询轮播图列表
     *findAllSlideshow({ payload }, { call, put }) {
       const { data } = yield call(baseService, api.baseConfig.findAllSlideshow, payload);
+      console.log(data)
       if (data != undefined)
         yield put({
           type: 'save',
@@ -66,10 +67,7 @@ export default {
 
   subscriptions: {
     setup({ dispatch, history }) {
-      // return dispatch({
-      //   type: 'findAllSlideshow',
-      //   payload: []
-      // })
+  
     },
   },
 };

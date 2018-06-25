@@ -19,6 +19,8 @@ const Api = {
         batchOrderAction: { url: baseIP + 'service/tradeService/batchOrderAction', method: "POST", description: '批量撤单' },
         getServerTime: { url: 'service/tradeService/getServerTime', method: "POST", description: '查询服务器当前时间' },
         findByInstrumentID: { url: baseIP + 'service/instrumentService/findByInstrumentID', method: "POST", description: '根据合约id 查询合约详情' },
+        getUnfinishedOrder: { url: baseIP + 'service/pollingService/getUnfinishedOrder', method: "POST", description: '轮询未完成委托' },
+        getClientTradeDetail: { url: baseIP + 'service/pollingService/getClientTradeDetail', method: "POST", description: '轮询我的成交' },
     }
 }
 

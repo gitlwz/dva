@@ -3,6 +3,7 @@ import moment from 'moment';
 import { connect } from 'dva';
 import { Spin, Icon, message } from 'antd';
 import format from '../../../tool/formatNmber';
+import PubSub from "pubsub-js";
 import TradeComponent from '../../../components/tradDetail';
 import styles from './myEntrust.less';
 
@@ -21,16 +22,39 @@ class MyEntrust extends React.Component {
     }
 
     componentDidMount() {
-
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.props.currentInstrument != nextProps.currentInstrument) {
-            if (!!this.props.userId)
-                this.props.queryOrderForClient([nextProps.userId, nextProps.currentInstrument, { "pageNo": 1, "pageSize": 10 }])
+        if (this.props.userInfo && !!this.props.userInfo.clientID) {
+            this.getDataList(this.props.userInfo.clientID);
         }
     }
 
+    getDataList(clientID) {
+        if (!!clientID) {
+            this.props.dispatch({
+                type: 'trade/save',
+                payload: {
+                    orderForClientLoading: true
+                }
+            })
+            PubSub.publish('Polling.addsubscribe',
+                [
+                    { name: "getUnfinishedOrder", payload: ['0000000002'] },
+                    { name: "getClientTradeDetail", payload: ['0000000002'] }
+                ]
+            )
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.userInfo != nextProps.userInfo && nextProps.userInfo.clientID) {
+            this.getDataList(nextProps.userInfo.clientID)
+        }
+    }
+
+
+    componentWillUnmount() {
+        PubSub.publish('Polling.delsubscribe', ["getUnfinishedOrder"]);
+        PubSub.publish('Polling.delsubscribe', ["getClientTradeDetail"]);
+    }
 
     batchOrderAction(direction) {
         const { currentInstrument, userInfo, userId } = this.props;
@@ -55,10 +79,15 @@ class MyEntrust extends React.Component {
 
     render() {
         const IconStyle = { color: '#6C7F9C', fontSize: 16, marginLeft: 20 }
+        let dataList = this.props.tradeType == "0" ? this.props.orderForClientList : this.props.operTradeList;
         return (
             <div style={{ height: '100%', padding: '0 20px' }}>
                 <Spin spinning={this.props.orderForClientLoading}>
-                    <TradeComponent dataList={this.props.orderForClientList} titleList={["时间", "货币对", "买卖", "委单价", "剩余委数量", "总价"]} entrust />
+                    <div style={{ height: 300, overflowY: 'scroll' }}>
+                        {this.props.tradeType == "0" ? <TradeComponent dataList={dataList} titleList={["时间", "货币对", "买卖", "委单价", "剩余委数量", "总价"]} entrust /> :
+                            <TradeComponent trade dataList={dataList} titleList={["时间", "方向", "成交价", "成交量"]} handleOk={price => console.log(price)} />
+                        }
+                    </div>
                 </Spin>
                 <div style={{ height: '1px', background: '#233044', margin: '15px 30px 10px 0' }}></div>
                 <div className={styles.action}>
@@ -79,24 +108,14 @@ export default connect((state, props) => {
         userInfo: state.user.userInfo,
         userId: state.user.userId,
         orderForClientList: state.trade.orderForClientList,
+        operTradeList: state.trade.operTradeList,
         orderForClientLoading: state.trade.orderForClientLoading,
+        tradeType: state.trade.tradeType,
         props
     }
 }, (dispatch, props) => {
     return {
-        queryOrderForClient: (parms) => {
-            dispatch({
-                type: 'trade/queryOrderForClient',
-                payload: parms
-            })
 
-            dispatch({
-                type: 'trade/save',
-                payload: {
-                    orderForClientLoading: true
-                }
-            })
-        },
         dispatch
     }
 })(MyEntrust)

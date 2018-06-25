@@ -27,7 +27,8 @@ class YingHe extends Component {
     loadBanner() {
         if (this.props.imgList.length > 0) {
             return this.props.imgList.map(item => {
-                return <div key={item.id}> <img src={item.postPhoto} style={{ width: '100%', height: '100%' }} /></div>
+                console.log(decodeURI(item.postPhoto))
+                return <img src={decodeURI(item.postPhoto)} style={{ width: '100%', height: '100%' }} key={item.id} />
             })
         }
     }

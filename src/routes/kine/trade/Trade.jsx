@@ -47,10 +47,14 @@ class Trade extends React.Component {
             volumeTotalOriginal = Number(format.multiply(sellVolume, instrumentIdData.volumeDivider))
         }
 
-        if (buyVolume == 0 || sellVolume == 0) {
-            message.error("交易数量不能为0!")
-            return
-        }
+        // if (buyVolume == 0) {
+        //     message.error("交易数量不能为0!")
+        //     return;
+        // }
+        // if (sellVolume == 0) {
+        //     message.error("交易数量不能为0!")
+        //     return;
+        // }
         if (userInfo && userInfo.id) {
             orderData.participantId = userInfo.clientID;
             orderData.clientId = userInfo.clientID;

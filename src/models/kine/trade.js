@@ -6,7 +6,7 @@ import kineApi from '../../utils/kineApi';
 export default {
     namespace: 'trade',
     state: {
-        tradeType: '', //交易类型
+        tradeType: '0', //交易类型  默认显示我的委托
         buyPrice: 0,
         buyVolume: 0,
         sellPrice: 0,
@@ -16,8 +16,8 @@ export default {
         orderForClientList: [], //个人委托列表
         getTradeDetailList: [], //行情全部成交明细
 
-        tradeDetailLoding: true,
-        orderForClientLoading: true
+        tradeDetailLoding: false,
+        orderForClientLoading: false
     },
 
     effects: {
@@ -52,6 +52,19 @@ export default {
             }
         },
 
+        //轮询用户成交列表
+        *getClientTradeDetail({ payload }, { call, put }) {
+            const { data } = yield call(baseService, kineApi.trade.getClientTradeDetail, payload);
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        operTradeList: data
+                    }
+                })
+            }
+        },
+
         //查询用户未成交委托列表
         *queryOrderForClient({ payload }, { call, put }) {
             const { data } = yield call(baseService, kineApi.trade.queryOrderForClient, payload);
@@ -60,6 +73,21 @@ export default {
                     type: 'save',
                     payload: {
                         orderForClientList: data.content,
+                        orderForClientLoading: false
+                    }
+                })
+            }
+        },
+
+
+        //轮询用户未成交委托列表
+        *getUnfinishedOrder({ payload }, { call, put }) {
+            const { data } = yield call(baseService, kineApi.trade.getUnfinishedOrder, payload);
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        orderForClientList: data,
                         orderForClientLoading: false
                     }
                 })
@@ -94,10 +122,19 @@ export default {
         setup({ dispatch, history }) {
 
         },
-        getTradeDetail({ dispatch, history }) {
-            return PubSub.subscribe("getTradeDetail", (name, payload) => {
+        getUnfinishedOrder({ dispatch, history }) {
+            return PubSub.subscribe("getUnfinishedOrder", (name, payload) => {
                 dispatch({
-                    type: "getTradeDetail",
+                    type: "getUnfinishedOrder",
+                    payload: payload
+                })
+            })
+        },
+
+        getClientTradeDetail({ dispatch, history }) {
+            return PubSub.subscribe("getClientTradeDetail", (name, payload) => {
+                dispatch({
+                    type: "getClientTradeDetail",
                     payload: payload
                 })
             })

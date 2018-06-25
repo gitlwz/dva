@@ -5,7 +5,6 @@ import { connect } from 'dva';
 import dataFormat from '../../tool/dataFormat';
 import Tabs from './tabs';
 import { Row, Col, Select, Button, Table, Divider } from 'antd';
-const Option = Select.Option;
 const columns = [
     {
         title: '充值流水号',
@@ -14,8 +13,8 @@ const columns = [
         title: '时间',
         dataIndex: 'operateDate',
         render: (text, item) => {
-            if (text.operateDate != null) {
-                return <span>{item.operateDate + item.operateTime}</span>
+            if (item.operateDate != null) {
+                return <span>{item.operateDate}  {item.operateTime}</span>
             }
         }
     }, {
@@ -27,12 +26,19 @@ const columns = [
     }, {
         title: '状态',
         dataIndex: 'receiptStatus',
-        render: (item) => {
+        render: (text, item) => {
             return <span>{dataFormat.reCharge(item.state)}</span>
         }
     }, {
         title: '金额',
         dataIndex: 'moneyInWeb',
+        render: (text, item) => {
+            if (item.moneyType == "1") {
+                return <span>{item.moneyOut}</span>
+            } else {
+                return <span>{item.moneyIn}</span>
+            }
+        }
     }, {
         title: '地址',
         dataIndex: 'address',
@@ -58,7 +64,7 @@ class Recharge extends Component {
     getRechargeList() {
         this.props.dispatch({
             type: 'record/rechargeList',
-            payload: [this.state.orderStatus, "", "", "", "", "", { "pageNo": 1, "pageSize": 10 }]
+            payload: [this.state.orderStatus, "", "", "", "", "", { "pageNo": this.state.pageNo, "pageSize": this.state.pageSize }]
         })
     }
 
@@ -70,25 +76,24 @@ class Recharge extends Component {
             showSizeChanger: true,
             showQuickJumper: true,
             onShowSizeChange: (page, pageSize) => {
-                this.getEntrustList({ pageSize: pageSize, pageNo: page })
+                this.getEntrustList({ pageSize: pageSize, pageNo: page }, () => this.getRechargeList())
             },
             onChange: (page, pageSize) => {
-                this.getEntrustList({ pageSize: pageSize, pageNo: page })
+                this.getEntrustList({ pageSize: pageSize, pageNo: page }, () => this.getRechargeList())
             }
         }
         return (
-            <div className={style.gutte_right}>
-                <div className={style.right_title}> 充提币记录 <span className={style.zh}>727770481@qq.com</span>
-                </div>
+            <div className={style.gutte_right} style={{ overflowX: 'scroll' }}>
+                <div className={style.right_title}> 充提币记录 </div>
                 <div className={style.right_bz}>
                     <Tabs tabList={[{ title: "充币记录", orderStatus: '0' }, { title: "提币记录", orderStatus: '1' }]} tab={this.state.tab} tabChange={item =>
-                        this.setState({ tab: item.title, orderStatus: item.orderStatus }, () => this.getRechargeList())} />
+                        this.setState({ tab: item.title, orderStatus: item.orderStatus, pageNo: 1 }, () => this.getRechargeList())} />
                 </div>
                 <div className={styleA.right_table + " AssetView"}>
                     <Table
                         columns={columns}
                         dataSource={this.props.rechargeData.content}
-                        size="middle"
+                        rowKey="id"
                         pagination={pagination}
                         loading={this.props.loading}
                     />

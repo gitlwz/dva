@@ -63,11 +63,19 @@ class Bibi extends React.Component {
     componentWillUnmount() {
         PubSub.publish('Polling.delsubscribe', ["getLastDayKline"]);
         PubSub.publish('Polling.delsubscribe', ["getAcountAsset"]);
-
     }
 
     changLook() {
         this.setState({ isLook: !this.state.isLook })
+    }
+
+    changTradeType() {
+        this.props.dispatch({
+            type: 'trade/save',
+            payload: {
+                tradeType: this.props.tradeType == "0" ? "1" : "0"
+            }
+        })
     }
 
     //获取资产
@@ -111,7 +119,7 @@ class Bibi extends React.Component {
                         </div>
                     </div>
                     {/*公告栏*/}
-                    <div style={{ mineHeight: 800, marginTop: 10, borderRadius: '8px' }} className={bgColor}>
+                    <div style={{ height: 900, marginTop: 10, borderRadius: '8px' }} className={bgColor}>
                         <div className={cardHeader}>公告栏</div>
                         <Notice />
                     </div>
@@ -148,7 +156,7 @@ class Bibi extends React.Component {
                             <Row>
                                 {/*我的委托*/}
                                 <Col span="17">
-                                    <div className={cardHeader}>我的委托</div>
+                                    <div className={cardHeader}><span style={{ color: this.props.tradeType == "1" ? '#6C7F9C' : '' }} onClick={() => this.changTradeType()}>我的委托</span> <span style={{ color: this.props.tradeType == "0" ? '#6C7F9C' : '' }} onClick={() => this.changTradeType()}>我的成交</span></div>
                                     <div className={bgColor} style={{ height: '360px', ...borderRadius }}>
                                         <MyEntrust />
                                     </div>
@@ -182,6 +190,7 @@ export default connect((state, props) => {
         dataByInstrumentId: state.kine.dataByInstrumentId,
         dataSource: state.kine.dataSource,
         RateUseList: state.other.RateUseList,
+        tradeType: state.trade.tradeType,
         props
     }
 }, (dispatch, props) => {
