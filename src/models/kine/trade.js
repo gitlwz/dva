@@ -69,7 +69,6 @@ export default {
         //查询行情成交明细
         *getTradeDetail({ payload }, { call, put }) {
             const { data } = yield call(baseService, kineApi.trade.getTradeDetail, payload);
-            console.log(data)
             if (data != undefined) {
                 yield put({
                     type: 'save',

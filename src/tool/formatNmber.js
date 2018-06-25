@@ -104,11 +104,11 @@ var format = {
         if (!!closePrice && !!openPrice) {
             if (closePrice - openPrice > 0) {
                 let num = (closePrice - openPrice) / openPrice;
-                return (num * 100).toFixed(2);
+                return <span style={{ color: '#FF4200' }}>+{(num * 100).toFixed(2)}%</span>
             }
             else if (closePrice - openPrice < 0) {
                 let num = (closePrice - openPrice) / openPrice;
-                return (num * 100).toFixed(2);
+                return <span style={{ color: '#349B00' }}>{(num * 100).toFixed(2)}%</span>
             }
             else {
                 return <div>---</div>
@@ -122,14 +122,36 @@ var format = {
      * @param {*} price 
      */
     buyMax(total, price) {
-        // console.log(total, price)
         if (price != 0) {
             if (!!total && total > 0) {
                 return Number(this.multiply(total / price, 1, 2));
             }
         }
         return 0
+    },
+
+    //计算货币转算成人民币
+    convertCNY(rateUseList, closePrice, instrumentId) {
+        if (rateUseList.length > 0) {
+            switch (!!instrumentId && instrumentId.split("-")[1]) {
+                case "USDT":
+                    let exchangeRate1 = rateUseList.filter(item => item.currency == "USDT")[0]["exchangeRate"];
+                    return this.multiply(exchangeRate1, closePrice, 2) + " CNY";
+                    break;
+                case "ETH":
+                    let exchangeRate2 = rateUseList.filter(item => item.currency == "ETH")[0]["exchangeRate"];
+                    return this.multiply(exchangeRate2, closePrice, 2) + " CNY";
+                    break;
+                case "BTC":
+                    let exchangeRate3 = rateUseList.filter(item => item.currency == "BTC")[0]["exchangeRate"];
+                    return this.multiply(exchangeRate3, closePrice, 2) + " CNY";
+                    break;
+                default:
+                    break;
+            }
+        }
     }
+
 }
 
 

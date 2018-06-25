@@ -10,7 +10,8 @@ export default {
     state: {
         rateList: [],  //费率
         noticeList: [],  //主页公告列表
-        messageList: []   //平台公告
+        messageList: [],   //平台公告
+        RateUseList: []  //汇率
     },
 
     effects: {
@@ -53,6 +54,18 @@ export default {
             }
         },
 
+        //查询汇率换算
+        *findAllExchangeRateUse({ payload }, { call, put }) {
+            const { data } = yield call(baseService, api.baseConfig.findAllExchangeRateUse, []);
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        RateUseList: data
+                    }
+                })
+            }
+        },
     },
 
     reducers: {

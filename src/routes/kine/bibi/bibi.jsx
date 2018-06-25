@@ -25,21 +25,31 @@ class Bibi extends React.Component {
     }
 
     componentDidMount() {
-        this.getAcountAsset();
+        this.props.findAllExchangeRateUse();
+        if (this.props.userInfo && !!this.props.userInfo.clientID) {
+            this.getAcountAsset(this.props.userInfo.clientID);
+        }
+
+        if (this.props.currentInstrument) {
+            this.getLastDayKline(this.props.currentInstrument)
+        }
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.currentInstrument != nextProps.currentInstrument) {
-            PubSub.publish('Polling.addsubscribe',
-                [
-                    { name: "getLastDayKline", payload: nextProps.currentInstrument },
-                ]
-            );
+            this.getLastDayKline(nextProps.currentInstrument);
         }
-
         if (this.props.userInfo != nextProps.userInfo && nextProps.userInfo.clientID) {
             this.getAcountAsset(nextProps.userInfo.clientID)
         }
+    }
+
+    getLastDayKline(currentInstrument) {
+        PubSub.publish('Polling.addsubscribe',
+            [
+                { name: "getLastDayKline", payload: currentInstrument },
+            ]
+        );
     }
 
     getAcountAsset(clientID) {
@@ -48,15 +58,26 @@ class Bibi extends React.Component {
                 { name: "getAcountAsset", payload: clientID },
             ]
         );
-
     }
 
     componentWillUnmount() {
-        PubSub.publish('Polling.delsubscribe', ["getLastDayKline,getAcountAsset"])
+        PubSub.publish('Polling.delsubscribe', ["getLastDayKline"]);
+        PubSub.publish('Polling.delsubscribe', ["getAcountAsset"]);
+
     }
 
     changLook() {
         this.setState({ isLook: !this.state.isLook })
+    }
+
+    //获取资产
+    getAccount() {
+        let account = this.props.dataSource;
+        if (account.length > 0) {
+            account = account.filter(item => item.ifTotal == true)[0];
+            return account;
+        }
+        return {};
     }
 
     render() {
@@ -64,6 +85,7 @@ class Bibi extends React.Component {
         let cardHeader = (this.props.theme == "dark" ? styles.darkCardHeader : styles.whiteCardHeader);
         const borderRadius = { borderRadius: '0 0 8px 8px' }
         const { userId, search, searchByInstrum, currentInstrument, dataByInstrumentId } = this.props;
+        let Account = this.getAccount();
         return <div style={{ padding: '10px 30px', backgroundColor: 'rgba(32,38,55,1)' }}>
             <Row>
                 <Col span="5">
@@ -76,7 +98,7 @@ class Bibi extends React.Component {
                                 </Row>
                             </Col>
                             {userId ?
-                                <Col span={24}><div className={styles.assetDiv}>15455 BTC CNY</div></Col> :
+                                <Col span={24}><div className={styles.assetDiv}>{Account["btcCount"]} BTC {Account["cnyCount"]} CNY</div></Col> :
                                 <Col span={24}><LoginTooltip /></Col>
                             }
                         </Row>
@@ -96,7 +118,7 @@ class Bibi extends React.Component {
                 </Col>
                 <Col span="19">
                     <div style={{ marginLeft: 10 }}>
-                        <div className={cardHeader} style={{ color: '#FFF' }}>{currentInstrument} {dataByInstrumentId.closePrice} ≈ 14.47 CNY 涨幅 {formatData.changePrice(dataByInstrumentId.closePrice, dataByInstrumentId.openPrice)} 高 {dataByInstrumentId.highestPrice} 低 {dataByInstrumentId.lowestPrice} 24H量 {dataByInstrumentId.volume}</div>
+                        <div className={cardHeader} style={{ color: '#FFF' }}>{currentInstrument} {dataByInstrumentId.closePrice} ≈ {formatData.convertCNY(this.props.RateUseList, dataByInstrumentId.closePrice, dataByInstrumentId.instrumentId)} 涨幅 {formatData.changePrice(dataByInstrumentId.closePrice, dataByInstrumentId.openPrice)} 高 {dataByInstrumentId.highestPrice} 低 {dataByInstrumentId.lowestPrice} 24H量 {dataByInstrumentId.volume}</div>
                         <div style={{ height: '490px', ...borderRadius }} className={bgColor}>
                             {!!currentInstrument ? <TVChartContainer symbol={currentInstrument} /> : ''}
                         </div>
@@ -158,6 +180,8 @@ export default connect((state, props) => {
         instrumentIds: state.kine.instrumentIds,
         currentInstrument: state.kine.currentInstrument,
         dataByInstrumentId: state.kine.dataByInstrumentId,
+        dataSource: state.kine.dataSource,
+        RateUseList: state.other.RateUseList,
         props
     }
 }, (dispatch, props) => {
@@ -170,8 +194,12 @@ export default connect((state, props) => {
                 }
             })
         },
+        findAllExchangeRateUse: () => {
+            dispatch({
+                type: 'other/findAllExchangeRateUse'
+            })
+        },
         dispatch
-
     }
 
 })(Bibi)

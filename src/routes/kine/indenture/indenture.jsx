@@ -16,7 +16,7 @@ class Indenture extends React.Component {
         super(props);
         this.state = {
             dataSource: [],
-            currency: 'USDT',
+            currency: 'BTC',
             checkedArray: JSON.parse(window.localStorage.getItem("instrumentIdCheck")) || [],
         }
     }
@@ -43,7 +43,7 @@ class Indenture extends React.Component {
     }
 
     loadCurrencys() {
-        const currencys = ["USDT", "BTC", "ETH"];
+        const currencys = ["BTC", "USDT", "ETH"];
         return <div>{currencys.map(item => {
             return <span className={styles.currency} style={{ marginRight: '15px', borderBottom: this.state.currency == item ? '2px solid rgb(120, 173, 255)' : '' }} onClick={() => this.setState({ currency: item })} key={item}>{item}</span>
         })}
@@ -91,21 +91,28 @@ class Indenture extends React.Component {
 
     loadInstrument() {
         let dataSource = this.props.list24HVolumeList["24hInstrument"] || [];
-        let checkedArray = this.state.checkedArray;
-        // for (let i = 0; i < this.props.instrumentIds.length; i++) {
-        //     dataSource.push({ instrumentId: this.props.instrumentIds[i], price: Math.random(1000).toFixed(2), rose: Math.random().toFixed(2) })
-        // }
+        let dataArray = [];
+        let instrumentIds = this.props.instrumentIds;
+        for (let i = 0; i < instrumentIds.length; i++) {
+            let element = { "instrumentId": instrumentIds[i], "tradingDay": "20180529", "highestPrice": "---", "lowestPrice": "---", "openPrice": "---", "closePrice": "---", "volume": "---" };
+            for (let j = 0; j < dataSource.length; j++) {
+                if (instrumentIds[i] == dataSource[j].instrumentId) {
+                    element = dataSource[j];
+                }
 
+            }
+            dataArray.push(element);
+        }
+        let checkedArray = this.state.checkedArray;
         for (let j = 0; j < checkedArray.length; j++) {
-            for (let i = 0; i < dataSource.length; i++) {
-                if (dataSource[i].instrumentId == checkedArray[j]) {
-                    dataSource[i]["checked"] = true
+            for (let i = 0; i < dataArray.length; i++) {
+                if (dataArray[i].instrumentId == checkedArray[j]) {
+                    dataArray[i]["checked"] = true
                 }
             }
         }
-        //this.setState({ dataSource: dataSource })
-        if (dataSource.length > 0)
-            return dataSource.filter(item => {
+        if (dataArray.length > 0)
+            return dataArray.filter(item => {
                 if (this.state.currency == "ZX") {
                     return item.checked == true;
                 } else {
@@ -117,18 +124,7 @@ class Indenture extends React.Component {
 
                 }
             }).map(item => {
-                let rose = formatData.changePrice(item.closePriceString, item.lowestPriceString);
-                console.log(rose)
-                const roseTitle = () => {
-                    if (rose > 0) {
-                        return <span style={{ color: '#FF4200' }}>+{rose}%</span>
-                    } else if (rose.charAt(0) == "-") {
-                        return <span style={{ color: '#349B00' }}>-{rose}%</span>
-                    } else {
-                        return <div>---</div>
-                    }
-                }
-
+                let rose = formatData.changePrice(item.closePrice, item.openPrice);
                 return <Row className={styles.row} key={item.instrumentId} onClick={() => this.changeInstrum(item.instrumentId)}>
                     <Col className={styles.col} span={8}>
                         <div style={{ display: "flex", alignItems: 'center' }}>
@@ -136,8 +132,8 @@ class Indenture extends React.Component {
                             <span> {item.instrumentId.split("-")[0]}</span>
                         </div>
                     </Col>
-                    <Col className={styles.col} span={8} style={{ textAlign: 'center' }}>{item.closePriceString}</Col>
-                    <Col className={styles.col} span={8} style={{ textAlign: 'right', paddingRight: 10 }}>{roseTitle()}</Col>
+                    <Col className={styles.col} span={8} style={{ textAlign: 'center' }}>{item.closePrice}</Col>
+                    <Col className={styles.col} span={8} style={{ textAlign: 'right', paddingRight: 10 }}>{rose}</Col>
                 </Row>
             })
 

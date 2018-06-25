@@ -18,7 +18,8 @@ export default {
         markLoading: true,
         search: '',
         dataByInstrumentId: {}, //合约深度行情
-        list24HVolumeList: {}  //24小时市场行情
+        list24HVolumeList: {},  //24小时市场行情
+        dataSource: []  //资金列表
     },
 
     effects: {
@@ -30,25 +31,19 @@ export default {
                     type: 'save',
                     payload: {
                         instrumentIds: data,
-                        currentInstrument: data[1],
+                        currentInstrument: data[0],
                         loading: false
                     }
                 })
 
                 yield put({
                     type: 'findByInstrumentID',
-                    payload: data[1]
+                    payload: data[0]
                 })
             }
         },
 
         *currencyChange({ payload }, { call, put }) {
-            // yield put({
-            //     type: 'save',
-            //     payload: {
-            //         loading: true
-            //     }
-            // })
             const { data } = yield call(baseService, api.asset.queryOperTradingAccount, payload);
             if (data != undefined) { //成功
                 yield put({
@@ -82,7 +77,6 @@ export default {
 
         //获取买档行情
         *findBuyMarket({ payload }, { call, put }) {
-            console.log("发送")
             const { data } = yield call(baseService, kineApi.trade.findBuyMarket, payload);
             if (data != undefined)
                 yield put({

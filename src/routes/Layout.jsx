@@ -12,6 +12,8 @@ class LayoutPage extends React.Component {
         this.language = localStorage.getItem("language") || "China"
     }
     componentDidMount() {
+        this.props.getInstrumentIds();
+        this.props.findAllExchangeRateUse();
     }
 
     menuClick = ({ item, key, keyPath }) => {
@@ -168,6 +170,16 @@ export default connect((state, props) => {
             //     return;
             // }
             dispatch(routerRedux.push(url))
+        },
+        findAllExchangeRateUse: () => {
+            dispatch({
+                type: 'other/findAllExchangeRateUse'
+            })
+        },
+        getInstrumentIds: () => {
+            dispatch({
+                type: 'kine/getInstrumentIds'
+            })
         },
         dispatch,
         props

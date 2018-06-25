@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col, Radio, Carousel } from 'antd';
 import { connect } from 'dva';
 import dataJSON from '../../language/index'
+import format from '../../tool/formatNmber';
 import CalculateFunc from '../../tool/CalculateFunc';
 import YHTable from '../../components/YHTable';
 import PubSub from "pubsub-js";
@@ -26,6 +27,8 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
+        this.props.getInstrumentIds();
+        this.props.findAllExchangeRateUse();
         PubSub.publish('Polling.addsubscribe',
             [
                 { name: "list24HVolume" },
@@ -59,8 +62,21 @@ class Home extends React.Component {
 
     //返回统一数据
     getDataArray() {
-        let dataArray = this.props.list24HVolumeList["24hInstrument"] || [];
+        let dataSource = this.props.list24HVolumeList["24hInstrument"] || [];
+        let instrumentIds = this.props.instrumentIds;
         let checkedArray = this.state.checkedArray;
+        let dataArray = [];
+
+        for (let i = 0; i < instrumentIds.length; i++) {
+            let element = { "instrumentId": instrumentIds[i], "tradingDay": "20180529", "highestPrice": "---", "lowestPrice": "---", "openPrice": "---", "closePrice": "---", "volume": "---" };
+            for (let j = 0; j < dataSource.length; j++) {
+                if (instrumentIds[i] == dataSource[j].instrumentId) {
+                    element = dataSource[j];
+                }
+            }
+            dataArray.push(element);
+        }
+
         //读取缓存的数组 
         for (let i = 0; i < dataArray.length; i++) {
             for (let j = 0; j < checkedArray.length; j++) {
@@ -107,48 +123,19 @@ class Home extends React.Component {
         })
     }
 
+    //获取热点货币
     getHotInstrument() {
         let dataArray = this.props.list24HVolumeList["hotInstrument"] || [];
-        console.log(dataArray)
         return dataArray.map(item => {
             return <div className={styles.card} key={item.instrumentId}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }} className={styles.text}>
                     <span>{item.instrumentId}</span>
                     {this.loadChangeVie(item)}
                 </div>
-                <div className={styles.text}>{item.closePrice != "---" ? parseFloat(item.closePrice.toFixed(4)) : ""}{this.convertCNY(item)}</div>
+                <div className={styles.text}>{item.closePrice != "---" ? parseFloat(item.closePrice) : ""}≈{format.convertCNY(this.props.RateUseList, item.closePrice, item.instrumentId)}</div>
                 <div className={styles.text}>24H量 {item.volume != "---" ? parseInt(item.volume) : '---'}</div>
             </div>
         })
-    }
-
-
-    //计算当前兑换人民币
-    convertCNY(item) {
-        const title = (index) => {
-            return " ≈ " + "  " + CalculateFunc.multiply(item.closePrice, index, 2) + " CNY";
-        }
-        if (item.closePrice != "---") {
-            if (this.state.rateList.length > 0) {
-                switch (item.instrumentId) {
-                    case "BTC-USDT":
-                        return title(this.state.rateList.filter(item => item.currency == "USDT")[0]["exchangeRate"]);
-                        break;
-                    case "ETH-USDT":
-                        return title(this.state.rateList.filter(item => item.currency == "USDT")[0]["exchangeRate"]);
-                        break;
-                    case "BTC-ETH":
-                        return title(this.state.rateList.filter(item => item.currency == "ETH")[0]["exchangeRate"]);
-                        break;
-                    case "EHT-BTC":
-                        return title(this.state.rateList.filter(item => item.currency == "BTC")[0]["exchangeRate"]);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
     }
 
     render() {
@@ -169,9 +156,9 @@ class Home extends React.Component {
             },
             {
                 title: dataJSON.ZXJ,
-                dataIndex: 'closePriceString',
+                dataIndex: 'closePrice',
                 render: (item) => {
-                    if (item.closePriceString != "---") {
+                    if (item.closePrice != "---") {
                         return <div>{parseFloat(item.closePrice.toFixed(4))}</div>
                     } else {
                         return <div>---</div>
@@ -180,7 +167,7 @@ class Home extends React.Component {
             },
             {
                 title: dataJSON.ZF,
-                dataIndex: 'openPriceString',
+                dataIndex: 'openPrice',
                 render: (item) => {
                     return <div style={{ display: "flex", justifyContent: "center" }}>
                         {this.loadChangeVie(item)}
@@ -189,17 +176,17 @@ class Home extends React.Component {
             },
             {
                 title: dataJSON.ZGJ,
-                dataIndex: 'highestPriceString',
+                dataIndex: 'highestPrice',
             },
             {
                 title: dataJSON.ZDJ,
-                dataIndex: 'lowestPriceString',
+                dataIndex: 'lowestPrice',
             },
             {
                 title: dataJSON.LXSCJ,
-                dataIndex: 'volumeString',
+                dataIndex: 'volume',
                 render: (item) => {
-                    if (item.volumeString != "---") {
+                    if (item.volume != "---") {
                         return <div>{parseInt(item.volume)}</div>
                     } else {
                         return <div>---</div>
@@ -222,19 +209,6 @@ class Home extends React.Component {
                     <div className={styles.currency + " " + styles.search}>
                         <img src={require("../../assets/yinghe/搜索@2x.png")} style={{ marginLeft: 15 }} />
                         <input value={this.state.search} onChange={e => this.setState({ search: e.target.value.toUpperCase() })} />
-                        {/* <div className={styles.searchBtn} onClick={() => {
-                            // if (this.state.search != "") {
-                            //     let newArray = this.getDataArray().filter(item => {
-                            //         console.log(item)
-                            //         let itemData = item.instrumentId.split("-");
-                            //         return (itemData[0].match(this.state.search))
-                            //     })
-                            //     console.log(newArray)
-                            //     this.setState({ dataArray: newArray })
-                            // } else {
-                            //     this.setState({ dataArray: this.dataArray })
-                            // }
-                        }}>{dataJSON.SS}</div>*/}
                     </div>
                 </div>
 
@@ -260,15 +234,23 @@ export default connect((state, props) => {
     return {
         instrumentIds: state.kine.instrumentIds,
         list24HVolumeList: state.kine.list24HVolumeList,
+        instrumentIds: state.kine.instrumentIds,
+        RateUseList: state.other.RateUseList,
         props
     }
 }, (dispatch) => {
     return {
-        list24HVolume: () => {
+        findAllExchangeRateUse: () => {
             dispatch({
-                type: 'kine/list24HVolume'
+                type: 'other/findAllExchangeRateUse'
             })
-        }
+        },
+        getInstrumentIds: () => {
+            dispatch({
+                type: 'kine/getInstrumentIds'
+            })
+        },
+        dispatch
     }
 
 })(Home)

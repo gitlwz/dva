@@ -56,7 +56,6 @@ export default {
     * customerProblems({ payload }, { call }) {
       yield call(baseService, api.user.customerProblems, payload);
     }
-
   },
 
   reducers: {

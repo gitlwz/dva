@@ -58,7 +58,7 @@ class Recharge extends Component {
     getRechargeList() {
         this.props.dispatch({
             type: 'record/rechargeList',
-            payload: [this.state.orderStatus, "20180624", "20180624", "", "", "", { "pageNo": 1, "pageSize": 10 }]
+            payload: [this.state.orderStatus, "", "", "", "", "", { "pageNo": 1, "pageSize": 10 }]
         })
     }
 

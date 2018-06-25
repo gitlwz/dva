@@ -11,7 +11,7 @@ export default {
         },
         entrustData: {
             content: []
-        }
+        },
     },
 
     subscriptions: {
@@ -33,7 +33,6 @@ export default {
         },
         *entrustList({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.asset.entrustList, payload);
-            console.log(data)
             if (data != undefined) {
                 yield put({
                     type: 'save',
