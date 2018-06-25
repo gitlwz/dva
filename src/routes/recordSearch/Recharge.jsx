@@ -13,9 +13,9 @@ const columns = [
     }, {
         title: '时间',
         dataIndex: 'operateDate',
-        render: (text, index) => {
+        render: (text, item) => {
             if (text.operateDate != null) {
-                return <span>{text.operateDate + text.operateTime}</span>
+                return <span>{item.operateDate + item.operateTime}</span>
             }
         }
     }, {

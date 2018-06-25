@@ -16,6 +16,7 @@ class Entrust extends Component {
             pageNo: 1,
             pageSize: 10,
             tab: '委托查询',
+            tradeTimeFlag: '3',
             orderStatus: "0"
         }
     }
@@ -31,12 +32,16 @@ class Entrust extends Component {
         // type 
 
         if (this.props.userInfo && !!this.props.userInfo.clientID) {
+            let action = 'record/entrustList';
+            if (this.state.tradeTimeFlag == "3" || this.state.tradeTimeFlag == "4") {
+                action = 'record/queryOrderForClient';
+            }
             this.props.dispatch({
-                type: 'record/entrustList',
+                type: action,
                 payload: [
                     {
                         "registeredName": registeredName,
-                        "tradeTimeFlag": "2",
+                        "tradeTimeFlag": this.state.tradeTimeFlag,
                         "clientId": clientId,
                         "clientName": clientName,
                         "direction": "",
@@ -50,18 +55,6 @@ class Entrust extends Component {
         }
     }
 
-    currencyChange = (value) => {
-        let _value = value === "全部" ? null : value;
-        this.currency = _value;
-    }
-    queryClick = () => {
-        this.props.dispatch({
-            type: 'asset/currencyChange',
-            payload: {
-                currency: this.currency
-            }
-        })
-    }
     render() {
         //分页
         const pagination = {
@@ -76,56 +69,100 @@ class Entrust extends Component {
                 this.setState({ pageNo: page, pageSize: pageSize }, () => this.getEntrustList())
             }
         }
-
-        const columns = [
-            {
-                title: '委托时间',
-                dataIndex: 'insert',
-                render: (index, item) => {
-                    return <div style={{ whiteSpace: 'nowrap' }}>{item.insertDate} {item.insertTime}</div>
-                }
-            }, {
-                title: '委托单号',
-                dataIndex: 'orderSysId',
-            }, {
-                title: '名称',
-                dataIndex: 'instrumentId',
-            }, {
-                title: '买卖',
-                dataIndex: 'direction',
-                render: (text, item) => {
-                    if (item.direction == "0") {
-                        return <span style={{ color: '#FF4200' }}>买</span>
-                    } else {
-                        return <span style={{ color: '#349B00' }}>卖</span>
+        let columns;
+        if (this.state.tradeTimeFlag == "3" || this.state.tradeTimeFlag == "4") {
+            columns = [
+                {
+                    title: "委托时间",
+                    dataIndex: 'insert',
+                    render: (index, item) => {
+                        return <div style={{ whiteSpace: 'nowrap' }}>{item.insertDate} {item.insertTime}</div>
                     }
-                }
-            }, {
-                title: '委托价格',
-                dataIndex: 'limitPrice',
-            }, {
-                title: '委托数量',
-                dataIndex: 'volumeTotalOriginal'
-            }, {
-                title: '总额',
-                dataIndex: 'totalPrice',
-            }, {
-                title: '成交数量',
-                dataIndex: 'volumeTraded'
-            }, {
-                title: '委托状态',
-                dataIndex: 'orderStatus',
-                render: (text, item) => {
-                    return <span>{DataFormatter.orderStatus(item.orderStatus)}</span>
-                }
-            }];
+                }, {
+                    title: '委托单号',
+                    dataIndex: 'orderSysId',
+                }, {
+                    title: '名称',
+                    dataIndex: 'instrumentId',
+                }, {
+                    title: '方向',
+                    dataIndex: 'direction',
+                    render: (text, item) => {
+                        if (item.direction == "0") {
+                            return <span style={{ color: '#FF4200' }}>买</span>
+                        } else {
+                            return <span style={{ color: '#349B00' }}>卖</span>
+                        }
+                    }
+                }, {
+                    title: '价格',
+                    dataIndex: 'limitPrice',
+                }, {
+                    title: '数量',
+                    dataIndex: 'volumeTotalOriginal'
+                }, {
+                    title: '总额',
+                    dataIndex: 'totalPrice',
+                }, {
+                    title: '成交数量',
+                    dataIndex: 'volumeTraded'
+                }, {
+                    title: '委托状态',
+                    dataIndex: 'orderStatus',
+                    render: (text, item) => {
+                        return <span>{DataFormatter.orderStatus(item.orderStatus)}</span>
+                    }
+                }];
+        } else {
+            columns = [
+                {
+                    title: '成交时间',
+                    dataIndex: 'insert',
+                    render: (index, item) => {
+                        return <div style={{ whiteSpace: 'nowrap' }}>{item.insertDate} {item.insertTime}</div>
+                    }
+                }, {
+                    title: '成交单号',
+                    dataIndex: 'orderSysId',
+                }, {
+                    title: '名称',
+                    dataIndex: 'instrumentId',
+                },
+                {
+                    title: '方向',
+                    dataIndex: 'direction',
+                    render: (text, item) => {
+                        if (item.direction == "0") {
+                            return <span style={{ color: '#FF4200' }}>买</span>
+                        } else {
+                            return <span style={{ color: '#349B00' }}>卖</span>
+                        }
+                    }
+                }, {
+                    title: '价格',
+                    dataIndex: 'limitPrice',
+                }, {
+                    title: '数量',
+                    dataIndex: 'volumeTotalOriginal'
+                }, {
+                    title: '成交额',
+                    dataIndex: 'totalPrice',
+                }, {
+                    title: '成交数量',
+                    dataIndex: 'volumeTraded'
+                }, {
+                    title: '交易手续费',
+                    dataIndex: 'fee',
+
+                }];
+        }
+
         return (
             <div className={style.gutte_right}>
-                <div className={style.right_title}> 委托查询 <span className={style.zh}>727770481@qq.com</span>
-                </div>
+                <div className={style.right_title}> 委托查询 </div>
                 <div className={style.right_bz}>
-                    <Tabs tabList={[{ title: "委托查询", orderStatus: '0' }, { title: "当日成交", orderStatus: '1' }, { title: "历史成交", orderStatus: '1' }, { title: "未成交查询", orderStatus: '1' }]}
-                        tab={this.state.tab} tabChange={item => this.setState({ tab: item.title, orderStatus: item.orderStatus })} />
+                    <Tabs tabList={[{ title: "委托查询", tradeTimeFlag: '3' }, { title: "当日成交", tradeTimeFlag: '1' }, { title: "历史成交", tradeTimeFlag: '2' }, { title: "未成交委托查询", tradeTimeFlag: '4' }]}
+                        tab={this.state.tab} tabChange={item => this.setState({ tab: item.title, tradeTimeFlag: item.tradeTimeFlag, pageNo: 1 }, () => this.getEntrustList())} />
                 </div>
                 <div className={styleA.right_table + " AssetView"}>
                     <Table

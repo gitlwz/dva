@@ -1,5 +1,6 @@
 import baseService from '../services/baseService';
 import api from '../utils/api';
+import kineApi from '../utils/kineApi';
 export default {
     //记录查询
     namespace: 'record',
@@ -31,6 +32,8 @@ export default {
                 })
             }
         },
+
+        //查询成交列表
         *entrustList({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.asset.entrustList, payload);
             if (data != undefined) {
@@ -42,6 +45,20 @@ export default {
                 })
             }
         },
+
+        //查询委托列表
+        *queryOrderForClient({ payload }, { call, put }) {
+            const { data } = yield call(baseService, kineApi.trade.queryOrderForClient, payload);
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        entrustData: data
+                    }
+                })
+            }
+        },
+
     },
 
     reducers: {
