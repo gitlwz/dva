@@ -40,7 +40,7 @@ const apis = {
         gooleCheckOver: { url: baseIP + "service/anonymousWebGeneralService/gooleCheckOver", method: 'POST', description: '开启谷歌验证' },
     },
     "smSverification":{
-        resetGooleOrMessageCheck: { url: baseIP + "service/webGeneralService/resetGooleOrMessageCheck", method: 'POST', description: '发送短信验证' },
+        resetGooleOrMessageCheck: { url: baseIP + "service/webGeneralService/resetGooleOrMessageCheck", method: 'POST', description: 'tGoole验证' },
         bankBindingMessageSent: { url: baseIP + "service/anonymousWebGeneralService/bankBindingMessageSent", method: 'POST', description: '发送短信验证' },
         registrerMessageSent: { url: baseIP + "service/anonymousWebGeneralService/registrerMessageSent", method: 'POST', description: '发送短信验证' },
         messageCheck: { url: baseIP + "service/anonymousWebGeneralService/messageCheck", method: 'POST', description: '提交' },
@@ -57,6 +57,9 @@ const apis = {
     },
     "submitMessageCompany":{
         authentication: { url: baseIP + "service/clientApplyService/authentication", method: 'POST', description: '发送短信验证' },
+    },
+    "otherPresent":{
+        findByCurrencyAndAddressType: { url: baseIP + "service/webGeneralService/findByCurrencyAndAddressType", method: 'POST', description: '发送短信验证' },
     },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },

@@ -24,7 +24,7 @@ const columns = [{
             <div>
                 <a href={"#/otherRecharge/" + record.currency} style={{color:"rgba(253,204,57,1)"}}>充值</a>
                 <Divider type="vertical" />
-                <a href="#" style={{color:"rgba(253,204,57,1)"}}>提现</a>
+                <a href="#/otherPresent/BTC" style={{color:"rgba(253,204,57,1)"}}>提现</a>
             </div>
         )
     }
