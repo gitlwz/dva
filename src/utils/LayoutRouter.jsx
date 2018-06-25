@@ -86,6 +86,14 @@ const LayoutRouter = [
         path: '/submitMessage',  //身份证验证
         models: () => [import('../models/submitMessage')],
         component: () => import('../routes/submitMessage/submitMessage'),
+    },{
+        path: '/submitMessageForeign',  //护照证验证
+        models: () => [import('../models/submitMessageForeign')],
+        component: () => import('../routes/submitMessageForeign/submitMessageForeign'),
+    },{
+        path: '/submitMessageCompany',  //机构
+        models: () => [import('../models/submitMessageCompany')],
+        component: () => import('../routes/submitMessageCompany/submitMessageCompany'),
     }
 ]
 export default LayoutRouter;

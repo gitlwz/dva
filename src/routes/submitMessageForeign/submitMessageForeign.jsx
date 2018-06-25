@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
 import { Form, Input, message, Select, Button, Spin, Radio, Row, Col } from 'antd';
-import style from './submitMessage.less'
+import style from './submitMessageForeign.less'
 import UploadComponent from '../../components/upload';
+import countryDate from './Country.json';
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const { Option, OptGroup } = Select;
@@ -12,7 +13,7 @@ const Search = Input.Search;
 /**
  * 资产管理
  */
-class submitMessage extends Component {
+class submitMessageForeign extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -71,13 +72,6 @@ class submitMessage extends Component {
                 </div>
             </div>)
     }
-    handleConfirm = (rule, value, callback) =>{
-        if (!/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(value)) {
-            callback('请输入正确的身份证号！')
-            return
-        }
-        callback()
-    }
     //提交
     onSubmit = () =>{
         const { validateFieldsAndScroll } = this.props.form;
@@ -95,8 +89,10 @@ class submitMessage extends Component {
                 message.error("请上传手持身份证照片！")
                 return;
             }
+            console.log("*********8",this.state)
+            return;
             this.props.dispatch({
-                type: 'submitMessage/authentication',
+                type: 'submitMessageForeign/authentication',
                 payload: {
                     params: {
                         idFrontPhoto:this.state.data1,
@@ -105,8 +101,7 @@ class submitMessage extends Component {
                         clientName:values.name,
                         gender:values.gender,
                         identificationID:values.idnumber,
-                        identificationType:'1',
-                        clientType:'1'
+                        clientType:2
                     }
                 }
             })
@@ -129,10 +124,10 @@ class submitMessage extends Component {
             },
         };
         return (
-            <div className="submitMessage" style={{ backgroundColor: "#F7F7F7", color: "black" }}>
+            <div className="submitMessageForeign" style={{ backgroundColor: "#F7F7F7", color: "black" }}>
                 <Spin spinning={this.props.loading} size="large" >
                     <div className={style.content}>
-                        <div className={style.title}>身份证验证</div>
+                        <div className={style.title}>护照验证</div>
                         <div className={style.detail}>
                             <div className={style.info}>提示：请准确填写以下信息，提交后无法更改</div>
                             <div className={style.form}>
@@ -168,15 +163,34 @@ class submitMessage extends Component {
                                     </FormItem>
                                     <FormItem
                                         {...formItemLayout}
-                                        label="身份证号"
+                                        label="国家代码"
+                                    >
+                                        {getFieldDecorator('country', {
+                                            rules: [{
+                                                required: true,
+                                                message:"请选择国家代码"
+                                            }],
+                                        })(
+                                            <Select placeholder="请选择国家">
+                                                {countryDate.map((item, index) => {
+                                                    let news = item.split("-")[1]
+                                                    let number = item.split("-")[1]
+                                                    return <Option value={number} key={index}>{news}</Option>
+                                                })}
+                                            </Select>
+                                        )}
+                                    </FormItem>
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="护照号码"
                                     >
                                         {getFieldDecorator('idnumber', {
                                             rules: [{
                                                 required: true,
-                                                validator: this.handleConfirm
+                                                message:"请输入护照号码"
                                             }],
                                         })(
-                                            <Input placeholder="输入身份证号" type="text" />
+                                            <Input placeholder="护照号码" type="text" />
                                         )}
                                     </FormItem>
                                 </Form>
@@ -185,7 +199,7 @@ class submitMessage extends Component {
                                         <div className={style.update}>
                                             <UploadComponent callback={(data, img) => this.upLoadCallBack(data, img, 1)}>
                                                 {!this.state.img1 ? <div className={style.icon}>
-                                                    上传身份证正面
+                                                    上传护照封面
                                                  </div> : this.readLoad(this.state.img1, 1)}
                                             </UploadComponent>
                                         </div>
@@ -194,7 +208,7 @@ class submitMessage extends Component {
                                         <div className={style.update}>
                                             <UploadComponent callback={(data, img) => this.upLoadCallBack(data, img, 2)}>
                                                 {!this.state.img2 ? <div className={style.icon}>
-                                                    上传身份证反面
+                                                    上传护照个人信息页
                                                  </div> : this.readLoad(this.state.img2, 2)}
                                             </UploadComponent>
                                         </div>
@@ -203,7 +217,7 @@ class submitMessage extends Component {
                                         <div className={style.update}>
                                             <UploadComponent callback={(data, img) => this.upLoadCallBack(data, img, 3)}>
                                                 {!this.state.img3 ? <div className={style.icon}>
-                                                    上传手持身份证照片
+                                                    上传手持护照照片
                                                  </div> : this.readLoad(this.state.img3, 3)}
                                             </UploadComponent>
                                         </div>
@@ -221,11 +235,11 @@ class submitMessage extends Component {
     }
 }
 export default connect((state, props) => {
-    let { loading } = state.submitMessage
+    let { loading } = state.submitMessageForeign
     let { userInfo = {} } = state.user
     return {
         userInfo,
         loading,
         ...props,
     }
-})(Form.create()(submitMessage));
+})(Form.create()(submitMessageForeign));

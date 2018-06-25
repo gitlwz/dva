@@ -1,0 +1,129 @@
+
+:global{
+    .submitMessageCompany .ant-input,
+    .submitMessageCompany .ant-select-selection--single{
+        border-color: rgba(192,192,192,1);
+        box-shadow:0px 2px 3px 0px rgba(170,170,170,0.5);
+        height:40px;
+    }
+    .submitMessageCompany  .ant-select-selection__rendered{
+        line-height: 40px;
+    }
+    .submitMessageCompany .hqbtn.ant-btn{
+        border-radius: 0 5px 5px 0;
+        position: relative;
+        border-color: rgba(253,204,57,1);
+        color: rgba(86,86,86,1);
+        left: -1px; 
+        top: -1px;
+        width:122px;
+        height:42px;
+        background:rgba(253,204,57,1);
+    }
+
+}
+.content{
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+.title{
+    text-align: center;
+    height:36px;
+    font-size:25px;
+    font-family:PingFangSC-Semibold;
+    color:rgba(86,86,86,1);
+    line-height:36px;
+}
+.detail{
+    margin-top: 40px;
+    padding: 30px 40px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 7px 0px rgba(160,160,160,0.5);
+}
+.info{
+    font-size:14px;
+    font-family:PingFangSC-Regular;
+    color:rgba(255,66,0,1);
+    line-height:20px;
+}
+.form{
+    margin: 25px auto;
+    width: 60%;
+}
+.update{
+    position: relative;
+    margin: 20px auto;
+    width:318px;
+    height:203px;
+    border:1px dashed rgba(151,151,151,1);
+    text-align: center;
+}
+.icon{
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    color: #737373;
+    top: 125px;
+}
+.icon::before{
+    content: "+";
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    background-color: #FDCC39;
+    color: white;
+    border-radius: 50%;
+    left: 50%;
+    top: -60px;
+    transform: translateX(-50%);
+    text-align: center;
+    line-height: 44px;
+    font-weight: bold;
+    font-size: 56px;
+}
+.icon:hover::before{
+    background-color: #FFD965
+}
+.hoveImg img{
+    cursor: pointer;
+    width:318px;
+    height:203px;
+    position: relative;
+    filter:blur(5px); 
+}
+.hoveImgFalse img{
+    cursor: pointer;
+    width:318px;
+    height:203px;
+    position: relative;
+}
+
+.hoveImgtext{
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    color: white;
+    top: -60px;
+}
+.hoveImgtext::before{
+    content: "+";
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    color: white;
+    border-radius: 50%;
+    border:1px dashed rgba(151,151,151,1);
+    left: 50%;
+    transform: translateX(-50%);
+    top: -67px;
+    text-align: center;
+    line-height: 44px;
+    font-weight: bold;
+    font-size: 56px;
+}
+.hoveImgtextFalse{
+    display: none;
+}
