@@ -15,6 +15,24 @@ export default {
     },
 
     effects: {
+        *withdraw({ payload }, { call, put }) {
+            yield put({
+                type: 'save',
+                payload:{
+                    loading:true
+                }
+            })
+            const { data } = yield call(baseService, api.otherPresent.withdraw, [...payload.params]);
+            if(data === null){
+                message.success("提现成功！")
+            }
+            yield put({
+                type: 'save',
+                payload:{
+                    loading:false
+                }
+            })
+        },
         *bankBindingMessageSent({ payload }, { call, put }) {
             yield put({
                 type: 'save',
@@ -41,32 +59,12 @@ export default {
                 }
             })
             const { data } = yield call(baseService, api.otherPresent.findByCurrencyAndAddressType, [...payload.params]);
-            if(!data){
+            if(!!data){
                 yield put({
                     type: 'save',
                     payload:{
                         loading:false,
-                        currencyAndAddress: [{
-                            "id": 357,
-                            "traderAccount": null,
-                            "traderId": null,
-                            "subAccountId": "0000000055",
-                            "traderName": null,
-                            "currency": "BTC",
-                            "addressType": "2",
-                            "address": "19ZZrhZvSMMDDK7yuxo5gzkmvU645TMSTU",
-                            "addressRemark": "火币钱包",
-                            "createTime": null,
-                            "updateTime": null,
-                            "createTimeStr": null,
-                            "updateTimeStr": null,
-                            "available": 0.00746932139445375,
-                            "extractable": 0.007450000000000000,
-                            "withdrawFeeRate": 0.002000000000000000,
-                            "withdrawalUnit": "0.00001",
-                            "withdrawalAmount": "0.001",
-                            "withdrawFeeAlgor": "1"
-                        }] //data
+                        currencyAndAddress: data
                     }
                 })
             }else{

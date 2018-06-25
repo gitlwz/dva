@@ -140,7 +140,7 @@ class CashManagement extends Component {
     }
     //立即绑定
     bindClick = (key) =>{
-        console.log("***********",key)
+        this.props.history.push("/bindingAddress/"+key)
     }
     TXotherAddressCheck = (list,key) =>{
         if(list.length > 0){

@@ -41,6 +41,10 @@ class Header extends Component {
             case "2":
                 this.props.dispatch(routerRedux.push("/record"))
                 break;
+            case "4":
+                this.props.dispatch(routerRedux.push("/asset?type=2"))
+                //安全中心
+                break;
             default:
                 break;
         }
@@ -66,12 +70,12 @@ class Header extends Component {
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
-                <Menu.Item key="3">
+                {/* <Menu.Item key="3">
                     <div className={styles.header_dropdown_item}>
                         <span className={styles.header_dropdown_text + " " + styles.header_dropdown_sf}>身份认证</span>
                     </div>
                 </Menu.Item>
-                <Menu.Divider />
+                <Menu.Divider /> */}
                 <Menu.Item key="4">
                     <div className={styles.header_dropdown_item}>
                         <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>安全中心</span>

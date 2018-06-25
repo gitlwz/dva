@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
-import { Form, Input,InputNumber, Icon, message, Button, Spin, Divider, Radio,Select } from 'antd';
-import style from './otherPresent.less'
+import { Form, Input, Icon, message, Button, Spin, Divider, Radio } from 'antd';
+import style from './bindingAddress.less'
 import md5 from 'md5';
-const { Option, OptGroup } = Select;
 const RadioGroup = Radio.Group;
 const FormItem = Form.Item;
 const InputGroup = Input.Group;
@@ -12,7 +11,7 @@ const Search = Input.Search;
 /**
  * 资产管理
  */
-class otherPresent extends Component {
+class bindingAddress extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,11 +20,7 @@ class otherPresent extends Component {
             radio2:false,
 
             radio1_i:false,
-            radio2_i:false,
-
-            select:{},
-
-            fee:"--"
+            radio2_i:false
         }
     }
     setTime = () => {
@@ -40,13 +35,13 @@ class otherPresent extends Component {
         }, 1000)
     }
     componentWillMount = () => {
-        this.props.dispatch({
-            type: 'otherPresent/findByCurrencyAndAddressType',
-            payload: {
-                params: [this.props.match.params.type,"2"]
-            }
-        })
+    }
+    componentDidMount = () =>{
         this.dealRadio(this.props.userInfo.applyStatus)
+        const { setFieldsValue } = this.props.form;
+        setFieldsValue({
+            currency:this.props.match.params.type
+        })
     }
     dealRadio = (applyStatus) =>{
         if(!!applyStatus){
@@ -78,19 +73,7 @@ class otherPresent extends Component {
             })
         }
     }
-    //提现地址
-    txdzChange = (value) =>{
-        let {getFieldValue,setFieldsValue} = this.props.form;
-        if(!!value){
-            let currentAdderss = this.props.currencyAndAddress.find((ele)=>ele.id === value);
-            setFieldsValue({
-                address:currentAdderss.address
-            })
-            this.setState({
-                select:currentAdderss
-            })
-        }
-    }
+    
     
     radioChange = ({target}) =>{
         if(target.value == 2){
@@ -116,7 +99,7 @@ class otherPresent extends Component {
     getNoteCode = () =>{
         if(!!this.props.userInfo.mobilePhone){
             this.props.dispatch({
-                type: 'otherPresent/bankBindingMessageSent',
+                type: 'bindingAddress/bankBindingMessageSent',
                 payload: {
                     params: this.props.userInfo.mobilePhone
                 }
@@ -129,37 +112,31 @@ class otherPresent extends Component {
     //提交
     submit = () => {
         const { validateFieldsAndScroll } = this.props.form;
-        
-        validateFieldsAndScroll((error , values)=>{
-            if(error){
+        validateFieldsAndScroll((err,values)=>{
+            if(!!err){
                 return
             }
-            let code = values.code1;
-            if(values.radio == 2){
-                code = values.code2;
-            }
             let params = [{
-                currency:this.props.match.params.type,
+                currency:values.currency,
+                addressType:"2",
                 address:values.address,
-                capitalPwd:md5(values.capitalPwd),
-                amount:values.amount,
-                fee:0.001
-            },
-            this.props.userInfo.mobilePhone
-            ,
-            code
-            ,
-            values.radio
-        ]
+                addressRemark:values.addressRemark
+            },this.props.userInfo.mobilePhone]
+            if(values.radio == 1){
+                params.push(values.code1)
+                params.push(values.radio)
+            }else{
+                params.push(values.code2)
+                params.push(values.radio)
+            }
             this.props.dispatch({
-                type: 'otherPresent/withdraw',
+                type: 'bindingAddress/addTraderFundAddress',
                 payload: {
                     params: params
                 }
             })
-        })
-        
             
+        })
     }
     componentWillReceiveProps = (nextProps) =>{
         if(nextProps.userInfo.applyStatus !== this.props.userInfo.applyStatus){
@@ -182,84 +159,43 @@ class otherPresent extends Component {
                 lg: { span: 20 },
             },
         };
-        let precision = 0
-        let _precision = this.state.select.withdrawalUnit
-        if(!!_precision){
-            precision = _precision.split(".")[1].length
-        }
         return (
             <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
                 <Spin spinning={this.props.loading} size="large" >
-                    <div className={style.content + " " + "otherPresent"}>
+                    <div className={style.content + " " + "bindingAddress"}>
                         <div className={style.title}>
-                            其他货币提现
+                            绑定提现地址
                         </div>
                         <div>
                             <Form>
                                 <FormItem
                                 >
-                                    {getFieldDecorator('txdz', {
+                                    {getFieldDecorator('currency', {
                                         rules: [{
-                                            required:true,
-                                            message:"请选择提现地址",
-                                            
+                                            required:true
                                         }],
                                     })(
-                                        <Select onChange={this.txdzChange} placeholder="请选择提现地址">
-                                            {this.props.currencyAndAddress.map((ele,index)=>{
-                                                return <Option value={ele.id} key={ele.id}>{ele.addressRemark}</Option>
-                                            })}
-                                        </Select>
+                                        <Input disabled placeholder="请设置资金密码" type="text" />
                                     )}
                                 </FormItem>
-
-                                <FormItem>
+                                <FormItem
+                                >
+                                    {getFieldDecorator('addressRemark', {
+                                        rules: [{
+                                            required:true
+                                        }],
+                                    })(
+                                        <Input placeholder="地址名称" type="text" />
+                                    )}
+                                </FormItem>
+                                <FormItem
+                                >
                                     {getFieldDecorator('address', {
-                                    })(
-                                        <Input disabled  type="text"/>
-                                    )}
-                                </FormItem>
-
-                                <FormItem
-                                >
-                                    {getFieldDecorator('amount', {
                                         rules: [{
-                                            required:true,
-                                            message:"请输入提现金额"
+                                            required:true
                                         }],
                                     })(
-                                        <InputNumber  precision={precision} max={this.state.select.extractable*1||0} min={this.state.select.withdrawalAmount*1||0} placeholder="提现金额" className={style.inputerNumber}  />
-                                    )}
-                                    <a href="#/minerFee" className={style.inputerNumber_text}>矿工说明</a>
-                                </FormItem>
-                                <div>
-                                    <div className={style.txwz}>
-                                        <span>最小提现单位：</span>
-                                        <span>{this.state.select.withdrawalUnit*1||0}</span>
-                                    </div>
-                                    <div className={style.txwz}>
-                                        <span>最小可提现金额：</span>
-                                        <span>{this.state.select.withdrawalAmount*1||0}</span>
-                                    </div>
-                                    <div className={style.txwz}>
-                                        <span>可提现金额：</span>
-                                        <span>{this.state.select.extractable*1||0}</span>
-                                    </div>
-                                    <div className={style.txwz}>
-                                        <span>提现手续费：</span>
-                                        <span>{this.state.fee}</span>
-                                    </div>
-                                </div>
-                                <FormItem
-                                style={{marginTop:"20px"}}
-                                >
-                                    {getFieldDecorator('capitalPwd', {
-                                        rules: [{
-                                            required:true,
-                                            message:"请输入资金密码"
-                                        }],
-                                    })(
-                                        <Input placeholder="请输入资金密码"  />
+                                        <Input placeholder="提现地址" type="text" />
                                     )}
                                 </FormItem>
                                 <div className={style.text}>
@@ -306,12 +242,11 @@ class otherPresent extends Component {
     }
 }
 export default connect((state, props) => {
-    let { loading,currencyAndAddress } = state.otherPresent
+    let { loading } = state.bindingAddress
     let { userInfo = {} } = state.user
     return {
-        currencyAndAddress,
         userInfo,
         loading,
         ...props,
     }
-})(Form.create()(otherPresent));
+})(Form.create()(bindingAddress));
