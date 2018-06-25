@@ -4,7 +4,7 @@ import api from '../utils/api';
 import { routerRedux } from 'dva/router';
 export default {
 
-    namespace: 'submitMessage',
+    namespace: 'submitMessageCompany',
 
     state: {
         loading:false
@@ -22,14 +22,11 @@ export default {
                     loading:true
                 }
             })
-            const { data } = yield call(baseService, api.submitMessage.authentication, [payload.params]);
+            const { data } = yield call(baseService, api.submitMessageCompany.authentication, [payload.params]);
             if (data !== undefined) {    //成功
-                message.success("提交成功！")
-                setTimeout(()=>{
-                    routerRedux.push("/asset")
-                },1000)
+                message.success("发送成功！")
             }else{  //不知名失败
-                message.error("提交失败！")
+                message.error("发送失败！")
             }
             yield put({
                 type: 'save',

@@ -48,6 +48,13 @@ class Asset extends Component {
                 content: "请先完成身份验证"
             }
         }
+        if(this.props.userInfo.applyStatus == 2 && !!this.props.userInfo.identificationType){
+            topError = {
+                show:true,
+                content:"身份验证审核中"
+            }
+        }
+        
         return (
             <Spin size="large" spinning={this.props.loading} >
                 <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>

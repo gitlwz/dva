@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
 import { Form, Input, message, Select, Button, Spin, Radio, Row, Col } from 'antd';
-import style from './submitMessage.less'
+import style from './submitMessageCompany.less'
 import UploadComponent from '../../components/upload';
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
@@ -12,7 +12,7 @@ const Search = Input.Search;
 /**
  * 资产管理
  */
-class submitMessage extends Component {
+class submitMessageCompany extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -95,8 +95,9 @@ class submitMessage extends Component {
                 message.error("请上传手持身份证照片！")
                 return;
             }
+            console.log("*********8",this.state)
             this.props.dispatch({
-                type: 'submitMessage/authentication',
+                type: 'submitMessageCompany/authentication',
                 payload: {
                     params: {
                         idFrontPhoto:this.state.data1,
@@ -105,8 +106,7 @@ class submitMessage extends Component {
                         clientName:values.name,
                         gender:values.gender,
                         identificationID:values.idnumber,
-                        identificationType:'1',
-                        clientType:'1'
+                        clientType:1
                     }
                 }
             })
@@ -129,54 +129,120 @@ class submitMessage extends Component {
             },
         };
         return (
-            <div className="submitMessage" style={{ backgroundColor: "#F7F7F7", color: "black" }}>
+            <div className="submitMessageCompany" style={{ backgroundColor: "#F7F7F7", color: "black" }}>
                 <Spin spinning={this.props.loading} size="large" >
                     <div className={style.content}>
-                        <div className={style.title}>身份证验证</div>
+                        <div className={style.title}>机构客户验证</div>
                         <div className={style.detail}>
                             <div className={style.info}>提示：请准确填写以下信息，提交后无法更改</div>
                             <div className={style.form}>
                                 <Form>
                                     <FormItem
                                         {...formItemLayout}
-                                        label="姓名"
+                                        label="法人姓名"
                                     >
                                         {getFieldDecorator('name', {
                                             rules: [{
                                                 required: true,
-                                                message:"请输入姓名"
+                                                message:"请输入法人姓名"
                                             }],
                                         })(
-                                            <Input placeholder="输入姓名" type="text" />
+                                            <Input placeholder="输入法人姓名" type="text" />
                                         )}
                                     </FormItem>
                                     <FormItem
                                         {...formItemLayout}
-                                        label="性别"
-                                    >
-                                        {getFieldDecorator('gender', {
-                                            rules: [{
-                                                required: true,
-                                                message:"请选择性别"
-                                            }],
-                                        })(
-                                            <RadioGroup style={{ textAlign: "center" }}>
-                                                <Radio value="男">男</Radio>
-                                                <Radio value="女">女</Radio>
-                                            </RadioGroup>
-                                        )}
-                                    </FormItem>
-                                    <FormItem
-                                        {...formItemLayout}
-                                        label="身份证号"
+                                        label="法人证件类型"
                                     >
                                         {getFieldDecorator('idnumber', {
                                             rules: [{
                                                 required: true,
-                                                validator: this.handleConfirm
+                                                message:"请选择证件类型"
                                             }],
                                         })(
-                                            <Input placeholder="输入身份证号" type="text" />
+                                            <Select placeholder="请选择证件类型">
+                                                <Option value={11} key={111}>{2222}</Option>
+                                            </Select>
+                                        )}
+                                    </FormItem>
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="法人证件号码"
+                                    >
+                                        {getFieldDecorator('idnumber', {
+                                            rules: [{
+                                                required: true,
+                                                message:"请输入法人证件号码"
+                                            }],
+                                        })(
+                                            <Input placeholder="请输入法人证件号码" type="text" />
+                                        )}
+                                    </FormItem>
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="公司全称"
+                                    >
+                                        {getFieldDecorator('idnumber', {
+                                            rules: [{
+                                                required: true,
+                                                message:"请输入公司全称"
+                                            }],
+                                        })(
+                                            <Input placeholder="请输入公司全称" type="text" />
+                                        )}
+                                    </FormItem>
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="法人手机号码"
+                                    >
+                                        {getFieldDecorator('idnumber', {
+                                            rules: [{
+                                                required: true,
+                                                message:"请输入法人手机号码"
+                                            }],
+                                        })(
+                                            <Input placeholder="请输入法人手机号码" type="text" />
+                                        )}
+                                    </FormItem>
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="公司地址"
+                                    >
+                                        {getFieldDecorator('idnumber', {
+                                            rules: [{
+                                                required: true,
+                                                message:"请输入公司地址"
+                                            }],
+                                        })(
+                                            <Input placeholder="请输入公司地址" type="text" />
+                                        )}
+                                    </FormItem>
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="机构证件类型"
+                                    >
+                                        {getFieldDecorator('idnumber', {
+                                            rules: [{
+                                                required: true,
+                                                message:"请选择机构证件类型"
+                                            }],
+                                        })(
+                                            <Select placeholder="请选择机构证件类型">
+                                                <Option value={11} key={111}>{2222}</Option>
+                                            </Select>
+                                        )}
+                                    </FormItem>
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="机构证件号码"
+                                    >
+                                        {getFieldDecorator('idnumber', {
+                                            rules: [{
+                                                required: true,
+                                                message:"请输入机构证件号码"
+                                            }],
+                                        })(
+                                            <Input placeholder="请输入机构证件号码" type="text" />
                                         )}
                                     </FormItem>
                                 </Form>
@@ -185,7 +251,7 @@ class submitMessage extends Component {
                                         <div className={style.update}>
                                             <UploadComponent callback={(data, img) => this.upLoadCallBack(data, img, 1)}>
                                                 {!this.state.img1 ? <div className={style.icon}>
-                                                    上传身份证正面
+                                                    上传机构营业执照
                                                  </div> : this.readLoad(this.state.img1, 1)}
                                             </UploadComponent>
                                         </div>
@@ -194,7 +260,7 @@ class submitMessage extends Component {
                                         <div className={style.update}>
                                             <UploadComponent callback={(data, img) => this.upLoadCallBack(data, img, 2)}>
                                                 {!this.state.img2 ? <div className={style.icon}>
-                                                    上传身份证反面
+                                                    上传法人证件正面
                                                  </div> : this.readLoad(this.state.img2, 2)}
                                             </UploadComponent>
                                         </div>
@@ -203,7 +269,7 @@ class submitMessage extends Component {
                                         <div className={style.update}>
                                             <UploadComponent callback={(data, img) => this.upLoadCallBack(data, img, 3)}>
                                                 {!this.state.img3 ? <div className={style.icon}>
-                                                    上传手持身份证照片
+                                                    上传法人证件反面
                                                  </div> : this.readLoad(this.state.img3, 3)}
                                             </UploadComponent>
                                         </div>
@@ -221,11 +287,11 @@ class submitMessage extends Component {
     }
 }
 export default connect((state, props) => {
-    let { loading } = state.submitMessage
+    let { loading } = state.submitMessageCompany
     let { userInfo = {} } = state.user
     return {
         userInfo,
         loading,
         ...props,
     }
-})(Form.create()(submitMessage));
+})(Form.create()(submitMessageCompany));
