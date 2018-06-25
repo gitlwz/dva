@@ -23,7 +23,9 @@ class otherPresent extends Component {
             radio1_i:false,
             radio2_i:false,
 
-            select:{}
+            select:{},
+
+            fee:"--"
         }
     }
     setTime = () => {
@@ -128,6 +130,35 @@ class otherPresent extends Component {
     submit = () => {
         const { validateFieldsAndScroll } = this.props.form;
         
+        validateFieldsAndScroll((error , values)=>{
+            if(error){
+                return
+            }
+            let code = values.code1;
+            if(values.radio == 2){
+                code = values.code2;
+            }
+            let params = [{
+                currency:this.props.match.params.type,
+                address:values.address,
+                capitalPwd:md5(values.capitalPwd),
+                amount:values.amount,
+                fee:0.001
+            },
+            this.props.userInfo.mobilePhone
+            ,
+            code
+            ,
+            values.radio
+        ]
+            this.props.dispatch({
+                type: 'otherPresent/withdraw',
+                payload: {
+                    params: params
+                }
+            })
+        })
+        
             
     }
     componentWillReceiveProps = (nextProps) =>{
@@ -151,6 +182,11 @@ class otherPresent extends Component {
                 lg: { span: 20 },
             },
         };
+        let precision = 0
+        let _precision = this.state.select.withdrawalUnit
+        if(!!_precision){
+            precision = _precision.split(".")[1].length
+        }
         return (
             <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
                 <Spin spinning={this.props.loading} size="large" >
@@ -192,9 +228,9 @@ class otherPresent extends Component {
                                             message:"请输入提现金额"
                                         }],
                                     })(
-                                        <InputNumber placeholder="提现金额" className={style.inputerNumber}  />
+                                        <InputNumber  precision={precision} max={this.state.select.extractable*1||0} min={this.state.select.withdrawalAmount*1||0} placeholder="提现金额" className={style.inputerNumber}  />
                                     )}
-                                    <span className={style.inputerNumber_text}>矿工说明</span>
+                                    <a href="#/minerFee" className={style.inputerNumber_text}>矿工说明</a>
                                 </FormItem>
                                 <div>
                                     <div className={style.txwz}>
@@ -211,7 +247,7 @@ class otherPresent extends Component {
                                     </div>
                                     <div className={style.txwz}>
                                         <span>提现手续费：</span>
-                                        <span>--</span>
+                                        <span>{this.state.fee}</span>
                                     </div>
                                 </div>
                                 <FormItem

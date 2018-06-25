@@ -95,9 +95,12 @@ const LayoutRouter = [
         models: () => [import('../models/submitMessageCompany')],
         component: () => import('../routes/submitMessageCompany/submitMessageCompany'),
     },{
-        path: '/otherPresent/:type',  //机构
+        path: '/otherPresent/:type',  //提现
         models: () => [import('../models/otherPresent')],
         component: () => import('../routes/otherPresent/otherPresent'),
+    },{
+        path: '/minerFee',  //矿工寿命
+        component: () => import('../routes/minerFee/minerFee'),
     }
 ]
 export default LayoutRouter;
