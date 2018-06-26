@@ -55,6 +55,7 @@ class YingHe extends Component {
                         {this.loadBanner()}
                     </Carousel>
                 </div>
+                
                 <div style={{ background: 'rgba(35,35,35,1)' }}>
                     <Row type="flex" justify="space-around" align="middle" style={{ fontSize: 14, color: '#CDCDCD', height: 60 }}>
                         <Col span={8}>
