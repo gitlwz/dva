@@ -154,7 +154,6 @@ class Entrust extends Component {
 
             }];
 
-        console.log((this.state.tradeTimeFlag == "3" || this.state.tradeTimeFlag == "4"))
         return (
             <div className={style.gutte_right}>
                 <div className={style.right_title}> 委托查询 </div>
@@ -195,7 +194,6 @@ class Entrust extends Component {
     }
 }
 export default connect((state, props) => {
-    console.log(state.record.entrustData)
     return {
         entrustData: state.record.entrustData,
         loading: state.loading.models.record,

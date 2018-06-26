@@ -48,7 +48,7 @@ class TradeComponent extends React.Component {
                 return <div key={item.id} className={styles.header}>
                     <span style={{ textAlign: 'left' }}>{item.tradeTime}</span>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买入" : '卖出'}</span>
-                    <span>{item.price.toFixed(4)}</span>
+                    <span>{item.price}</span>
                     <span>{item.volume}</span>
                 </div>
             })

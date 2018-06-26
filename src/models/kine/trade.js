@@ -139,5 +139,15 @@ export default {
                 })
             })
         },
+        getTradeDetail({ dispatch, history }) {
+            return PubSub.subscribe("getTradeDetail", (name, payload) => {
+                console.log(name)
+                dispatch({
+                    type: "getTradeDetail",
+                    payload: payload
+                })
+            })
+        },
+
     },
 };

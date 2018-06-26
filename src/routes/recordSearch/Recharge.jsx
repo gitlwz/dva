@@ -46,6 +46,7 @@ const columns = [
         title: '区块链Hash',
         dataIndex: 'hash',
     }];
+
 class Recharge extends Component {
     constructor(props) {
         super(props);

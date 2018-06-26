@@ -52,8 +52,8 @@ class Record extends Component {
                             </div>
                         </Col>
                         <Col className="gutter-row" span={19}>
-                            {this.props.currentSelect === "充提币记录" && <Recharge history={this.props.history} />}
-                            {this.props.currentSelect === "委托查询" && <Entrust history={this.props.history} />}
+                            {this.props.currentSelect === "充提币记录" && <Recharge />}
+                            {this.props.currentSelect === "委托查询" && <Entrust />}
                         </Col>
                     </Row>
                 </div>
