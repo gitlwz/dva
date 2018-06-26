@@ -84,29 +84,33 @@ class submitMessageCompany extends Component {
         validateFieldsAndScroll((err,values)=>{
             if(!!err) return;
             if(!this.state.data1){
-                message.error("请上传身份证正面！")
+                message.error("请上传机构营业执照！")
                 return;
             }
             if(!this.state.data2){
-                message.error("请上传身份证反面！")
+                message.error("请上传法人证件正面！")
                 return;
             }
             if(!this.state.data3){
-                message.error("请上传手持身份证照片！")
+                message.error("请上传法人证件反面！")
                 return;
             }
-            console.log("*********8",this.state)
             this.props.dispatch({
                 type: 'submitMessageCompany/authentication',
                 payload: {
                     params: {
-                        idFrontPhoto:this.state.data1,
-                        idBackPhoto:this.state.data2,
-                        selfCardPhoto:this.state.data3,
-                        clientName:values.name,
-                        gender:values.gender,
-                        identificationID:values.idnumber,
-                        clientType:1
+                        businessCardPhoto:this.state.data1,
+                        idFrontPhoto:this.state.data2,
+                        idBackPhoto:this.state.data3,
+                        artificialPerson:values.artificialPerson,
+                        identificationType:values.identificationType,
+                        clientType:'2',
+                        identificationID:values.identificationID,
+                        clientName:values.clientName,
+                        telephone:values.telephone,
+                        address:values.address,
+                        industryCertType:values.industryCertType,
+                        businessLicense:values.businessLicense
                     }
                 }
             })
@@ -141,7 +145,7 @@ class submitMessageCompany extends Component {
                                         {...formItemLayout}
                                         label="法人姓名"
                                     >
-                                        {getFieldDecorator('name', {
+                                        {getFieldDecorator('artificialPerson', {
                                             rules: [{
                                                 required: true,
                                                 message:"请输入法人姓名"
@@ -154,14 +158,15 @@ class submitMessageCompany extends Component {
                                         {...formItemLayout}
                                         label="法人证件类型"
                                     >
-                                        {getFieldDecorator('idnumber', {
+                                        {getFieldDecorator('identificationType', {
                                             rules: [{
                                                 required: true,
                                                 message:"请选择证件类型"
                                             }],
                                         })(
                                             <Select placeholder="请选择证件类型">
-                                                <Option value={11} key={111}>{2222}</Option>
+                                                <Option value='1' key={111}>身份证</Option>
+                                                <Option value='2' key={222}>护照</Option>
                                             </Select>
                                         )}
                                     </FormItem>
@@ -169,7 +174,7 @@ class submitMessageCompany extends Component {
                                         {...formItemLayout}
                                         label="法人证件号码"
                                     >
-                                        {getFieldDecorator('idnumber', {
+                                        {getFieldDecorator('identificationID', {
                                             rules: [{
                                                 required: true,
                                                 message:"请输入法人证件号码"
@@ -182,7 +187,7 @@ class submitMessageCompany extends Component {
                                         {...formItemLayout}
                                         label="公司全称"
                                     >
-                                        {getFieldDecorator('idnumber', {
+                                        {getFieldDecorator('clientName', {
                                             rules: [{
                                                 required: true,
                                                 message:"请输入公司全称"
@@ -195,7 +200,7 @@ class submitMessageCompany extends Component {
                                         {...formItemLayout}
                                         label="法人手机号码"
                                     >
-                                        {getFieldDecorator('idnumber', {
+                                        {getFieldDecorator('telephone', {
                                             rules: [{
                                                 required: true,
                                                 message:"请输入法人手机号码"
@@ -208,7 +213,7 @@ class submitMessageCompany extends Component {
                                         {...formItemLayout}
                                         label="公司地址"
                                     >
-                                        {getFieldDecorator('idnumber', {
+                                        {getFieldDecorator('address', {
                                             rules: [{
                                                 required: true,
                                                 message:"请输入公司地址"
@@ -221,14 +226,16 @@ class submitMessageCompany extends Component {
                                         {...formItemLayout}
                                         label="机构证件类型"
                                     >
-                                        {getFieldDecorator('idnumber', {
+                                        {getFieldDecorator('industryCertType', {
                                             rules: [{
                                                 required: true,
                                                 message:"请选择机构证件类型"
                                             }],
                                         })(
                                             <Select placeholder="请选择机构证件类型">
-                                                <Option value={11} key={111}>{2222}</Option>
+                                                <Option value="68" key="68">营业执照</Option>
+                                                <Option value="73" key="73">统一社会信用代码</Option>
+                                                <Option value="52" key="52">组织机构代码</Option>
                                             </Select>
                                         )}
                                     </FormItem>
@@ -236,7 +243,7 @@ class submitMessageCompany extends Component {
                                         {...formItemLayout}
                                         label="机构证件号码"
                                     >
-                                        {getFieldDecorator('idnumber', {
+                                        {getFieldDecorator('businessLicense', {
                                             rules: [{
                                                 required: true,
                                                 message:"请输入机构证件号码"

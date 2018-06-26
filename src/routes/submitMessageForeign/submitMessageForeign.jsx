@@ -78,19 +78,17 @@ class submitMessageForeign extends Component {
         validateFieldsAndScroll((err,values)=>{
             if(!!err) return;
             if(!this.state.data1){
-                message.error("请上传身份证正面！")
+                message.error("请上传护照封面！")
                 return;
             }
             if(!this.state.data2){
-                message.error("请上传身份证反面！")
+                message.error("请上传护照个人信息页！")
                 return;
             }
             if(!this.state.data3){
-                message.error("请上传手持身份证照片！")
+                message.error("请上传手持护照照片！")
                 return;
             }
-            console.log("*********8",this.state)
-            return;
             this.props.dispatch({
                 type: 'submitMessageForeign/authentication',
                 payload: {
@@ -100,8 +98,10 @@ class submitMessageForeign extends Component {
                         selfCardPhoto:this.state.data3,
                         clientName:values.name,
                         gender:values.gender,
+                        country:values.country,
                         identificationID:values.idnumber,
-                        clientType:2
+                        identificationType:"2",
+                        clientType:'1'
                     }
                 }
             })

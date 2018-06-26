@@ -24,9 +24,12 @@ export default {
             })
             const { data } = yield call(baseService, api.submitMessageCompany.authentication, [payload.params]);
             if (data !== undefined) {    //成功
-                message.success("发送成功！")
+                message.success("提交成功！")
+                setTimeout(()=>{
+                    routerRedux.push("/asset?type=2")
+                },1000)
             }else{  //不知名失败
-                message.error("发送失败！")
+                message.error("提交失败！")
             }
             yield put({
                 type: 'save',
