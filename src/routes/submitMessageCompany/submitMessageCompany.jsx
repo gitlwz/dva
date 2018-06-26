@@ -282,7 +282,7 @@ class submitMessageCompany extends Component {
                                         </div>
                                     </Col>
                                 </Row>
-                                <div style={{marginTop:"20px"}}>
+                                <div style={{textAlign:"center",marginTop:"20px"}}>
                                     <Button onClick={this.onSubmit} className="hqbtn" style={{ height: '40px', width: '100%', color: "#565656" }} type="primary">提交</Button>
                                 </div>
                             </div>
