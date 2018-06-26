@@ -31,7 +31,7 @@ class UploadComponent extends React.Component {
     render() {
         return <Upload
             showUploadList={false}
-            action="sundax/upload/memberFileUploadService/uploadFileAllowAnonymous"
+            action="/sundax/upload/memberFileUploadService/uploadFileAllowAnonymous"
             onChange={this.handleChange}
             accept="image/*"
         >

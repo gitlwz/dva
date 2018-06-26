@@ -27,8 +27,7 @@ class YingHe extends Component {
     loadBanner() {
         if (this.props.imgList.length > 0) {
             return this.props.imgList.map(item => {
-                console.log(decodeURI(item.postPhoto))
-                return <img src={decodeURI(item.postPhoto)} style={{ width: '100%', height: '100%' }} key={item.id} />
+                return <div style={{ width: '100%' }} key={item.id}><img src={decodeURI(item.postPhoto)} style={{ width: '100%', height: '100%' }} /></div>
             })
         }
     }
@@ -39,7 +38,7 @@ class YingHe extends Component {
             let data = noticeList[name];
             if (!!data && data.length > 0) {
                 return data.map(item => {
-                    return <div key={item.msgID} style={{ color: 'white' }}>{item.msgTitle}</div>
+                    return <div key={item.msgID} style={{ color: 'white', lineHeight: "60px",textAlign:'center' }}>{item.msgTitle}</div>
                 })
             }
         }
@@ -50,25 +49,24 @@ class YingHe extends Component {
         const { noticeList } = this.props;
         return (
             <div>
-                <div style={{ width: '100%' }}>
-                    <Carousel autoplay autoplaySpeed={5000}>
-                        {this.loadBanner()}
-                    </Carousel>
-                </div>
-                
+
+                <Carousel autoplay autoplaySpeed={5000}>
+                    {this.loadBanner()}
+                </Carousel>
+
                 <div style={{ background: 'rgba(35,35,35,1)' }}>
                     <Row type="flex" justify="space-around" align="middle" style={{ fontSize: 14, color: '#CDCDCD', height: 60 }}>
                         <Col span={8}>
-                            <Carousel autoplay autoplaySpeed={4000} vertical dots={false}>
+                            <Carousel autoplay autoplaySpeed={4000} vertical dots={false} className={styles.carousel}>
                                 {this.loadCarousel(noticeList, "left")}
                             </Carousel>
                         </Col>
                         <Col span={8}>
-                            <Carousel autoplay={true} autoplaySpcentereed={4000} vertical dots={false}>
+                            <Carousel autoplay={true} autoplaySpcentereed={4000} vertical dots={false} className={styles.carousel}>
                                 {this.loadCarousel(noticeList, "center")}
                             </Carousel></Col>
                         <Col span={8}>
-                            <Carousel autoplay autoplaySpeed={4000} vertical dots={false}>
+                            <Carousel autoplay autoplaySpeed={4000} vertical dots={false} className={styles.carousel}>
                                 {this.loadCarousel(noticeList, "right")}
                             </Carousel></Col>
                     </Row>

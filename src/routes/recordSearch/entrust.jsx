@@ -146,9 +146,6 @@ class Entrust extends Component {
                 title: '成交额',
                 dataIndex: 'totalPrice',
             }, {
-                title: '成交数量',
-                dataIndex: 'volumeTraded'
-            }, {
                 title: '交易手续费',
                 dataIndex: 'fee',
 
