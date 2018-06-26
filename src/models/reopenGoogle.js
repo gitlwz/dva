@@ -70,7 +70,17 @@ export default {
                         }
                     })
                 }else if(data.result == 0){ //成功
-                    routerRedux.push("/asset")
+                    yield put({
+                        type: 'save',
+                        payload:{
+                            loading:false,
+                        }
+                    })
+                    message.success("验证成功")
+                    setTimeout(()=>{
+                        console.log("&&&&&&&&&&&&")
+                        routerRedux.push("/asset?type=2")
+                    },1000)
                 }
             }else{                      //不知名失败
                 yield put({
