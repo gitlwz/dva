@@ -20,11 +20,32 @@ class Asset extends Component {
 
     }
     componentWillMount = () => {
-        if(this.props.history.location.search === "?type=2"){
+        if(this.props.history.location.search === "?type=1"){
+            this.props.dispatch({
+                type: 'asset/selectMenu',
+                payload: {
+                    currentSelect: "资产总览"
+                }
+            })
+        }else if(this.props.history.location.search === "?type=2"){
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
                     currentSelect: "安全中心"
+                }
+            }) 
+        }else if(this.props.history.location.search === "?type=3"){
+            this.props.dispatch({
+                type: 'asset/selectMenu',
+                payload: {
+                    currentSelect: "充提管理"
+                }
+            }) 
+        }else{
+            this.props.dispatch({
+                type: 'asset/selectMenu',
+                payload: {
+                    currentSelect: "资产总览"
                 }
             }) 
         }
