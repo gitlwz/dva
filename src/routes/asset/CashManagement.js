@@ -210,7 +210,6 @@ class CashManagement extends Component {
             <div style={{  paddingTop: '53px' }}>
                 <div className={style.right_title}>
                     充提管理
-                    <span className={style.zh}>727770481@qq.com</span>
                 </div>
                 <div className={style.right_bz}>
                     <div className={styleA.card}>

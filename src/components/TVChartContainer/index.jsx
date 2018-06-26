@@ -50,7 +50,6 @@ export class TVChartContainer extends React.PureComponent {
 		// window.TradingView.onready(() => {
 		widget = window.tvWidget = new window.TradingView.widget(widgetOptions);
 		localStorage.setItem("tradingview.IntervalWidget.quicks", JSON.stringify({ "1": true, "15": true, "30": true, "60": true, "240": true, "1D": true, "5D": true, "1W": true, "1M": true }))
-
 		widget.onChartReady(() => {
 
 			//添加分时按钮

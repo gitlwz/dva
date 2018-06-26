@@ -213,7 +213,6 @@ class SecurityCenter extends Component {
 
                 <div className={style.right_title}>
                     安全中心
-                    <span className={style.zh}>727770481@qq.com</span>
                 </div>
                 <div className={style.right_bz}>
                     <div className={styleA.card}>

@@ -63,7 +63,6 @@ class AssetView extends Component {
             <div className={style.gutte_right}>
                 <div className={style.right_title}>
                     资产总览
-                    <span className={style.zh}>727770481@qq.com</span>
                 </div>
                 <div className={style.right_bz}>
                     <span className={style.right_currtext}>币种</span>
