@@ -14,13 +14,19 @@ class Record extends Component {
         super(props);
 
         this.state = {
-            leftMenu: ["充提币记录", "委托查询"],
+            leftMenu: ["充提币记录", "交易记录查询"],
             currentSelect: '充提币记录'
         }
 
     }
     componentWillMount = () => {
-
+        if (this.props.history.location.search === "?type=1") {
+            this.setState({ currentSelect: "充提币记录" })
+        } else if (this.props.history.location.search === "?type=2") {
+            this.setState({ currentSelect: "交易记录查询" })
+        } else{
+            this.setState({ currentSelect: "充提币记录" })
+        }
     }
     callback = (key) => {
         console.log(key)
@@ -49,7 +55,7 @@ class Record extends Component {
                         </Col>
                         <Col className="gutter-row" span={19}>
                             {this.state.currentSelect === "充提币记录" && <Recharge />}
-                            {this.state.currentSelect === "委托查询" && <Entrust />}
+                            {this.state.currentSelect === "交易记录查询" && <Entrust />}
                         </Col>
                     </Row>
                 </div>

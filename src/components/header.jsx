@@ -38,8 +38,11 @@ class Header extends Component {
             case "0":
                 this.props.dispatch(routerRedux.push("/asset"))
                 break;
+            case "1":
+                this.props.dispatch(routerRedux.push("/record?type=2"))
+                break;
             case "2":
-                this.props.dispatch(routerRedux.push("/record"))
+                this.props.dispatch(routerRedux.push("/record?type=1"))
                 break;
             case "4":
                 this.props.dispatch(routerRedux.push("/asset?type=2"))
