@@ -84,12 +84,12 @@ const LayoutRouter = [
         component: () => import('../routes/submitMessage/submitMessage'),
     },{
         path: '/submitMessageForeign',  //护照证验证
-        models: () => [import('../models/submitMessageForeign')],
-        component: () => import('../routes/submitMessageForeign/submitMessageForeign'),
+        models: () => [import('../models/submitMessage')],
+        component: () => import('../routes/submitMessage/submitMessage'),
     },{
         path: '/submitMessageCompany',  //机构
-        models: () => [import('../models/submitMessageCompany')],
-        component: () => import('../routes/submitMessageCompany/submitMessageCompany'),
+        models: () => [import('../models/submitMessage')],
+        component: () => import('../routes/submitMessage/submitMessage'),
     },{
         path: '/otherPresent/:type',  //提现
         models: () => [import('../models/otherPresent')],
