@@ -12,7 +12,7 @@ const columns = [{
     dataIndex: 'available',
 }, {
     title: '冻结',
-    dataIndex: 'frozenSpotMoney',
+    dataIndex: 'frozenMoney',
 }, {
     title: '总额',
     dataIndex: 'balance',
@@ -36,15 +36,25 @@ class AssetView extends Component {
     }
 
     componentWillMount = () => {
-        this.props.dispatch({
-            type: 'asset/currencyChange',
-            payload: {
-                currency: this.currency
-            }
-        })
+        if(!!this.props.userInfo.clientID){
+            this.props.dispatch({
+                type: 'asset/currencyChange',
+                payload: {
+                    currency: this.props.userInfo.clientID
+                }
+            })
+        }
+        
     }
-    componentWillReceiveProps = () => {
-        console.log("componentWillReceiveProps")
+    componentWillReceiveProps = (nextProps) => {
+        if(this.props.userInfo.clientID !== nextProps.userInfo.clientID){
+            this.props.dispatch({
+                type: 'asset/currencyChange',
+                payload: {
+                    currency: nextProps.userInfo.clientID
+                }
+            })
+        }
     }
     currencyChange = (value) => {
         let _value = value === "全部" ? null : value;
@@ -52,13 +62,19 @@ class AssetView extends Component {
     }
     queryClick = () => {
         this.props.dispatch({
-            type: 'asset/currencyChange',
+            type: 'asset/save',
             payload: {
                 currency: this.currency
             }
         })
     }
     render() {
+        let dataSource = this.props.dataSource.filter((item)=>{
+            if(!!this.props.currency){
+                return item.currency === this.props.currency
+            }
+            return !!item.currency
+        })
         return (
             <div className={style.gutte_right}>
                 <div className={style.right_title}>
@@ -78,7 +94,7 @@ class AssetView extends Component {
                 <div class={styleA.right_table + " AssetView"}>
                     <Table
                         columns={columns}
-                        dataSource={this.props.dataSource}
+                        dataSource={dataSource}
                         size="middle"
                         pagination={false}
                     />
@@ -88,8 +104,11 @@ class AssetView extends Component {
     }
 }
 export default connect((state, props) => {
-    let { currentSelect, dataSource } = state.asset
+    let { currentSelect,currency, dataSource } = state.asset
+    let { userInfo = {} } = state.user
     return {
+        currency,
+        userInfo,
         currentSelect,
         dataSource,
         ...props
