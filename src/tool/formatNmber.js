@@ -150,8 +150,21 @@ var format = {
                     break;
             }
         }
-    }
+    },
 
+    //排序
+    sort(array, sort) {
+        switch (sort) {
+            case 0:
+                return array.sort((a, b) => { return a.price > b.price });
+                break;
+            case 1:
+                return array.sort((a, b) => { return a.price < b.price });
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 

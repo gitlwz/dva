@@ -1,0 +1,170 @@
+.platform{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  width: 100%;
+  //height: 660px;
+  padding: 50px 90px 0 100px;
+  align-items: center;
+
+  .content{
+    width: 1200px;
+    height: 680px;
+    margin: 15px auto;
+    border: 2px solid #EBEBEB;
+    border-radius: 10px;
+    background:rgba(255,255,255,1);
+
+    .root{
+      height: 45px;
+      background-size: 1172px 100%;
+      border-radius: 8px;
+      line-height: 45px;
+      background-repeat: no-repeat;
+      background-image: url("../../assets/yinghe/图层 51@3x.png");
+      margin: 14px 14px;
+      display: flex;
+      flex-direction: row;
+
+      .no{
+        width: 100px;
+        padding-left: 14px;
+        display: inline-block;
+        font-size:16px;
+        font-family:ArialMT;
+        color:rgba(205,205,205,1);
+        text-align: center;
+      }
+
+      .right{
+        width: 100%;
+        margin: auto 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .msg{
+          display: inline-block;
+          font-size:16px;
+          font-family:SimHei;
+          color: #3E3E3E;
+        }
+
+        .time{
+          display: inline-block;
+          padding-left: 45px;
+          font-size:16px;
+          font-family:SimHei;
+          color: #3E3E3E;
+        }
+
+      }
+
+    }
+
+    .root:hover{
+      background-image: url("../../assets/yinghe/圆角矩形 9@3x.png");
+      background-size: 1172px 100%;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.custom{
+  :global {
+  .ant-pagination {
+    align-items: center;
+    width:290px;
+    margin: 30px auto;
+
+
+    .ant-pagination-item-link:after{
+      background-color: #FECC39;
+      width: 85px;
+      height: 30px;
+      border-radius: 15px;
+      font-size:16px;
+      font-family:Adobe Heiti Std R;
+      color:rgba(86,86,86,1);
+      text-decoration: none;
+      -webkit-appearance: none;
+      outline: none;
+    }
+
+    li:first-child{
+      .ant-pagination-item-link:after{
+        content: '上一页';
+      }
+    }
+
+    li:last-child{
+      .ant-pagination-item-link:after{
+        content: '下一页';
+      }
+    }
+
+    .ant-pagination-simple-pager{
+      input{
+        border: transparent;
+
+      }
+    }
+
+    .ant-pagination-slash{
+      margin-left: -10px;
+      margin-right: 18px;
+    }
+
+    .ant-pagination-simple, .ant-pagination-simple-pager{
+      margin-right: 20px;
+      margin-left: -8px;
+    }
+  }
+
+  .ant-pagination-simple .ant-pagination-prev .ant-pagination-item-link:after, .ant-pagination-simple .ant-pagination-next .ant-pagination-item-link:after{
+    height: 30px;
+    line-height: 30px;
+  }
+
+  .ant-pagination-simple .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-simple .ant-pagination-next .ant-pagination-item-link{
+    text-decoration: none;
+  }
+
+}
+}
+.returnButton{
+  color: #565656;
+  width:85px;
+  height:30px;
+  line-height: 30px;
+  background:rgba(254,204,57,1);
+  font-size: 16px;
+  border-radius: 15px;
+  -webkit-appearance: none;
+  outline: none;
+  border: none;
+  margin-bottom: 15px;
+
+}
+.returnButton:focus{
+  background:rgba(255,217,101,1);
+
+}
+
+.text{
+  color: #565656;
+  margin: 10px auto;
+  width:1172px;
+  height:516px;
+  background:rgba(235,235,235,1);
+  border-radius:10px;
+  overflow: auto;
+  padding: 22px 40px;
+}
+
+
+
+
+
+
+

@@ -17,6 +17,11 @@ const LayoutRouter = [
         component: () => import('../routes/detail/joinus')
     },
     {
+        path: '/platform', //平台公告
+        models: () => [import('../models/other')],
+        component: () => import('../routes/platform/platform')
+    },
+    {
         path: '/contactUs',
         component: () => import('../routes/detail/contactUs')
     },
@@ -78,26 +83,26 @@ const LayoutRouter = [
         path: '/setMoneyPassword',  //修改资金密码页
         models: () => [import('../models/setMoneyPassword')],
         component: () => import('../routes/setMoneyPassword/setMoneyPassword'),
-    },{
+    }, {
         path: '/submitMessage',  //身份证验证
         models: () => [import('../models/submitMessage')],
         component: () => import('../routes/submitMessage/submitMessage'),
-    },{
+    }, {
         path: '/submitMessageForeign',  //护照证验证
         models: () => [import('../models/submitMessage')],
         component: () => import('../routes/submitMessage/submitMessage'),
-    },{
+    }, {
         path: '/submitMessageCompany',  //机构
         models: () => [import('../models/submitMessage')],
         component: () => import('../routes/submitMessage/submitMessage'),
-    },{
+    }, {
         path: '/otherPresent/:type',  //提现
         models: () => [import('../models/otherPresent')],
         component: () => import('../routes/otherPresent/otherPresent'),
-    },{
+    }, {
         path: '/minerFee',  //矿工说明
         component: () => import('../routes/minerFee/minerFee'),
-    },{
+    }, {
         path: '/bindingAddress/:type',  //绑定提现地址
         models: () => [import('../models/bindingAddress')],
         component: () => import('../routes/bindingAddress/bindingAddress'),

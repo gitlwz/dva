@@ -114,7 +114,11 @@ class Indenture extends React.Component {
         if (dataArray.length > 0)
             return dataArray.filter(item => {
                 if (this.state.currency == "ZX") {
-                    return item.checked == true;
+                    if (this.props.search !== "") {
+                        return (item.checked == true && item.instrumentId.split("-")[0].match(this.props.search))
+                    } else {
+                        return item.checked == true;
+                    }
                 } else {
                     if (this.props.search != "") {
                         return (this.state.currency == item.instrumentId.split("-")[1] && item.instrumentId.split("-")[0].match(this.props.search))

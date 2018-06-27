@@ -6,6 +6,7 @@ class Notice extends React.Component {
     componentDidMount() {
         this.props.dispatch({
             type: 'other/findMessageList',
+            payload: { "pageNo": 1, "pageSize": 10 }
         })
     }
 

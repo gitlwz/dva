@@ -35,7 +35,7 @@ export default {
                     yield put({
                         type: 'getUserId'
                     })
-                    routerRedux.push("/")
+                    yield put(routerRedux.push("/"))
                 } else {
                     console.log("network err!")
                 }

@@ -43,7 +43,7 @@ export default {
         },
         //获取平台公告
         *findMessageList({ payload }, { call, put }) {
-            const { data } = yield call(baseService, api.baseConfig.findMessageList, [{ "msgType": "", "startDate": "", "endDate": "" }, { "pageNo": 1, "pageSize": 10 }]);
+            const { data } = yield call(baseService, api.baseConfig.findMessageList, [{ "msgType": "", "startDate": "", "endDate": "" }, payload]);
             if (data != undefined) {
                 yield put({
                     type: 'save',

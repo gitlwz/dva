@@ -24,7 +24,7 @@ class Record extends Component {
             this.setState({ currentSelect: "充提币记录" })
         } else if (this.props.history.location.search === "?type=2") {
             this.setState({ currentSelect: "交易记录查询" })
-        } else{
+        } else {
             this.setState({ currentSelect: "充提币记录" })
         }
     }
