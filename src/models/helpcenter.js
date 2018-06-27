@@ -40,7 +40,6 @@ export default {
         },
         *getHelpCenterById({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.helpcenter.getHelpCenterById, [payload.id]);
-            console.log("*******",data)
             if(!!data){
                 yield put({
                     type: 'save',

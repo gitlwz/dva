@@ -77,10 +77,7 @@ export default {
                         }
                     })
                     message.success("验证成功")
-                    setTimeout(()=>{
-                        console.log("&&&&&&&&&&&&")
-                        routerRedux.push("/asset?type=2")
-                    },1000)
+                    yield  put(routerRedux.push("/asset?type=2"))
                 }
             }else{                      //不知名失败
                 yield put({

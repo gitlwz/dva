@@ -42,7 +42,7 @@ export default {
             const { data } = yield call(baseService, api.bindingAddress.addTraderFundAddress, [...payload.params]);
             if(!!data && data.result == 1){
                 message.success(data.message)
-                routerRedux("/asset")
+                yield  put(routerRedux.push("/asset"))
             }
             yield put({
                 type: 'save',
