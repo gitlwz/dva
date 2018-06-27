@@ -39,6 +39,7 @@ class SearchResult extends Component {
                         <span style={{fontWeight:"1000"}}>帮助中心</span> > <span>常见问题</span>
                         <div className={styles.searchcontent + " searchcontent"}>
                             <Search
+                                defaultValue={this.props.match.params.search}
                                 placeholder="输入搜索内容"
                                 onSearch={this.onSearch}
                                 enterButton
