@@ -37,8 +37,8 @@ class MyEntrust extends React.Component {
             })
             PubSub.publish('Polling.addsubscribe',
                 [
-                    { name: "getUnfinishedOrder", payload: ["0000000001"] },
-                    { name: "getClientTradeDetail", payload: ["0000000001"] }
+                    { name: "getUnfinishedOrder", payload: [clientID] },
+                    { name: "getClientTradeDetail", payload: [clientID] }
                 ]
             )
         }

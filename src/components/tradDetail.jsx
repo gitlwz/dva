@@ -42,7 +42,7 @@ class TradeComponent extends React.Component {
         if (this.props.trade) {
             return this.props.dataList.map((item, index) => {
                 return <div key={item.id} className={styles.header}>
-                    <span style={{ textAlign: 'left' }}>{item.tradeTime}</span>
+                    <span style={{ textAlign: 'left' }}>{item.insertDate} {item.tradeTime}</span>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买入" : '卖出'}</span>
                     <span>{item.price}</span>
                     <span>{item.volume}</span>
@@ -51,7 +51,7 @@ class TradeComponent extends React.Component {
         } else if (this.props.entrust) {
             return this.props.dataList.map((item, index) => {
                 return <div key={item.orderSysId} className={styles.header} onDoubleClick={() => this.orderAction(item)}>
-                    <span style={{ textAlign: 'left' }}>{item.tradingDay} {item.insertTime}</span>
+                    <span style={{ textAlign: 'left' }}>{item.insertDate} {item.insertTime}</span>
                     <span>{item.instrumentId}</span>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买入" : '卖出'}</span>
                     <span>{item.limitPrice}</span>

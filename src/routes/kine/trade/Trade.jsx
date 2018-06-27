@@ -20,7 +20,6 @@ class Trade extends React.Component {
 
     //格式化数字
     formatNum(value, max) {
-        console.log(value, max)
         if (max == 0) {
             return 0;
         }
