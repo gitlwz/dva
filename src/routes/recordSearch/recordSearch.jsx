@@ -14,7 +14,8 @@ class Record extends Component {
         super(props);
 
         this.state = {
-            leftMenu: ["充提币记录", "委托查询"]
+            leftMenu: ["充提币记录", "委托查询"],
+            currentSelect: '充提币记录'
         }
 
     }
@@ -26,12 +27,7 @@ class Record extends Component {
     }
     //左边menu点击事件
     leftMenuClick = (men) => {
-        this.props.dispatch({
-            type: 'record/save',
-            payload: {
-                currentSelect: men
-            }
-        })
+        this.setState({ currentSelect: men })
     }
     render() {
         return (
@@ -43,7 +39,7 @@ class Record extends Component {
                                 <div className={style.left_card}>
                                     {this.state.leftMenu.map((item, index) => {
                                         let _style = style.left_item;
-                                        if (item === this.props.currentSelect) {
+                                        if (item === this.state.currentSelect) {
                                             _style = _style + " " + style.left_active;
                                         }
                                         return <div onClick={() => this.leftMenuClick(item)} className={_style} key={item}>{item}</div>
@@ -52,8 +48,8 @@ class Record extends Component {
                             </div>
                         </Col>
                         <Col className="gutter-row" span={19}>
-                            {this.props.currentSelect === "充提币记录" && <Recharge />}
-                            {this.props.currentSelect === "委托查询" && <Entrust />}
+                            {this.state.currentSelect === "充提币记录" && <Recharge />}
+                            {this.state.currentSelect === "委托查询" && <Entrust />}
                         </Col>
                     </Row>
                 </div>
@@ -63,7 +59,6 @@ class Record extends Component {
 }
 export default connect((state, props) => {
     return {
-        currentSelect: state.record.currentSelect,
         ...props
     }
 })(Record);

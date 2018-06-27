@@ -111,7 +111,7 @@ var format = {
                 return <span style={{ color: '#349B00' }}>{(num * 100).toFixed(2)}%</span>
             }
             else {
-                return <div>---</div>
+                return <span>---</span>
             }
         }
     },

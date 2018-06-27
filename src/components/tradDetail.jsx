@@ -29,10 +29,6 @@ class TradeComponent extends React.Component {
                 callback: (data) => {
                     if (data.errorCode == "0") {
                         message.success("撤单成功!")
-                        this.props.dispatch({
-                            type: 'trade/queryOrderForClient',
-                            payload: [userId, item.instrumentId, { "pageNo": 1, "pageSize": 10 }]
-                        })
                     } else {
                         message.error("撤单失败!")
                     }
@@ -67,7 +63,7 @@ class TradeComponent extends React.Component {
         else {
             return this.props.dataList.map((item, index) => {
                 return <div key={index} className={styles.header} onClick={() => this.props.handleOk(item.price)}>
-                    <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买" : '卖'}{index + 1}</span>
+                    <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? index + 1 + "买" : this.props.dataList.length - index + '卖'}</span>
                     <span>{item.price}</span>
                     <span>{item.volume}</span>
                     <span>{format.multiply(item.price, item.volume, 2)}</span>

@@ -126,7 +126,7 @@ class Bibi extends React.Component {
                 </Col>
                 <Col span="19">
                     <div style={{ marginLeft: 10 }}>
-                        <div className={cardHeader} style={{ color: '#FFF' }}>{currentInstrument} {dataByInstrumentId.closePrice} ≈ {formatData.convertCNY(this.props.RateUseList, dataByInstrumentId.closePrice, dataByInstrumentId.instrumentId)} 涨幅 {formatData.changePrice(dataByInstrumentId.closePrice, dataByInstrumentId.openPrice)} 高 {dataByInstrumentId.highestPrice} 低 {dataByInstrumentId.lowestPrice} 24H量 {dataByInstrumentId.volume}</div>
+                        <div className={cardHeader}>{currentInstrument} {dataByInstrumentId.closePrice} ≈ {formatData.convertCNY(this.props.RateUseList, dataByInstrumentId.closePrice, dataByInstrumentId.instrumentId)} 涨幅 {formatData.changePrice(dataByInstrumentId.closePrice, dataByInstrumentId.openPrice)} 高 {dataByInstrumentId.highestPrice} 低 {dataByInstrumentId.lowestPrice} 24H量 {dataByInstrumentId.volume}</div>
                         <div style={{ height: '490px', ...borderRadius }} className={bgColor}>
                             {!!currentInstrument ? <TVChartContainer symbol={currentInstrument} /> : ''}
                         </div>
@@ -155,14 +155,14 @@ class Bibi extends React.Component {
                         <div style={{ marginTop: 10 }} >
                             <Row>
                                 {/*我的委托*/}
-                                <Col span="17">
+                                <Col span="15">
                                     <div className={cardHeader}><span style={{ color: this.props.tradeType == "1" ? '#6C7F9C' : '' }} onClick={() => this.changTradeType()}>我的委托</span> <span style={{ color: this.props.tradeType == "0" ? '#6C7F9C' : '' }} onClick={() => this.changTradeType()}>我的成交</span></div>
                                     <div className={bgColor} style={{ height: '360px', ...borderRadius }}>
                                         <MyEntrust />
                                     </div>
                                 </Col>
                                 {/*成交明细*/}
-                                <Col span="7">
+                                <Col span="9">
                                     <div style={{ marginLeft: '10px' }}>
                                         <div className={cardHeader}>成交明细</div>
                                         <div className={bgColor} style={{ height: '360px', ...borderRadius, overflowY: 'scroll' }}>

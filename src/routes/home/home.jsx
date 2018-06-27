@@ -132,7 +132,7 @@ class Home extends React.Component {
                     <span>{item.instrumentId}</span>
                     {this.loadChangeVie(item)}
                 </div>
-                <div className={styles.text}>{item.closePrice != "---" ? parseFloat(item.closePrice) : ""}≈{format.convertCNY(this.props.RateUseList, item.closePrice, item.instrumentId)}</div>
+                <div className={styles.text}>{item.closePrice != "---" ? parseFloat(item.closePrice.toFixed(4)) : ""}≈{format.convertCNY(this.props.RateUseList, item.closePrice, item.instrumentId)}</div>
                 <div className={styles.text}>24H量 {item.volume != "---" ? parseInt(item.volume) : '---'}</div>
             </div>
         })

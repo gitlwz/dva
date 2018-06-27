@@ -46,15 +46,27 @@ class Trade extends React.Component {
             limitPrice = sellPrice * 1;
             volumeTotalOriginal = Number(format.multiply(sellVolume, instrumentIdData.volumeDivider))
         }
+        if (direction == "0") {
+            if (buyVolume == 0) {
+                message.error("交易数量不能为0!")
+                return;
+            }
+            if (buyPrice == 0) {
+                message.error("交易价格不能为0!")
+                return;
+            }
+        }
+        if (direction == "1") {
+            if (sellVolume == 0) {
+                message.error("交易数量不能为0!")
+                return;
+            }
+            if (sellPrice == 0) {
+                message.error("交易价格不能为0!")
+                return;
+            }
+        }
 
-        // if (buyVolume == 0) {
-        //     message.error("交易数量不能为0!")
-        //     return;
-        // }
-        // if (sellVolume == 0) {
-        //     message.error("交易数量不能为0!")
-        //     return;
-        // }
         if (userInfo && userInfo.id) {
             orderData.participantId = userInfo.clientID;
             orderData.clientId = userInfo.clientID;
@@ -81,17 +93,8 @@ class Trade extends React.Component {
                 callback: (data) => {
                     if (direction == "0") {
                         message.success("委托买入成功!");
-                        //委托成功后查询委托列表
-                        this.props.dispatch({
-                            type: 'trade/queryOrderForClient',
-                            payload: [userId, currentInstrument, { "pageNo": 1, "pageSize": 10 }]
-                        })
                     } else {
                         message.success("委托卖出成功!")
-                        this.props.dispatch({
-                            type: 'trade/queryOrderForClient',
-                            payload: [userId, currentInstrument, { "pageNo": 1, "pageSize": 10 }]
-                        })
                     }
                 }
             }
@@ -111,17 +114,7 @@ class Trade extends React.Component {
     }
 
     render() {
-        const marks = {
-            0.1: 0,
-            26.5: 26,
-            37.55: 37,
-            100.6: {
-                style: {
-                    color: 'white',
-                },
-                label: <strong>1000</strong>,
-            },
-        };
+
         const { buyPrice, buyVolume, sellPrice, sellVolume, sliderChange, userId, currentInstrument, dataSource } = this.props;
         //获取可买最大数量
         const getButTotal = this.getTotal(currentInstrument.split("-")[1]);
@@ -156,7 +149,7 @@ class Trade extends React.Component {
                     <div className={styles.tradAction}>卖出价</div>
                     <div>
                         <Input suffix={<span>{currentInstrument}</span>} value={sellPrice} onChange={e => sliderChange({ sellPrice: this.formatNum(e.target.value) })} className={styles.input} />
-                        <div className={styles.fold}>≈≈ {format.convertCNY(this.props.RateUseList, sellPrice, currentInstrument)} CNY</div>
+                        <div className={styles.fold}>≈≈ {format.convertCNY(this.props.RateUseList, sellPrice, currentInstrument)}</div>
                     </div>
                     <div className={styles.tradAction} style={{ marginTop: 35 }}>卖出量</div>
                     <Input suffix={<span>{currentInstrument}</span>} value={sellVolume} onChange={e => sliderChange({ sellVolume: this.formatNum(e.target.value, format.buyMax(getSellTotal, sellPrice)) })} className={styles.input} />

@@ -2,7 +2,7 @@ import { routerRedux } from 'dva/router';
 import baseService from '../services/baseService';
 import api from '../utils/api';
 
-//此模糊和业务无任何关系
+//此模块和业务无任何关系
 export default {
 
     namespace: 'other',
@@ -56,7 +56,6 @@ export default {
 
         //查询汇率换算
         *findAllExchangeRateUse({ payload }, { call, put }) {
-            console.log("***************************")
             const { data } = yield call(baseService, api.baseConfig.findAllExchangeRateUse, []);
             if (data != undefined) {
                 yield put({

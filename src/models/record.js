@@ -6,7 +6,6 @@ export default {
     namespace: 'record',
 
     state: {
-        currentSelect: '充提币记录',
         rechargeData: {
             content: []
         },
@@ -22,7 +21,6 @@ export default {
     effects: {
         *rechargeList({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.asset.rechargeList, payload);
-            console.log(data)
             if (data != undefined) {
                 yield put({
                     type: 'save',
