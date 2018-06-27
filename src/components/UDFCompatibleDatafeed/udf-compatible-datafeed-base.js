@@ -163,7 +163,6 @@ var UDFCompatibleDatafeedBase = /** @class */ (function () {
     };
     UDFCompatibleDatafeedBase.prototype.resolveSymbol = function (symbolName, onResolve, onError) {
         logMessage('Resolve requested');
-        console.log("******88",arguments)
         var resolveRequestStartTime = Date.now();
         function onResultReady(symbolInfo) {
             logMessage("Symbol resolved: " + (Date.now() - resolveRequestStartTime) + "ms");
@@ -175,17 +174,17 @@ var UDFCompatibleDatafeedBase = /** @class */ (function () {
             };
             onResultReady({
                 "name": symbolName,
-                "exchange-traded": "NasdaqNM",
-                "exchange-listed": "NasdaqNM",
+                // "exchange-traded": "NasdaqNM",
+                // "exchange-listed": "NasdaqNM",
                 'timezone': "Asia/Shanghai",
-                "minmov": 1, "minmov2": 0,
-                "pointvalue": 1,
+                // "minmov": 1, "minmov2": 0,
+                // "pointvalue": 1,
                 "session": "0000-2400:1234567",
                 "has_intraday": true,
-                "description": "Apple Inc.", 
+                "description": symbolName, 
                 "type": "stock",
                 "supported_resolutions": ["1", "15", "30","60","240", "1D","5D", "1W","1M"] , 
-                "pricescale": 100, 
+                "pricescale": 100000000, 
                 "ticker": symbolName
             });
             return;
