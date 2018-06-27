@@ -40,7 +40,7 @@ export default {
                 }
             })
             const { data } = yield call(baseService, api.setMoneyPassword.setAccountPassword, [...payload.params]);
-            if(!!data && data.result == 1){
+            if(!!data && data.result == 0){
                 message.success(data.message)
                 yield  put(routerRedux.push("/asset"))
             }

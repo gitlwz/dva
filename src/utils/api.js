@@ -21,7 +21,7 @@ const apis = {
         stopCheck: { url: baseIP + "service/webGeneralService/stopCheck", method: 'POST', description: '查找用户信息：资金密码' },
         findByUserID: { url: baseIP + "service/webGeneralService/findByUserID", method: 'POST', description: '查找用户信息：资金密码' },
         queryClientApply: { url: baseIP + "service/webGeneralService/queryClientApply", method: 'POST', description: '查询用户信息' },
-        queryOperTradingAccount: { url: baseIP + "service/pollingService/getTraderBalanceDetail", method: 'POST', description: '查询资金列表' },
+        queryOperTradingAccount: { url: baseIP + "service/webGeneralService/getTraderBalanceDetail", method: 'POST', description: '查询资金列表' },
         findTraderFundAddress: { url: baseIP + "service/webGeneralService/findTraderFundAddress", method: 'POST', description: '查询其他货币' },
         mailboxVerification: { url: baseIP + "service/webGeneralService/mailboxVerification", method: 'POST', description: '发送邮箱' },
         createAddress: { url: baseIP + "service/webGeneralService/createAddress", method: 'POST', description: '立即生效' },
