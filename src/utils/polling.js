@@ -1,8 +1,7 @@
 import PubSub from "pubsub-js";
 let Polling = {
     pollingFun: [],
-    time: 2000,
-
+    time: 1000,
     init() {
         Polling.interval();
         PubSub.subscribe('Polling.addsubscribe', (name, params) => Polling.addsubscribe(params));
