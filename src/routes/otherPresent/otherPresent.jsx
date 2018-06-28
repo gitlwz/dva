@@ -43,7 +43,7 @@ class otherPresent extends Component {
         this.props.dispatch({
             type: 'otherPresent/findByCurrencyAndAddressType',
             payload: {
-                params: [this.props.match.params.type,"2"]
+                params: [this.props.match.params.type,"1"]
             }
         })
         this.dealRadio(this.props.userInfo.applyStatus)

@@ -51,6 +51,12 @@ class Asset extends Component {
                 }
             }) 
         }
+        this.props.dispatch({
+            type: 'asset/findByUserID'
+        })
+        this.props.dispatch({
+            type: 'user/getUserId'
+        })
     }
     callback = (key) => {
         console.log(key)
@@ -122,7 +128,6 @@ class Asset extends Component {
 export default connect((state, props) => {
     let { userInfo = {} } = state.user
     return {
-
         ...state.asset,
         ...props,
         userInfo

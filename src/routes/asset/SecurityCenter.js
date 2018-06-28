@@ -12,9 +12,7 @@ class SecurityCenter extends Component {
         this.selectValue = '1';
     }
     componentWillMount = () => {
-        this.props.dispatch({
-            type: 'asset/findByUserID'
-        })
+        
     }
     //发送验证邮箱
     sendEmil = () => {

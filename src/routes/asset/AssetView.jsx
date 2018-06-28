@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import style from './asset.less';
 import styleA from './AssetView.less';
-import { connect } from 'dva';
-import { Row, Col, Select, Button, Table, Divider } from 'antd';
+import { connect} from 'dva';
+import { Row, Col, Select, Button, Table, Divider,message } from 'antd';
+let accountPasswordGload = null;
+let _that = null;
 const Option = Select.Option;
 const columns = [{
     title: '币种',
@@ -24,7 +26,13 @@ const columns = [{
             <div>
                 <a href={"#/otherRecharge/" + record.currency} style={{color:"rgba(253,204,57,1)"}}>充值</a>
                 <Divider type="vertical" />
-                <a href="#/otherPresent/BTC" style={{color:"rgba(253,204,57,1)"}}>提现</a>
+                <a onClick={()=>{
+                    if(!accountPasswordGload){
+                        message.info("请先设置资金密码！")
+                        return
+                    }
+                    _that.props.history.push("/otherPresent/"+record.currency)
+                }} style={{color:"rgba(253,204,57,1)"}}>提现</a>
             </div>
         )
     }
@@ -36,6 +44,7 @@ class AssetView extends Component {
     }
 
     componentWillMount = () => {
+        _that = this;
         if(!!this.props.userInfo.clientID){
             this.props.dispatch({
                 type: 'asset/currencyChange',
@@ -104,9 +113,11 @@ class AssetView extends Component {
     }
 }
 export default connect((state, props) => {
-    let { currentSelect,currency, dataSource } = state.asset
+    let { currentSelect,currency, dataSource,findByUserID } = state.asset
     let { userInfo = {} } = state.user
+    accountPasswordGload = findByUserID.accountPassword
     return {
+        findByUserID,
         currency,
         userInfo,
         currentSelect,
