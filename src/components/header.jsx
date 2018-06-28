@@ -122,7 +122,7 @@ class Header extends Component {
                     {this.loadMenuItem()}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', marginRight: 50 }}>
-                    {this.props.userId == "" ?
+                    {this.props.userId == null ?
                         <div>
                             <span style={{ borderRight: '1px solid rgba(86,86,86,1)', padding: '0 20px' }} onClick={() => this.pushNewPage("/user/login")}>登录</span>
                             <span style={{ padding: '0 20px' }} onClick={() => this.pushNewPage("/user/regis")}>注册</span>
