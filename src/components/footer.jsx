@@ -33,8 +33,8 @@ class Footer extends Component {
                     <div style={{ ...borderStyle }}>
                         <p className={styles.title}>{dataJSON.GYConinX}</p>
                         <p onClick={() => this.pushNewPage("/joinus")}>{dataJSON.JRWM}</p>
-                        <p onClick={() => this.pushNewPage("./contactUs")}>{dataJSON.LXWM}</p>
-                        <p onClick={() => this.pushNewPage("./stipulation?application")}>{dataJSON.SSSQ}</p>
+                        <p onClick={() => this.pushNewPage("/contactUs")}>{dataJSON.LXWM}</p>
+                        <p onClick={() => this.pushNewPage("/stipulation?application")}>{dataJSON.SSSQ}</p>
                     </div>
                     <div style={{ ...borderStyle }}>
                         <p className={styles.title}>{dataJSON.TKSM}</p>

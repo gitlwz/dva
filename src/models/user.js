@@ -7,10 +7,12 @@ export default {
     namespace: 'user',
 
     state: {
-        userInfo: {},//用户信息
+        userInfo: {
+            clientID: null
+        },//用户信息
         countryList: [],
         isLogin: false,
-        userId: ''
+        userId: null
     },
 
     effects: {
@@ -31,32 +33,32 @@ export default {
         *logout({ payload }, { call, put }) {
             const data = yield call(baseService, api.user.logout, []);
             if (data != undefined) {
-                if (data.errorCode == "0") {
+                if (data.errorCode == 0) {
                     yield put({
                         type: 'getUserId'
                     })
-                    yield put(routerRedux.push("/"))
+                    yield put(routerRedux.push("/home"))
                 } else {
                     console.log("network err!")
                 }
             }
-
         },
         //获取当前登录人
         *getUserId({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.user.getUserId, []);
-            if (data != undefined) {
-                yield put({
-                    type: 'save',
-                    payload: {
-                        userId: data
-                    }
-                })
-
+            yield put({
+                type: 'save',
+                payload: {
+                    userId: data
+                }
+            })
+            if (data != null) {
                 yield put({
                     type: 'findUserInfo'
                 })
             }
+
+
         },
         //获取当前登陆人信息
         *findUserInfo({ payload }, { call, put }) {

@@ -178,7 +178,7 @@ class Entrust extends Component {
                             loading={this.props.loading}
                         /> :
                         <Table
-                            rowKey="orderSysId"
+                            rowKey="id"
                             columns={columns2}
                             dataSource={this.props.entrustData.content}
                             pagination={pagination}
