@@ -28,7 +28,7 @@ var dataFormat = {
                 return "全部成交"
                 break;
             case "1":
-                return "部部成交"
+                return "部分成交"
                 break;
             case "3":
                 return "未成交"
