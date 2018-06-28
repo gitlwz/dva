@@ -124,6 +124,7 @@ export default {
         },
         getUnfinishedOrder({ dispatch, history }) {
             return PubSub.subscribe("getUnfinishedOrder", (name, payload) => {
+                console.log(payload)
                 dispatch({
                     type: "getUnfinishedOrder",
                     payload: payload

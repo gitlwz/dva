@@ -9,8 +9,8 @@ import logo from '../assets/yinghe/矢量智能对象@2x.png';
 import selectBg from '../assets/yinghe/圆角矩形 6@3x.png'
 import languareBG from '../assets/yinghe/languare.png';
 import styles from './header.less';
-import languageData from '../language' 
-console.log("languageData--------------",languageData)
+import languageData from '../language'
+console.log("languageData--------------", languageData)
 /**
  * 模块:赢和超腾导航
  * 创建时间:2018-5-24
@@ -25,10 +25,13 @@ class Header extends Component {
             userId: null,
             selectMenu: window.location.hash.split("#")[1]
         }
-        this.currLanguage = window.localStorage.getItem("language")||'China';
+        this.currLanguage = window.localStorage.getItem("language") || 'China';
     }
     componentDidMount() {
         this.props.getUserId()
+    }
+
+    componentWillReceiveProps(next) {
     }
 
     pushNewPage(pageName) {
@@ -53,9 +56,9 @@ class Header extends Component {
                 break;
         }
     }
-    currLanguageChange =(e)=>{
-        let item = this.currLanguage == "China"?"English":"China"
-        window.localStorage.setItem("language",item)
+    currLanguageChange = (e) => {
+        let item = this.currLanguage == "China" ? "English" : "China"
+        window.localStorage.setItem("language", item)
         window.location.reload();
     }
     menu() {

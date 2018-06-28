@@ -22,12 +22,13 @@ class MyEntrust extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.userInfo && !!this.props.userInfo.clientID) {
-            this.getDataList(this.props.userInfo.clientID);
+        //从别的页面点击已经登录的情况下
+        if (this.props.userInfo && !!this.props.userInfo.clientID && !!this.props.currentInstrument) {
+            this.getDataList(this.props.userInfo.clientID, this.props.currentInstrument);
         }
     }
 
-    getDataList(clientID) {
+    getDataList(clientID, currentInstrument) {
         if (!!clientID) {
             this.props.dispatch({
                 type: 'trade/save',
@@ -37,17 +38,30 @@ class MyEntrust extends React.Component {
             })
             PubSub.publish('Polling.addsubscribe',
                 [
-                    { name: "getUnfinishedOrder", payload: [clientID] },
-                    { name: "getClientTradeDetail", payload: [clientID] }
+                    { name: "getUnfinishedOrder", payload: [clientID, currentInstrument] },
+                    { name: "getClientTradeDetail", payload: [clientID, currentInstrument] }
                 ]
             )
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.userInfo != nextProps.userInfo && nextProps.userInfo.clientID) {
-            this.getDataList(nextProps.userInfo.clientID)
+        //改情况是刷新本页面从新获取userInfo
+        if (!!nextProps.currentInstrument) {
+            if (this.props.userInfo != nextProps.userInfo && !!nextProps.userInfo.clientID) {
+                console.log("触发!")
+                this.getDataList(nextProps.userInfo.clientID, nextProps.currentInstrument)
+            }
         }
+
+        //userInfo已经有了,切换货币对
+        if (nextProps.userInfo && !!nextProps.userInfo.clientID) {
+            if (this.props.currentInstrument != nextProps.currentInstrument) {
+                console.log("也触发!")
+                this.getDataList(nextProps.userInfo.clientID, nextProps.currentInstrument)
+            }
+        }
+
     }
 
 
