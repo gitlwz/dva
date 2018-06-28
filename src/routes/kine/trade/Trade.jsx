@@ -19,7 +19,7 @@ class Trade extends React.Component {
     }
 
     //格式化数字
-    formatNum(value, max) {
+    formatNum({ value, max, pointNum }) {
         if (max == 0) {
             return 0;
         }
@@ -28,7 +28,7 @@ class Trade extends React.Component {
             message.error("超过最大值" + max + "请重新输入");
             return value;
         }
-        return format.NumberCheck({ value: value, pointNum: 2 })
+        return format.NumberCheck({ value: value, pointNum: pointNum })
     }
 
 
@@ -105,7 +105,7 @@ class Trade extends React.Component {
         if (this.props.dataSource.length > 0) {
             let data = this.props.dataSource.filter(item => item.currency == currency && item.ifTotal == false)[0];
             if (!!data) {
-                return data["btcCount"];
+                return data["available"];
             }
             return 0;
         }
@@ -127,11 +127,11 @@ class Trade extends React.Component {
 
                     <div className={styles.tradAction}>买入价</div>
                     <div>
-                        <Input suffix={<span>{currentInstrument}</span>} value={buyPrice} onChange={e => sliderChange({ buyPrice: this.formatNum(e.target.value) })} className={styles.input} />
+                        <Input suffix={<span>{currentInstrument}</span>} value={buyPrice} onChange={e => sliderChange({ buyPrice: this.formatNum({ value: e.target.value, pointNum: 10 }) })} className={styles.input} />
                         <div className={styles.fold}>≈≈ {format.convertCNY(this.props.RateUseList, buyPrice, currentInstrument)}</div>
                     </div>
                     <div className={styles.tradAction} style={{ marginTop: 35 }}>买入量</div>
-                    <Input suffix={<span>{currentInstrument}</span>} value={buyVolume} onChange={e => sliderChange({ buyVolume: this.formatNum(e.target.value, format.buyMax(getButTotal, buyPrice)) })} className={styles.input} />
+                    <Input suffix={<span>{currentInstrument}</span>} value={buyVolume} onChange={e => sliderChange({ buyVolume: this.formatNum({ value: e.target.value, max: format.buyMax(getButTotal, buyPrice), pointNum: 4 }) })} className={styles.input} />
                     <Slider step={0.01} style={{ margin: '10px 0', background: 'rgba(203,229,255,0.14)' }} max={format.buyMax(getButTotal, buyPrice)} value={Number(buyVolume)} onChange={value => sliderChange({ buyVolume: value })} className={styles.input} />
                     <Row>
                         <Col span={12}>0</Col>
@@ -147,11 +147,11 @@ class Trade extends React.Component {
                     {userId ? <div className={styles.usable}>可用 {getSellTotal} {currentInstrument.split("-")[0]}</div> : <div className={styles.usable} > <LoginTooltip /></div>}
                     <div className={styles.tradAction}>卖出价</div>
                     <div>
-                        <Input suffix={<span>{currentInstrument}</span>} value={sellPrice} onChange={e => sliderChange({ sellPrice: this.formatNum(e.target.value) })} className={styles.input} />
+                        <Input suffix={<span>{currentInstrument}</span>} value={sellPrice} onChange={e => sliderChange({ sellPrice: this.formatNum({ value: e.target.value, pointNum: 10 }) })} className={styles.input} />
                         <div className={styles.fold}>≈≈ {format.convertCNY(this.props.RateUseList, sellPrice, currentInstrument)}</div>
                     </div>
                     <div className={styles.tradAction} style={{ marginTop: 35 }}>卖出量</div>
-                    <Input suffix={<span>{currentInstrument}</span>} value={sellVolume} onChange={e => sliderChange({ sellVolume: this.formatNum(e.target.value, format.buyMax(getSellTotal, sellPrice)) })} className={styles.input} />
+                    <Input suffix={<span>{currentInstrument}</span>} value={sellVolume} onChange={e => sliderChange({ sellVolume: this.formatNum({ value: e.target.value, max: format.buyMax(getSellTotal, sellPrice), pointNum: 4 }) })} className={styles.input} />
                     <Slider step={0.01} style={{ margin: '10px 0', background: 'rgba(203,229,255,0.14)' }} max={format.buyMax(getSellTotal, sellPrice)} value={Number(sellVolume)} onChange={value => sliderChange({ sellVolume: value })} />
                     <Row>
                         <Col span={12}>0</Col>

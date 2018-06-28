@@ -11,7 +11,8 @@ export default {
         rateList: [],  //费率
         noticeList: [],  //主页公告列表
         messageList: [],   //平台公告
-        RateUseList: []  //汇率
+        RateUseList: [],  //汇率
+        totalPage: 0
     },
 
     effects: {
@@ -48,7 +49,8 @@ export default {
                 yield put({
                     type: 'save',
                     payload: {
-                        messageList: data.content || []
+                        messageList: data.content || [],
+                        totalPage: data.totalPage
                     }
                 })
             }

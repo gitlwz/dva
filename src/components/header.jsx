@@ -52,6 +52,10 @@ class Header extends Component {
                 this.props.dispatch(routerRedux.push("/asset?type=2"))
                 //安全中心
                 break;
+            case "5":
+                this.props.logout();
+                //安全中心
+                break;
             default:
                 break;
         }
@@ -148,12 +152,12 @@ class Header extends Component {
                                 <span style={{ padding: '0 20px' }}>{this.props.userId}</span>
                             </Dropdown>
 
-                            <span onClick={() => this.props.logout()} style={{ marginRight: 20 }}>{languageData.TC}</span>
+
                         </div>
                     }
                     <div className={styles.language}>
                         <img src={languareBG} style={{ marginRight: 20, marginLeft: 10 }} />
-                        <select value={this.currLanguage} onChange={this.currLanguageChange} style={{ height: "26px", border: "none", outline: 'none', fontSize: "18px !important" }}>
+                        <select value={this.currLanguage} onChange={this.currLanguageChange} style={{ height: "26px", border: "none", outline: 'none', fontSize: "18px" }}>
                             <option value="China">{this.currLanguage == "China" ? "中文" : 'China'}</option>
                             <option value="English">{this.currLanguage == "English" ? "English" : '英文'}</option>
                         </select>

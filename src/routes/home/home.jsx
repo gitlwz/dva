@@ -215,7 +215,12 @@ class Home extends React.Component {
                 <div style={{ background: '#FFFFFF', borderRadius: '10px', paddingBottom: 40 }}>
                     <YHTable columns={columns} dataSource={this.getDataArray().filter(item => {
                         if (this.state.currency == "ZX") {
-                            return item.checked == true;
+                            if (this.state.search !== "") {
+                                return (item.checked == true && item.instrumentId.split("-")[0].match(this.state.search))
+                            } else {
+                                return item.checked == true;
+                            }
+
                         } else {
                             if (this.state.search != "") {
                                 return (this.state.currency == item.instrumentId.split("-")[1] && item.instrumentId.split("-")[0].match(this.state.search))

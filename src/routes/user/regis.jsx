@@ -120,7 +120,7 @@ class Regis extends React.Component {
         }
         return <div style={{ ...divStyle }}>
             <p style={{ color: '#FDCC39', fontSize: 16, textAlign: 'center' }}>提醒!</p>
-            您提供的电子邮件地址将成为您的GALAXY的ID，并将用于未来的所有通信，包括账户恢复。 像保护你的GALAXY账户一样保护你的电子邮件账户。 使用一次性电子邮件地址注册将被拒绝
+            您提供的电子邮件地址将成为您的SUNDAX的ID，并将用于未来的所有通信，包括账户恢复。 像保护你的SUNDAX账户一样保护你的电子邮件账户。 使用一次性电子邮件地址注册将被拒绝
             </div>
     }
 

@@ -36,6 +36,12 @@ export default {
                 if (data.errorCode == 0) {
                     yield put({
                         type: 'getUserId'
+                    });
+                    yield put({
+                        type: "save",
+                        payload: {
+                            userInfo: {}
+                        }
                     })
                     yield put(routerRedux.push("/home"))
                 } else {
