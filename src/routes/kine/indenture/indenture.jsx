@@ -32,12 +32,6 @@ class Indenture extends React.Component {
         )
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.instrumentIds != nextProps.instrumentIds) {
-
-        }
-    }
-
     componentWillUnmount() {
         PubSub.publish('Polling.delsubscribe', ["list24HVolume"])
     }
@@ -133,7 +127,7 @@ class Indenture extends React.Component {
                     <Col className={styles.col} span={8}>
                         <div style={{ display: "flex", alignItems: 'center' }}>
                             <img src={item.checked == true ? selectStar : star} style={{ paddingRight: 10, alignSelf: 'center' }} onClick={(e) => this.checked(e, item.instrumentId)} />
-                            <span> {item.instrumentId.split("-")[1]}</span>
+                            <span> {item.instrumentId.split("-")[0]}</span>
                         </div>
                     </Col>
                     <Col className={styles.col} span={8} style={{ textAlign: 'center' }}>{item.closePrice}</Col>

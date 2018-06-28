@@ -49,7 +49,6 @@ class MyEntrust extends React.Component {
         //改情况是刷新本页面从新获取userInfo
         if (!!nextProps.currentInstrument) {
             if (this.props.userInfo != nextProps.userInfo && !!nextProps.userInfo.clientID) {
-                console.log("触发!")
                 this.getDataList(nextProps.userInfo.clientID, nextProps.currentInstrument)
             }
         }
@@ -57,7 +56,6 @@ class MyEntrust extends React.Component {
         //userInfo已经有了,切换货币对
         if (nextProps.userInfo && !!nextProps.userInfo.clientID) {
             if (this.props.currentInstrument != nextProps.currentInstrument) {
-                console.log("也触发!")
                 this.getDataList(nextProps.userInfo.clientID, nextProps.currentInstrument)
             }
         }
