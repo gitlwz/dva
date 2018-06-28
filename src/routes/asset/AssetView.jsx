@@ -44,7 +44,6 @@ class AssetView extends Component {
                 }
             })
         }
-        
     }
     componentWillReceiveProps = (nextProps) => {
         if(this.props.userInfo.clientID !== nextProps.userInfo.clientID){
@@ -69,7 +68,8 @@ class AssetView extends Component {
         })
     }
     render() {
-        let dataSource = this.props.dataSource.filter((item)=>{
+        let dataSource = this.props.dataSource.filter((item,index)=>{
+            item.key = index;
             if(!!this.props.currency){
                 return item.currency === this.props.currency
             }
