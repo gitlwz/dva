@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { UDFCompatibleDatafeed } from '../UDFCompatibleDatafeed/udf-compatible-datafeed';
+const language = !!window.localStorage.getItem("language")&&window.localStorage.getItem("language") == "English"?'en':'zh';
 let widget = null;
 let widgetOptions = {
 	overrides: {
@@ -20,7 +21,7 @@ let widgetOptions = {
 	toolbar_bg: '#1D263D',
 	container_id: "tv_chart_container",
 	library_path: "./charting_library/",
-	locale: 'zh',
+	locale: language,
 	autosize: true,
 	"session": "0000-2400:1234567",
 	supported_resolutions: ["1", "15", "30", "60", "240", "1D", "5D", "1W", "1M"],

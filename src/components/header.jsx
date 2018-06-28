@@ -63,19 +63,19 @@ class Header extends Component {
             <Menu onClick={this.menuClick} className="header_dropdown">
                 <Menu.Item key="0">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_zc}>资产总览</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_zc}>{languageData.kine.ZCZL}</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="1">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_dd}>交易记录查询</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_dd}>{languageData.kine.JYJLXC}</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="2">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_tcb}>充币&提币</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_tcb}>{languageData.kine['CB&TB']}</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
@@ -87,13 +87,13 @@ class Header extends Component {
                 <Menu.Divider /> */}
                 <Menu.Item key="4">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>安全中心</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>{languageData.kine.AQZX}</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="5">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_tc}>退出</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_tc}>{languageData.kine.TC}</span>
                     </div>
                 </Menu.Item>
             </Menu>
