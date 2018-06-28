@@ -5,10 +5,10 @@ import AssetView from './AssetView';
 import SecurityCenter from './SecurityCenter';
 import CashManagement from './CashManagement';
 import { connect } from 'dva';
-import language from '../../language' 
+import language from '../../language'
 const languageData = language.asset;
 const Option = Select.Option;
-console.log("languageData======",language,languageData)
+console.log("languageData======", language, languageData)
 /**
  * 资产管理
  */
@@ -22,34 +22,34 @@ class Asset extends Component {
 
     }
     componentWillMount = () => {
-        if(this.props.history.location.search === "?type=1"){
+        if (this.props.history.location.search === "?type=1") {
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
                     currentSelect: "资产总览"
                 }
             })
-        }else if(this.props.history.location.search === "?type=2"){
+        } else if (this.props.history.location.search === "?type=2") {
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
                     currentSelect: "安全中心"
                 }
-            }) 
-        }else if(this.props.history.location.search === "?type=3"){
+            })
+        } else if (this.props.history.location.search === "?type=3") {
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
                     currentSelect: "充提管理"
                 }
-            }) 
-        }else{
+            })
+        } else {
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
                     currentSelect: "资产总览"
                 }
-            }) 
+            })
         }
         this.props.dispatch({
             type: 'asset/findByUserID'
@@ -84,13 +84,13 @@ class Asset extends Component {
                 content: "请先完成身份验证"
             }
         }
-        if(this.props.userInfo.applyStatus == 2 && !!this.props.userInfo.identificationType){
+        if (this.props.userInfo.applyStatus == 2 && !!this.props.userInfo.identificationType) {
             topError = {
-                show:true,
-                content:"身份验证审核中"
+                show: true,
+                content: "身份验证审核中"
             }
         }
-        
+
         return (
             <Spin size="large" spinning={this.props.loading} >
                 <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
@@ -107,7 +107,7 @@ class Asset extends Component {
                                             if (item === this.props.currentSelect) {
                                                 _style = _style + " " + style.left_active;
                                             }
-                                            return <div onClick={() => this.leftMenuClick(item)} className={_style}>{item}</div>
+                                            return <div onClick={() => this.leftMenuClick(item)} className={_style} key={item}>{item}</div>
                                         })}
                                     </div>
                                 </div>

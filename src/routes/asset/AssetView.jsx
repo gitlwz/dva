@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import style from './asset.less';
 import styleA from './AssetView.less';
-import { connect} from 'dva';
-import { Row, Col, Select, Button, Table, Divider,message } from 'antd';
+import { connect } from 'dva';
+import { Row, Col, Select, Button, Table, Divider, message } from 'antd';
 let accountPasswordGload = null;
 let _that = null;
 const Option = Select.Option;
@@ -24,15 +24,15 @@ const columns = [{
     render: (text, record, index) => {
         return (
             <div>
-                <a href={"#/otherRecharge/" + record.currency} style={{color:"rgba(253,204,57,1)"}}>充值</a>
+                <a href={"#/otherRecharge/" + record.currency} style={{ color: "rgba(253,204,57,1)" }}>充值</a>
                 <Divider type="vertical" />
-                <a onClick={()=>{
-                    if(!accountPasswordGload){
+                <a onClick={() => {
+                    if (!accountPasswordGload) {
                         message.info("请先设置资金密码！")
                         return
                     }
-                    _that.props.history.push("/otherPresent/"+record.currency)
-                }} style={{color:"rgba(253,204,57,1)"}}>提现</a>
+                    _that.props.history.push("/otherPresent/" + record.currency)
+                }} style={{ color: "rgba(253,204,57,1)" }}>提现</a>
             </div>
         )
     }
@@ -45,7 +45,7 @@ class AssetView extends Component {
 
     componentWillMount = () => {
         _that = this;
-        if(!!this.props.userInfo.clientID){
+        if (!!this.props.userInfo.clientID) {
             this.props.dispatch({
                 type: 'asset/currencyChange',
                 payload: {
@@ -55,7 +55,7 @@ class AssetView extends Component {
         }
     }
     componentWillReceiveProps = (nextProps) => {
-        if(this.props.userInfo.clientID !== nextProps.userInfo.clientID){
+        if (this.props.userInfo.clientID !== nextProps.userInfo.clientID) {
             this.props.dispatch({
                 type: 'asset/currencyChange',
                 payload: {
@@ -77,9 +77,9 @@ class AssetView extends Component {
         })
     }
     render() {
-        let dataSource = this.props.dataSource.filter((item,index)=>{
+        let dataSource = this.props.dataSource.filter((item, index) => {
             item.key = index;
-            if(!!this.props.currency){
+            if (!!this.props.currency) {
                 return item.currency === this.props.currency
             }
             return !!item.currency
@@ -100,11 +100,12 @@ class AssetView extends Component {
                     </Select>
                     <span className={styleA.right_query}><Button onClick={this.queryClick}>查询</Button></span>
                 </div>
-                <div class={styleA.right_table + " AssetView"}>
+                <div className={styleA.right_table + " AssetView"}>
                     <Table
                         columns={columns}
                         dataSource={dataSource}
                         size="middle"
+                        rowKey="currency"
                         pagination={false}
                     />
                 </div>
@@ -113,7 +114,7 @@ class AssetView extends Component {
     }
 }
 export default connect((state, props) => {
-    let { currentSelect,currency, dataSource,findByUserID } = state.asset
+    let { currentSelect, currency, dataSource, findByUserID } = state.asset
     let { userInfo = {} } = state.user
     accountPasswordGload = findByUserID.accountPassword
     return {
