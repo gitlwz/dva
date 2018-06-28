@@ -23,15 +23,10 @@ export default {
                 }
             })
             const { data } = yield call(baseService, api.otherPresent.withdraw, [...payload.params]);
-            if(data === null){
+            if(data === "success"){
                 message.success("提现成功！")
             }
-            yield put({
-                type: 'save',
-                payload:{
-                    loading:false
-                }
-            })
+            yield put(routerRedux.push("/asset"))
         },
         *bankBindingMessageSent({ payload }, { call, put }) {
             yield put({

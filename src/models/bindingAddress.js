@@ -40,8 +40,8 @@ export default {
                 }
             })
             const { data } = yield call(baseService, api.bindingAddress.addTraderFundAddress, [...payload.params]);
-            if(!!data && data.result == 1){
-                message.success(data.message)
+            if(!!data && !!data.id){
+                message.success("绑定成功！")
                 yield  put(routerRedux.push("/asset"))
             }
             yield put({

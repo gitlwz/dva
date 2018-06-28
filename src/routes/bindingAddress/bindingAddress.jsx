@@ -172,7 +172,8 @@ class bindingAddress extends Component {
                                 >
                                     {getFieldDecorator('currency', {
                                         rules: [{
-                                            required:true
+                                            required:true,
+                                            message:"请设置资金密码！"
                                         }],
                                     })(
                                         <Input disabled placeholder="请设置资金密码" type="text" />
@@ -182,7 +183,8 @@ class bindingAddress extends Component {
                                 >
                                     {getFieldDecorator('addressRemark', {
                                         rules: [{
-                                            required:true
+                                            required:true,
+                                            message:"请输入地址名称"
                                         }],
                                     })(
                                         <Input placeholder="地址名称" type="text" />
@@ -192,7 +194,8 @@ class bindingAddress extends Component {
                                 >
                                     {getFieldDecorator('address', {
                                         rules: [{
-                                            required:true
+                                            required:true,
+                                            message:"请输入地址名称！"
                                         }],
                                     })(
                                         <Input placeholder="提现地址" type="text" />
