@@ -243,7 +243,7 @@ class otherPresent extends Component {
                                             message:"请输入提现金额"
                                         }],
                                     })(
-                                        <InputNumber onChange={this.numberChange}  precision={precision} max={this.state.select.extractable*1||0} min={this.state.select.withdrawalAmount*1||0} placeholder="提现金额" className={style.inputerNumber}  />
+                                        <InputNumber step={0.01} onChange={this.numberChange}  precision={precision} max={this.state.select.extractable*1||0} min={this.state.select.withdrawalAmount*1||0} placeholder="提现金额" className={style.inputerNumber}  />
                                     )}
                                     <a href="#/minerFee" className={style.inputerNumber_text}>矿工说明</a>
                                 </FormItem>
