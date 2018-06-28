@@ -27,6 +27,11 @@ class SecurityCenter extends Component {
         this.selectValue = value
     }
     selectOnClick = () => {
+        let { applyStatus } = this.props.userInfo;
+        if(applyStatus <2 ){
+            message.warning("请先进行邮箱验证！")
+            return;
+        }
         switch (this.selectValue) {
             case '1':
                 this.props.history.push("/submitMessage")
@@ -56,6 +61,11 @@ class SecurityCenter extends Component {
     }
     //开启谷歌验证码
     openGo = (path) => {
+        let { applyStatus } = this.props.userInfo;
+        if(applyStatus <3 ){
+            message.warning("请先进行身份证！")
+            return;
+        }
         if (!this.props.userInfo.email) {
             message.warning('请先登录账号！');
             return;
@@ -197,12 +207,13 @@ class SecurityCenter extends Component {
         }
     }
     render() {
-        let { clientID, clientName, registeredName, applyStatus, accountPassword } = this.props.userInfo;
+        let { clientID, clientName, registeredName, applyStatus } = this.props.userInfo;
         if (!!clientName) {
             clientName = "**" + clientName.substr(clientName.length - 1, 1);
         } else {
             clientName = "未完成身份验证";
         }
+        let accountPassword;
         if (!!this.props.findByUserID.accountPassword) {
             accountPassword = "******";
         } else {
@@ -271,12 +282,11 @@ class SecurityCenter extends Component {
 }
 export default connect((state, props) => {
     let { currentSelect, findByUserID } = state.asset
-    let { userId, userInfo = {} } = state.user
+    let { userInfo = {} } = state.user
     return {
         userInfo,
         currentSelect,
         findByUserID,
-        accountPassword: userId.accountPassword,
         ...props
     }
 })(SecurityCenter);
