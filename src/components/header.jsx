@@ -9,7 +9,8 @@ import logo from '../assets/yinghe/矢量智能对象@2x.png';
 import selectBg from '../assets/yinghe/圆角矩形 6@3x.png'
 import languareBG from '../assets/yinghe/languare.png';
 import styles from './header.less';
-
+import languageData from '../language' 
+console.log("languageData--------------",languageData)
 /**
  * 模块:赢和超腾导航
  * 创建时间:2018-5-24
@@ -24,8 +25,8 @@ class Header extends Component {
             userId: null,
             selectMenu: window.location.hash.split("#")[1]
         }
+        this.currLanguage = window.localStorage.getItem("language")||'China';
     }
-
     componentDidMount() {
         this.props.getUserId()
     }
@@ -51,6 +52,11 @@ class Header extends Component {
             default:
                 break;
         }
+    }
+    currLanguageChange =(e)=>{
+        let item = this.currLanguage == "China"?"English":"China"
+        window.localStorage.setItem("language",item)
+        window.location.reload();
     }
     menu() {
         return (
@@ -95,10 +101,10 @@ class Header extends Component {
     }
 
     loadMenuItem() {
-        const menuArray = [{ img: require("../assets/yinghe/home.png"), title: '主页', url: '/home', selectImg: require("../assets/yinghe/helpSelect.png") },
-        { img: require("../assets/yinghe/bibi.png"), title: '币币交易', url: '/kine', selectImg: require("../assets/yinghe/bibiSelect.png") },
-        { img: require("../assets/yinghe/notice.png"), title: '平台公告', url: '/Platform', selectImg: require("../assets/yinghe/noticeSelect.png") },
-        { img: require("../assets/yinghe/help.png"), title: '帮助中心', url: '/helpcenter', selectImg: require("../assets/yinghe/helpSelect.png") }]
+        const menuArray = [{ img: require("../assets/yinghe/home.png"), title: languageData.home, url: '/home', selectImg: require("../assets/yinghe/helpSelect.png") },
+        { img: require("../assets/yinghe/bibi.png"), title: languageData.BBJX, url: '/kine', selectImg: require("../assets/yinghe/bibiSelect.png") },
+        { img: require("../assets/yinghe/notice.png"), title: languageData.PTGG, url: '/Platform', selectImg: require("../assets/yinghe/noticeSelect.png") },
+        { img: require("../assets/yinghe/help.png"), title: languageData.BZZX, url: '/helpcenter', selectImg: require("../assets/yinghe/helpSelect.png") }]
         return <div style={{ display: "flex", flexDirection: 'row' }}>
             {menuArray.map((item, index) => {
                 return <div className={styles.text} onClick={() => {
@@ -124,8 +130,8 @@ class Header extends Component {
                 <div style={{ display: 'flex', alignItems: 'center', marginRight: 50 }}>
                     {this.props.userId == null ?
                         <div>
-                            <span style={{ borderRight: '1px solid rgba(86,86,86,1)', padding: '0 20px' }} onClick={() => this.pushNewPage("/user/login")}>登录</span>
-                            <span style={{ padding: '0 20px' }} onClick={() => this.pushNewPage("/user/regis")}>注册</span>
+                            <span style={{ borderRight: '1px solid rgba(86,86,86,1)', padding: '0 20px' }} onClick={() => this.pushNewPage("/user/login")}>{languageData.Login}</span>
+                            <span style={{ padding: '0 20px' }} onClick={() => this.pushNewPage("/user/regis")}>{languageData.signIn}</span>
                         </div> :
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <img src={selectBg} style={{ margin: '0 10px', width: 40 }} onClick={() => {
@@ -139,14 +145,14 @@ class Header extends Component {
                                 <span style={{ padding: '0 20px' }}>{this.props.userId}</span>
                             </Dropdown>
 
-                            <span onClick={() => this.props.logout()} style={{ marginRight: 20 }}>登出</span>
+                            <span onClick={() => this.props.logout()} style={{ marginRight: 20 }}>{languageData.TC}</span>
                         </div>
                     }
                     <div className={styles.language}>
                         <img src={languareBG} style={{ marginRight: 20, marginLeft: 10 }} />
-                        <select value={this.props.currLanguage} onChange={e => console.log(e)} style={{ height: "26px", border: "none", outline: 'none', fontSize: "18px !important" }}>
-                            <option value="China">{this.props.currLanguage == "China" ? "中文" : 'China'}</option>
-                            {/*<option value="English">{this.props.currLanguage == "English" ? "English" : '英文'}</option>*/}
+                        <select value={this.currLanguage} onChange={this.currLanguageChange} style={{ height: "26px", border: "none", outline: 'none', fontSize: "18px !important" }}>
+                            <option value="China">{this.currLanguage == "China" ? "中文" : 'China'}</option>
+                            <option value="English">{this.currLanguage == "English" ? "English" : '英文'}</option>
                         </select>
                     </div>
                 </div>

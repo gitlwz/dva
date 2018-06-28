@@ -78,7 +78,7 @@ export default {
             const { data } = yield call(baseService, api.smSverification.messageCheck, [...payload]);
             if (!!data) {    //成功
                 message.success("开启成功")
-                yield  put(routerRedux.push("/asset"))
+                yield  put(routerRedux.push("/asset?type=2"))
             }else{  //不知名失败
                 message.error("开启失败")
             }
@@ -105,9 +105,7 @@ export default {
             const { data } = yield call(baseService, api.smSverification.resetGooleOrMessageCheck, [...payload]);
             if (data !== undefined) {    //成功
                 message.success("开启成功")
-                setTimeout(()=>{
-                    routerRedux.push("/asset")
-                },1000)
+                yield  put(routerRedux.push("/asset?type=2"))
             }else{  //不知名失败
                 message.error("开启失败")
             }
