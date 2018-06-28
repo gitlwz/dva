@@ -5,8 +5,10 @@ import AssetView from './AssetView';
 import SecurityCenter from './SecurityCenter';
 import CashManagement from './CashManagement';
 import { connect } from 'dva';
+import language from '../../language' 
+const languageData = language.asset;
 const Option = Select.Option;
-
+console.log("languageData======",language,languageData)
 /**
  * 资产管理
  */

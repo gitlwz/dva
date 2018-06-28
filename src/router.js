@@ -1,11 +1,12 @@
 import React from 'react';
 import { Router, Route, Switch, routerRedux, Redirect } from 'dva/router';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
+import enGB from 'antd/lib/locale-provider/en_GB';
 import { LocaleProvider } from 'antd';
 import dynamic from 'dva/dynamic';
 import Layout from './routes/Layout';
 import LayoutRouter from './utils/LayoutRouter';
-
+const language = !!window.localStorage.getItem("language")&&window.localStorage.getItem("language") == "English"?enGB:zhCN;
 const registerModel = (app, model) => {
     //改写法存在问题，先屏蔽
     if ((app._models.filter(m => m.namespace === model.namespace).length === 1)) {
@@ -36,7 +37,7 @@ function RouterConfig({ history, app }) {
     )
 
     return (
-        <LocaleProvider locale={zhCN}>
+        <LocaleProvider locale={language}>
             <Router history={history}>
                 <Switch>
                     <Route path="/user" component={require("./routes/user/UserLayout").default} />
