@@ -113,9 +113,9 @@ class Asset extends Component {
                                 </div>
                             </Col>
                             <Col className="gutter-row" span={18}>
-                                {this.props.currentSelect === "资产总览" && <AssetView history={this.props.history} />}
-                                {this.props.currentSelect === "安全中心" && <SecurityCenter history={this.props.history} />}
-                                {this.props.currentSelect === "充提管理" && <CashManagement history={this.props.history} />}
+                                {this.props.currentSelect === "资产总览" && <AssetView key="1" history={this.props.history} />}
+                                {this.props.currentSelect === "安全中心" && <SecurityCenter key="2" history={this.props.history} />}
+                                {this.props.currentSelect === "充提管理" && <CashManagement key="3" history={this.props.history} />}
                             </Col>
                         </Row>
                     </div>

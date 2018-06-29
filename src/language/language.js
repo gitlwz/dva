@@ -147,6 +147,7 @@ export default {
 		GYConinX: 'About SUNDAX',
 		JRWM: 'Join Us',
 		LXWM: 'Contact Us',
+		FLSML:"Legal Statement",
 		SSSQ: 'Listing Application',
 		TKSM: 'Stipulation',
 		YHXY: 'User Agreement',
