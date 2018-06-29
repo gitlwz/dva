@@ -9,13 +9,17 @@
   <script src="./charting_library/charting_library.min.js"></script>
   <script src="./datafeeds/udf/dist/polyfills.js"></script>
   <script src="./datafeeds/udf/dist/bundle.js"></script>
-  <link rel="shortcut icon" href="../dist/static/favicon.ico"/>
+  <link rel="shortcut icon" href="../dist/static/favicon.ico" />
 </head>
 
 <body>
 
   <div id="root"></div>
-
+  <script>
+    if (!!window.ActiveXObject || "ActiveXObject" in window){
+      document.write("请使用谷歌浏览器打开<a href='https://www.google.cn/intl/zh-CN/chrome/'>前去下载</a>")
+    }
+  </script>
   <script src="index.js"></script>
 </body>
 
