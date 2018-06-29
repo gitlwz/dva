@@ -28,7 +28,7 @@ class JoinUs extends Component {
                         )
                     })}
                     <div className={styles.footer}>
-                        如果您有意向，请将个人简历投至hr@hr@jamta.com
+                        如果您有意向，请将个人简历投至hr@jamta.com
                         </div>
                 </div>
             </div>

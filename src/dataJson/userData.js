@@ -458,12 +458,343 @@ let copyrightEn = {
 5. When competent authorities with relevant documents requests the website to cooperate with the investigation to any designated user, or if the account of the user is subject to such measures like freezing, transfer or closure, this website will give assistance by providing relating data of the account user, or other operation if it is required. If there is any disclosure of the user’s privacy or other losses of users, this website assumes no responsibility.
         `
     }
+let privacyEn = {
+    title:"Privacy Policy",
+    content:`1. Parties 
+  1.1 SUNDAX Global Limited. (hereinafter referred to as 'the Company') is a company which incorporated in the Republic of Singapore under the laws of Singapore, and operates the website https://www.allwin.world (hereinafter referred to as 'this Website' or 'the Website'), which is a platform dedicated to the trading of digital assets and the provision of related services (hereinafter referred to as 'the Service'). the company and the website are referred to as 'we' collectively or other applicable forms of first person pronouns in this agreement for the convenience of stating in this agreement. 
+  1.2 All natural persons or other subjects log onto this website shall be users of us. The users are referred to as 'you' or any other applicable forms of the second-person pronouns for the convenience of wording in this Agreement. 
+  1.3You and we are collectively referred to as “both parties”, and individually as “one party” for the convenience of wording in this agreement.
+2. Goal of the Privacy Policy 
+2.1 We only gather information through your log into this website, registration with the website or use the services we offer.
+2.2 The types of your information we collect.
+2.3 How we use and protect the information we collect.
+3 Your consent 
+  You will have full confidence in our handling of private data if you are advised to read and make full sense of the terms of this Privacy Policy. 
+  Attention please, you shall be deemed to accept, agree, undertake and confirm the following content once upon you log into our Website, regardless of whether you register with this Website or not. 
+  3.1You shall agree with all the terms and limitations of this Privacy Policy;
+  3.2You allow the our modification of the Private Policy in the future;
+  3.3 You comply with disclosure of your private information to us on the basis of your own free will and your requisite consent. 
+3.4 You agree with we may collect your information through your log into this Website,  registration with this Website or your using the Services we offer. 
+  3.5 You allow our branches, affiliates and employees may get in touch with you about the products and services that you may be interested in (except you have indicated clearly that you do not want to receive any information from us).
+4. Information Collected 
+  4.1 If you are willing to use the services offered by us, you will be required to provide and fill in the following two categories of information: 
+    4.1.1 Identity Information. 
+Such information could help us verify whether you are a qualified member of us. It includes but is not limited to your name, mailing address, residence address, other certificates and corresponding numbers that are issued by your government or country to certify your identity information, including all other information that can help us to verify your identity (hereinafter referred to as 'identity information'). 
+    4.1.2 Service information
+Such information helps us to keep up with you and provide you with the Service, including but not limited to your valid email address, phone number, fax number and information about your debit card or other accounts (hereinafter collectively referred to as 'service information').
+  4.2 When you use this Website, you comply with permitting us to use cookies to track each of your actions and collect and store all your information leaving on this Website, including but not limited to your location, IP address and other personal information. 
+  4.3 When you use this Website or the services this Website offers, we may collect more necessary information from our exclusive mailboxes or in other manners that we consider as in compliance with relevant laws and regulations. Resulting from following goals:
+4.3.1Enhancing your experience of using services of this Website and the security 
+4.3.2Improving the functions of this Website
+4.3.3.It is required by any court order, relevant law, administrative regulation or any order of any other competent authorities. 
+  4.4 If you visit any of links to third-party websites as are listed on this Website or any links of our third-party partners, you shall comply with and agree to the Privacy Policy of such third party website separately and independently. We has no responsibility for the contents and activities of such websites or the partners.
+5. Purposes of Information 
+  5.1 We will use your personal information we collect for the following purposes or in the following ways: 
+    5.1.1 To identify and confirm your identity while you use our Website; 
+    5.1.2 To provide our Services to you through our Website; 
+    5.1.3 To statistics data relating to the use of our Website and to be used for data analysis from cooperation with public affairs institutions and government agencies; 
+    5.1.4 To improve and upgrade the services of the Website (your information and feedback we received can help us improve the service of the Website, so we can respond to your service requests and support your needs more effectively); 
+    5.1.5 To facilitate transactions (your public or private information will not be exchanged, transferred, sold or otherwise provided to any other companies on any situations without your consent, except for completing the transaction you require); 
+    5.1.6 To personalize your experience of our services(your information will help us to respond to your unique needs in a better way); 
+    5.1.7 To send e-mail regularly (the email address that you provide for handling orders may be used to receive information that we may send to you, like newsletters, updates, related products or services information, etc.) 
+    5.1.8 To meet other purposes as specified in the User Agreement of this Website and all legal ways adopted for satisfying such purposes.
+  5.2 We do not transfer, sell or trade information or allow other people to collect, use information of users; however, not involve the following parties or information: our related party, trusted third parties which help us provide services to users,  manage our business or operate our websites, provided that such parties agree to keep such information confidential;
+  5.2.1 If we do believe disclosure of information is appropriate, or it is required by any of related laws, regulations, rules or by any order of courts or other competent authorities;
+  5.2.2If it is necessary for operating the strategy of our Website and ensuring the proper functions of the Website, or it is necessary for the related parties to provide services, or for the protection of the safety, rights, or property of us or other persons. However, your information will not be provided to other parties for advertising, marketing or other purposes.
+6. Cookies 
+  6.1 Cookies are used to record the preferences and habits of users while browsing the content on our Website usually. The information collected by cookies is collective statistical and non-registered data which does not involve any personal data. 
+  6.2 When you browse our Website, we use information via cookies to record our performance and check the effect of online advertising. Cookies are a small amount of data that is sent to your browser, then it will be stored on your computer hard drive. The cookies can be sent to your computer hard drive only when you use your computer to access our Website. 
+  6.3 Cookies cannot be used to obtain data on your hard drive, your email address, or your personal data while make it possible the Website or service provider system to recognize your browser and capture and recall information. Most browsers are designed to accept cookies. You can make your browser to reject cookies, or to notify you if you are loaded on cookies as soon as possible. However, if you set your browser to disable cookies, you may not be able to launch or use some functions of our Website.
+7. Protection of Personal Data 
+  7.1 We safeguard and protect the security of your private information through several kinds of technical measures. We make sure any personal data collected through our Website will be far away from being subject to disturbance by any third party unrelated to us to the greatest extent possible. The security measures that we will take include but are not limited to: 
+    7.1.1The data which contain your personal information will be stored in computer systems and storage medias which are protected by strict login restrictions. 
+    7.1.2 Records with your private data will be stored in a properly place locked. 
+    7.1.3 Such encryption techniques will be used to convey your private data. 
+    7.1.4 Only employees of us duly authorized by us can access your personal data, and these employees shall agree with our privacy policy.
+    7.1.5 Our network servers are protected by proper 'firewall '.
+  7.2 If you are realize there are any security flaws in our Website, please contact us immediately so that we can take appropriate measures as quickly as possible. 
+  7.3 Even though we have the above-mentioned technical and security measures, we cannot make sure that the information transmitted through the Internet is definitely safe, so we cannot absolutely guarantee that the private data that you provide to us through our Website will be safe at any time. We are not responsible for any loss or damage caused by or arising from any event that may occur in connection with unauthorized access to your private data, and we are not responsible for compensation for such damage or loss.
+8 Modification to the Privacy Policy 
+1. We reserve the right to modify the Privacy Policy from time to time and at any time. 
+2. We will inform you of the modifications of the Privacy Policy by updating and publishing the effective date of the release of new versions hereof and highlighting the amendments. However, it is not an obligation for us to inform you of the modification made in the Privacy Policy. 
+3. You shall review the Privacy Policy regularly and focus on its modifications, and if you do not agree with such modifications, you shall immediately stop using this Website. 
+4. When an updated version of this Privacy Policy is released, your continued visit to this Website shall show and indicate that you agree to the update and agree to comply with the updated Privacy Policy.
+9 Communication with Us 
+9.1 We only publish announcements and information on the basis of the valid and effective contact information on this Website or post announcements on this Website; So, we have no responsibility for any loss arising from your trust in the information that has not been obtained through the above-mentioned means.  
+9.2 If you have any comments and requests, you can send an email to support@sundax.top, which is the only official and valid email through which we keep in touch with you, so we will not undertake any liability for your failure to using effective contact information, any act or omission. 
+9.3 If you have any questions about our Privacy Policy, you are welcome to keep up with us at any time.`
+}
 
+let applicationEn = [
+    {
+        title:"Submission",
+        content:`To protect the right of investors extremely, SUNDAX is looking for tokens to be deployed if you could meet conditions, including but not limited to
+    Well maintained by a team with practical technology
+    High demanded and well managed by a strong and professional team
+    Meet the regulatory requirements without political risk
+    Status report and whitepaper must be submitted on time
+    Other requirements needed
+        `
+    },
+    {
+        title:"Removal Policy",
+        content:`To protect the right of investors who're trading on SUNDAX platform, we reserve the right to keep or eliminate any token from our exchange, including but not limited to:
+    Fork without notifying in advance
+    The project’s facing significant legal issues
+    The project’s facing significant policy issues
+    Selectively value-relevant information communicated to the exchange or fraud
+    Security issue or technical issue which could not be solved
+    Operation team of project requested for removal from the exchange 
+    Daily volume less than 10 thousands US dollars in 7 consecutive days  
+    Daily volume less than 120 thousands US dollars in 30 consecutive days                                                                                                                    
+    Any other matters that do not meet the requirements of continuing trading.
+        `
+    },
+    {
+        title:"Please submit the project information through the link below",
+        content:`https://docs.google.com/forms/d/1ELbF8PafI6deFPwt5mTN2IRjQW0VCJM3Se8P8LN7-CM/edit`
+    }
+]
+
+let userAgreementEn = {
+    title:"Terms of User",
+    content:`SUNDAX(Singapore) Technology Group Pte.Ltd.(hereinafter referred to as "the company") is a company incorporated in Singapore under the laws of tSingapore, and operates the website https://www.allwin.world (hereinafter referred to as "this Website" or "the Website")，which is a platform dedicated to the transaction of digital assets and the provision of related services (hereinafter referred to as "the Service"). All content on this Website may be available in multiple languages. In case of any conflict between different language versions of such content or any omission in any language version，the Chinese version shall prevail.
+
+1.【Definition】
+1.1 This Agreement：consists of the main body, Terms of Privacy, Understanding Your client and Anti-money-laundering Policy, as well as any rules, statements, instructions, etc. that this Website has published or may publish in the future.
+1.2 Your Mightiness(or any other applicable forms of the second-person pronouns):the users，natural person or other subject logging into the site
+1.3 We (or any other applicable forms of the first-person pronouns): SUNDAX(Singapore) Technology Group Pte.Ltd. 及 https://www.allwin.world 
+1.4 Both Parties：you and us are collectively in the agreement
+1.5 One Party：you and us are individually in the agreement
+1.6 Member:users who have filling in the relevant information in accordance with the requirements of this Website, and have sucessfully registered after going through other relevant procedures
+
+2.【General Provisions】
+2.1 Before using the services offered by this Website, you shall read this Agreement carefully, and consult a professional lawyer if you have any doubt or as may be otherwise necessary. If you do not agree to the terms and conditions of this Agreement and/or any change made thereto from time to time , please immediately stop using the service provided by this Website or stop logging onto it. 
+2.2 Upon your logging into this Website or using any service offered by this Website or engaging in any other similar activity, it shall be deemed as having understood and fully agreeing to all terms and conditions of this Agreement, including any and all changes, modifications or alterations that this Website may make to this Agreement from time to time .
+2.3 In the process of registration, if you click on the "I Agree", it shall be deemed that you have reached an agreement with the Company by way of electronic signature; or when you use this Website, you click on the "I Agree" button or a similar button, or if you use the services offered by this Website in any of the ways allowed by this Website, it shall be deemed that you fully understand, agree to and accept all the terms and conditions under this Agreement, and in this case, the absence of your handwritten signature will not affect the legal binding force that this Agreement may have on you.
+2.4 After you become a member of this Website, you will receive a member account and corresponding password, which shall be properly kept by you as a member of this Website; Members shall be liable for all activities and events carried out through their accounts.
+2.5 You cannot engage in trading on the digital asset trading platform provided by this Website and gain access to the services that are exclusively available to members in accordance with the rules and regulations of this Website, unless and until you become a member of this Website; if you are not a member of this Website, you can only log in to and browse the Website and have access to other services as are permitted by the rules and regulations of this Website.
+2.6 Upon registering yourself as a member of this Website and using any of the services and functions offered by this Website, it shall be deemed that you have read, understood this Agreement, and:
+2.6.1 You accepted to be bound by all terms and conditions of this Agreement.
+2.6.2 You confirm that the information provided at the time of registration is true and accurate.
+2.6.3 You undertake that all your digital assets involved in transactions hereunder are legally acquired and owned by you.
+2.6.4 You agree to undertake any and all liabilities for your own transaction and non-transaction activities as well as any and all profits and losses therefrom.
+2.6.5 You agree to comply with any and all relevant laws, including the reporting of any transaction profits for tax purposes.
+2.6.6 You confirm that you have attained the age of 16, or another statutory age for entering into contracts as is required by a different applicable law, and your registration with this Website, purchase or sale via this Website, release information on this Website and other behaviors indicating your acceptance of the Services offered by this Website shall comply with the relevant laws and regulations of the sovereign state or region that has jurisdiction over you, and you confirm that you have sufficient capacity to accept these terms and conditions, enter into transactions and to use this Website for digital asset transactions.
+2.6.7 This Agreement is only binding on the rights and obligations between you and us, and does not involve legal relations and legal disputes arising from and relating to the transaction of digital assets between the users of this Website, and between other websites and you.
+
+3.【Amendment of this Agreement】
+3.1 We reserve the right to amend this Agreement from time to time, and disclose such amendment by way of announcement on the Website without sending a separate notice to you on your rights. The date when the amendment is made will be indicated on the first page of the amended agreement. The amended agreement will take effect immediately upon announcement on the Website. 
+3.2 You shall browse this Website from time to time and follow information on the time and content of amendments, if any, made to this Agreement. If you do not agree with the amendments, you shall stop using the services offered by this Website immediately; if you continue to use the services , it shall be deemed that you accept and agree to be bound by the amended agreement.
+
+4.【Important reminder】
+4.1 The digital assets themselves are not offered by any financial institution，corporation or this Website;
+4.2 The digital asset market is new and unconfirmed, and will not necessarily expand;
+4.3 Digital assets are primarily used by speculators, and are used relatively less on retail and commercial markets，therefore not suitable for the vast majority of people;
+4.4 digital asset transactions are highly risky, due to the fact that they are traded throughout the day without limits on the rise or fall in price, and market makers and global government policies may cause major fluctuations in their prices;
+4.5 Digital asset transactions may be suspended or prohibited at any time due to the enactment or modification of national laws, regulations and regulatory documents.
+4.6 Furthermore, aside from the above-mentioned risks, there may also be unpredictable risks. 
+4.7 You acknowledge and understand that investment in digital assets may result in partial or total loss of your investment and therefore you are advised to decide the amount of your investment on the basis of your loss-bearing capacity. You acknowledge and understand that digital assets may generate derivative risks. Therefore, if you have any doubt, you are advised to seek assistance from a financial adviser first.
+4.8 You are advised to carefully consider and use clear judgment to assess your financial position and the above-mentioned risks before making any decisions on buying and selling digital assets; any and all losses arising therefrom will be borne by you and we shall not be held liable in any manner whatsoever.
+
+5.【Website Rules】
+5.1 https://www.allwin.world is the sole official external information release platform for this Website.
+5.2 You understand that this Website is only intended to serve as a venue for you to obtain digital asset information, find trading counterparties, hold negotiations on and effect transactions of digital assets. This Website does not participate in any of your transactions, and therefore you shall, at your sole discretion, carefully assess the authenticity, legality and validity of relevant digital assets and/or information, and solely bear the responsibilities and losses that may arise therefrom.
+5.3 All opinions, information, discussions, analyses, prices, advice and other information on this Website are general market reviews and do not constitute any investment advice. We do not bear any loss arising directly or indirectly from reliance on the above-mentioned information, including but not limited to, any loss of profits.
+5.4 We have taken reasonable measures to ensure the accuracy of the information on the Website; however, we do not guarantee the degree of such accuracy, or bear any loss arising directly or indirectly from the information on this Website or from any delay or failure caused by failure to link up with the internet, transmit or receive any notice and information
+5.5 The Company may suspend or terminate your account or use of the Service, or the processing of any digital asset transaction, at any time if it determines in its sole discretion that you have violated this Agreement or that its provision or your use of the Service in your jurisdiction is unlawful. USE OF THE SERVICE BY PERSONS LOCATED IN THE UNITED STATES OF AMERICA IS PROHIBITED.
+5.6 No service on this Website may be paid for by credit card.
+5.7 It is prohibited to use this Website to engage in any illegal transaction activities, such as money laundering, smuggling and commercial bribery. In the event that any of such activities is uncovered, this Website will adopt all available measures, including but not limited to freezing the offender's account, notifying relevant authorities, etc., and we will not assume any of the responsibilities arising therefrom and reserve the right to hold relevant persons accountable.
+5.8 It is prohibited to use this Website for the purpose of malicious manipulation of the market, improper transactions or any other illicit trading activities. Where any of such illicit trading activities is uncovered, this Website will adopt such preventive and protective measures as warning, restricting trading and closing accounts against any and all such malicious manipulation of prices, maliciously influencing the trading system and any other illicit behaviors; we do not assume any of the responsibilities arising therefrom and reserve the right to hold relevant persons accountable.
+
+6.【Rights and Obligations of this Website】
+6.1 If you do not have the registration qualifications agreed on in this Agreement, this Website shall have the right to refuse to allow you to register; if you have already registered, this Website shall have the right to revoke your member account, and this Website reserves the right to hold you or your authorized agent accountable. Furthermore, this Website reserves the right to decide whether to accept your application for registration under any other circumstances.
+6.2 When this Website finds out that the user of an Account is not the initial registrant of that Account, it shall have the right to suspend or terminate the user's access to that Account.
+6.3 Where by means of technical testing or manual sampling, among others, this Website reasonably suspects that the information you provide is wrong, untrue, invalid or incomplete, this Website shall have the right to notify you to correct or update the information, or suspend or terminate its supply of the services to you.This Website shall have the right to correct any information displayed on this Website when it uncovers any obvious error in such information.
+6.4 This Website reserves the right to modify, suspend or terminate the Services offered by this Website, at any time, and the right to modify or suspend the Service without prior notice to you; if this Website terminates one or more of the Services offered by this Website, such termination by this Website will take effect on the date of announcement of such termination on the Website.
+6.5 This Website shall take necessary technical means and management measures to ensure the normal operation of this Website, and shall provide a necessary and reliable trading environment and transaction services, and shall maintain the order of digital assets trading.
+6.6 If you fail to log into this Website using your member account number and password for an uninterrupted period of one year, this Website shall have the right to revoke your account. After your account is revoked, this Website shall have the right to offer the member name represented by such account to other applicants for membership.
+6.7 This Website shall ensure the security of your digital assets by strengthening technical input and enhancing security precautions, and is under the obligation to notify you in advance of the foreseeable security risks in your account.
+6.8 This Website shall have the right to delete all kinds of content and information which does not conform to laws and regulations or the rules of this Website at any time, and exercise of this right by this Website is not subject to a prior notice to you.
+6.9 This Website shall have the right to, in accordance with the applicable laws, administrative regulations, rules, orders and other regulatory documents of the sovereign country or region where you are based, request to you for more information or data, and to take reasonable measures to meet the requirements of the local standards, and you have the obligation to provide proper assistance to such measures; this Website shall have the right to suspend or permanently terminate your access to this Website as well as part or all of the services offered by this Website.
+
+7.【Registration】
+7.1Eligibility for Registration 
+You confirm and promise that: 
+7.1.1 you shall be a natural person, legal person or other organization with the ability to sign this Agreement and the ability to use the services of this Website, as is provided by applicable laws, when you complete the registration process or when you use the services offered by this Website in any other manner as is otherwise permitted by this Website. 
+7.1.2 Upon clicking on the button indicating that you agree to register, it shall be deemed that you yourself or your authorized agent agrees to the content of this Agreement and your authorized agent will register with this Website and use the services offered by this Website on your behalf. If you are not a natural person, legal person or organization with the abovementioned ability, you and your authorized agent shall bear all the consequences of that, and the company reserves the right to cancel or permanently freeze your account and to hold you and your authorized agent accountable.
+7.2 Purpose of Registration：
+You confirm and promise that you do not register with this Website for the purpose of violating any of the applicable laws or regulations or undermining the order of digital asset transactions on this Website.
+7.3 Registration Process
+7.3.1 You agree to provide a valid email address, a mobile phone number and other information in accordance with the requirements on the user registration page of this Website. You can use the email address, mobile phone number or any other manner permitted by this Website to log in to this Website. 
+7.3.2 In accordance with the requirements of applicable laws and regulations of relevant jurisdictions, you shall provide your real name, identity card and other information required by applicable laws, regulations, the Terms of Privacy, and anti-money-laundering terms, and constantly update your registration data so that they will be timely, detailed and accurate as is required. All of the original typed data will be referenced as registration information. You shall be responsible for the authenticity, integrity and accuracy of such information and bear any direct or indirect loss and adverse consequences arising out of it.
+7.3.3 If any of the applicable laws, regulations, rules, orders and other regulatory documents of the sovereign country or region in which you are based requires that mobile phone accounts must be based on real names, you hereby confirm that the mobile phone number you provide for registration purposes has gone through the real-name registration procedure. If you cannot provide such a mobile phone number as is required, any direct or indirect losses and adverse consequences arising therefrom and affecting you shall be borne by you.
+7.3.4 After you provide the required registration information in a legal, complete and valid manner and such information passes relevant verification, you shall have the right to obtain an account and a password of this Website. Upon obtaining such account and password, your registration shall be deemed as successful and you can log into this Website as a member thereof.
+7.3.5 You agree to receive emails and/or short messages sent by this Website related to the management and operation thereof.
+
+8.【Services 】
+【Important reminder】 
+This Website only provides online transaction platform services for you to engage in digital asset trading activities through this Website (including but not limited to the digital asset transactions etc.). This Website does not participate in the transaction of digital assets as a buyer or seller; This Website does not provide any services relating to the replenishment and withdrawal of the legal currency of any country.
+8.1 【Content of Services】
+8.1.1 You have the right to browse the real-time quotes and transaction information of digital asset products on this Website, to submit digital asset transaction instructions and to complete the digital asset transaction through this Website.
+8.1.2 You have the right to view information under the member accounts on this Website and to apply the functions provided by this Website.
+8.1.3 You have the right to participate in the website activities organized by this Website in accordance with the rules of activities posted on this Website.
+8.1.4 Other services that this Website promises to offer to you.
+8.2【Service Rules】
+You undertake to comply with the following service rules of this Website:
+8.2.1 You agree to take responsibility for all activities (including but not limited to information disclosure, information release, online click-approving or submission of various agreements on rules, online renewal of agreements or purchase service) using your account and password with this Website.
+8.2.2 You shall comply with applicable laws and regulations and properly use and keep your account in this Website and login password, password of your financial transactions, and the mobile phone number bound with your account that you provide upon registration of your account, as well as the security of the verification codes received via your mobile phone. 
+8.2.3 You may not assign your account with this Website to any other person by way of donation, lending, leasing, transfer or otherwise without the consent of this Website.
+8.2.4 You shall be solely responsible for any and all your operations carried out using your account with this Website and login password, financial transaction password, verification codes sent to your mobile phone, as well as all consequences of such operations. 
+8.2.5 When you find that your account with this Website, your login password, financial transaction password, or mobile phone verification codes is used by any unauthorized third party, uncover any other problem relating to the security of your account, you shall inform this Website in a prompt and effective manner, and request this Website to temporarily suspend the services to your account with this Website. 
+8.2.6 This Website shall have the right to take action on your request within a reasonable time; nonetheless, this Website does not bear any liability for the consequences that have arisen before such action is taken, including but not limited to any loss that you may sustain. 
+8.2.7 You shall comply with the provisions of applicable laws, regulations, rules, and policy requirements, and ensure the legality of the source of all digital assets in your account and shall refrain from engaging in any illegal activities or other activities that damages the rights and interests of this Website or any third party, such as sending or receiving information that is illegal, illicit or infringes on the rights and interests of any other person, sending or receiving pyramid scheme information or information or remarks causing other harms, unauthorized use or falsification of the email header information of this Website, inter alia.
+8.2.8 In your digital asset transactions on this Website, you may not maliciously interfere with the normal proceeding of the digital asset transaction or disrupt the transaction order; you may not use any technical means or other means to interfere with the normal operation of this Website or interfere with the other users' use of the services; you may not maliciously defame the business goodwill of this Website on the ground of falsified fact.
+8.2.9 If any dispute arises between you and any other user in connection with online transaction, you may not resort to any means other than judicial or governmental means to request this Website to provide relevant information.
+8.2.10 All taxes payable as well as all fees relating to hardware, software and services that are incurred by you in the course of using the services provided by this Website shall be solely borne by you.
+8.2.11 You shall abide by this Agreement and other terms of service and operating rules that this Website may release from time to time, and you have the right to terminate your use of the services provided by this Website at any time.
+8.3 【Product Rules】
+8.3.1 Rules for trading products You undertake that in the process in which you log into this Website and engage in transactions with other users through this Website, you will properly comply with the following transaction rules.
+8.3.1.1 Browsing transaction information 
+When you browse the transaction information on this Website, you should carefully read all the content in the transaction information, including but not limited to the price, consignment, handling fee, buying or selling direction, and you shall accept all the contents contained in the transaction information before you may click on the button to proceed with the transaction.
+8.3.1.2 Submission of Commission 
+After browsing and verifying the transaction information, you may submit your transaction commissions. After you submit the transaction commission, it shall be deemed that you authorize this Website to broker you for the corresponding transactions, and this Website will automatically complete the matchmaking operation when there is a transaction proposal that meets your price quotation, without prior notice to you.
+8.3.1.3 Accessing transaction details 
+You can check the corresponding transaction records in the transaction statements by the Management Center, and confirm your own detailed transaction records.
+8.3.1.4 Revoking/modifying transaction commission
+You have the right to revoke or modify your transaction commission at any time before the transaction is concluded.
+
+9.【Indemnity】
+9.1 Under any circumstance, our liability for your direct damage will not exceed the total cost incurred by your three (3) months' use of services offered by this Website.
+9.2 Shall you breach this Agreement or any applicable law or administrative regulation, you shall pay to us at least US$ Two million in compensation and bear all the expenses in connection with such breach (including attorney's fees, among others). If such compensation cannot cover the actual loss, you shall make up for the difference.
+
+10.【The Right to Injunctive Relief】
+    Both you and we acknowledge that common law remedies for breach of agreement or possible breach of contract may be insufficient to cover all the losses that we sustain; therefore, in the event of a breach of contract or a possible breach of contract, the non-breaching party shall have the right to seek injunctive relief as well as all other remedies that are permitted under common law or equity.
+11.【Limitation and Exemption of Liability】
+11.1 You understand and agree that under no circumstance will we be held liable for any of the following events:
+11.1.1 loss of income
+11.1.2 loss of transaction profits or contractual losses
+11.1.3 disruption of the business
+11.1.4 loss of expected currency losses
+11.1.5 loss of information
+11.1.6 loss of opportunity, damage to goodwill or reputation
+11.1.7 damage or loss of data;
+11.1.8 cost of purchasing alternative products or services
+11.1.9 any indirect, special or incidental loss or damage arising from any infringement (including negligence), breach of contract or any other cause, regardless of whether or not such loss or damage may reasonably be foreseen by us, and regardless of whether or not we are notified in advance of the possibility of such loss or damage.
+（ Items 11.1.1 to 11.1.9 are independent of each other.）
+11.2 You understand and agree that we shall not be held liable for any damages caused by any of the following events:
+11.2.1 Where we are properly justified in believing that your specific transactions may involve any serious violation or breach of law or agreement;
+11.2.2 Where we are reasonably justified in believing that your conduct on this Website is suspected of being illegal or immoral;
+11.2.3 The expenses and losses arising from the purchase or acquisition of any data, information or transaction, etc. through the services offered by this Website;
+11.2.4 Your misunderstanding of the Services offered by this Website;
+11.2.5 Any other losses related to the services provided by this Website, which cannot be attributed to us.
+11.3 Where we fail to provide the Services or delay in providing such Services due to information network equipment maintenance, information network connectivity failures, errors in computer, communications or other systems, power failures, weather conditions, unexpected accidents, industrial actions, labor disputes, revolts, uprisings, riots, lack of productivity or production materials, fires, floods, storms, explosions, wars, failure on the part of banks or other partners, collapse of the digital asset market, actions by government, judicial or administrative authorities, other acts that are not within our control or beyond our inability to control, or due to causes on the part of third parties, we shall not assume any responsibility for such failure to provide service or delay in providing services, or for the resultant loss you may sustain as a result of such failure or delay.
+11.4 We cannot guarantee that all the information, programs, texts, etc. contained in this Website are completely safe, free from the interference and destruction by any malicious programs such as viruses, trojans, etc., therefore, your log-into this Website or use of any services offered by this Website, download of any program, information and data from this Website and your use thereof are your personal decisions and therefore you shall bear the any and all risks and losses that may possibly arise.
+11.5 We do not make any warranties and commitments in connection with any of the information, products and business of any third party websites linked to this Website, as well as any other forms of content that do not belong to us; your use any of the services, information, and products provided by a third party website is your personal decision and therefore you shall assume any and all the responsibilities arising therefrom.
+11.6 We do not make any explicit or implicit warranties regarding your use of the Services offered by this Website, including but not limited to the applicability, freedom from error or omission, consistency, accuracy, reliability, and applicability to a specific purpose, of the services provided by this Website. Furthermore, we do not make any commitment or guarantee in connection with the validity, accuracy, correctness, reliability, quality, stability, integrity and timeliness of the technology and information covered by the services offered by this Website. Whether to log in this Website or use the services provided by this Website is your personal decision and therefore you shall bear all the risks and possible losses arising from such decision.
+11.7 We do not make any explicit or implicit warranties in connection with the market, value and price of digital assets; you understand and acknowledge that the digital asset market is unstable, that the price and value of assets may fluctuate or collapse at any time, and that the transaction of digital assets is based on your personal free will and decision and therefore you shall assume any and all risks and losses that may possible arise therefrom.
+11.8 The guarantees and undertakings specified in this Agreement shall be the only guarantee and statements that we make in connection with the Services provided by us under this Agreement and through this Website, and shall supersede any and all the warranties and commitments arising in any other way and manner, whether in writing or in words, express or implied. All these guarantees and statements represent only our own commitments and undertakings and do not guarantee any third party's compliance with the guarantees and commitments contained in this Agreement.
+11.9  We do not waive any of the rights not mentioned in this Agreement and to the maximum extent permitted by the applicable law, to limit, exempt or offset our liability for damages.
+11.10 Upon your registration of your account with this Website, it shall be deemed that you approve any and all operations performed by us in accordance with the rules set forth in this Agreement, and any and all risks arising from such operations shall be assumed by you.
+
+12. 【Termination of Agreement】
+12.1 This Website shall have the right to cancel your account with this Website in accordance with this Agreement, and this Agreement shall be terminated on the date of the cancellation of your account.
+12.2 This Website shall have the right to terminate all Service offered by this Website to you in accordance with this Agreement, and this Agreement shall terminate on the date of termination of all services offered by this Website to you.
+12.3 After the termination of this Agreement, you do not have the right to require this Website to continue to provide you with any service or perform any other obligation, including, but not limited to, requesting this Website to keep or disclose to you any information in your former original account, or to forward to you or any third party any information therein that is not read or sent.
+12.4 The termination of this Agreement shall not prevent the observant party from demanding the breaching party to assume other liabilities.
+
+13.【Intellectual Property】
+13.1 SUNDAX is the intellectual property owner of all intellectual achievements(including but not limited to business goodwill and trademarks, logos)on this Website.
+All copyrights,trademarks,patents,trade secrets,and other intellectual property rights and other legitimate rights and interests of this website,as well as information related to the website(including text,pictures,audio,video,graphics,interface design,layout framework,revelant data or electrionic documents ,etc.)are protected by laws and regulations and corresponding international treaties.SUNDAX enjoys the above-mentioned intellectual property rights and legal rights ,except for the rights that the relevant right holders shall enjoy in accordance with the law.
+You may not copy, modify, copy, transmit or use any of the foregoing materials or content for commercial purposes,including, but not limited to, website logos, databases, website design, text and graphics, software, photos, videos, music, sounds and any combinations of the aforementioned files, and the intellectual property rights of software compilation, associated source code and software (including small applications and scripts) shall be owned by this Website. 
+13.2 Your log into this Website or use of any of the services offered by this Website shall not be deemed as our transfer of any intellectual property to you.For any information that you publish on this Website, you may not publish or authorize other websites (or media) to use such information in any manner wuatsoever.You shall not illegally use or dispose of the intellectual property rights of this Website or any other person during your use of the services offered by this Website. 
+13.3 Upon accepting this Agreement, it shall be deemed that you, on the basis of your own free will, have transferred and assigned exclusively and free of charge to this Website all copyright of any form of information that you publish on this Website, including, but not limited to copyrights, distribution rights, lease rights, exhibition rights, performance rights, projection rights, broadcasting rights, information network dissemination rights, shooting rights, adaptation rights, translation rights, compilation rights and other transferable rights that copyright owners are entitled to, and this Website shall have the right to sue for any infringement on such copyright and obtain full compensation for such infringement. 
+13.4 This Agreement shall apply to any content that is published by you on this Website and is protected by copyright law, regardless of whether the content is generated before or after the signing of this Agreement.
+
+14.【Information protection】
+14.1 【Scope of Application】
+14.1.1 When you register your account with this Website or use your account with this Website, you shall provide personal registration information in accordance with the requirements of this Website, including but not limited to your telephone number, email address, and identity card information.
+14.1.2 When you use the services offered by this Website, or visit this Website, this Website will automatically receive and record the server information of your web browser, including but not limited to the IP address and records on the web pages that you request to access.
+14.1.3 The relevant data collected by this Website in connection with your transactions on this Website, including but not limited to transaction records.
+14.1.4 Other personal information of yours legally obtained by this Website.
+14.2 【Use of Information】
+14.2.1 Upon your successful registration with this Website and without extra consent from you, it shall be deemed that you agree to permit this Website to collect and use all the information you publish on this Website; as is specified under 14.1 hereof, you acknowledge and agree that this Website can use your information collected by this Website for certain purposes, including but not limited to the following:
+14.2.1.1 providing you with the services offered by this Website;
+14.2.1.2 Reporting to relevant regulatory departments based on the requirements of the competent authorities in relevant sovereign states or regions;
+14.2.1.3 When you use Services offered by this Website, this Website will use your information for such legal purposes as identity authentication, customer service, security, fraud monitoring, marketing & promotion, archiving, and backup, or joint promotion of this Website with a third party, so as to ensure the security of the products and services that this Website offers to you;
+14.2.1.4 Inviting you to participate in surveys in connection with the services offered by this Website;Information collection and processing for the purpose of helping this Website design new products and services and improving the existing services offered by this Website;
+14.2.1.5 In order to enable you to understand the specifics of the Services offered by this Website, you agree to permit this Website to send to you marketing event information, commercial electronic information, and advertising that is related to you in replacement of general-purpose ubiquitous advertising;
+14.2.1.6 This Website may transfer or disclose your information to any third party that is not a related party of this Website, for the purpose of completing merger, division, acquisition or transfer of assets;
+14.2.1.7 Software certification or management software upgrade;
+14.2.1.8 Data analysis relating to cooperation with government agencies, public affairs agencies, associations, etc;
+14.2.1.9 For all other legal purposes as well as other purposes authorized by you.
+14.2.2 This Website will not sell or lend your personal information to any other person unless your permission is obtained in advance. This Website also does not allow any third party to collect, edit, sell or gratuitously spread your personal information in any manner whatsoever.
+14.2.3 This Website shall keep confidential the customer identity information and transaction information that it obtains, and shall not provide any entity or individual with customer identification information or transaction information, except where any of the applicable laws, regulations, decrees, orders, etc., of relevant sovereign states or regions requires this Website to provide such information.
+15.【Calculation 】
+All the transaction calculations are verified by us, and all the calculation methods have been posted on the Website, but we can not ensure that your use of this Website will not be disturbed or free from errors.
+16.【Export Control】
+You understand and acknowledge that in accordance with relevant laws of Singapore, you shall not export, re-export, import or transfer any material (including software) on this Website; therefore, you hereby undertake that you will not voluntarily commit or assist or participate in any of the above export or related transfer or other violations of applicable laws and regulations; if you uncover any of the aforementioned events, you will report to us and assist us in handling them.
+17.【Transfer】
+The rights and obligations agreed in this Agreement shall be equally binding on the assignees, the heirs, executors and administrators of the parties hereto who benefit from the rights and obligations. Without our consent, you may not transfer to any third party any of your rights or obligations hereunder, provided, however, we may, at any time, assign our rights and obligations under this Agreement to any third party with thirty (30) days' notice to you.
+18.【Severability】
+If any provision of this Agreement is found unenforceable, invalid or illegal by any court of competent jurisdiction, validity of the remaining provisions of this Agreement shall not be affected.
+19.【No Agency】
+Nothing in this Agreement shall be deemed to have created, implied or otherwise treated us as your agent, trustee or other representative, unless it is provided otherwise in this Agreement.
+20.【Waiver】
+Our or your waiver of the right to hold the other party liable for breaches of agreement or any other liability as is agreed upon in this Agreement shall not be construed or deemed as a waiver of the right to hold the other party for other breaches of contract; a failure to exercise any right or remedy shall not be construed in any way as a waiver of such right or remedy.
+21.【Headings】
+All headings herein are exclusively for the convenience of wording and are not intended to to expand or limit the content or scope of the terms and conditions of this Agreement.
+22.【Applicable Law】
+This Agreement in its entirety is a contract concluded under the laws of Singapore, and relevant laws of Singapore shall apply to its establishment, interpretation, content and enforcement; Any claims or actions arising out of or relating to the Services agreed in this Agreement shall be governed and interpreted and enforced in accordance with the laws of Singapore. For the avoidance of doubt, this Clause shall be expressly applicable to any tort claim against us. The competent court or forum for any claim or action against us or in relation to us shall be in Singapore.You have unconditional access to exclusive jurisdiction in court proceedings and appeals in the courts of Singapore. You also unconditionally agree that the venue or competent court for any dispute or problem relating to this Agreement or any claim and proceeding arising from this Agreement shall be exclusively in Singapore. If any other business of this Website is subject to any special agreement on jurisdiction, such agreement shall prevail. The Doctrine of Forum Non Conveniens does not apply to the court of choice under these Terms of Service.
+23.【Entry into Force and Interpretation of the Agreement】
+23.1 This Agreement shall enter into force when you click through the registration page of this Website, complete the registration procedures, obtain your account number and password of this Website, and shall be binding on you and this Website. 
+23.2 The ultimate power of interpretation of this Agreement shall be vested in this Website. 
+
+Know-your-customers and Anti-Money Laundering Policies
+1.【Preamble】
+    1.1 We ensure that we comply with know-your-customer and anti-money-laundering laws and regulations, and will not knowingly violate know-your-customers and anti-money-laundering policies. To the extent of our reasonable control, we will adopt necessary measures and technology to provide you with Services that are safe and secure, so as to protect you against the loss caused by money laundering to the greatest extent possible.
+1.2 Our know-your-customer and anti-money-laundering policies are a comprehensive system of international policies, including the know-your-customer and anti-money-laundering policies of the jurisdictions to which you are subject to. Our robust compliance framework ensures that we meet regulatory requirements and regulatory standards on both the local and global levels, and ensure the operational sustainability of our website.
+2.【Content of Our Know-Your-Customer and Anti-Money-Laundering Policies】
+2.1 We promulgate and update know-your-customers and anti-money-laundering policies to meet the standards set by relevant laws and regulations;
+2.2 We promulgate and update some of the guidelines and rules in connection with the operation of this Website, and our staff will provide you whole-process service in accordance with the guidelines and rules;
+2.3 We design and complete the procedures for internal monitoring and transaction control, such as rigorous identity authentication procedures, and form a professional team responsible for anti-money laundering;
+2.4 We adopt risk-prevention-based approach to carry out due diligence and continuous supervision in connection with customers;
+2.5 Review and regularly inspect existing transactions;
+2.6 To report suspicious transactions to the competent authorities;
+2.7 Proof documents of identity documents, address certificates and transaction records will be maintained for at least six(6) years; if they are submitted to the regulatory authorities, let it be understood that a separate notice will not be provided to you;
+2.8 Credit cards are prohibited throughout the course of the transaction;
+3.【Identity Information and the Verification and Confirmation Thereof】
+3.1 【Identity Information】
+3.1.1 In accordance with the laws and regulations of relevant jurisdictions and in light of the nature of entities concerned, the content of your information as is collected by us may vary, and in principle, we will collect the following information of yours if you register as an individual: 
+3.1.1.1 Basic personal information: your name, address (and permanent address, if the two are different), date of birth and nationality, and other information available. Identity authentication shall be based on documents issued by the official or other similar authorities, such as passports, identity cards or other identity documents as are required and issued by relevant jurisdictions. The address you provide will be validated in an appropriate manner, such as checking the fare ticket of means of transportation you use, your interest rate bills, or voter register. 
+3.1.1.2 Valid photo: before you register, you must provide a photograph showing you holding your identity document in front of your chest; 
+3.1.1.3 Contact information: telephone/mobile phone number and valid email address.
+3.1.2 If you are a company or any other type of legal entity, we will collect the following information of yours to determine the final beneficiary of your account or your trust account. 
+3.1.2.1Your corporation enrollment and registration certificates of the company; 
+3.1.2.2 a copy of the articles of association and memorandum of the company; 
+3.1.2.3 the detailed certification materials of the ownership structure and ownership description of the company, and the decision of the board of directors on designating the authorized agent of the company responsible for the opening and execution of the account of the company with the website; 
+3.1.2.4 the identity documents of the directors, major shareholders of the company as well as the authorized signatory for the company's account with the website, as are required to be provided in accordance with relevant rules; 
+3.1.2.5 the company's main business address, and the company's mailing address if it is different from the main business address of the company. 
+* If the local address of the company is different from its main business address, the company shall be deemed to be a high-risk customer, and consequently the company will be required to provide additional documentation. 
+* Other certification documents, documents issued by competent authorities and other documents we may deem necessary in light of the laws and regulations of relevant jurisdictions and in light of the specific nature of your entity.
+3.1.3 We only accept English and Chinese versions of your identity information; if your identity information is not in either of the two languages, you shall have your identity information translated into English and duly notarized.
+3.2 【Confirmation and Verification】
+3.2.1 You are required to provide both the front and back sides of your identity documents.
+3.2.2 You are required to provide us with a photograph showing you holding your identity documents in front of your chest.
+3.2.3 Copies of certification documents shall be checked against the originals thereof. Nonetheless, if a trusted and suitable certifier person can prove that such copies are accurate and comprehensive duplicates of the originals thereof, such copies shall be deemed as acceptable. Such certifiers include ambassadors, members of the judiciary, magistrates, etc.
+3.2.4 The identification the ultimate beneficiary and controller of the account shall be based on the determination of which individuals ultimately own or control the direct customer and/or to determining that the ongoing transaction is performed by another person. If you are a business enterprise, the identity of major shareholders thereof (for example, those holding 10 % or more of the voting equity in such business enterprise) shall be verified. Generally, a shareholder holding 25 % of the shares of the company will be deemed as involving an average level of risk, and the identity of the shareholder shall be verified; a shareholder holding 10 % or more of the voting rights or shares is deemed to be involving a high level of risk, and the identity of the shareholder shall be verified.
+4.【Transaction Supervision】
+4.1 We constantly set and adjust daily trading and cash withdrawal limits based on security requirement and actual state of transactions;
+4.2 If the transaction occurs frequently in an account registered by you or is beyond reasonable circumstances, our professional team will assess and determine whether such transaction is suspicious;
+4.3 If we identify a specific transaction as suspicious on the basis of our assessment, we may adopt such restrictive measures as suspending the transaction or denying the transaction, and if it is possible, we may even reverse the transaction as soon as possible, and report to the competent authorities, without, however, notifying you;
+4.4 We reserve the right to reject registration applications by applicants that do not comply with the international standards against money laundering or who may be regarded as political and public figures; we reserve the right to suspend or terminate a transaction identified as suspicious based on our own assessment, which, however, does not breach any of our obligations and duties to you.
+    `
+}
 console.log("&&&&&&&&&&",language)
 module.exports = {
     joinus,
     copyright:language == "en"?copyrightEn:copyright,
-    privacy,
-    userAgreement,
-    application
+    privacy:language == "en"?privacyEn:privacy,
+    userAgreement:language == "en"?userAgreementEn:userAgreement,
+    application:language == "en"?applicationEn:application,
 }

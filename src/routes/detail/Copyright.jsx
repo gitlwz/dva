@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import NationTitle from '../../components/nationTitle';
 import styles from './joinus.less';
 import { copyright, privacy, userAgreement, application } from '../../dataJson/userData';
-
+import languageData from '../../language'
 /**
  * 法律说明 上市申请  用户协议 隐私条款
  */
@@ -33,7 +33,7 @@ class Copyright extends Component {
             data = userAgreement;
         } else if (hash == "?application") {
             data = application;
-            data.title = "上市申请"
+            data.title = languageData.SSSQ
             falg = true;
         }
         return (
