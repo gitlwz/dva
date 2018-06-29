@@ -150,7 +150,7 @@ class Trade extends React.Component {
                     <div className={styles.tradAction}>买入价</div>
                     <div>
                         <Input suffix={<span style={{ color: 'white' }}>{JJInstrument}</span>} value={buyPrice} onChange={e => sliderChange({ buyPrice: this.formatNum({ value: e.target.value, pointNum: 10 }) })} className={styles.input} />
-                        <div className={styles.fold}>≈≈ {format.convertCNY(this.props.RateUseList, buyPrice, currentInstrument)}</div>
+                        <div className={styles.fold}>≈ {format.convertCNY(this.props.RateUseList, buyPrice, currentInstrument)}</div>
                     </div>
                     <div className={styles.tradAction} style={{ marginTop: 35 }}>买入量</div>
                     <Input suffix={<span style={{ color: 'white' }}>{BJInstrument}</span>} value={buyVolume} onChange={e => sliderChange({ buyVolume: this.formatNum({ value: e.target.value, max: format.buyMax(getButTotal, buyPrice), pointNum: 4 }) })} className={styles.input} />
@@ -170,7 +170,7 @@ class Trade extends React.Component {
                     <div className={styles.tradAction}>卖出价</div>
                     <div>
                         <Input suffix={<span style={{ color: 'white' }}>{JJInstrument}</span>} value={sellPrice} onChange={e => sliderChange({ sellPrice: this.formatNum({ value: e.target.value, pointNum: 10 }) })} className={styles.input} />
-                        <div className={styles.fold}>≈≈ {format.convertCNY(this.props.RateUseList, sellPrice, currentInstrument)}</div>
+                        <div className={styles.fold}>≈ {format.convertCNY(this.props.RateUseList, sellPrice, currentInstrument)}</div>
                     </div>
                     <div className={styles.tradAction} style={{ marginTop: 35 }}>卖出量</div>
                     <Input suffix={<span style={{ color: 'white' }}>{BJInstrument}</span>} value={sellVolume} onChange={e => sliderChange({ sellVolume: this.formatNum({ value: e.target.value, max: format.buyMax(getSellTotal, sellPrice), pointNum: 4 }) })} className={styles.input} />

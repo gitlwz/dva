@@ -140,15 +140,15 @@ var format = {
         if (rateUseList.length > 0) {
             switch (!!instrumentId && instrumentId.split("-")[1]) {
                 case "USDT":
-                    let exchangeRate1 = rateUseList.filter(item => item.currency == "USDT")[0]["exchangeRate"];
+                    let exchangeRate1 = rateUseList.filter(item => item.currency == "USDT")[0]["exchangeRate"] || 1;
                     return this.multiply(exchangeRate1, closePrice, 2) + " CNY";
                     break;
                 case "ETH":
-                    let exchangeRate2 = rateUseList.filter(item => item.currency == "ETH")[0]["exchangeRate"];
+                    let exchangeRate2 = rateUseList.filter(item => item.currency == "ETH")[0]["exchangeRate"] || 1;
                     return this.multiply(exchangeRate2, closePrice, 2) + " CNY";
                     break;
                 case "BTC":
-                    let exchangeRate3 = rateUseList.filter(item => item.currency == "BTC")[0]["exchangeRate"];
+                    let exchangeRate3 = rateUseList.filter(item => item.currency == "BTC")[0]["exchangeRate"] || 1;
                     return this.multiply(exchangeRate3, closePrice, 2) + " CNY";
                     break;
                 default:

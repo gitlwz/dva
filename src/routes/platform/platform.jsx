@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import styles from './platform.less';
 import { Row, Col } from 'antd';
 import { connect } from 'dva';
+import urlUtil from '../../utils/url';
 import NationTitle from '../../components/nationTitle';
 import PlatformDetail from './platformDetail';
 
-const queryString = require('query-string');
+
 var singleItem = {};
 
 class Platform extends Component {
@@ -24,7 +25,7 @@ class Platform extends Component {
   }
 
   componentWillMount() {
-    const parsed = queryString.parse(this.props.location.search);
+    const parsed = urlUtil.strToObg(this.props.location.search);
     if (parsed && parsed.msgID) {
       this.setState({ msgID: parsed.msgID, showDetail: true })
     }

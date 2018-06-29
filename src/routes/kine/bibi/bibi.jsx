@@ -106,7 +106,7 @@ class Bibi extends React.Component {
                                 </Row>
                             </Col>
                             {userId ?
-                                <Col span={24}><div className={styles.assetDiv}>{this.state.isLook ? "******" : Account["btcCount"]} BTC ≈≈ {this.state.isLook ? "******" : Account["cnyCount"]} CNY</div></Col> :
+                                <Col span={24}><div className={styles.assetDiv}>{this.state.isLook ? "******" : Account["btcCount"]} BTC ≈ {this.state.isLook ? "******" : Account["cnyCount"]} CNY</div></Col> :
                                 <Col span={24}><LoginTooltip /></Col>
                             }
                         </Row>
