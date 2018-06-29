@@ -49,7 +49,7 @@ class AssetView extends Component {
             this.props.dispatch({
                 type: 'asset/currencyChange',
                 payload: {
-                    currency: [this.props.userInfo.clientID,,this.props.userInfo.email]
+                    currency: [this.props.userInfo.clientID,this.props.userInfo.email]
                 }
             })
         }
@@ -59,7 +59,7 @@ class AssetView extends Component {
             this.props.dispatch({
                 type: 'asset/currencyChange',
                 payload: {
-                    currency: [nextProps.userInfo.clientID,this.props.userInfo.email]
+                    currency: [nextProps.userInfo.clientID,nextProps.userInfo.email]
                 }
             })
         }

@@ -1,3 +1,4 @@
+const language = !!window.localStorage.getItem("language")&&window.localStorage.getItem("language") == "English"?'en':'zh';
 let joinus = [
     {
         title: '产品经理',
@@ -440,9 +441,28 @@ I．无法支持继续交易的其他事项`
     content:`https://docs.google.com/forms/d/1ELbF8PafI6deFPwt5mTN2IRjQW0VCJM3Se8P8LN7-CM/edit`
     }
 ]
+
+
+//法律声明
+let copyrightEn = {
+        title:"Legal Statement",
+        content:`
+1. This website provides digital assets fans with professional trading platform and financial products, basing on the premise of obeying relevant laws of the republic of Singapore. 
+
+2. Using this website for illegal trading activities like commercial bribery, money laundering and smuggling is prohibited, this website is entitled to freeze and report such account to competent authority.
+
+3. Anyone who logs into this website or uses the service directly or indirectly shall be deemed as accepting constraint of this statement voluntarily.
+
+4. This website has no fact or motivation for violating laws of Singapore. If users of this website violates the laws of Singapore which violates the legal statement, this website has no liability for any acts of users while it is obliged to improve the service and operation rules.
+
+5. When competent authorities with relevant documents requests the website to cooperate with the investigation to any designated user, or if the account of the user is subject to such measures like freezing, transfer or closure, this website will give assistance by providing relating data of the account user, or other operation if it is required. If there is any disclosure of the user’s privacy or other losses of users, this website assumes no responsibility.
+        `
+    }
+
+console.log("&&&&&&&&&&",language)
 module.exports = {
     joinus,
-    copyright,
+    copyright:language == "en"?copyrightEn:copyright,
     privacy,
     userAgreement,
     application
