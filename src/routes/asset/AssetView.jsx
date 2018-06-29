@@ -75,6 +75,14 @@ class AssetView extends Component {
                 currency: this.currency
             }
         })
+        if (!!this.props.userInfo.clientID) {
+            this.props.dispatch({
+                type: 'asset/currencyChange',
+                payload: {
+                    currency: [this.props.userInfo.clientID,this.props.userInfo.email]
+                }
+            })
+        }
     }
     render() {
         let dataSource = this.props.dataSource.filter((item, index) => {
