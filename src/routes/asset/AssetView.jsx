@@ -101,10 +101,9 @@ class AssetView extends Component {
                     <span className={style.right_currtext}>币种</span>
                     <Select defaultValue="全部" onChange={this.currencyChange} style={{ width: 200 }} >
                         <Option value="全部">全部</Option>
-                        <Option value="BTC">BTC</Option>
-                        <Option value="ETH">ETH</Option>
-                        <Option value="USDT">USDT</Option>
-                        <Option value="EOS">EOS</Option>
+                        {this.props.dataSource.map((ele,index)=>{
+                            return <Option value={ele.currency}>{ele.currency}</Option>
+                        })}
                     </Select>
                     <span className={styleA.right_query}><Button onClick={this.queryClick}>查询</Button></span>
                 </div>
