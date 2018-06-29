@@ -6,9 +6,7 @@ import SecurityCenter from './SecurityCenter';
 import CashManagement from './CashManagement';
 import { connect } from 'dva';
 import language from '../../language' 
-const languageData = language.asset;
 const Option = Select.Option;
-console.log("languageData======",language,languageData)
 /**
  * 资产管理
  */
@@ -17,7 +15,7 @@ class Asset extends Component {
         super(props);
 
         this.state = {
-            leftMenu: ["资产总览", "安全中心", "充提管理"]
+            leftMenu: [language.ZCZL, language.AQZX, language.asset.CTBGL]
         }
 
     }
@@ -26,28 +24,28 @@ class Asset extends Component {
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
-                    currentSelect: "资产总览"
+                    currentSelect: language.ZCZL
                 }
             })
         }else if(this.props.history.location.search === "?type=2"){
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
-                    currentSelect: "安全中心"
+                    currentSelect: language.AQZX
                 }
             }) 
         }else if(this.props.history.location.search === "?type=3"){
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
-                    currentSelect: "充提管理"
+                    currentSelect: language.asset.CTBGL
                 }
             }) 
         }else{
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
-                    currentSelect: "资产总览"
+                    currentSelect: language.ZCZL
                 }
             }) 
         }
@@ -94,7 +92,7 @@ class Asset extends Component {
         return (
             <Spin size="large" spinning={this.props.loading} >
                 <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
-                    <div style={{ display: !!topError.show && this.props.currentSelect === "安全中心" ? 'block' : "none" }} className={style.topError}>
+                    <div style={{ display: !!topError.show && this.props.currentSelect === language.AQZX ? 'block' : "none" }} className={style.topError}>
                         {topError.content}
                     </div>
                     <div className={style.accounContent}>
@@ -113,9 +111,9 @@ class Asset extends Component {
                                 </div>
                             </Col>
                             <Col className="gutter-row" span={18}>
-                                {this.props.currentSelect === "资产总览" && <AssetView key="1" history={this.props.history} />}
-                                {this.props.currentSelect === "安全中心" && <SecurityCenter key="2" history={this.props.history} />}
-                                {this.props.currentSelect === "充提管理" && <CashManagement key="3" history={this.props.history} />}
+                                {this.props.currentSelect === language.ZCZL && <AssetView key="1" history={this.props.history} />}
+                                {this.props.currentSelect === language.AQZX && <SecurityCenter key="2" history={this.props.history} />}
+                                {this.props.currentSelect === language.asset.CTBGL && <CashManagement key="3" history={this.props.history} />}
                             </Col>
                         </Row>
                     </div>

@@ -3,23 +3,24 @@ import style from './asset.less';
 import styleA from './AssetView.less';
 import { connect } from 'dva';
 import { Row, Col, Select, Button, Table, Divider, message } from 'antd';
+import language from '../../language' 
 let accountPasswordGload = null;
 let _that = null;
 const Option = Select.Option;
 const columns = [{
-    title: '币种',
+    title: language.asset.BZ,
     dataIndex: 'currency',
 }, {
-    title: '可用',
+    title: language.asset.KY,
     dataIndex: 'available',
 }, {
-    title: '冻结',
+    title: language.asset.DJ,
     dataIndex: 'frozenMoney',
 }, {
-    title: '总额',
+    title: language.asset.ZE,
     dataIndex: 'balance',
 }, {
-    title: '操作',
+    title: language.asset.CZ,
     dataIndex: 'operation',
     render: (text, record, index) => {
         return (
@@ -28,7 +29,7 @@ const columns = [{
                 <Divider type="vertical" />
                 <a onClick={() => {
                     if (!accountPasswordGload) {
-                        message.info("请先设置资金密码！")
+                        message.info(language.asset.QXSZZJMM)
                         return
                     }
                     _that.props.history.push("/otherPresent/" + record.currency)
@@ -65,7 +66,7 @@ class AssetView extends Component {
         }
     }
     currencyChange = (value) => {
-        let _value = value === "全部" ? null : value;
+        let _value = value === language.asset.QB ? null : value;
         this.currency = _value;
     }
     queryClick = () => {
@@ -95,17 +96,17 @@ class AssetView extends Component {
         return (
             <div className={style.gutte_right}>
                 <div className={style.right_title}>
-                    资产总览
+                    {language.ZCZL}
                 </div>
                 <div className={style.right_bz}>
-                    <span className={style.right_currtext}>币种</span>
-                    <Select defaultValue="全部" onChange={this.currencyChange} style={{ width: 200 }} >
-                        <Option value="全部">全部</Option>
+                    <span className={style.right_currtext}>{language.asset.BZ}</span>
+                    <Select defaultValue={language.asset.QB} onChange={this.currencyChange} style={{ width: 200 }} >
+                        <Option value={language.asset.QB}>{language.asset.QB}</Option>
                         {this.props.dataSource.map((ele,index)=>{
                             return <Option value={ele.currency}>{ele.currency}</Option>
                         })}
                     </Select>
-                    <span className={styleA.right_query}><Button onClick={this.queryClick}>查询</Button></span>
+                    <span className={styleA.right_query}><Button onClick={this.queryClick}>{language.asset.CX}</Button></span>
                 </div>
                 <div className={styleA.right_table + " AssetView"}>
                     <Table
