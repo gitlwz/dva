@@ -13,12 +13,15 @@ const columns = [{
 }, {
     title: language.asset.KY,
     dataIndex: 'available',
+    render:(text)=>(text*1)
 }, {
     title: language.asset.DJ,
     dataIndex: 'frozenMoney',
+    render:(text)=>(text*1)
 }, {
     title: language.asset.ZE,
     dataIndex: 'balance',
+    render:(text)=>(text*1)
 }, {
     title: language.asset.CZ,
     dataIndex: 'operation',
@@ -124,7 +127,6 @@ class AssetView extends Component {
 export default connect((state, props) => {
     let { currentSelect, currency, dataSource, findByUserID } = state.asset
     let { userInfo = {} } = state.user
-    console.log("%%%%%%%5",state.user)
     accountPasswordGload = findByUserID.accountPassword
     return {
         findByUserID,
