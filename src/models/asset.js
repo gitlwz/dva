@@ -2,7 +2,7 @@ import { routerRedux } from 'dva/router';
 import baseService from '../services/baseService';
 import api from '../utils/api';
 import { message } from 'antd';
-import PubSub from "pubsub-js";
+//import PubSub from "pubsub-js";
 export default {
 
     namespace: 'asset',

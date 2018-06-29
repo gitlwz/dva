@@ -17,11 +17,17 @@ class Platform extends Component {
       msgID: '',
       pageNo: 1,
       pageSize: 10,
+      detailData: {}
     }
+
+    this.dataList = []
   }
 
   componentWillMount() {
-
+    const parsed = queryString.parse(this.props.location.search);
+    if (parsed && parsed.msgID) {
+      this.setState({ msgID: parsed.msgID, showDetail: true })
+    }
     this.findMessageList()
   }
 
@@ -51,12 +57,15 @@ class Platform extends Component {
   }
 
   loadMessage() {
-    let dataList = this.props.messageList;
+    this.dataList = this.props.messageList;
     if (this.state.msgID != "") {
-      dataList = dataList.filter(item => item.msgID == this.state.msgID)
+      this.dataList = this.dataList.filter(item => item.msgID == this.state.msgID)
     };
-    if (dataList.length > 0) {
-      return dataList.map((item) => {
+
+
+    if (this.dataList.length > 0) {
+      //this.setState({ detailData: dataList[0] || {} })
+      return this.dataList.map((item) => {
         return <div className={styles.root} key={item.msgID} onClick={() => this.showDetail(item)}>
           <div className={styles.no}>NO.{item.msgID}</div>
           <div className={styles.right}>
@@ -117,7 +126,7 @@ class Platform extends Component {
                 {this.loadPagination()}
               </div>
               :
-              <PlatformDetail item={singleItem} onClick={this.toMainPage} />
+              <PlatformDetail item={this.dataList[0] || {}} onClick={this.toMainPage} />
           }
         </div>
       </div>

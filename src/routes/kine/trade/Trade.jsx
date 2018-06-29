@@ -26,7 +26,6 @@ class Trade extends React.Component {
                 this.props.savePrice({ sellPrice: Number(nextProps.buyList[0].price) });
                 this.setSellPrice = true
             }
-
         }
 
         if (nextProps.sellList && nextProps.sellList.length > 0 && nextProps.buyPrice == 0) {

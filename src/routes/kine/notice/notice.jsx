@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './notice.less';
+import { routerRedux } from 'dva/router';
 import { connect } from 'dva';
 
 class Notice extends React.Component {
@@ -13,7 +14,7 @@ class Notice extends React.Component {
     loadMessage() {
         if (this.props.messageList.length > 0) {
             return this.props.messageList.map(item => {
-                return <div className={styles.root} key={item.msgID}>
+                return <div className={styles.root} key={item.msgID} onClick={() => this.props.dispatch(routerRedux.push("/Platform?msgID=" + item.msgID))}>
                     <div className={styles.msg}>{item.msgTitle}</div>
                     <div className={styles.time}>{item.operateDate + "-" + item.operateTime}</div>
                 </div>
