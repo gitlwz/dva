@@ -170,7 +170,7 @@ export default {
 			KTXJE:'可提现金额',
 			TXSXF:'提现手续费',
             SRZJMM:'输入资金密码',
-			
+			CTBGL:'充提币管理',
 			
 			
 			
@@ -321,8 +321,8 @@ export default {
 			SFYZ: 'Authentication',
 			LBYZ: 'Two - step verification',
 			OO: 'The two-step authentication is to use a dynamic password to authenticate under the condition of equipment isolation. the use will increase the security of your account',
-			KQGGLBYZ: ' Start Google two-step verification',
-			GBGGLBYZ: 'Close Google two-step verification',
+			KQGGLBYZ: ' Start Google verification',
+			GBGGLBYZ: 'Close Google verification',
 			KQSJDXYZ: 'Turn on SMS verification',
 			GBSJDXYZ: 'Turn off SMS authentication',
 			QTHBCZDZ: 'Deposits  address for other currencies',
@@ -427,6 +427,7 @@ export default {
 			TXDZ: 'Withdrawals address',
 			DJFZ: 'Click copy',
 			CZCG: 'Succeed',
+			CTBGL:'Address  management',
 			CZSB: 'Failure',
 			ZWSJ: 'No data available',
 

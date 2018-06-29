@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import { Row, Col, Button, Icon, Select, message } from 'antd';
 import style from './asset.less';
 import styleA from './SecurityCenter.less';
+import language from '../../language' 
 const Option = Select.Option;
 
 class SecurityCenter extends Component {
@@ -113,16 +114,16 @@ class SecurityCenter extends Component {
         } else {
             return <div>
                 <div style={{ marginTop: "20px" }}>
-                    按照有关部门规定，也为了更好地保护您的资产安全，请完成以下身份验证。身份验证资料经审核通过后不可更改。
+                    {language.asset.AZXGBMGD}
                         </div>
                 <div>
                     请选择身份验证类型
                         </div>
                 <div style={{ marginTop: "20px" }}>
                     <Select defaultValue={this.selectValue} style={{ width: '60%' }} onChange={this.SelecthandleChange}>
-                        <Option value="1">身份证验证</Option>
-                        <Option value="2">护照验证</Option>
-                        <Option value="3">机构客户验证</Option>
+                        <Option value="1">{language.asset.SFYZ}</Option>
+                        <Option value="2">{language.asset.HZYZ}</Option>
+                        <Option value="3">{language.asset.JGKHYZ}</Option>
                     </Select>
                     <Button onClick={this.selectOnClick} className="asset_btn SecurityCenter_btn" type="primary">提交验证文件</Button>
                 </div>
@@ -140,13 +141,13 @@ class SecurityCenter extends Component {
                 return (
                     <div>
                         <div style={{ marginTop: "20px" }}>
-                            两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
+                        {language.asset.OO}
                         </div>
                         <div style={{ marginTop: "20px" }}>
-                            <Button onClick={() => this.openGo("/reopenGoogle/" + this.props.userInfo.email)} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启谷歌两步验证</Button>
+                            <Button onClick={() => this.openGo("/reopenGoogle/" + this.props.userInfo.email)} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">{language.asset.KQGGLBYZ}</Button>
                         </div>
                         <div style={{ marginTop: "20px" }}>
-                            <Button onClick={() => this.openGo("/smSverification")} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启手机两步验证</Button>
+                            <Button onClick={() => this.openGo("/smSverification")} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">{language.asset.KQSJDXYZ}</Button>
                         </div>
                         <br />
                     </div>
@@ -156,13 +157,13 @@ class SecurityCenter extends Component {
                     // <div>谷歌验证已开启 | 短信验证未开启</div>
                     <div>
                         <div style={{ marginTop: "20px" }}>
-                            两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
+                        {language.asset.OO}
                         </div>
                         <div style={{ marginTop: "20px" }}>
-                            <Button onClick={() => this.cloceCheck('4')} className="asset_btn SecurityCenter_btn_yz">关闭谷歌两步验证</Button>
+                            <Button onClick={() => this.cloceCheck('4')} className="asset_btn SecurityCenter_btn_yz">{language.asset.GBGGLBYZ}</Button>
                         </div>
                         <div style={{ marginTop: "20px" }}>
-                            <Button onClick={() => this.openGo("/smSverification")} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启手机短信验证</Button>
+                            <Button onClick={() => this.openGo("/smSverification")} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">{language.asset.KQSJDXYZ}</Button>
                         </div>
                         <br />
                     </div>
@@ -174,13 +175,13 @@ class SecurityCenter extends Component {
                     // <div>谷歌验证未开启 | 短信验证已开启</div>
                     <div>
                         <div style={{ marginTop: "20px" }}>
-                            两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
+                        {language.asset.OO}
                         </div>
                         <div style={{ marginTop: "20px" }}>
-                            <Button onClick={() => this.openGo("/reopenGoogle/" + this.props.userInfo.email)} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">开启谷歌两步验证</Button>
+                            <Button onClick={() => this.openGo("/reopenGoogle/" + this.props.userInfo.email)} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">{language.asset.KQGGLBYZ}</Button>
                         </div>
                         <div style={{ marginTop: "20px" }}>
-                            <Button onClick={() => this.cloceCheck('5')} className="asset_btn SecurityCenter_btn_yz">关闭手机短信验证</Button>
+                            <Button onClick={() => this.cloceCheck('5')} className="asset_btn SecurityCenter_btn_yz">{language.asset.GBSJDXYZ}</Button>
                         </div>
                         <br />
                     </div>
@@ -189,13 +190,13 @@ class SecurityCenter extends Component {
                 return (
                     <div>
                         <div style={{ marginTop: "20px" }}>
-                            两步验证是使用动态密码，在设备隔离的情况下进行验证，使用将增加您账户的安全性。
+                            {language.asset.OO}
                     </div>
                         <div style={{ marginTop: "20px" }}>
-                            <Button onClick={() => this.cloceCheck('4')} className="asset_btn SecurityCenter_btn_yz">关闭谷歌两步验证</Button>
+                            <Button onClick={() => this.cloceCheck('4')} className="asset_btn SecurityCenter_btn_yz">{language.asset.GBGGLBYZ}</Button>
                         </div>
                         <div style={{ marginTop: "20px" }}>
-                            <Button onClick={() => this.cloceCheck('5')} className="asset_btn SecurityCenter_btn_yz">关闭手机短信验证</Button>
+                            <Button onClick={() => this.cloceCheck('5')} className="asset_btn SecurityCenter_btn_yz">{language.asset.GBSJDXYZ}</Button>
                         </div>
                         <br />
                     </div>
@@ -221,55 +222,55 @@ class SecurityCenter extends Component {
             <div style={{ paddingTop: '53px' }}>
 
                 <div className={style.right_title}>
-                    安全中心
+                    {language.AQZX}
                 </div>
                 <div className={style.right_bz}>
                     <div className={styleA.card}>
                         <Row className={styleA.rowF}>
-                            <Col className={styleA.rowF_title} span={4}>姓名</Col>
+                            <Col className={styleA.rowF_title} span={4}>{language.asset.XM}</Col>
                             <Col span={20}>{clientName}</Col>
                         </Row>
                         <Row className={styleA.rowF}>
-                            <Col className={styleA.rowF_title} span={4}>用户ID</Col>
+                            <Col className={styleA.rowF_title} span={4}>{language.asset.YHID}</Col>
                             <Col span={20}>{clientID}</Col>
                         </Row>
                         <Row className={styleA.rowF}>
-                            <Col className={styleA.rowF_title} span={4}>注册邮箱</Col>
+                            <Col className={styleA.rowF_title} span={4}>{language.asset.ZCYX}</Col>
                             <Col span={20}>{registeredName}</Col>
                         </Row>
                         <Row className={styleA.rowF}>
-                            <Col className={styleA.rowF_title} span={4}>登录密码</Col>
+                            <Col className={styleA.rowF_title} span={4}>{language.asset.DLMM}</Col>
                             <Col span={20}>
                                 <span>{"******"}</span>
-                                <Button onClick={() => this.props.history.push("/user/forgetPassword")} className="asset_btn SecurityCenter_btn" type="primary">修改</Button>
+                                <Button onClick={() => this.props.history.push("/user/forgetPassword")} className="asset_btn SecurityCenter_btn" type="primary">{language.asset.XG}</Button>
                             </Col>
                         </Row>
                         <Row className={styleA.rowF}>
-                            <Col className={styleA.rowF_title} span={4}>资金密码</Col>
+                            <Col className={styleA.rowF_title} span={4}>{language.asset.ZJMM}</Col>
                             <Col span={20}>
                                 <span>{accountPassword}</span>
-                                {this.props.userInfo.applyStatus >= 4 ? <Button onClick={this.resetPasswords} className="asset_btn SecurityCenter_btn" type="primary">重置密码</Button> : null}
+                                {this.props.userInfo.applyStatus >= 4 ? <Button onClick={this.resetPasswords} className="asset_btn SecurityCenter_btn" type="primary">{language.asset.CZMM}</Button> : null}
                             </Col>
                         </Row>
                     </div>
                     <div className={styleA.card}>
                         <div className={styleA.yz_title}>
                             <span>1</span>
-                            <span>邮箱验证</span>
+                            <span>{language.asset.YXYZ}</span>
                         </div>
                         {this._renderEmailVerify()}
                     </div>
                     <div className={styleA.card}>
                         <div className={styleA.yz_title}>
                             <span>2</span>
-                            <span>身份验证</span>
+                            <span>{language.asset.SFYZ}</span>
                         </div>
                         {this._renderIDCardVerify()}
                     </div>
                     <div className={styleA.card}>
                         <div className={styleA.yz_title}>
                             <span>3</span>
-                            <span>两步验证</span>
+                            <span>{language.asset.LBYZ}</span>
                         </div>
                         {this._renderTwoStepsVerify()}
                     </div>
