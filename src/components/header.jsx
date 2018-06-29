@@ -70,19 +70,19 @@ class Header extends Component {
             <Menu onClick={this.menuClick} className="header_dropdown">
                 <Menu.Item key="0">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_zc}>{languageData.kine.ZCZL}</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_zc}>{languageData.ZCZL}</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="1">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_dd}>{languageData.kine.JYJLXC}</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_dd}>{languageData.JYJLXC}</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="2">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_tcb}>{languageData.kine['CB&TB']}</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_tcb}>{languageData['CB&TB']}</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
@@ -94,13 +94,13 @@ class Header extends Component {
                 <Menu.Divider /> */}
                 <Menu.Item key="4">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>{languageData.kine.AQZX}</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>{languageData.AQZX}</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="5">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_tc}>{languageData.kine.TC}</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_tc}>{languageData.TC}</span>
                     </div>
                 </Menu.Item>
             </Menu>
