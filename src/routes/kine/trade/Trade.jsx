@@ -41,10 +41,11 @@ class Trade extends React.Component {
         if (max == 0) {
             return 0;
         }
+        console.log(value, max)
         if (!!value && !!max && Number(value) > max) {
-            value = max;
-            message.error("超过最大值" + max + "请重新输入");
-            return value;
+            // value = max;
+            // message.error("超过最大值" + max + "请重新输入");
+            // return value;
         }
         return format.NumberCheck({ value: value, pointNum: pointNum })
     }
@@ -109,9 +110,22 @@ class Trade extends React.Component {
                 orderData: orderData,
                 callback: (data) => {
                     if (direction == "0") {
-                        message.success("委托买入成功!");
+                        if (data.errorCode == 0) {
+                            message.success("委托买入成功!");
+                            this.props.sliderChange({ buyVolume: 0 })
+                            return
+                        } else {
+                            message.error("委托买入失败!")
+                        }
+
                     } else {
-                        message.success("委托卖出成功!")
+                        if (data.errorCode == 0) {
+                            message.success("委托卖出成功!");
+                            this.props.sliderChange({ sellVolume: 0 })
+                            return
+                        } else {
+                            message.error("委托卖出失败!")
+                        }
                     }
                 }
             }
@@ -140,8 +154,6 @@ class Trade extends React.Component {
         let getButTotal = this.getTotal(JJInstrument);
         //获取可卖最大数量
         let getSellTotal = this.getTotal(BJInstrument);
-
-
         return <Row type="flex" justify="space-between">
             <Col span="11">
                 <div style={{ marginLeft: 20 }}>
@@ -174,7 +186,7 @@ class Trade extends React.Component {
                     </div>
                     <div className={styles.tradAction} style={{ marginTop: 35 }}>卖出量</div>
                     <Input suffix={<span style={{ color: 'white' }}>{BJInstrument}</span>} value={sellVolume} onChange={e => sliderChange({ sellVolume: this.formatNum({ value: e.target.value, max: Number(getSellTotal), pointNum: 4 }) })} className={styles.input} />
-                    <Slider step={0.0001} style={{ margin: '10px 0', background: 'rgba(203,229,255,0.14)' }} max={Number(getSellTotal)} value={Number(sellVolume)} onChange={value => sliderChange({ sellVolume: value })} />
+                    <Slider step={0.0001} style={{ margin: '10px 0', background: 'rgba(203,229,255,0.14)' }} max={Number(getSellTotal)} value={Number(sellVolume)} onChange={value => sliderChange({ sellVolume: this.formatNum({ value: value.toString(), max: Number(getSellTotal), pointNum: 4 }) })} />
                     <Row>
                         <Col span={12}>0</Col>
                         <Col span={12} style={{ textAlign: 'right' }}>{getSellTotal} {BJInstrument}</Col>
@@ -215,6 +227,7 @@ export default connect((state, props) => {
             })
         },
         savePrice: (parms) => {
+            console.log(parms)
             dispatch({
                 type: 'trade/save',
                 payload: {

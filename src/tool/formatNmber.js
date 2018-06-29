@@ -169,6 +169,14 @@ var format = {
             default:
                 break;
         }
+    },
+
+    point(num) {
+        if (num > 0) {
+            if (num.indexOf(".") > -1) {
+                return num.toString().split(".")[1].length
+            }
+        }
     }
 }
 
