@@ -56,7 +56,7 @@ class TradeComponent extends React.Component {
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买入" : '卖出'}</span>
                     <span>{item.limitPrice}</span>
                     <span>{item.volumeTotal}</span>
-                    <span>{format.multiply(item.limitPrice, item.volumeTotal)}</span>
+                    <span>{format.multiply(item.limitPrice, item.volumeTotal,14)}</span>
                 </div>
             })
         }

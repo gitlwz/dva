@@ -86,7 +86,7 @@ var format = {
         if (Num.indexOf(".") > -1) {
             let s1 = Num.split(".")[1];
             for (var i = s1.length; i < points; i++) {
-                Num += "0"
+                //  Num += "0"
             }
         } else {
             if (points > 0) {

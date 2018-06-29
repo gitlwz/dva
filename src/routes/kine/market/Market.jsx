@@ -17,6 +17,18 @@ class Market extends React.Component {
         }
     }
 
+    componentDidMount() {
+        if (!!this.props.currentInstrument) {
+            PubSub.publish('Polling.addsubscribe',
+                [
+                    { name: "findBuyMarket", payload: this.props.currentInstrument },
+                    { name: "findSellMarket", payload: this.props.currentInstrument }
+                ]
+            )
+        }
+    }
+
+
     componentWillReceiveProps(nextProps) {
         if (this.props.currentInstrument != nextProps.currentInstrument) {
             PubSub.publish('Polling.addsubscribe',
