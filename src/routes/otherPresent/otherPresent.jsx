@@ -134,6 +134,9 @@ class otherPresent extends Component {
         } else {
             num = this.state.select.withdrawFeeRate
         }
+        if(num < this.state.select.lowest*1){
+            num = this.state.select.lowest;
+        }
         this.setState({
             fee: num
         })
