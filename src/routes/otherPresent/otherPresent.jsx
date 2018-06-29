@@ -130,9 +130,9 @@ class otherPresent extends Component {
     numberChange = (value) => {
         let num = 0
         if (this.state.select.withdrawFeeAlgor == 1) {
-            num = (value || 0) * this.state.select.withdrawalAmount
+            num = (value || 0) * this.state.select.withdrawFeeRate
         } else {
-            num = this.state.select.withdrawalAmount
+            num = this.state.select.withdrawFeeRate
         }
         this.setState({
             fee: num

@@ -49,7 +49,7 @@ class AssetView extends Component {
             this.props.dispatch({
                 type: 'asset/currencyChange',
                 payload: {
-                    currency: this.props.userInfo.clientID
+                    currency: [this.props.userInfo.clientID,,this.props.userInfo.email]
                 }
             })
         }
@@ -59,7 +59,7 @@ class AssetView extends Component {
             this.props.dispatch({
                 type: 'asset/currencyChange',
                 payload: {
-                    currency: nextProps.userInfo.clientID
+                    currency: [nextProps.userInfo.clientID,this.props.userInfo.email]
                 }
             })
         }
@@ -116,6 +116,7 @@ class AssetView extends Component {
 export default connect((state, props) => {
     let { currentSelect, currency, dataSource, findByUserID } = state.asset
     let { userInfo = {} } = state.user
+    console.log("%%%%%%%5",state.user)
     accountPasswordGload = findByUserID.accountPassword
     return {
         findByUserID,

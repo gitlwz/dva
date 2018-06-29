@@ -92,7 +92,7 @@ export default {
                     loading: true
                 }
             })
-            const { data } = yield call(baseService, api.asset.queryOperTradingAccount, [payload.currency]);
+            const { data } = yield call(baseService, api.asset.queryOperTradingAccount, [...payload.currency]);
             if (data != undefined) { //成功
                 yield put({
                     type: 'save',
