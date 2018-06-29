@@ -5,6 +5,7 @@ import { routerRedux, Link } from 'dva/router';
 import Validator from '../../tool/Validator';
 import md5 from "md5";
 import styles from './regisx.less'
+import languageData from '../../language/index'
 
 class Regis extends React.Component {
 
@@ -30,7 +31,7 @@ class Regis extends React.Component {
         this.props.dispatch({
             type: 'user/queryCountryList',
         })
-        document.addEventListener('keydown',this.onkeydownEvent)
+        document.addEventListener('keydown', this.onkeydownEvent)
     }
     onkeydownEvent = (e) => {
         var theEvent = e || window.event;
@@ -127,15 +128,15 @@ class Regis extends React.Component {
         }
         return <div style={{ ...divStyle }}>
             <p style={{ color: '#FDCC39', fontSize: 16, textAlign: 'center' }}>提醒!</p>
-            您提供的电子邮件地址将成为您的SUNDAX的ID，并将用于未来的所有通信，包括账户恢复。 像保护你的SUNDAX账户一样保护你的电子邮件账户。 使用一次性电子邮件地址注册将被拒绝
-            </div>
+            {languageData.TX}
+        </div>
     }
 
     pushRouter(url) {
         this.props.dispatch(routerRedux.push(url))
     }
-    componentWillUnmount = () =>{
-        document.removeEventListener("keydown",this.onkeydownEvent)
+    componentWillUnmount = () => {
+        document.removeEventListener("keydown", this.onkeydownEvent)
     }
     render() {
         const { showConformMsg, showCountryMsg, showEmailMsg, showWordMsg } = this.state;
@@ -143,7 +144,7 @@ class Regis extends React.Component {
             <div>
                 <div className={styles.login}>
                     <div style={{ textAlign: 'center' }}>
-                        <p className={styles.zc}>邮箱注册</p>
+                        <p className={styles.zc}>{languageData.YX}{languageData.signIn}</p>
                     </div>
 
                     <div className={styles.flex}>
@@ -159,7 +160,7 @@ class Regis extends React.Component {
 
                     <InputLabel lab="邮箱地址" placeholder="请输入邮箱" value={this.state.email} inputChange={value => this.inputChange({ value: value, name: 'email' })} showBorder={showEmailMsg} />
 
-                    {showEmailMsg == true ? <p className={styles.errP}>请输入有效的邮箱地址</p> : ''}
+                    {showEmailMsg == true ? <p className={styles.errP}>{languageData.QSRYXDYXDZ}</p> : ''}
 
                     {showWordMsg == true ?
                         <div className={styles.flex}>
@@ -173,18 +174,18 @@ class Regis extends React.Component {
                         </div> : ''}
                     <input type="password" style={{ display: 'none' }} />
 
-                    <InputLabel lab="密码" placeholder="请输入密码" type value={this.state.password} inputChange={value => this.inputChange({ value: value, name: 'password' })} showBorder={showWordMsg} />
+                    <InputLabel lab={languageData.MM} placeholder={languageData.QSRMM} type value={this.state.password} inputChange={value => this.inputChange({ value: value, name: 'password' })} showBorder={showWordMsg} />
 
-                    <InputLabel lab="确认密码" placeholder="请确认密码" type value={this.state.confirmWord} inputChange={value => this.inputChange({ value: value, name: 'confirmWord' })} showBorder={showConformMsg} />
+                    <InputLabel lab={languageData.QRMM} placeholder="请确认密码" type value={this.state.confirmWord} inputChange={value => this.inputChange({ value: value, name: 'confirmWord' })} showBorder={showConformMsg} />
 
-                    {showConformMsg == true ? <p className={styles.errP}>请输入相同密码</p> : ''}
+                    {showConformMsg == true ? <p className={styles.errP}>{languageData.QSRXTMM}</p> : ''}
 
                     <div className={styles.flex}>
                         <label style={{ flex: 1 }}></label>
                         <div style={{ color: '#FFF', fontSize: '13px', width: '336px', marginTop: 15, display: "flex", flexDirection: "row", alignItems: "center" }}>
                             <div className={styles.checkbox}>
                                 <input type="checkbox" id="checkbox" checked={this.state.check} value={this.state.check} onChange={e => this.setState({ check: e.target.checked })} />
-                                <label >我已阅读并同意</label>
+                                <label >{languageData.WYYDBTY}</label>
                             </div>
                         </div>
                     </div>
@@ -195,13 +196,13 @@ class Regis extends React.Component {
                             <p style={{ width: '336px' }} className={styles.errP}>{this.state.errMsg}</p>
                         </div> : ''}
 
-                    <InputLabel isButton buttonName="注册" buttonClick={() => this.regis()} />
+                    <InputLabel isButton buttonName={languageData.signIn} buttonClick={() => this.regis()} />
 
 
                     <div className={styles.errP}>
-                        <Link to="/stipulation?copyright">法律声明</Link>
-                        <Link to="/stipulation?userAgreement" className={styles.aSelect}>用户条款</Link>
-                        <Link to="/stipulation?privacy">隐私保护</Link>
+                        <Link to="/stipulation?copyright">{languageData.FLSML}</Link>
+                        <Link to="/stipulation?userAgreement" className={styles.aSelect}>{languageData.YHXY}</Link>
+                        <Link to="/stipulation?privacy">{languageData.YSTK}</Link>
                     </div>
 
                     <div className={styles.tooltip}>

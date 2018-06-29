@@ -4,8 +4,8 @@ import { routerRedux } from 'dva/router';
 import Validator from '../../tool/Validator';
 import { connect } from 'dva';
 import md5 from "md5";
+import languageData from '../../language/index'
 import styles from './login.less'
-
 class Login extends React.Component {
 
     constructor(props) {
@@ -19,8 +19,8 @@ class Login extends React.Component {
 
         }
     }
-    componentDidMount = () =>{
-        document.addEventListener('keydown',this.onkeydownEvent)
+    componentDidMount = () => {
+        document.addEventListener('keydown', this.onkeydownEvent)
     }
     onkeydownEvent = (e) => {
         var theEvent = e || window.event;
@@ -71,35 +71,35 @@ class Login extends React.Component {
     forgetPass() {
         this.pushRouter("/user/forgetPassword")
     }
-    componentWillUnmount = () =>{
-        document.removeEventListener("keydown",this.onkeydownEvent)
+    componentWillUnmount = () => {
+        document.removeEventListener("keydown", this.onkeydownEvent)
     }
     render() {
         return (
             <div>
                 <div className={styles.login}>
                     <div style={{ textAlign: 'center' }}>
-                        <p className={styles.dl}>登录</p>
+                        <p className={styles.dl}>{languageData.Login}</p>
                     </div>
                     <input type="password" style={{ display: 'none' }} />
 
-                    <InputLabel lab="邮箱地址" placeholder="请输入邮箱" value={this.state.userName} inputChange={value => this.inputChange(value)} showBorder={this.state.showEmailMsg} />
+                    <InputLabel lab={languageData.YX} placeholder="请输入邮箱" value={this.state.userName} inputChange={value => this.inputChange(value)} showBorder={this.state.showEmailMsg} />
 
 
-                    {this.state.showEmailMsg == true ? <p className={styles.errP}>请输入有效的邮箱地址</p> : ''}
+                    {this.state.showEmailMsg == true ? <p className={styles.errP}>{languageData.QSRYXDYXDZ}</p> : ''}
 
 
-                    <InputLabel lab="密码" placeholder="请输入密码" value={this.state.password} type inputChange={value => this.setState({ password: value, showWordMsg: false })} showBorder={this.state.showWordMsg} />
+                    <InputLabel lab={languageData.MM} placeholder={languageData.QSRMM} value={this.state.password} type inputChange={value => this.setState({ password: value, showWordMsg: false })} showBorder={this.state.showWordMsg} />
 
                     {this.state.showWordMsg == true ? <p className={styles.errP}>{this.state.errMsg}</p> : ""}
 
-                    <InputLabel isButton buttonName="登录" buttonClick={() => this.LoginClick()} />
-                    <a style={{ textAlign: 'right', display: 'block', margin: '10px 0', color: 'white' }} href="javascript:void(0)" onClick={() => this.pushRouter("/user/forgetPassword")}>忘记密码？</a>
+                    <InputLabel isButton buttonName={languageData.Login} buttonClick={() => this.LoginClick()} />
+                    <a style={{ textAlign: 'right', display: 'block', margin: '10px 0', color: 'white' }} href="javascript:void(0)" onClick={() => this.pushRouter("/user/forgetPassword")}>{languageData.WJMM}?</a>
 
                     <div className={styles.tooltip}>
-                        <div>还没有账户？</div>
-                        <div>创建一个账户加入世界最活跃的交易平台</div>
-                        <a style={{ color: '#FDCC39', textDecoration: 'underline' }} onClick={() => this.pushRouter("/user/regis")}>点击注册</a>
+                        <div>{languageData.HMYZH}</div>
+                        <div>{languageData.CJYGZHJRSJ}</div>
+                        <a style={{ color: '#FDCC39', textDecoration: 'underline' }} onClick={() => this.pushRouter("/user/regis")}>{languageData.DJZC}</a>
                     </div>
                 </div>
 

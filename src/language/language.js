@@ -258,7 +258,7 @@ export default {
 		MM: 'Password',
 		WJMM: 'Forget Password',
 		HMYZH: 'have not set up an I account',
-		QRMM: 'Confirm password',
+		QRMM: 'Cpassword',
 		YX: 'Mail',
 		ZCZL: 'Asset ',
 		JYJLXC: 'Trade Record',

@@ -27,6 +27,10 @@ class ForgetPassword extends React.Component {
     }
 
 
+    componentWillUnmount(){
+        clearInterval(this.timer)
+    }
+
     //动态校验
     inputChange(parms) {
         switch (parms.name) {
