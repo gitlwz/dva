@@ -5,6 +5,7 @@ import { connect } from 'dva';
 import NationTitle from '../../components/nationTitle';
 import PlatformDetail from './platformDetail';
 
+const queryString = require('query-string');
 var singleItem = {};
 
 class Platform extends Component {
@@ -20,6 +21,7 @@ class Platform extends Component {
   }
 
   componentWillMount() {
+
     this.findMessageList()
   }
 

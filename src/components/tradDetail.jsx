@@ -61,7 +61,12 @@ class TradeComponent extends React.Component {
             })
         }
         else {
-            return format.sort(this.props.dataList, this.props.sort).map((item, index) => {
+            //固定七档行情
+            const dataList = this.props.dataList || [];
+            for (let i = dataList.length; i < 7; i++) {
+                dataList.push({ price: "---", volume: "---", direction: this.props.direction })
+            }
+            return format.sort(dataList, this.props.sort).map((item, index) => {
                 return <div key={index} className={styles.header} onClick={() => this.props.handleOk(item.price)}>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买" + (index + 1) : '卖' + (this.props.dataList.length - index)}</span>
                     <span>{item.price}</span>

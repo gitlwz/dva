@@ -16,10 +16,6 @@ class Market extends React.Component {
             buyList: []
         }
     }
-    componentDidMount() {
-        console.log("初始化一次!")
-
-    }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.currentInstrument != nextProps.currentInstrument) {
@@ -40,9 +36,9 @@ class Market extends React.Component {
     render() {
         return <div style={{ height: '100%' }}>
             <Spin spinning={this.props.markLoading}>
-                <TradeComponent dataList={this.props.sellList.slice(0, 7)} sort={1} handleOk={price => this.props.handleOk({ buyPrice: price })} />
+                <TradeComponent dataList={this.props.sellList.slice(0, 7)} sort={1} direction="1"  handleOk={price => this.props.handleOk({ buyPrice: price })} />
                 <div style={{ height: '1px', width: '100%', background: '#233044', margin: '5px 10px' }}></div>
-                <TradeComponent dataList={this.props.buyList.slice(0, 7)} sort={1} titleList={[]} handleOk={price => this.props.handleOk({ sellPrice: price })} />
+                <TradeComponent dataList={this.props.buyList.slice(0, 7)} sort={1} titleList={[]} direction="0" handleOk={price => this.props.handleOk({ sellPrice: price })} />
             </Spin>
         </div>
     }

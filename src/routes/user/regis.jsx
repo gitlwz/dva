@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import InputLabel from './InputLabel';
-import { routerRedux } from 'dva/router';
+import { routerRedux, Link } from 'dva/router';
 import Validator from '../../tool/Validator';
 import md5 from "md5";
 import styles from './regisx.less'
@@ -190,9 +190,9 @@ class Regis extends React.Component {
 
 
                     <div className={styles.errP}>
-                        <a>免费声明</a>
-                        <a className={styles.aSelect}>服务条款</a>
-                        <a>隐私保护</a>
+                        <Link to="/stipulation?copyright">法律声明</Link>
+                        <Link to="/stipulation?userAgreement" className={styles.aSelect}>用户条款</Link>
+                        <Link to="/stipulation?privacy">隐私保护</Link>
                     </div>
 
                     <div className={styles.tooltip}>

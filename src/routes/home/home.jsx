@@ -50,10 +50,10 @@ class Home extends React.Component {
     //返回涨跌幅组件
     loadChangeVie(item) {
         if (item.closePrice - item.openPrice > 0) {
-            return <div className={styles.upTrend}>+{this.Calculategains(item.closePrice, item.openPrice)}%</div>
+            return <div className={styles.downTrend}>+{this.Calculategains(item.closePrice, item.openPrice)}%</div>
         }
         else if (item.closePrice - item.openPrice < 0) {
-            return <div className={styles.downTrend}>{this.Calculategains(item.closePrice, item.openPrice)}%</div>
+            return <div className={styles.upTrend}>{this.Calculategains(item.closePrice, item.openPrice)}%</div>
         }
         else {
             return <div>---</div>

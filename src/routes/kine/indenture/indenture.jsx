@@ -126,7 +126,7 @@ class Indenture extends React.Component {
                 return <Row className={styles.row} key={item.instrumentId} onClick={() => this.changeInstrum(item.instrumentId)}>
                     <Col className={styles.col} span={8}>
                         <div style={{ display: "flex", alignItems: 'center' }}>
-                            <img src={item.checked == true ? selectStar : star} style={{ paddingRight: 10, alignSelf: 'center' }} onClick={(e) => this.checked(e, item.instrumentId)} />
+                            <img src={item.checked == true ? selectStar : star} style={{ paddingRight: 5, alignSelf: 'center' }} onClick={(e) => this.checked(e, item.instrumentId)} />
                             <span> {item.instrumentId.split("-")[0]}</span>
                         </div>
                     </Col>

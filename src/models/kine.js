@@ -173,7 +173,7 @@ export default {
             return PubSub.subscribe("getAcountAsset", (name, payload) => {
                 dispatch({
                     type: "currencyChange",
-                    payload: [payload]
+                    payload: payload
                 })
             })
         },

@@ -13,7 +13,7 @@ export default {
 		SSSQ: '上市申请',
 		TKSM: '条款说明',
 		YHXY: '用户协议',
-		YSTK: '隐私条款',
+		YSTK: '隐私保护',
 		FLSML: '法律声明',
 		FZGJ: '辅助工具',
 		FLSM: '费率说明',

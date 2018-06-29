@@ -13,9 +13,28 @@ class Trade extends React.Component {
         super(props);
         this.state = {
         }
+        this.setSellPrice = false;
+        this.setBuyPrice = false;
     }
     componentDidMount() {
-        console.log(this.props)
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.buyList && nextProps.buyList.length > 0 && nextProps.sellPrice == 0) {
+            if (this.setSellPrice == false) {
+                this.props.savePrice({ sellPrice: Number(nextProps.buyList[0].price) });
+                this.setSellPrice = true
+            }
+
+        }
+
+        if (nextProps.sellList && nextProps.sellList.length > 0 && nextProps.buyPrice == 0) {
+            if (this.setBuyPrice == false) {
+                this.props.savePrice({ buyPrice: Number(nextProps.sellList[0].price) });
+                this.setBuyPrice = true
+            }
+        }
     }
 
     //格式化数字
@@ -113,52 +132,56 @@ class Trade extends React.Component {
     }
 
     render() {
-
         const { buyPrice, buyVolume, sellPrice, sellVolume, sliderChange, userId, currentInstrument, dataSource } = this.props;
+        //报价货币
+        let BJInstrument = currentInstrument.split("-")[0];
+        //基础货币
+        let JJInstrument = currentInstrument.split("-")[1];
         //获取可买最大数量
-        const getButTotal = this.getTotal(currentInstrument.split("-")[1]);
+        let getButTotal = this.getTotal(JJInstrument);
         //获取可卖最大数量
-        const getSellTotal = this.getTotal(currentInstrument.split("-")[0]);
+        let getSellTotal = this.getTotal(BJInstrument);
+
 
         return <Row type="flex" justify="space-between">
             <Col span="11">
                 <div style={{ marginLeft: 20 }}>
-                    {userId ? <div className={styles.usable}>可用 {getButTotal}  {currentInstrument.split("-")[1]}</div> : <div className={styles.usable} > <LoginTooltip /></div>}
+                    {userId ? <div className={styles.usable}>可用 {getButTotal}  {JJInstrument}</div> : <div className={styles.usable} > <LoginTooltip /></div>}
 
                     <div className={styles.tradAction}>买入价</div>
                     <div>
-                        <Input suffix={<span>{currentInstrument}</span>} value={buyPrice} onChange={e => sliderChange({ buyPrice: this.formatNum({ value: e.target.value, pointNum: 10 }) })} className={styles.input} />
+                        <Input suffix={<span style={{ color: 'white' }}>{JJInstrument}</span>} value={buyPrice} onChange={e => sliderChange({ buyPrice: this.formatNum({ value: e.target.value, pointNum: 10 }) })} className={styles.input} />
                         <div className={styles.fold}>≈≈ {format.convertCNY(this.props.RateUseList, buyPrice, currentInstrument)}</div>
                     </div>
                     <div className={styles.tradAction} style={{ marginTop: 35 }}>买入量</div>
-                    <Input suffix={<span>{currentInstrument}</span>} value={buyVolume} onChange={e => sliderChange({ buyVolume: this.formatNum({ value: e.target.value, max: format.buyMax(getButTotal, buyPrice), pointNum: 4 }) })} className={styles.input} />
+                    <Input suffix={<span style={{ color: 'white' }}>{BJInstrument}</span>} value={buyVolume} onChange={e => sliderChange({ buyVolume: this.formatNum({ value: e.target.value, max: format.buyMax(getButTotal, buyPrice), pointNum: 4 }) })} className={styles.input} />
                     <Slider step={0.01} style={{ margin: '10px 0', background: 'rgba(203,229,255,0.14)' }} max={format.buyMax(getButTotal, buyPrice)} value={Number(buyVolume)} onChange={value => sliderChange({ buyVolume: value })} className={styles.input} />
                     <Row>
                         <Col span={12}>0</Col>
-                        <Col span={12} style={{ textAlign: 'right' }}>{format.buyMax(getButTotal, buyPrice)} {currentInstrument.split("-")[1]}</Col>
+                        <Col span={12} style={{ textAlign: 'right' }}>{format.buyMax(getButTotal, buyPrice)} {BJInstrument}</Col>
                     </Row>
-                    <div className={styles.sum}>交易额 {format.multiply(buyPrice, buyVolume, 2)}</div>
-                    <button className={styles.sellButton} disabled={userId ? false : true} onClick={() => this.orderInsert("0")}>买入 {currentInstrument}</button>
+                    <div className={styles.sum}>交易额 {format.multiply(buyPrice, buyVolume)} {JJInstrument}</div>
+                    <button className={styles.sellButton} disabled={userId ? false : true} onClick={() => this.orderInsert("0")}>买入 {BJInstrument}</button>
                 </div>
             </Col>
 
             <Col span="11">
                 <div style={{ marginRight: 20 }}>
-                    {userId ? <div className={styles.usable}>可用 {getSellTotal} {currentInstrument.split("-")[0]}</div> : <div className={styles.usable} > <LoginTooltip /></div>}
+                    {userId ? <div className={styles.usable}>可用 {getSellTotal} {BJInstrument}</div> : <div className={styles.usable} > <LoginTooltip /></div>}
                     <div className={styles.tradAction}>卖出价</div>
                     <div>
-                        <Input suffix={<span>{currentInstrument}</span>} value={sellPrice} onChange={e => sliderChange({ sellPrice: this.formatNum({ value: e.target.value, pointNum: 10 }) })} className={styles.input} />
+                        <Input suffix={<span style={{ color: 'white' }}>{JJInstrument}</span>} value={sellPrice} onChange={e => sliderChange({ sellPrice: this.formatNum({ value: e.target.value, pointNum: 10 }) })} className={styles.input} />
                         <div className={styles.fold}>≈≈ {format.convertCNY(this.props.RateUseList, sellPrice, currentInstrument)}</div>
                     </div>
                     <div className={styles.tradAction} style={{ marginTop: 35 }}>卖出量</div>
-                    <Input suffix={<span>{currentInstrument}</span>} value={sellVolume} onChange={e => sliderChange({ sellVolume: this.formatNum({ value: e.target.value, max: format.buyMax(getSellTotal, sellPrice), pointNum: 4 }) })} className={styles.input} />
-                    <Slider step={0.01} style={{ margin: '10px 0', background: 'rgba(203,229,255,0.14)' }} max={format.buyMax(getSellTotal, sellPrice)} value={Number(sellVolume)} onChange={value => sliderChange({ sellVolume: value })} />
+                    <Input suffix={<span style={{ color: 'white' }}>{BJInstrument}</span>} value={sellVolume} onChange={e => sliderChange({ sellVolume: this.formatNum({ value: e.target.value, max: format.buyMax(getSellTotal, sellPrice), pointNum: 4 }) })} className={styles.input} />
+                    <Slider step={0.01} style={{ margin: '10px 0', background: 'rgba(203,229,255,0.14)' }} max={Number(getSellTotal)} value={Number(sellVolume)} onChange={value => sliderChange({ sellVolume: value })} />
                     <Row>
                         <Col span={12}>0</Col>
-                        <Col span={12} style={{ textAlign: 'right' }}>{format.buyMax(getSellTotal, sellPrice)} {currentInstrument.split("-")[0]}</Col>
+                        <Col span={12} style={{ textAlign: 'right' }}>{getSellTotal} {BJInstrument}</Col>
                     </Row>
-                    <div className={styles.sum}>交易额 {format.multiply(sellPrice, sellVolume, 2)}</div>
-                    <button disabled={userId ? false : true} className={styles.buyButton} onClick={() => this.orderInsert("1")}>卖出 {currentInstrument}</button>
+                    <div className={styles.sum}>交易额 {format.multiply(sellPrice, sellVolume)} {JJInstrument}</div>
+                    <button disabled={userId ? false : true} className={styles.buyButton} onClick={() => this.orderInsert("1")}>卖出 {BJInstrument}</button>
                 </div>
             </Col>
 
@@ -178,11 +201,21 @@ export default connect((state, props) => {
         instrumentIdData: state.kine.instrumentIdData,
         dataSource: state.kine.dataSource,
         RateUseList: state.other.RateUseList,
+        buyList: state.kine.buyList,
+        sellList: state.kine.sellList,
         props
     }
 }, (dispatch, props) => {
     return {
         sliderChange: (parms) => {
+            dispatch({
+                type: 'trade/save',
+                payload: {
+                    ...parms
+                }
+            })
+        },
+        savePrice: (parms) => {
             dispatch({
                 type: 'trade/save',
                 payload: {

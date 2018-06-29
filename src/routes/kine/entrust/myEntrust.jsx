@@ -23,12 +23,12 @@ class MyEntrust extends React.Component {
 
     componentDidMount() {
         //从别的页面点击已经登录的情况下
-        if (this.props.userInfo && !!this.props.userInfo.clientID && !!this.props.currentInstrument) {
-            this.getDataList(this.props.userInfo.clientID, this.props.currentInstrument);
+        if (this.props.userInfo && !!this.props.userInfo.clientID && !!this.props.currentInstrument && this.props.userId) {
+            this.getDataList(this.props.userInfo.clientID, this.props.currentInstrument, this.props.userId);
         }
     }
 
-    getDataList(clientID, currentInstrument) {
+    getDataList(clientID, currentInstrument, userId) {
         if (!!clientID) {
             this.props.dispatch({
                 type: 'trade/save',
@@ -38,8 +38,8 @@ class MyEntrust extends React.Component {
             })
             PubSub.publish('Polling.addsubscribe',
                 [
-                    { name: "getUnfinishedOrder", payload: [clientID, currentInstrument] },
-                    { name: "getClientTradeDetail", payload: [clientID, currentInstrument] }
+                    { name: "getUnfinishedOrder", payload: [clientID, currentInstrument, userId] },
+                    { name: "getClientTradeDetail", payload: [clientID, currentInstrument, userId] }
                 ]
             )
         }
@@ -49,14 +49,14 @@ class MyEntrust extends React.Component {
         //改情况是刷新本页面从新获取userInfo
         if (!!nextProps.currentInstrument) {
             if (this.props.userInfo != nextProps.userInfo && !!nextProps.userInfo.clientID) {
-                this.getDataList(nextProps.userInfo.clientID, nextProps.currentInstrument)
+                this.getDataList(nextProps.userInfo.clientID, nextProps.currentInstrument, nextProps.userId)
             }
         }
 
         //userInfo已经有了,切换货币对
         if (nextProps.userInfo && !!nextProps.userInfo.clientID) {
             if (this.props.currentInstrument != nextProps.currentInstrument) {
-                this.getDataList(nextProps.userInfo.clientID, nextProps.currentInstrument)
+                this.getDataList(nextProps.userInfo.clientID, nextProps.currentInstrument, nextProps.userId)
             }
         }
 

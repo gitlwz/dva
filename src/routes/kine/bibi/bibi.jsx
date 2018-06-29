@@ -26,11 +26,11 @@ class Bibi extends React.Component {
 
     componentDidMount() {
         this.props.findAllExchangeRateUse();
-        if (this.props.userInfo && !!this.props.userInfo.clientID) {
-            this.getAcountAsset(this.props.userInfo.clientID);
+        if (this.props.userInfo && !!this.props.userInfo.clientID && !!this.props.userId) {
+            this.getAcountAsset(this.props.userInfo.clientID, this.props.userId);
         }
 
-        if (this.props.currentInstrument) {
+        if (!!this.props.currentInstrument) {
             this.getLastDayKline(this.props.currentInstrument)
         }
     }
@@ -40,7 +40,7 @@ class Bibi extends React.Component {
             this.getLastDayKline(nextProps.currentInstrument);
         }
         if (this.props.userInfo != nextProps.userInfo && !!nextProps.userInfo.clientID) {
-            this.getAcountAsset(nextProps.userInfo.clientID)
+            this.getAcountAsset(nextProps.userInfo.clientID, nextProps.userId)
         }
     }
 
@@ -52,10 +52,10 @@ class Bibi extends React.Component {
         );
     }
 
-    getAcountAsset(clientID) {
+    getAcountAsset(clientID, userId) {
         PubSub.publish('Polling.addsubscribe',
             [
-                { name: "getAcountAsset", payload: clientID },
+                { name: "getAcountAsset", payload: [clientID, userId] },
             ]
         );
     }
@@ -106,7 +106,7 @@ class Bibi extends React.Component {
                                 </Row>
                             </Col>
                             {userId ?
-                                <Col span={24}><div className={styles.assetDiv}>{this.state.isLook ? "******" : Account["btcCount"]} BTC {this.state.isLook ? "******" : Account["cnyCount"]} CNY</div></Col> :
+                                <Col span={24}><div className={styles.assetDiv}>{this.state.isLook ? "******" : Account["btcCount"]} BTC ≈≈ {this.state.isLook ? "******" : Account["cnyCount"]} CNY</div></Col> :
                                 <Col span={24}><LoginTooltip /></Col>
                             }
                         </Row>
@@ -126,7 +126,7 @@ class Bibi extends React.Component {
                 </Col>
                 <Col span="19">
                     <div style={{ marginLeft: 10 }}>
-                        <div className={cardHeader} style={{ color: '#6C7F9C' }}><span style={{color:'#78ADFF'}}> {currentInstrument} {dataByInstrumentId.closePrice}</span> ≈ {formatData.convertCNY(this.props.RateUseList, dataByInstrumentId.closePrice, dataByInstrumentId.instrumentId)} 涨幅 {formatData.changePrice(dataByInstrumentId.closePrice, dataByInstrumentId.openPrice)} 高 {dataByInstrumentId.highestPrice} 低 {dataByInstrumentId.lowestPrice} 24H量 {dataByInstrumentId.volume}</div>
+                        <div className={cardHeader} style={{ color: '#6C7F9C' }}><span style={{ color: '#78ADFF' }}> {currentInstrument} {dataByInstrumentId.closePrice}</span> ≈ {formatData.convertCNY(this.props.RateUseList, dataByInstrumentId.closePrice, dataByInstrumentId.instrumentId)} 涨幅 {formatData.changePrice(dataByInstrumentId.closePrice, dataByInstrumentId.openPrice)} 高 {dataByInstrumentId.highestPrice} 低 {dataByInstrumentId.lowestPrice} 24H量 {dataByInstrumentId.volume}</div>
                         <div style={{ height: '490px', ...borderRadius }} className={bgColor}>
                             {!!currentInstrument ? <TVChartContainer symbol={currentInstrument} /> : ''}
                         </div>
@@ -135,7 +135,7 @@ class Bibi extends React.Component {
                                 {/*下单操作*/}
                                 <Col span="14">
                                     <div style={{ height: '470px' }}>
-                                        <div className={cardHeader}>限价交易<span style={{ color: '#6C7F9C' }}>  市价交易</span></div>
+                                        <div className={cardHeader}>限价交易<span style={{ color: '#6C7F9C' }}></span></div>
                                         <div className={bgColor} style={{ height: "420px", ...borderRadius }}>
                                             <Trade />
                                         </div>

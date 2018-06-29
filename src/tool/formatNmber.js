@@ -77,7 +77,12 @@ var format = {
      * @param {*} points  保留小数位数
      */
     multiply(num1, num2, points) {
+        //处理无价格情况
+        if (num1 == "---" || num2 == "---") {
+            return "---";
+        }
         let Num = bigRat(num1).multiply(num2).toDecimal(points);
+
         if (Num.indexOf(".") > -1) {
             let s1 = Num.split(".")[1];
             for (var i = s1.length; i < points; i++) {
@@ -104,11 +109,11 @@ var format = {
         if (!!closePrice && !!openPrice) {
             if (closePrice - openPrice > 0) {
                 let num = (closePrice - openPrice) / openPrice;
-                return <span style={{ color: '#FF4200' }}>+{(num * 100).toFixed(2)}%</span>
+                return <span style={{ color: '#349B00' }}>+{(num * 100).toFixed(2)}%</span>
             }
             else if (closePrice - openPrice < 0) {
                 let num = (closePrice - openPrice) / openPrice;
-                return <span style={{ color: '#349B00' }}>{(num * 100).toFixed(2)}%</span>
+                return <span style={{ color: '#FF4200' }}>{(num * 100).toFixed(2)}%</span>
             }
             else {
                 return <span>---</span>
@@ -124,7 +129,7 @@ var format = {
     buyMax(total, price) {
         if (price != 0) {
             if (!!total && total > 0) {
-                return Number(this.multiply(total / price, 1, 2));
+                return Number(this.multiply(total / price, 1, 4));
             }
         }
         return 0
