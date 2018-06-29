@@ -438,7 +438,7 @@ G．该项目币种连续7个交易日，每日成交额小于1万美金
 I．无法支持继续交易的其他事项`
     }, {
     title: "项目方请通过下方链接提交项目信息",
-    content:`https://docs.google.com/forms/d/1ELbF8PafI6deFPwt5mTN2IRjQW0VCJM3Se8P8LN7-CM/edit`
+    content:`https://goo.gl/forms/HmKIe64LUZPfHj703`
     }
 ]
 
@@ -552,7 +552,7 @@ let applicationEn = [
     },
     {
         title:"Please submit the project information through the link below",
-        content:`https://docs.google.com/forms/d/1ELbF8PafI6deFPwt5mTN2IRjQW0VCJM3Se8P8LN7-CM/edit`
+        content:`https://goo.gl/forms/HmKIe64LUZPfHj703`
     }
 ]
 

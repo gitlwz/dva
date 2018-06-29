@@ -30,8 +30,15 @@ class Regis extends React.Component {
         this.props.dispatch({
             type: 'user/queryCountryList',
         })
+        document.addEventListener('keydown',this.onkeydownEvent)
     }
-
+    onkeydownEvent = (e) => {
+        var theEvent = e || window.event;
+        var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        if (code == 13) {
+            this.regis()
+        }
+    }
     //动态校验提示
     inputChange(parms) {
         switch (parms.name) {
@@ -127,7 +134,9 @@ class Regis extends React.Component {
     pushRouter(url) {
         this.props.dispatch(routerRedux.push(url))
     }
-
+    componentWillUnmount = () =>{
+        document.removeEventListener("keydown",this.onkeydownEvent)
+    }
     render() {
         const { showConformMsg, showCountryMsg, showEmailMsg, showWordMsg } = this.state;
         return (

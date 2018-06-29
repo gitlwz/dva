@@ -19,7 +19,16 @@ class Login extends React.Component {
 
         }
     }
-
+    componentDidMount = () =>{
+        document.addEventListener('keydown',this.onkeydownEvent)
+    }
+    onkeydownEvent = (e) => {
+        var theEvent = e || window.event;
+        var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        if (code == 13) {
+            this.LoginClick()
+        }
+    }
     inputChange(value) {
         if (!Validator.email(value)) {
             this.setState({ showEmailMsg: true, userName: value })
@@ -62,7 +71,9 @@ class Login extends React.Component {
     forgetPass() {
         this.pushRouter("/user/forgetPassword")
     }
-
+    componentWillUnmount = () =>{
+        document.removeEventListener("keydown",this.onkeydownEvent)
+    }
     render() {
         return (
             <div>
