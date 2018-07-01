@@ -72,9 +72,14 @@ class Indenture extends React.Component {
             type: 'kine/save',
             payload: {
                 currentInstrument: instrumId,
-                markLoading: true
+                markLoading: true,
+                setSellPrice: false,
+                setBuyPrice: false,
+                buyList: [],
+                sellList: []
             }
         });
+
         if (!!this.props.userId) {
             this.props.dispatch({
                 type: 'kine/findByInstrumentID',

@@ -11,27 +11,37 @@ class Trade extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-        }
-        this.setSellPrice = false;
-        this.setBuyPrice = false;
     }
     componentDidMount() {
 
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.buyList && nextProps.buyList.length > 0 && nextProps.sellPrice == 0) {
-            if (this.setSellPrice == false) {
-                this.props.savePrice({ sellPrice: Number(nextProps.buyList[0].price) });
-                this.setSellPrice = true
+        //console.log(this.props.setSellPrice, nextProps.setSellPrice)
+
+        if (this.props.buyList != nextProps.buyList && this.props.currentInstrument != nextProps.currency) {
+            if (this.props.setSellPrice == false) {
+                if (nextProps.buyList[0] && nextProps.buyList[0].price) {
+                    this.props.savePrice({ sellPrice: Number(nextProps.buyList[0].price) });
+                    this.props.saveStatus({ setSellPrice: true })
+                } else {
+                    this.props.savePrice({ sellPrice: 0 });
+                    this.props.saveStatus({ setSellPrice: true })
+                }
+
             }
         }
 
-        if (nextProps.sellList && nextProps.sellList.length > 0 && nextProps.buyPrice == 0) {
-            if (this.setBuyPrice == false) {
-                this.props.savePrice({ buyPrice: Number(nextProps.sellList[0].price) });
-                this.setBuyPrice = true
+
+        if (this.props.sellList != nextProps.sellList && this.props.currentInstrument != nextProps.currency) {
+            if (this.props.setBuyPrice == false) {
+                if (nextProps.sellList[nextProps.sellList.length - 1] && nextProps.sellList[nextProps.sellList.length - 1].price) {
+                    this.props.savePrice({ buyPrice: Number(nextProps.sellList[nextProps.sellList.length - 1].price) });
+                    this.props.saveStatus({ setBuyPrice: true })
+                } else {
+                    this.props.savePrice({ buyPrice: 0 });
+                    this.props.saveStatus({ setBuyPrice: true })
+                }
             }
         }
     }
@@ -43,9 +53,9 @@ class Trade extends React.Component {
         }
         console.log(value, max)
         if (!!value && !!max && Number(value) > max) {
-            // value = max;
-            // message.error("超过最大值" + max + "请重新输入");
-            // return value;
+            value = max;
+            message.error("超过最大值" + max + "请重新输入");
+            return value;
         }
         return format.NumberCheck({ value: value, pointNum: pointNum })
     }
@@ -214,6 +224,8 @@ export default connect((state, props) => {
         RateUseList: state.other.RateUseList,
         buyList: state.kine.buyList,
         sellList: state.kine.sellList,
+        setSellPrice: state.kine.setSellPrice,
+        setBuyPrice: state.kine.setBuyPrice,
         props
     }
 }, (dispatch, props) => {
@@ -230,6 +242,14 @@ export default connect((state, props) => {
             console.log(parms)
             dispatch({
                 type: 'trade/save',
+                payload: {
+                    ...parms
+                }
+            })
+        },
+        saveStatus: (parms) => {
+            dispatch({
+                type: 'kine/save',
                 payload: {
                     ...parms
                 }

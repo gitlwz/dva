@@ -79,7 +79,7 @@ class ForgetPassword extends React.Component {
             this.props.dispatch({
                 type: 'user/resetPassword',
                 payload: {
-                    body: [this.state.password, md5(this.state.password), this.state.code],
+                    body: [this.state.email, md5(this.state.password), this.state.code],
                     callback: (data) => {
                         if (data.errorCode == "0") {
                             this.props.dispatch(routerRedux.push("/user/login"))
@@ -124,7 +124,7 @@ class ForgetPassword extends React.Component {
                                 let index = 60;
                                 this.timer = setInterval(() => {
                                     index -= 1;
-                                    if (index == 0) {
+                                    if (index <= 0) {
                                         this.setState({ buttonTitle: "发送验证码" });
                                         buttonStyle = { background: '#FFD965' };
                                         clearInterval(this.timer)

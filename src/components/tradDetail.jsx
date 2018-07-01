@@ -56,7 +56,7 @@ class TradeComponent extends React.Component {
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买入" : '卖出'}</span>
                     <span>{item.limitPrice}</span>
                     <span>{item.volumeTotal}</span>
-                    <span>{format.multiply(item.limitPrice, item.volumeTotal,14)}</span>
+                    <span>{format.multiply(item.limitPrice, item.volumeTotal, 14)}</span>
                 </div>
             })
         }
@@ -64,12 +64,16 @@ class TradeComponent extends React.Component {
             //固定七档行情
             let dataList = this.props.dataList || [];
             for (let i = dataList.length; i < 7; i++) {
-                dataList.push({ price: "---", volume: "---", direction: this.props.direction })
+                if (this.props.direction == "1") {
+                    dataList.unshift({ price: "---", volume: "---", direction: this.props.direction })
+                } else {
+                    dataList.push({ price: "---", volume: "---", direction: this.props.direction })
+                }
             }
             //dataList = format.sort(dataList, this.props.sort);
-            if (this.props.direction == '1') {
-                dataList = dataList.reverse()
-            }
+            // if (this.props.direction == '1') {
+            //     dataList = dataList.reverse()
+            // }
             return dataList.map((item, index) => {
                 return <div key={index} className={styles.header} onClick={() => this.props.handleOk(item.price)}>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买" + (index + 1) : '卖' + (this.props.dataList.length - index)}</span>

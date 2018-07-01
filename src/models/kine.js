@@ -19,7 +19,10 @@ export default {
         search: '',
         dataByInstrumentId: {}, //合约深度行情
         list24HVolumeList: {},  //24小时市场行情
-        dataSource: []  //资金列表
+        dataSource: [],  //资金列表
+
+        setSellPrice: false,
+        setBuyPrice: false
     },
 
     effects: {
@@ -82,7 +85,7 @@ export default {
                 yield put({
                     type: 'save',
                     payload: {
-                        buyList: data.length > 0 ? data : [],
+                        buyList: data.length > 0 ? data.slice(0, 7) : [],
                         markLoading: false
                     }
                 })
@@ -95,7 +98,7 @@ export default {
                 yield put({
                     type: 'save',
                     payload: {
-                        sellList: data.length > 0 ? data : []
+                        sellList: data.length > 0 ? data.slice(0, 7) : []
                     }
                 })
         },

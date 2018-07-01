@@ -5,47 +5,7 @@ import { connect } from 'dva';
 import dataFormat from '../../tool/dataFormat';
 import Tabs from './tabs';
 import { Row, Col, Select, Button, Table, Divider } from 'antd';
-const columns = [
-    {
-        title: '充值流水号',
-        dataIndex: 'bankStatement',
-    }, {
-        title: '时间',
-        dataIndex: 'operateDate',
-        render: (text, item) => {
-            if (item.operateDate != null) {
-                return <span>{item.operateDate}  {item.operateTime}</span>
-            }
-        }
-    }, {
-        title: '币种',
-        dataIndex: 'wxtype',
-    }, {
-        title: '矿工费',
-        dataIndex: 'fee'
-    }, {
-        title: '状态',
-        dataIndex: 'receiptStatus',
-        render: (text, item) => {
-            return <span>{dataFormat.reCharge(item.state)}</span>
-        }
-    }, {
-        title: '金额',
-        dataIndex: 'moneyInWeb',
-        render: (text, item) => {
-            if (item.moneyType == "1") {
-                return <span>{item.moneyOut}</span>
-            } else {
-                return <span>{item.moneyIn}</span>
-            }
-        }
-    }, {
-        title: '地址',
-        dataIndex: 'address',
-    }, {
-        title: '区块链Hash',
-        dataIndex: 'hash',
-    }];
+
 
 class Recharge extends Component {
     constructor(props) {
@@ -83,6 +43,49 @@ class Recharge extends Component {
                 this.getEntrustList({ pageSize: pageSize, pageNo: page }, () => this.getRechargeList())
             }
         }
+
+        const columns = [
+            {
+                title: this.state.orderStatus == "0" ? '充值流水号' : "提币流水号",
+                dataIndex: this.state.orderStatus == "0" ? 'bankStatement' : "orderId",
+            }, {
+                title: '时间',
+                dataIndex: 'operateDate',
+                render: (text, item) => {
+                    if (item.operateDate != null) {
+                        return <span>{item.operateDate}  {item.operateTime}</span>
+                    }
+                }
+            }, {
+                title: '币种',
+                dataIndex: 'wxtype',
+            }, {
+                title: '矿工费',
+                dataIndex: 'fee'
+            }, {
+                title: '状态',
+                dataIndex: 'receiptStatus',
+                render: (text, item) => {
+                    return <span>{dataFormat.reCharge(item.state)}</span>
+                }
+            }, {
+                title: '金额',
+                dataIndex: 'moneyInWeb',
+                render: (text, item) => {
+                    if (item.moneyType == "1") {
+                        return <span>{item.moneyOut}</span>
+                    } else {
+                        return <span>{item.moneyIn}</span>
+                    }
+                }
+            }, {
+                title: '地址',
+                dataIndex: 'address',
+            }, {
+                title: '区块链Hash',
+                dataIndex: 'hash',
+            }];
+
         return (
             <div className={style.gutte_right} style={{ overflowX: 'scroll' }}>
                 <div className={style.right_title}> 充提币记录 </div>
