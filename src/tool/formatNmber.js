@@ -137,20 +137,31 @@ var format = {
 
     //计算货币转算成人民币
     convertCNY(rateUseList, closePrice, instrumentId) {
+
+        const isExchangeRate = (currency) => {
+            let newData = rateUseList.filter(item => item.currency == currency)[0];
+            if (newData && newData["exchangeRate"]) {
+                return newData["exchangeRate"]
+            }
+        }
+
         if (rateUseList.length > 0) {
             switch (!!instrumentId && instrumentId.split("-")[1]) {
                 case "USDT":
-                    let exchangeRate1 = rateUseList.filter(item => item.currency == "USDT")[0]["exchangeRate"] || 1;
-                    return this.multiply(exchangeRate1, closePrice, 2) + " CNY";
-                    break;
+                    let exchangeRate1 = isExchangeRate("USDT");
+                    if (exchangeRate1 != undefined) {
+                        return this.multiply(exchangeRate1, closePrice, 2) + " CNY";
+                    }
                 case "ETH":
-                    let exchangeRate2 = rateUseList.filter(item => item.currency == "ETH")[0]["exchangeRate"] || 1;
-                    return this.multiply(exchangeRate2, closePrice, 2) + " CNY";
-                    break;
+                    let exchangeRate2 = isExchangeRate("ETH");
+                    if (exchangeRate2 != undefined) {
+                        return this.multiply(exchangeRate2, closePrice, 2) + " CNY";
+                    }
                 case "BTC":
-                    let exchangeRate3 = rateUseList.filter(item => item.currency == "BTC")[0]["exchangeRate"] || 1;
-                    return this.multiply(exchangeRate3, closePrice, 2) + " CNY";
-                    break;
+                    let exchangeRate3 = isExchangeRate("BTC");
+                    if (exchangeRate3 != undefined) {
+                        return this.multiply(exchangeRate3, closePrice, 2) + " CNY";
+                    }
                 default:
                     break;
             }

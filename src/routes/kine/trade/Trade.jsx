@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'dva';
-import { Row, Col, Input, Slider, message } from 'antd';
+import { Row, Col, Input, Slider, message, Spin } from 'antd';
 import LoginTooltip from '../../../components/loginTooltip'
 import format from '../../../tool/formatNmber';
 import styles from './Trade.less';
@@ -11,14 +11,16 @@ class Trade extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            buyloading: false,
+            sellloading: false
+        }
     }
     componentDidMount() {
 
     }
 
     componentWillReceiveProps(nextProps) {
-        //console.log(this.props.setSellPrice, nextProps.setSellPrice)
-
         if (this.props.buyList != nextProps.buyList && this.props.currentInstrument != nextProps.currency) {
             if (this.props.setSellPrice == false) {
                 if (nextProps.buyList[0] && nextProps.buyList[0].price) {
@@ -51,7 +53,6 @@ class Trade extends React.Component {
         if (max == 0) {
             return 0;
         }
-        console.log(value, max)
         if (!!value && !!max && Number(value) > max) {
             value = max;
             message.error("超过最大值" + max + "请重新输入");
@@ -113,12 +114,20 @@ class Trade extends React.Component {
             orderData.forceCloseReason = '0';
         } else {
             message.error("请完善个人信息!")
+            return;
         }
+        if (direction == "0") {
+            this.setState({ buyloading: true })
+        } else {
+            this.setState({ sellloading: true })
+        }
+
         this.props.dispatch({
             type: 'trade/orderInsert',
             payload: {
                 orderData: orderData,
                 callback: (data) => {
+                    this.setState({ buyloading: false, sellloading: false })
                     if (direction == "0") {
                         if (data.errorCode == 0) {
                             message.success("委托买入成功!");
@@ -182,7 +191,7 @@ class Trade extends React.Component {
                         <Col span={12} style={{ textAlign: 'right' }}>{format.buyMax(getButTotal, buyPrice)} {BJInstrument}</Col>
                     </Row>
                     <div className={styles.sum}>交易额 {format.multiply(buyPrice, buyVolume)} {JJInstrument}</div>
-                    <button className={styles.sellButton} disabled={userId ? false : true} onClick={() => this.orderInsert("0")}>买入 {BJInstrument}</button>
+                    <Spin spinning={this.state.buyloading}><button loading={this.props.loading} className={styles.sellButton} disabled={userId ? false : true} onClick={() => this.orderInsert("0")}>买入 {BJInstrument}</button></Spin>
                 </div>
             </Col>
 
@@ -202,7 +211,7 @@ class Trade extends React.Component {
                         <Col span={12} style={{ textAlign: 'right' }}>{getSellTotal} {BJInstrument}</Col>
                     </Row>
                     <div className={styles.sum}>交易额 {format.multiply(sellPrice, sellVolume)} {JJInstrument}</div>
-                    <button disabled={userId ? false : true} className={styles.buyButton} onClick={() => this.orderInsert("1")}>卖出 {BJInstrument}</button>
+                    <Spin spinning={this.state.sellloading}><button disabled={userId ? false : true} className={styles.buyButton} onClick={() => this.orderInsert("1")}>卖出 {BJInstrument}</button></Spin>
                 </div>
             </Col>
 

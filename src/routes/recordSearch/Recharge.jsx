@@ -37,17 +37,17 @@ class Recharge extends Component {
             showSizeChanger: true,
             showQuickJumper: true,
             onShowSizeChange: (page, pageSize) => {
-                this.getEntrustList({ pageSize: pageSize, pageNo: page }, () => this.getRechargeList())
+                this.setState({ pageSize: pageSize, pageNo: page }, () => this.getRechargeList())
             },
             onChange: (page, pageSize) => {
-                this.getEntrustList({ pageSize: pageSize, pageNo: page }, () => this.getRechargeList())
+                this.setState({ pageSize: pageSize, pageNo: page }, () => this.getRechargeList())
             }
         }
 
-        const columns = [
+        const columns1 = [
             {
-                title: this.state.orderStatus == "0" ? '充值流水号' : "提币流水号",
-                dataIndex: this.state.orderStatus == "0" ? 'bankStatement' : "orderId",
+                title: '充值流水号',
+                dataIndex: 'orderId',
             }, {
                 title: '时间',
                 dataIndex: 'operateDate',
@@ -86,6 +86,59 @@ class Recharge extends Component {
                 dataIndex: 'hash',
             }];
 
+        const columns2 = [
+            {
+                title: "提币流水号",
+                dataIndex: "orderId",
+            }, {
+                title: '创建时间',
+                dataIndex: 'operateDate',
+                render: (text, item) => {
+                    if (item.operateDate != null) {
+                        return <span>{item.operateDate}  {item.operateTime}</span>
+                    }
+                }
+            }, {
+                title: '币种',
+                dataIndex: 'wxtype',
+            }, {
+                title: '矿工费',
+                dataIndex: 'fee'
+            },
+            {
+                title: '手续费',
+                dataIndex: 'actualFee'
+            },
+            {
+                title: '交易状态',
+                dataIndex: 'state',
+                render: (text, item) => {
+                    return <span>{dataFormat.reCharge(item.state)}</span>
+                }
+            },
+            {
+                title: '审核状态',
+                dataIndex: 'approveRemitStatus',
+                render: (text, item) => {
+                    return <span>{dataFormat.approveRemitStatus(item.approveRemitStatus)}</span>
+                }
+            }, {
+                title: '金额',
+                dataIndex: 'moneyInWeb',
+                render: (text, item) => {
+                    if (item.moneyType == "1") {
+                        return <span>{item.moneyOut}</span>
+                    } else {
+                        return <span>{item.moneyIn}</span>
+                    }
+                }
+            }, {
+                title: '地址',
+                dataIndex: 'address',
+            }, {
+                title: '区块链Hash',
+                dataIndex: 'hash',
+            }];
         return (
             <div className={style.gutte_right} style={{ overflowX: 'scroll' }}>
                 <div className={style.right_title}> 充提币记录 </div>
@@ -95,7 +148,7 @@ class Recharge extends Component {
                 </div>
                 <div className={styleA.right_table + " AssetView"}>
                     <Table
-                        columns={columns}
+                        columns={this.state.orderStatus == "0" ? columns1 : columns2}
                         dataSource={this.props.rechargeData.content}
                         rowKey="id"
                         pagination={pagination}

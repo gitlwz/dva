@@ -19,7 +19,14 @@ export default {
     },
 
     effects: {
+        //查询充提币记录
         *rechargeList({ payload }, { call, put }) {
+            yield put({
+                type: "save",
+                payload: {
+                    rechargeData: { "pageNo": 1, "pageSize": 10, "totalRecord": 0, "totalPage": 0, "content": [] }
+                }
+            })
             const { data } = yield call(baseService, api.asset.rechargeList, payload);
             if (data != undefined) {
                 yield put({
@@ -33,6 +40,12 @@ export default {
 
         //查询成交列表
         *entrustList({ payload }, { call, put }) {
+            yield put({
+                type: "save",
+                payload: {
+                    entrustData: { "pageNo": 1, "pageSize": 10, "totalRecord": 0, "totalPage": 0, "content": [] }
+                }
+            })
             const { data } = yield call(baseService, api.asset.entrustList, payload);
             if (data != undefined) {
                 yield put({
@@ -46,6 +59,12 @@ export default {
 
         //查询委托列表
         *queryOrderForClient({ payload }, { call, put }) {
+            yield put({
+                type: "save",
+                payload: {
+                    entrustData: { "pageNo": 1, "pageSize": 10, "totalRecord": 0, "totalPage": 0, "content": [] }
+                }
+            })
             const { data } = yield call(baseService, kineApi.trade.queryOrderForClient, payload);
             if (data != undefined) {
                 yield put({
