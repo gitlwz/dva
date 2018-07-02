@@ -4,7 +4,8 @@ import InputLabel from './InputLabel';
 import { routerRedux, Link } from 'dva/router';
 import Validator from '../../tool/Validator';
 import md5 from "md5";
-import styles from './regisx.less'
+import styles from './regisx.less';
+import singleStyle from './InputLabel.less';
 import languageData from '../../language/index'
 
 class Regis extends React.Component {
@@ -143,7 +144,8 @@ class Regis extends React.Component {
         return (
             <div>
                 <div className={styles.login}>
-                    <div style={{ textAlign: 'center' }}>
+                    <div style={{ textAlign: 'center', display: 'flex', display: '-webkit-flex', flexDirection: 'row' }}>
+                      <label style={{ flex: 1 }} className={singleStyle.label}></label>
                         <p className={styles.zc}>{languageData.YX}{languageData.signIn}</p>
                     </div>
 

@@ -24,7 +24,7 @@ class Rate extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div style={{ paddingBottom:"20px" }}>
                 <NationTitle title="交易手续费" />
                 <div className={styles.body}>
                     <div className={styles.title}>

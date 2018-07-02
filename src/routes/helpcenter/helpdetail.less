@@ -56,14 +56,28 @@
     border-bottom: solid 1px #F1F1F1;
 }
 .right_item{
-    padding: 16px 0 16px 16px;
+    // padding: 16px 0 16px 16px;
+  height: 48px;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  align-items: center;
     font-size:16px;
     font-family:Adobe Heiti Std R;
     color:rgba(86,86,86,1);
     line-height:15px;
     border-bottom: solid 1px #F1F1F1;
+  .right_item_span{
+    height: 48px;
+    width: 2%;
+    background-color: white;
+    margin-right: 20px;
+  }
 }
-.right_item:hover{
-    background-color:  #FECC39;
+.right_item:hover, active{
     cursor: pointer;
+  .right_item_span{
+    background-color:  #FECC39;
+  }
+
 }

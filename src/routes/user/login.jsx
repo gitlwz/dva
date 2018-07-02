@@ -5,7 +5,9 @@ import Validator from '../../tool/Validator';
 import { connect } from 'dva';
 import md5 from "md5";
 import languageData from '../../language/index'
-import styles from './login.less'
+import styles from './login.less';
+import singleStyle from './InputLabel.less';
+
 class Login extends React.Component {
 
     constructor(props) {
@@ -78,7 +80,8 @@ class Login extends React.Component {
         return (
             <div>
                 <div className={styles.login}>
-                    <div style={{ textAlign: 'center' }}>
+                    <div style={{ textAlign: "center", display: 'flex', display: '-webkit-flex',flexDirection: "row" }}>
+                      <label style={{ flex: 1 }} className={singleStyle.label}>  </label>
                         <p className={styles.dl}>{languageData.Login}</p>
                     </div>
                     <input type="password" style={{ display: 'none' }} />

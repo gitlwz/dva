@@ -36,14 +36,13 @@ class ContactUs extends Component {
 
   //提交
   submit = () => {
-    let reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
     this.setState({
       errTip1: this.props.questionParams.problemType == '' ? '请选择问题分类！' : '',
       errTip2: this.props.questionParams.problemPhoto == '' ? '请上传图片！' : '',
       errTip3: !Validator.email(this.props.questionParams.email) ? '请输入正确的邮箱！' : '',
       errTip4: this.props.questionParams.problemBody == "" ? '请添加问题描述！' : ''
     })
-    if (this.props.questionParams.problemType && this.props.questionParams.email && this.props.questionParams.problemPhoto && this.props.questionParams.problemBody) {
+    if (this.props.questionParams.problemType && this.props.questionParams.problemPhoto && Validator.email(this.props.questionParams.email) &&  this.props.questionParams.problemBody) {
       //problemPhoto
       this.props.dispatch({
         type: 'app/customerProblems',

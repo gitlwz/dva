@@ -42,8 +42,9 @@ class HelpDetail extends Component {
                     <div className={styles.left}>
                         <div>
                             <span>帮助中心</span> > <span style={{fontWeight:"1000"}}>常见问题</span>
-                        </div>    
+                        </div>
                         <div className={styles.left_content}>
+
                             <div style={{ margin: '0 auto', height: '60px', color: '#565656', background: '#FECC39', borderRadius: '10px', fontSize: "30px", display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 30 }}>{this.props.detail.helpTitle}</div>
                             <div className={styles.left_body}>
                                 <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
@@ -51,22 +52,25 @@ class HelpDetail extends Component {
                                 </pre>
                             </div>
                         </div>
-                    
+
                     </div>
                     <div className={styles.right}>
-                        <div className={styles.searchcontent + " searchcontent"}>
-                            <Search
-                                placeholder="输入搜索内容"
-                                onSearch={this.onSearch}
-                                enterButton
-                            />
-                        </div>
+
+                      <div className={styles.searchcontent + " searchcontent"}>
+                        <Search
+                          placeholder="输入搜索内容"
+                          onSearch={this.onSearch}
+                          enterButton="搜索"
+                        />
+                      </div>
+
                         <div className={styles.right_content}>
                             <div className={styles.right_title}>
                                 本文内容导航
                             </div>
                             {rightList.map((ele)=>(
                                 <div key={ele.Id} onClick={()=>this.rightItemClick(ele.Id)} className={styles.right_item}>
+                                  <span className={styles.right_item_span}></span>
                                     {ele.helpTitle}
                                 </div>
                             ))}
@@ -80,7 +84,7 @@ class HelpDetail extends Component {
 }
 export default connect((state, props) => {
     let { findAll,detail } = state.helpcenter
-    
+
     return {
         findAll,
         detail,
