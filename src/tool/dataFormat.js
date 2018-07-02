@@ -1,3 +1,4 @@
+//状态格式化
 var dataFormat = {
 
     /**
@@ -39,6 +40,23 @@ var dataFormat = {
             case "6":
                 return "部分撤单"
                 break;
+            default:
+                break;
+        }
+    },
+
+    /**
+     * 提现审核状态
+     * @param {*} status 
+     */
+    approveRemitStatus(status) {
+        switch (status) {
+            case "1":
+                return "提现审核中"
+            case "2":
+                return "提现审核成功";
+            case "3":
+                return "提现审核失败"
             default:
                 break;
         }

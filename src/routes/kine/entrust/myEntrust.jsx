@@ -1,8 +1,6 @@
 import React from "react";
-import moment from 'moment';
 import { connect } from 'dva';
 import { Spin, Icon, message } from 'antd';
-import format from '../../../tool/formatNmber';
 import PubSub from "pubsub-js";
 import TradeComponent from '../../../components/tradDetail';
 import styles from './myEntrust.less';
@@ -59,7 +57,6 @@ class MyEntrust extends React.Component {
                 this.getDataList(nextProps.userInfo.clientID, nextProps.currentInstrument, nextProps.userId)
             }
         }
-
     }
 
 
