@@ -24,7 +24,6 @@ class ContactUs extends Component {
       emailShow: false,
       textShow: false,
     }
-
   }
 
   componentDidMount() {
@@ -36,6 +35,7 @@ class ContactUs extends Component {
 
   //提交
   submit = () => {
+    console.log("------------------------")
     this.setState({
       errTip1: this.props.questionParams.problemType == '' ? '请选择问题分类！' : '',
       errTip2: this.props.questionParams.problemPhoto == '' ? '请上传图片！' : '',
@@ -44,10 +44,34 @@ class ContactUs extends Component {
     })
     if (this.props.questionParams.problemType && this.props.questionParams.problemPhoto && Validator.email(this.props.questionParams.email) &&  this.props.questionParams.problemBody) {
       //problemPhoto
+      this.setState({showClick:false})
       this.props.dispatch({
         type: 'app/customerProblems',
-        payload: [this.props.questionParams]
-      }, message.success("提交成功,我们的工作人员会及时和您联系"));
+        payload: {
+          body:[this.props.questionParams],
+          callback: (data) => {
+            this.setState({
+              showClick: true
+            })
+            if (data.errorCode == "0") {
+              message.success("感谢您的反馈！");
+              this.props.dispatch({
+                type: 'app/save',
+                payload: {
+                  questionParams: {
+                    email: '',
+                    problemBody: '',
+                    problemType: '',
+                    problemPhoto: ''
+                  },
+                }
+              })
+            } else {
+              this.setState({ errMsg: data.errorMsg, showWordMsg: true })
+            }
+          }
+        }
+      });
     }
   }
 

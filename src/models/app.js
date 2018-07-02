@@ -47,8 +47,9 @@ export default {
         })
     },
 
-    * customerProblems({ payload }, { call }) {
-      yield call(baseService, api.user.customerProblems, payload);
+    *customerProblems({ payload }, { call }) {
+      const  data=yield call(baseService, api.user.customerProblems, payload.body);
+      payload.callback(data)
     }
   },
 
