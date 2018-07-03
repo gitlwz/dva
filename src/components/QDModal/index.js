@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Icon,Button } from 'antd';
 import "./index.less";
-import { fastest } from 'sw-toolbox';
 class QDModal extends Component {
 	static defaultProps = {
 		visible: false,		//是否显示
