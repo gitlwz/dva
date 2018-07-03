@@ -3,22 +3,22 @@ import { UDFCompatibleDatafeed } from '../UDFCompatibleDatafeed/udf-compatible-d
 const language = !!window.localStorage.getItem("language")&&window.localStorage.getItem("language") == "English"?'en':'zh';
 let widget = null;
 let widgetOptions = {
-	overrides: {
-		'paneProperties.background': "#181B2A",
-		'paneProperties.vertGridProperties.color': '#1D263D',
-		'paneProperties.horzGridProperties.color': '#1D263D',
-		'scalesProperties.textColor': "#61688A",
-		'scalesProperties.showStudyLastValue': true,
-		linetoolbarspattern: {
-			singleChartOnly: true,
-			color: 'rgba( 255, 0, 0, 1)',
-			mode: 0,
-			mirrored: false,
-			flipped: false
-		}
-	},
+	// overrides: {
+	// 	'paneProperties.background': "#181B2A",
+	// 	'paneProperties.vertGridProperties.color': '#1D263D',
+	// 	'paneProperties.horzGridProperties.color': '#1D263D',
+	// 	'scalesProperties.textColor': "#61688A",
+	// 	'scalesProperties.showStudyLastValue': true,
+	// 	linetoolbarspattern: {
+	// 		singleChartOnly: true,
+	// 		color: 'rgba( 255, 0, 0, 1)',
+	// 		mode: 0,
+	// 		mirrored: false,
+	// 		flipped: false
+	// 	}
+	// },
 	interval: '1',
-	toolbar_bg: '#1D263D',
+	// toolbar_bg: '#1D263D',
 	container_id: "tv_chart_container",
 	library_path: "./charting_library/",
 	locale: language,
@@ -28,9 +28,9 @@ let widgetOptions = {
 	drawings_access: { type: 'black', tools: [{ name: "Regression Trend" }] },
 	disabled_features: ["volume_force_overlay", 'timeframes_toolbar', 'control_bar', 'pane_context_menu', 'show_hide_button_in_legend', 'header_undo_redo', 'timezone_menu', 'header_symbol_search', 'symbol_search_hot_key', 'header_interval_dialog_button', 'show_interval_dialog_on_key_press', 'header_compare', 'header_screenshot', 'compare_symbol', 'pane_context_menu', 'legend_context_menu', 'main_series_scale_menu', 'scales_context_menu', 'symbol_info'],
 	enabled_features: ['hide_left_toolbar_by_default'],
-	loading_screen: {
-		backgroundColor: "#ffffff"
-	},
+	// loading_screen: {
+	// 	backgroundColor: "#ffffff"
+	// },
 	charts_storage_api_version: "1.1",
 	client_id: 'tradingview.com',
 	user_id: 'public_user',
