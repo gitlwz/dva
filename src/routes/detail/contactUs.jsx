@@ -23,6 +23,8 @@ class ContactUs extends Component {
       uploadShow: false,
       emailShow: false,
       textShow: false,
+      buttonDisabled: false,
+
     }
   }
 
@@ -35,7 +37,6 @@ class ContactUs extends Component {
 
   //提交
   submit = () => {
-    console.log("------------------------")
     this.setState({
       errTip1: this.props.questionParams.problemType == '' ? '请选择问题分类！' : '',
       errTip2: this.props.questionParams.problemPhoto == '' ? '请上传图片！' : '',
@@ -44,15 +45,14 @@ class ContactUs extends Component {
     })
     if (this.props.questionParams.problemType && this.props.questionParams.problemPhoto && Validator.email(this.props.questionParams.email) &&  this.props.questionParams.problemBody) {
       //problemPhoto
-      this.setState({showClick:false})
+      this.setState({
+        buttonDisabled: true
+      })
       this.props.dispatch({
         type: 'app/customerProblems',
         payload: {
           body:[this.props.questionParams],
           callback: (data) => {
-            this.setState({
-              showClick: true
-            })
             if (data.errorCode == "0") {
               message.success("感谢您的反馈！");
               this.props.dispatch({
@@ -66,6 +66,7 @@ class ContactUs extends Component {
                   },
                 }
               })
+              this.setState({ buttonDisabled:false })
             } else {
               this.setState({ errMsg: data.errorMsg, showWordMsg: true })
             }
@@ -156,7 +157,7 @@ class ContactUs extends Component {
             </div>
           </div>
           <div style={{ textAlign: 'center', margin: '80px 0px' }}>
-            <button onClick={() => this.submit()} style={{ fontSize: '16px' }}>确定</button>
+            <button onClick={() => this.submit()} style={{ fontSize: '16px' }} disabled={ this.state.buttonDisabled ? true: false } >确定</button>
           </div>
 
         </div>
