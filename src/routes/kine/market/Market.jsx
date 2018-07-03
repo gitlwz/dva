@@ -53,7 +53,7 @@ class Market extends React.Component {
                         this.props.handleOk({ buyPrice: price })
                     }
                 }} />
-                <div style={{ height: '1px', width: '100%', background: '#233044', margin: '5px 10px' }}></div>
+                <div style={{ height: '1px', width: '95%', background: '#D8D8D8', margin: '5px 10px' }}></div>
                 <TradeComponent dataList={this.props.buyList} sort={1} titleList={[]} direction="0" handleOk={price => {
                     if (price != "---") {
                         this.props.handleOk({ sellPrice: price })
