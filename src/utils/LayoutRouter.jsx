@@ -106,6 +106,10 @@ const LayoutRouter = [
         path: '/bindingAddress/:type',  //绑定提现地址
         models: () => [import('../models/bindingAddress')],
         component: () => import('../routes/bindingAddress/bindingAddress'),
+    }, {
+        path: '/tradingCenter',  //绑定提现地址
+        models: () => [import('../models/tradingCenter')],
+        component: () => import('../routes/tradingCenter/tradingCenter'),
     }
 ]
 export default LayoutRouter;
