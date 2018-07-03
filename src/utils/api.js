@@ -65,6 +65,7 @@ const apis = {
         findAllCurrencys:{ url: baseIP + "service/webGeneralService/findAllCurrencys", method: 'POST', description: '查询所有交易信息' },
         findBiddingPosters:{ url: baseIP + "service/webGeneralService/findBiddingPosters", method: 'POST', description: '查询交易信息列表' },
         findByBiddingPosters:{ url: baseIP + "service/webGeneralService/findByBiddingPosters", method: 'POST', description: '查询交易用户' },
+        fiatDetails:{ url: baseIP + "service/webGeneralService/fiatDetails", method: 'POST', description: '交易中心直接摘单' },
     },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },

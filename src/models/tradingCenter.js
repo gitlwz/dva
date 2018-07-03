@@ -1,17 +1,19 @@
 import api from '../utils/api';
 import baseService from '../services/baseService';
+import { message } from 'antd';
+import { routerRedux } from 'dva/router';
 export default {
 
     namespace: 'tradingCenter',
 
     state: {
-        loading:false,
-        AllCurrencys:[],
-        current:1,
-        total:0,
-        pageSize:10,
-        dataSource:[],
-        Bidding:{}
+        loading: false,
+        AllCurrencys: [],
+        current: 1,
+        total: 0,
+        pageSize: 10,
+        dataSource: [],
+        Bidding: {}
     },
 
     subscriptions: {
@@ -19,11 +21,34 @@ export default {
     },
 
     effects: {
+        *fiatDetails({ payload }, { call, put }) {
+            yield put({
+                type: 'save',
+                payload: {
+                    loading: true
+                }
+            })
+            let { data } = yield call(baseService, api.tradingCenter.fiatDetails, [...payload]);
+            if (data !== undefined) {
+                if(!!data){
+                    message.success("交易成功!");
+                    // yield  put(routerRedux.push("/asset?type=2"))
+
+                }
+                yield put({
+                    type: 'save',
+                    payload: {
+                        loading: false
+                    }
+                })
+            }
+
+        },
         *findByBiddingPosters({ payload }, { call, put }) {
             yield put({
                 type: 'save',
-                payload:{
-                    loading:true
+                payload: {
+                    loading: true
                 }
             })
             let { data } = yield call(baseService, api.tradingCenter.findByBiddingPosters, []);
@@ -66,12 +91,12 @@ export default {
                 "alipayAccountPhoto": null
             }
 
-            if(!!data){
+            if (!!data) {
                 yield put({
                     type: 'save',
-                    payload:{
-                        loading:false,
-                        Bidding:data
+                    payload: {
+                        loading: false,
+                        Bidding: data
                     }
                 })
             }
@@ -79,29 +104,29 @@ export default {
         *findAllCurrencys({ payload }, { call, put }) {
             yield put({
                 type: 'save',
-                payload:{
-                    loading:true
+                payload: {
+                    loading: true
                 }
             })
             let { data } = yield call(baseService, api.tradingCenter.findAllCurrencys, []);
             data = ["USDT", "BTC", "ETH", "AIX", "ISQ", "KOG", "CNHE", "GDP", "FFF", "QQQ", "LTC", "EOS", "BCH", "XRP", "QTUM", "NEO"]
-            if(!!data && data.length > 0){
+            if (!!data && data.length > 0) {
                 yield put({
                     type: 'save',
-                    payload:{
-                        loading:false,
-                        AllCurrencys:data
+                    payload: {
+                        loading: false,
+                        AllCurrencys: data
                     }
-                }) 
+                })
             }
         },
         *findBiddingPosters({ payload }, { call, put }) {
             yield put({
                 type: 'save',
-                payload:{
-                    loading:true,
-                    current:payload[2].pageNo,
-                    pageSize:payload[2].pageSize,
+                payload: {
+                    loading: true,
+                    current: payload[2].pageNo,
+                    pageSize: payload[2].pageSize,
                 }
             })
             let { data } = yield call(baseService, api.tradingCenter.findBiddingPosters, [...payload]);
@@ -402,14 +427,14 @@ export default {
                     "posterUseMarginStr": null
                 }]
             }
-            if(!!data && !!data.totalRecord){
-                console.log("**22222222222222222**",data.totalRecord)
+            if (!!data && !!data.totalRecord) {
+                console.log("**22222222222222222**", data.totalRecord)
                 yield put({
                     type: 'save',
-                    payload:{
-                        loading:false,
-                        total:data.totalRecord,
-                        dataSource:data.content
+                    payload: {
+                        loading: false,
+                        total: data.totalRecord,
+                        dataSource: data.content
                     }
                 })
             }
@@ -418,7 +443,7 @@ export default {
 
     reducers: {
         save(state, action) {
-            return {...state, ...action.payload};
+            return { ...state, ...action.payload };
         }
     },
 

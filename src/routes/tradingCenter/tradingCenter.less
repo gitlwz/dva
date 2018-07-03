@@ -106,8 +106,38 @@
                 background-color: rgba(253,204,57,1);
             }
         }
+        
 
-
+    }
+    .tr_item:nth-child(1){
+        margin: 0px;
+    }
+    .tr_item{
+        margin-top: 30px;
+        .tr_InputNumber{
+            width: calc(~"100% - 60px");
+        }
+        .tr_qb{
+            width: 60px;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            color:rgba(255,191,0,1);
+        }
+        .tr_name{
+            width: 60px;
+            display: inline-block;
+            text-align: center;
+            color:rgba(86,86,86,1);
+        }
+        .tr_money{
+            >div{
+                width:"100%";
+                &::before{
+                    content: "("attr(class)")"
+                }
+            }
+        }
     }
 
 }
