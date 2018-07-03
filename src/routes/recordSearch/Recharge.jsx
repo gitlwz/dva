@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import style from '../asset/asset.less'
 import styleA from './Recharge.less';
 import { connect } from 'dva';
+import moment from 'moment'
 import dataFormat from '../../tool/dataFormat';
 import Tabs from './tabs';
 import { Row, Col, Select, Button, Table, Divider } from 'antd';
@@ -50,12 +51,7 @@ class Recharge extends Component {
                 dataIndex: 'orderId',
             }, {
                 title: '时间',
-                dataIndex: 'operateDate',
-                render: (text, item) => {
-                    if (item.operateDate != null) {
-                        return <span>{item.operateDate}  {item.operateTime}</span>
-                    }
-                }
+                dataIndex: 'formatDate',
             }, {
                 title: '币种',
                 dataIndex: 'wxtype',
@@ -92,12 +88,7 @@ class Recharge extends Component {
                 dataIndex: "orderId",
             }, {
                 title: '创建时间',
-                dataIndex: 'operateDate',
-                render: (text, item) => {
-                    if (item.operateDate != null) {
-                        return <span>{item.operateDate}  {item.operateTime}</span>
-                    }
-                }
+                dataIndex: 'formatDate',
             }, {
                 title: '币种',
                 dataIndex: 'wxtype',
