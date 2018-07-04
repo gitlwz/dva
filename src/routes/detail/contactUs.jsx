@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { message } from "antd"
+import { message, Icon } from "antd"
 import styles from './contactUs.less';
 import { connect } from 'dva';
 import UploadComponent from '../../components/upload';
@@ -129,13 +129,12 @@ class ContactUs extends Component {
               </select>
               <p style={{ color: '#FF4200', fontSize: '14px', marginTop: 10, position: 'absolute' }}>{this.state.errTip1}</p>
               <div className={styles.title} style={{ marginTop: 60 }}>添加附件</div>
-              <div className={styles.uiUpload}>
-                <UploadComponent callback={(data, img) => this.upLoadCallBack(data, img)}>
-                  <div className={styles.upload}>
-                    {this.props.questionParams.problemPhoto ? '重新上传' : '点击上传'}
-                  </div>
-                </UploadComponent>
-              </div>
+              <UploadComponent callback={(data, img) => this.upLoadCallBack(data, img)}>
+                <div className={styles.upload}>
+                  {this.props.questionParams.problemPhoto ? '重新上传' : '点击上传'}
+                  <Icon type="upload" />
+                </div>
+              </UploadComponent>
               <p style={{ color: '#FF4200', fontSize: '14px', marginTop: 10, position: 'absolute' }}>{this.state.errTip2}</p>
               <div className={styles.title} style={{ marginTop: 60 }}>邮件地址</div>
               <input
