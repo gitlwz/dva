@@ -1,5 +1,5 @@
 let baseURL = "http://47.75.170.16/sundax/";
-let baseIP = "/sundax/"  //wxtoken
+let baseIP = "/wxtoken/"  //wxtoken
 const apis = {
     "user": {
         "logon": { url: baseIP + 'logon', method: 'POST', description: '登陆' },
@@ -59,6 +59,13 @@ const apis = {
     "bindingAddress": {
         bankBindingMessageSent: { url: baseIP + "service/anonymousWebGeneralService/bankBindingMessageSent", method: 'POST', description: '银行绑定发送' },
         addTraderFundAddress: { url: baseIP + "service/webGeneralService/addTraderFundAddress", method: 'POST', description: '绑定提现提交' },
+    },
+    //法币  --- 交易中心
+    "tradingCenter":{
+        findAllCurrencys:{ url: baseIP + "service/webGeneralService/findAllCurrencys", method: 'POST', description: '查询所有交易信息' },
+        findBiddingPosters:{ url: baseIP + "service/webGeneralService/findBiddingPosters", method: 'POST', description: '查询交易信息列表' },
+        findByBiddingPosters:{ url: baseIP + "service/webGeneralService/findByBiddingPosters", method: 'POST', description: '查询交易用户' },
+        fiatDetails:{ url: baseIP + "service/webGeneralService/fiatDetails", method: 'POST', description: '交易中心直接摘单' },
     },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
