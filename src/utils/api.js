@@ -61,11 +61,19 @@ const apis = {
         addTraderFundAddress: { url: baseIP + "service/webGeneralService/addTraderFundAddress", method: 'POST', description: '绑定提现提交' },
     },
     //法币  --- 交易中心
-    "tradingCenter":{
-        findAllCurrencys:{ url: baseIP + "service/webGeneralService/findAllCurrencys", method: 'POST', description: '查询所有交易信息' },
-        findBiddingPosters:{ url: baseIP + "service/webGeneralService/findBiddingPosters", method: 'POST', description: '查询交易信息列表' },
-        findByBiddingPosters:{ url: baseIP + "service/webGeneralService/findByBiddingPosters", method: 'POST', description: '查询交易用户' },
-        fiatDetails:{ url: baseIP + "service/webGeneralService/fiatDetails", method: 'POST', description: '交易中心直接摘单' },
+    "tradingCenter": {
+        findAllCurrencys: { url: baseIP + "service/webGeneralService/findAllCurrencys", method: 'POST', description: '查询所有交易信息' },
+        findBiddingPosters: { url: baseIP + "service/webGeneralService/findBiddingPosters", method: 'POST', description: '查询交易信息列表' },
+        findByBiddingPosters: { url: baseIP + "service/webGeneralService/findByBiddingPosters", method: 'POST', description: '查询交易用户' },
+        fiatDetails: { url: baseIP + "service/webGeneralService/fiatDetails", method: 'POST', description: '交易中心直接摘单' },
+    },
+    //法币-我要发布
+    "release": {
+        serviceCharge: { url: baseIP + "service/webGeneralService/findCurrency", method: 'POST', description: '查询手续费' },
+        findBiddingPostersByPostersID: { url: baseIP + "service/webGeneralService/findBiddingPostersByPostersID", method: 'POST', description: '查询发布挂单详情' },
+        saveBiddingPosters: { url: baseIP + "service/webGeneralService/saveBiddingPosters", method: 'POST', description: '发布挂单' },
+        findByBiddingPosters: { url: baseIP + "service/webGeneralService/findByBiddingPosters", method: 'POST', description: '查询用户详细信息' },
+        findBySubBankAccount: { url: baseIP + "service/webGeneralService/findBySubBankAccount", method: 'POST', description: '查询绑定银行卡信息' },
     },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },

@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.root{
+    margin: 0 auto;
+    width: 800px;
+    background:white;
+    color: #565656;
+    font-size:13px;
+    font-family:PingFangSC-Regular;
+    .header{
+        padding: 20px 0 15px 30px;
+        .wyfb{
+            height:28px;
+            font-size:20px;
+            line-height: 28px;
+        };
+        .warn{
+            font-size: 12px;
+            height: 17px;
+            line-height: 17px;
+            color: #A0A0A0;
+        }
+    }
+    .content{
+        padding: 20px 205px;
+        //text-align: center;
+        .Release{
+            margin-top: 27px;
+            p{
+                font-size: 12px;
+                height:17px;
+                line-height: 17px;
+                margin: 15px 0 0 0;
+            }
+            :global{
+                .ant-select-selection--single{
+                    height: 38px;
+                }
+                .ant-input{
+                    height: 38px;
+                    padding: 0 20px;
+                }
+                .ant-input-suffix span{
+                    font-size: 13px;
+                    color: #A0A0A0;
+                }
+                .ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn.active{
+                    background:#FDCC39;
+                }
+                .ant-btn:hover, .ant-btn:focus{
+                    color:#565656;
+                    border-color: #FDCC39;
+                }
+            }
+        }
+        .paymentImg{
+            width: 30px;
+            height: 30px;
+            margin-right: 16px;
+        }
+    }
+}
+.btn{
+    margin-top: 30px;
+    width: 390px;
+    height: 35px;
+    line-height: 35px;
+    background: #FDCC39;
+    border-color: #FDCC39;
+    color: #565656;
+}
