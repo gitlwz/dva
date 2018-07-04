@@ -138,7 +138,7 @@ class tradingCenter extends Component {
         }
         this.props.dispatch({
             type: "tradingCenter/fiatDetails",
-            payload: [this.state.currentItem.postersID, this.state.modalData.money, this.state.modalData.surplusVolume, this.state.modalData.password]
+            payload: [this.state.currentItem.postersID, this.state.modalData.money+"", this.state.modalData.surplusVolume+"", this.state.modalData.password+""]
         })
     }
     modalCancel = () => {

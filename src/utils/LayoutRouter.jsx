@@ -107,9 +107,13 @@ const LayoutRouter = [
         models: () => [import('../models/bindingAddress')],
         component: () => import('../routes/bindingAddress/bindingAddress'),
     }, {
-        path: '/tradingCenter',  //绑定提现地址
+        path: '/tradingCenter',  //法币  订单管理
         models: () => [import('../models/fabi/tradingCenter')],
         component: () => import('../routes/fabi/tradingCenter/tradingCenter'),
+    }, {
+        path: '/tradingDetail/:orderID',  //法币  订单详情
+        models: () => [import('../models/fabi/tradingDetail')],
+        component: () => import('../routes/fabi/tradingDetail/tradingDetail'),
     }
 ]
 export default LayoutRouter;

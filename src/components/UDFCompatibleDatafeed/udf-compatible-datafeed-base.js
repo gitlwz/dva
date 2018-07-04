@@ -172,44 +172,43 @@ var UDFCompatibleDatafeedBase = /** @class */ (function () {
             var params = {
                 symbol: symbolName,
             };
-            onResultReady({
-                "name": symbolName,
-                // "exchange-traded": "NasdaqNM",
-                // "exchange-listed": "NasdaqNM",
-                'timezone': "Asia/Shanghai",
-                // "minmov": 1, "minmov2": 0,
-                // "pointvalue": 1,
-                "session": "0000-2400:1234567",
-                "has_intraday": true,
-                "description": symbolName, 
-                "type": "stock",
-                "supported_resolutions": ["1", "15", "30","60","240", "1D","5D", "1W","1M"] , 
-                "pricescale": 100000000, 
-                "ticker": symbolName
-            });
-            return;
+            // onResultReady({
+            //     "name": symbolName,
+            //     // "exchange-traded": "NasdaqNM",
+            //     // "exchange-listed": "NasdaqNM",
+            //     'timezone': "Asia/Shanghai",
+            //     // "minmov": 1, "minmov2": 0,
+            //     // "pointvalue": 1,
+            //     "session": "0000-2400:1234567",
+            //     "has_intraday": true,
+            //     "description": symbolName, 
+            //     "type": "stock",
+            //     "supported_resolutions": ["1", "15", "30","60","240", "1D","5D", "1W","1M"] , 
+            //     "pricescale": 100000000, 
+            //     "ticker": symbolName
+            // });
+            // return;
             this._send('symbols', params)
                 .then(function (response) {
                     if (response.s !== undefined) {
                         onError('unknown_symbol');
                     }
                     else {
-                        response.supported_resolutions = ["1", "15", "30","60","240", "1D","5D", "1W","1M"] 
+                       
                         onResultReady({
-                            "name": "BTC-ETH",
-                            "exchange-traded": "NasdaqNM",
-                            "exchange-listed": "NasdaqNM",
-                            timezone: "Asia/Shanghai",
-                            "minmov": 1, "minmov2": 0,
-                            "pointvalue": 1,
+                            "name": symbolName,
+                            // "exchange-traded": "NasdaqNM",
+                            // "exchange-listed": "NasdaqNM",
+                            'timezone': "Asia/Shanghai",
+                            // "minmov": 1, "minmov2": 0,
+                            // "pointvalue": 1,
                             "session": "0000-2400:1234567",
                             "has_intraday": true,
-                            "has_no_volume": false,
-                            "description": "Apple Inc.", 
+                            "description": symbolName, 
                             "type": "stock",
-                            "supported_resolutions":["1", "15", "30","60","240", "1D","5D", "1W","1M"] , 
-                            "pricescale": 100, 
-                            "ticker": "BTC-ETH"
+                            "supported_resolutions": ["1", "15", "30","60","240", "1D","5D", "1W","1M"] , 
+                            "pricescale": response.pricescale[0]*1, 
+                            "ticker": symbolName
                         });
                     }
                 })
