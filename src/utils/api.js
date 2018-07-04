@@ -75,6 +75,10 @@ const apis = {
         findByBiddingPosters: { url: baseIP + "service/webGeneralService/findByBiddingPosters", method: 'POST', description: '查询用户详细信息' },
         findBySubBankAccount: { url: baseIP + "service/webGeneralService/findBySubBankAccount", method: 'POST', description: '查询绑定银行卡信息' },
     },
+    //法币----订单详情
+    "tradingDetail":{
+        acknowledgeReceipt:{ url: baseIP + "service/webGeneralService/acknowledgeReceipt", method: 'POST', description: '订单详情根据ID查询详情' },
+    },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
         findPushNotice: { url: baseIP + "service/anonymousWebGeneralService/findPushNotice", method: 'POST', description: '查询轮播公告' },
