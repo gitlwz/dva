@@ -4,7 +4,7 @@ import styleA from './Recharge.less';
 import { connect } from 'dva';
 import moment from 'moment'
 import dataFormat from '../../tool/dataFormat';
-import Tabs from './tabs';
+import Tabs from '../../components/tabs';
 import { Row, Col, Select, Button, Table, Divider } from 'antd';
 
 

@@ -4,7 +4,7 @@ import styleA from './Recharge.less';
 import { connect } from 'dva';
 import DataFormatter from '../../tool/dataFormat';
 import { Row, Col, Select, Button, Table, Pagination } from 'antd';
-import Tabs from './tabs';
+import Tabs from '../../components/tabs';
 const Option = Select.Option;
 
 
