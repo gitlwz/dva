@@ -2,10 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import style from '../asset/asset.less'
 import styleA from './Recharge.less';
 import { connect } from 'dva';
-import moment from 'moment'
 import dataFormat from '../../tool/dataFormat';
 import Tabs from '../../components/tabs';
-import { Row, Col, Select, Button, Table, Divider } from 'antd';
+import { Table } from 'antd';
 
 
 class Recharge extends Component {

@@ -37,6 +37,7 @@ class Header extends Component {
     pushNewPage(pageName) {
         this.props.dispatch(routerRedux.push(pageName))
     }
+
     menuClick = ({ key }) => {
         switch (key) {
             case "0":
@@ -111,7 +112,7 @@ class Header extends Component {
         const menuArray = [{ img: require("../assets/yinghe/home.png"), title: languageData.home, url: '/home', selectImg: require("../assets/yinghe/helpSelect.png") },
         { img: require("../assets/yinghe/bibi.png"), title: languageData.BBJX, url: '/kine', selectImg: require("../assets/yinghe/bibiSelect.png") },
         { img: require("../assets/yinghe/fbjy.png"), title: "法币交易", url: '/tradingCenter', selectImg: require("../assets/yinghe/fbjy_active.png") },
-        { img: require("../assets/yinghe/notice.png"), title: languageData.PTGG, url: '/Platform', selectImg: require("../assets/yinghe/noticeSelect.png") },
+        { img: require("../assets/yinghe/notice.png"), title: languageData.PTGG, url: '/platform', selectImg: require("../assets/yinghe/noticeSelect.png") },
         { img: require("../assets/yinghe/help.png"), title: languageData.BZZX, url: '/helpcenter', selectImg: require("../assets/yinghe/helpSelect.png") }]
         return <div style={{ display: "flex", flexDirection: 'row' }}>
             {menuArray.map((item, index) => {

@@ -3,9 +3,8 @@ import style from '../asset/asset.less'
 import styleA from './Recharge.less';
 import { connect } from 'dva';
 import DataFormatter from '../../tool/dataFormat';
-import { Row, Col, Select, Button, Table, Pagination } from 'antd';
+import { Table } from 'antd';
 import Tabs from '../../components/tabs';
-const Option = Select.Option;
 
 
 //委托查询

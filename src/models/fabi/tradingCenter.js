@@ -1,5 +1,5 @@
-import api from '../utils/api';
-import baseService from '../services/baseService';
+import api from '../../utils/api';
+import baseService from '../../services/baseService';
 import { message } from 'antd';
 import { routerRedux } from 'dva/router';
 export default {
@@ -30,7 +30,7 @@ export default {
             })
             let { data } = yield call(baseService, api.tradingCenter.fiatDetails, [...payload]);
             if (data !== undefined) {
-                if(!!data){
+                if (!!data) {
                     message.success("交易成功!");
                     // yield  put(routerRedux.push("/asset?type=2"))
 

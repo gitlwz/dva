@@ -17,7 +17,6 @@ class UserLayout extends React.Component {
     }
 
     render() {
-        const { radioChange, handleOk } = this.props;
         return <div className={styles.root}>
             <Header />
             <div style={{ minHeight: 700 }}>
