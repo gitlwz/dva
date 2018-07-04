@@ -53,6 +53,9 @@ class Header extends Component {
                 this.props.dispatch(routerRedux.push("/asset?type=2"))
                 //安全中心
                 break;
+            case "release":
+                this.pushNewPage("/release");
+                break;
             case "5":
                 this.props.logout();
                 //安全中心
@@ -96,6 +99,12 @@ class Header extends Component {
                 <Menu.Item key="4">
                     <div className={styles.header_dropdown_item}>
                         <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>{languageData.AQZX}</span>
+                    </div>
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="release">
+                    <div className={styles.header_dropdown_item}>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>我要发布</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />

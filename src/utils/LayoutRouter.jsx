@@ -115,7 +115,13 @@ const LayoutRouter = [
         path: '/release',  //法币我要发布
         models: () => [import('../models/fabi/release')],
         component: () => import('../routes/fabi/release/release'),
-    }, {
+    },
+    {
+        path: '/releaseResult',  //法币我要发布结果
+        models: () => [import('../models/fabi/release')],
+        component: () => import('../routes/fabi/release/releaseResult'),
+    },
+    {
         path: '/tradingCenter',  //法币  订单管理
         models: () => [import('../models/fabi/tradingCenter')],
         component: () => import('../routes/fabi/tradingCenter/tradingCenter'),

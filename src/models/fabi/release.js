@@ -25,7 +25,6 @@ export default {
         //查询有没有绑定银行卡
         *findBySubBankAccount({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.release.findBySubBankAccount, []);
-            console.log(data)
             if (data != undefined) {
                 yield put({
                     type: 'save',
@@ -60,6 +59,7 @@ export default {
                         releaseData: data
                     }
                 })
+                payload.callback(data)
             }
         },
     },
