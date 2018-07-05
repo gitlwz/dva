@@ -56,6 +56,11 @@ class Header extends Component {
             case "release":
                 this.pushNewPage("/release");
                 break;
+
+            case "orderManager":
+                this.pushNewPage("/orderManager");
+                break;
+                
             case "5":
                 this.props.logout();
                 //安全中心
@@ -105,6 +110,12 @@ class Header extends Component {
                 <Menu.Item key="release">
                     <div className={styles.header_dropdown_item}>
                         <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>我要发布</span>
+                    </div>
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="orderManager">
+                    <div className={styles.header_dropdown_item}>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>订单管理</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
