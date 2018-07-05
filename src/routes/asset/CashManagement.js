@@ -215,7 +215,7 @@ class CashManagement extends Component {
                 <div className={style.right_title}>
                     充提管理
                 </div>
-                {/* <div className={style.right_bz}>
+                <div className={style.right_bz}>
                     <div className={styleA.card}>
                         <div className={styleA.card_title}>绑定银行卡</div>
                         <Button className="asset_btn" type="primary">暂未开放</Button>
@@ -237,7 +237,7 @@ class CashManagement extends Component {
                             {this.TXotherAddress(this.props.TXotherAddress)}
                         </Collapse>
                     </div>
-                </div> */}
+                </div>
             </div>
         )
     }
