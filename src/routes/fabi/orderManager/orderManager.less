@@ -66,3 +66,91 @@
     color:rgba(86,86,86,1);
     padding-right: 28px;
 }
+
+
+:global{
+    .orderManager{
+        .title{
+            box-shadow:0px 2px 7px 0px rgba(160,160,160,0.5);
+            overflow: hidden;
+            width: 300px;
+            height: 36px;
+            span{
+                display: inline-block;
+                width: 50%;
+                text-align: center;
+                line-height: 36px;
+                color:rgba(86,86,86,1);
+                font-size:13px;
+                border:1px solid rgba(217,217,217,1);
+                background-color: #FFFFFF;
+                position: relative;
+                cursor: pointer;
+            }
+            span.active{
+                background-color: #F5F5F5;
+            }
+            span.active::before{
+                content: "";
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 6px;
+                background-color: #FDCC39;
+            }
+        }
+        .chaxun{
+            background-color: #FFFFFF;
+            margin: 14px 0px;
+            padding: 0 14px;
+            box-shadow:0px 2px 7px 0px rgba(160,160,160,0.5);
+            >div{
+                display: inline-block;
+                margin-right: 14px;
+                margin-top: 14px;
+                margin-bottom: 14px;
+            }
+        }
+        .orderManager_btn{
+            button{
+                width: 200px;
+                border-color:rgba(253,204,57,1);
+                color: #565656;
+                background-color: rgba(253,204,57,1);
+            }
+        }
+        .orderManager_table{
+            padding: 10px;
+            margin-top: 14px;
+            background:rgba(255,255,255,1);
+            box-shadow:0px 2px 7px 0px rgba(160,160,160,0.5);
+
+            .ant-table-thead > tr > th{
+                background:rgba(232,232,232,1);
+                font-size:14px;
+                font-family:PingFangSC-Medium;
+                color:#A0A0A0;
+                text-align:center;
+            }
+            .ant-table-thead > tr > th{
+                border-right: solid 1px rgba(255,255,255,1);
+            }
+             .ant-table-thead > tr.ant-table-row-hover > td, .ant-table-tbody > tr.ant-table-row-hover > td, .ant-table-thead > tr:hover > td, .ant-table-tbody > tr > td{
+                background:rgba(255,255,255,1);
+                text-align: center;
+            }
+             .ant-table-thead > tr.ant-table-row-hover > td, .ant-table-tbody > tr.ant-table-row-hover > td, .ant-table-thead > tr:hover > td, .ant-table-tbody > tr:hover > td{
+                background:#F4F4F4
+            }
+            .ant-pagination-item-active{
+                background-color: #FECC39;
+                border-color: #FECC39;
+                a{
+                color: #3E3E3E ;
+                }
+            }
+
+        }
+    }
+}

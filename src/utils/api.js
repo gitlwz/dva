@@ -1,5 +1,5 @@
 let baseURL = "http://47.75.170.16/sundax/";
-let baseIP = "/sundax/"  //wxtoken
+let baseIP = "/wxtoken/"  //wxtoken
 const apis = {
     "user": {
         "logon": { url: baseIP + 'logon', method: 'POST', description: '登陆' },
@@ -77,13 +77,17 @@ const apis = {
         findBySubBankAccount: { url: baseIP + "service/webGeneralService/findBySubBankAccount", method: 'POST', description: '查询绑定银行卡信息' },
     },
     //法币----订单详情
-    "tradingDetail": {
-        acknowledgeReceipt: { url: baseIP + "service/webGeneralService/acknowledgeReceipt", method: 'POST', description: '订单详情根据ID查询详情' },
-    },
     "tradingDetail":{
         acknowledgeReceipt:{ url: baseIP + "service/webGeneralService/acknowledgeReceipt", method: 'POST', description: '订单详情根据ID查询详情' },
         buyerPayment:{ url: baseIP + "service/webGeneralService/buyerPayment", method: 'POST', description: '取消订单/确认订单接口' },
         collection:{ url: baseIP + "service/webGeneralService/collection", method: 'POST', description: ' 卖方收款' },
+    },
+    //法币----账户管理
+    "orderManager":{
+        findAllCurrencys:{ url: baseIP + "service/webGeneralService/findAllCurrencys", method: 'POST', description: '查询所有货币' },
+        findMyBiddingPosters:{ url: baseIP + "service/webGeneralService/findMyBiddingPosters", method: 'POST', description: '查询挂单' },
+        cancelBiddingPosters:{ url: baseIP + "service/webGeneralService/cancelBiddingPosters", method: 'POST', description: '取消挂单' },
+        findOrderFormForWeb:{ url: baseIP + "service/webGeneralService/findOrderFormForWeb", method: 'POST', description: '查询交易订单' },
     },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },

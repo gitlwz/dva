@@ -34,11 +34,13 @@ class tradingCenter extends Component {
                 dataIndex: 'currency',
             }, {
                 title: '数量',
+                sorter: (a, b) => a.surplusVolume - b.surplusVolume,
                 dataIndex: 'surplusVolume',
             },
             {
                 title: '单价',
                 dataIndex: 'price',
+                sorter: (a, b) => a.price - b.price,
                 render: (item) => {
                     return <span>{item}CNY</span>
                 }
@@ -46,6 +48,7 @@ class tradingCenter extends Component {
             {
                 title: '最小交易量',
                 dataIndex: 'limitVolume',
+                sorter: (a, b) => a.limitVolume - b.limitVolume,
             },
             {
                 title: '单笔交易区间',
