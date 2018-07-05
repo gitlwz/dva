@@ -168,7 +168,7 @@ class Regis extends React.Component {
                         <div className={styles.flex}>
                             <div style={{ flex: 1 }}></div>
                             <div className={styles.mmbg}>
-                                <p><span>!</span>您的密码长度6-24个字符</p>
+                                <p><span>!</span>您的密码长度6-20个字符</p>
                                 <p><span>!</span>必须包含大写字母</p>
                                 <p><span>!</span>必须包含小写字母</p>
                                 <p><span>!</span>必须包含数字</p>

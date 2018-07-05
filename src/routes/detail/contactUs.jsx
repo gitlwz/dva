@@ -156,7 +156,7 @@ class ContactUs extends Component {
             </div>
           </div>
           <div style={{ textAlign: 'center', margin: '80px 0px' }}>
-            <button onClick={() => this.submit()} style={{ fontSize: '16px' }} disabled={ this.state.buttonDisabled ? true: false } >确定</button>
+            <button onClick={() => this.submit()} style={{ fontSize: '16px', cursor: 'pointer' }} disabled={ this.state.buttonDisabled ? true: false } >确定</button>
           </div>
 
         </div>
