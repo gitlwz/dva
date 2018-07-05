@@ -4,8 +4,9 @@ import { Row, Col, Select, Alert, Spin, Icon } from 'antd';
 import AssetView from './AssetView';
 import SecurityCenter from './SecurityCenter';
 import CashManagement from './CashManagement';
+import AccountSetting from '../fabi/accountSeting/accountSeting';
 import { connect } from 'dva';
-import language from '../../language' 
+import language from '../../language'
 const Option = Select.Option;
 /**
  * 资产管理
@@ -15,39 +16,39 @@ class Asset extends Component {
         super(props);
 
         this.state = {
-            leftMenu: [language.ZCZL, language.AQZX, language.asset.CTBGL]
+            leftMenu: [language.ZCZL, language.AQZX, language.asset.CTBGL, "账户管理"]
         }
 
     }
     componentWillMount = () => {
-        if(this.props.history.location.search === "?type=1"){
+        if (this.props.history.location.search === "?type=1") {
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
                     currentSelect: language.ZCZL
                 }
             })
-        }else if(this.props.history.location.search === "?type=2"){
+        } else if (this.props.history.location.search === "?type=2") {
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
                     currentSelect: language.AQZX
                 }
-            }) 
-        }else if(this.props.history.location.search === "?type=3"){
+            })
+        } else if (this.props.history.location.search === "?type=3") {
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
                     currentSelect: language.asset.CTBGL
                 }
-            }) 
-        }else{
+            })
+        } else {
             this.props.dispatch({
                 type: 'asset/selectMenu',
                 payload: {
                     currentSelect: language.ZCZL
                 }
-            }) 
+            })
         }
         this.props.dispatch({
             type: 'asset/findByUserID'
@@ -82,13 +83,13 @@ class Asset extends Component {
                 content: "请先完成身份验证"
             }
         }
-        if(this.props.userInfo.applyStatus == 2 && !!this.props.userInfo.identificationType){
+        if (this.props.userInfo.applyStatus == 2 && !!this.props.userInfo.identificationType) {
             topError = {
-                show:true,
-                content:"身份验证审核中"
+                show: true,
+                content: "身份验证审核中"
             }
         }
-        
+
         return (
             <Spin size="large" spinning={this.props.loading} >
                 <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
@@ -114,6 +115,7 @@ class Asset extends Component {
                                 {this.props.currentSelect === language.ZCZL && <AssetView key="1" history={this.props.history} />}
                                 {this.props.currentSelect === language.AQZX && <SecurityCenter key="2" history={this.props.history} />}
                                 {this.props.currentSelect === language.asset.CTBGL && <CashManagement key="3" history={this.props.history} />}
+                                {this.props.currentSelect === "账户管理" && <AccountSetting key="4" history={this.props.history} />}
                             </Col>
                         </Row>
                     </div>

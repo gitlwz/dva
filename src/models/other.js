@@ -12,7 +12,8 @@ export default {
         noticeList: [],  //主页公告列表
         messageList: [],   //平台公告
         RateUseList: [],  //汇率
-        totalPage: 0
+        totalPage: 0,
+        decimalsPointList: []
     },
 
     effects: {
@@ -64,6 +65,20 @@ export default {
                     type: 'save',
                     payload: {
                         RateUseList: data
+                    }
+                })
+            }
+        },
+
+        //查询货币对保留小数点位数
+        *getAllInstrument({ payload }, { call, put }) {
+            const { data } = yield call(baseService, api.baseConfig.getAllInstrument, []);
+            console.log(data)
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        decimalsPointList: data
                     }
                 })
             }

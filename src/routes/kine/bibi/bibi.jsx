@@ -26,6 +26,7 @@ class Bibi extends React.Component {
 
     componentDidMount() {
         this.props.findAllExchangeRateUse();
+        this.props.getAllInstrument();
         if (this.props.userInfo && !!this.props.userInfo.clientID && !!this.props.userId) {
             this.getAcountAsset(this.props.userInfo.clientID, this.props.userId);
         }
@@ -206,6 +207,11 @@ export default connect((state, props) => {
         findAllExchangeRateUse: () => {
             dispatch({
                 type: 'other/findAllExchangeRateUse'
+            })
+        },
+        getAllInstrument: () => {
+            dispatch({
+                type: 'other/getAllInstrument'
             })
         },
         dispatch

@@ -12,6 +12,7 @@ const apis = {
         "findAllQuestions": { url: baseIP + '/service/webGeneralService/findAllQuestions', method: 'POST', description: '查询所有问题信息' },
         "customerProblems": { url: baseIP + '/service/webGeneralService/customerProblems', method: 'POST', description: '提交客户反馈' },
         "resetPassword": { url: baseIP + 'service/anonymousWebGeneralService/resetPassword', method: 'POST', description: '修改密码' },
+        "bindingToModify":{ url: baseIP + 'service/webGeneralService/bindingToModify', method: 'POST', description: '修改账户信息' },
     },
     "trad": {
         rate: { url: baseIP + "service/webGeneralService/findAllFeeSet", method: 'POST', description: '查询费率' },
@@ -76,14 +77,15 @@ const apis = {
         findBySubBankAccount: { url: baseIP + "service/webGeneralService/findBySubBankAccount", method: 'POST', description: '查询绑定银行卡信息' },
     },
     //法币----订单详情
-    "tradingDetail":{
-        acknowledgeReceipt:{ url: baseIP + "service/webGeneralService/acknowledgeReceipt", method: 'POST', description: '订单详情根据ID查询详情' },
+    "tradingDetail": {
+        acknowledgeReceipt: { url: baseIP + "service/webGeneralService/acknowledgeReceipt", method: 'POST', description: '订单详情根据ID查询详情' },
     },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
         findPushNotice: { url: baseIP + "service/anonymousWebGeneralService/findPushNotice", method: 'POST', description: '查询轮播公告' },
         findMessageList: { url: baseIP + "service/webGeneralService/findMessageAsPage", method: 'POST', description: '查询平台公告' },
         findAllExchangeRateUse: { url: baseIP + "service/webGeneralService/findAllExchangeRateUse", method: 'POST', description: '查询兑换人民币换算汇率' },
+        getAllInstrument: { url: baseIP + "service/instrumentTradParamService/getAllInstrument", method: 'POST', description: '查询所有货币小数保存位数' },
     }
 }
 export default apis;

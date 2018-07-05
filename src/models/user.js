@@ -99,7 +99,11 @@ export default {
             const data = yield call(baseService, api.user.resetPassword, payload.body);
             payload.callback(data)
         },
-
+        // 修改账户信息
+        *bindingToModify({ payload }, { call, put }) {
+            const data = yield call(baseService, api.user.bindingToModify, payload.body);
+            payload.callback(data)
+        },
     },
 
     reducers: {
