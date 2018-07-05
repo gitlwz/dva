@@ -1,5 +1,5 @@
 let baseURL = "http://47.75.170.16/sundax/";
-let baseIP = "/sundax/"  //wxtoken
+let baseIP = "/wxtoken/"  //wxtoken
 const apis = {
     "user": {
         "logon": { url: baseIP + 'logon', method: 'POST', description: '登陆' },
@@ -78,6 +78,8 @@ const apis = {
     //法币----订单详情
     "tradingDetail":{
         acknowledgeReceipt:{ url: baseIP + "service/webGeneralService/acknowledgeReceipt", method: 'POST', description: '订单详情根据ID查询详情' },
+        buyerPayment:{ url: baseIP + "service/webGeneralService/buyerPayment", method: 'POST', description: '取消订单/确认订单接口' },
+        collection:{ url: baseIP + "service/webGeneralService/collection", method: 'POST', description: ' 卖方收款' },
     },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
