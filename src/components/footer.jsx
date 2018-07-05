@@ -46,7 +46,8 @@ class Footer extends Component {
                         <p className={styles.title}>{dataJSON.FZGJ}</p>
                         <p onClick={() => this.pushNewPage("/yhRate")}>{dataJSON.FLSM}</p>
                         <p onClick={() => this.pushNewPage("/downloadclient")}>{dataJSON.KHDXZ}</p>
-                        <p>{dataJSON.WDAPIXZ}</p>
+                        {/*<p>{dataJSON.WDAPIXZ}</p>*/}
+                        <p> </p>
                     </div>
                 </div>
             </div>
