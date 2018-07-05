@@ -80,6 +80,11 @@ const apis = {
     "tradingDetail": {
         acknowledgeReceipt: { url: baseIP + "service/webGeneralService/acknowledgeReceipt", method: 'POST', description: '订单详情根据ID查询详情' },
     },
+    "tradingDetail":{
+        acknowledgeReceipt:{ url: baseIP + "service/webGeneralService/acknowledgeReceipt", method: 'POST', description: '订单详情根据ID查询详情' },
+        buyerPayment:{ url: baseIP + "service/webGeneralService/buyerPayment", method: 'POST', description: '取消订单/确认订单接口' },
+        collection:{ url: baseIP + "service/webGeneralService/collection", method: 'POST', description: ' 卖方收款' },
+    },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
         findPushNotice: { url: baseIP + "service/anonymousWebGeneralService/findPushNotice", method: 'POST', description: '查询轮播公告' },

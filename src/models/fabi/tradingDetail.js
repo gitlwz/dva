@@ -23,9 +23,9 @@ export default {
                     loading: true
                 }
             })
-            let { data } = yield call(baseService, api.tradingDetail.acknowledgeReceipt, [payload]);
+            let { data } = yield call(baseService, api.tradingDetail.acknowledgeReceipt, [payload.params]);
             if (data !== undefined) {
-                console.log("dataInfo======",data)
+                payload.callback(data);
                 yield put({
                     type: 'save',
                     payload: {
@@ -34,7 +34,52 @@ export default {
                     }
                 })
             }
-
+        },
+        *buyerPayment({ payload }, { call, put }) {
+            yield put({
+                type: 'save',
+                payload: {
+                    loading: true
+                }
+            })
+            let {errorCode, data } = yield call(baseService, api.tradingDetail.buyerPayment, [...payload.params]);
+            if (data !== undefined) {
+                if(errorCode == 0){
+                    payload.callback();
+                    if(payload.params[1] == '1'){
+                        message.success("取消订单成功!")
+                    }else if(payload.params[1] == '0'){
+                        message.success("付款成功!")
+                    }
+                }
+                yield put({
+                    type: 'save',
+                    payload: {
+                        loading: false,
+                    }
+                })
+            }
+        },
+        *collection({ payload }, { call, put }) {
+            yield put({
+                type: 'save',
+                payload: {
+                    loading: true
+                }
+            })
+            let {errorCode, data } = yield call(baseService, api.tradingDetail.collection, [...payload.params]);
+            if (data !== undefined) {
+                if(errorCode == 0){
+                    message.success("收款成功!");
+                    payload.callback();
+                }
+                yield put({
+                    type: 'save',
+                    payload: {
+                        loading: false,
+                    }
+                })
+            }
         },
     },
 

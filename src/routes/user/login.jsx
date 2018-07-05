@@ -45,7 +45,7 @@ class Login extends React.Component {
             this.props.dispatch({
                 type: 'user/login',
                 payload: {
-                    body: { userName: this.state.userName, password: md5(this.state.password), verification_code: '123', extends: JSON.stringify({ isTrader: "3" }) },
+                    body: { userName: this.state.userName, password: md5(this.state.password), verification_code: '1231', extends: JSON.stringify({ isTrader: "3" }) },
                     callback: (data) => {
                         if (data.errorCode == "0") {
                             this.pushRouter("/home")

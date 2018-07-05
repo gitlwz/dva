@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Spin } from 'antd';
+import { Row, Col, Spin,Button  } from 'antd';
+import QDModal from '../../../components/QDModal';
 import "./tradingDetail.less";
 import IMGTS from "../../../assets/提示@3x.png"
+import TimeFormat from '../../../tool/TimeFormat'
 const QRCode = require('qrcode.react');
 /**
  * 订单详情
@@ -10,15 +12,287 @@ const QRCode = require('qrcode.react');
 class tradingDetail extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            timeRemainingFormat:null,//剩余支付时间
+            sellerTimeRemainingFormat:null ,//收款倒计时
 
+            modal:{
+                visible:false
+            }
+        }
+        this.intervalName = null;
     }
     componentWillMount = () => {
+        this.acknowledgeReceipt()
+    }
+    acknowledgeReceipt = () =>{
         this.props.dispatch({
             type: "tradingDetail/acknowledgeReceipt",
-            payload: this.props.match.params.orderID
+            payload:{
+                params: this.props.match.params.orderID,
+                callback:this.loadTimer
+            }
+        })
+    }
+    //加载定时器
+    loadTimer = (dataInfo) =>{
+        if (dataInfo.timeRemaining > 0) {
+            let timeRemaining = dataInfo.timeRemaining;
+            this.setState({
+                timeRemainingFormat: TimeFormat(timeRemaining)
+            })
+            clearInterval(this.intervalName);
+            this.intervalName = setInterval(() => {
+                timeRemaining -= 1;
+                this.setState({timeRemainingFormat: TimeFormat(timeRemaining)});
+                if (timeRemaining === 0) {
+                    this.setState({timeRemainingFormat: ''});
+                    clearInterval(this.intervalName);
+                    setTimeout(() => {
+                        this.acknowledgeReceipt()
+                    }, 1000)
+                }
+            }, 1000);
+        }
+
+        if (dataInfo.sellerTimeRemaining > 0) {
+            let sellerTimeRemaining = dataInfo.sellerTimeRemaining;
+            this.setState({
+                sellerTimeRemaining: TimeFormat(sellerTimeRemaining)
+            })
+            clearInterval(this.intervalName);
+            this.intervalName = setInterval(() => {
+                sellerTimeRemaining -= 1;
+                this.setState({sellerTimeRemainingFormat: TimeFormat(sellerTimeRemaining)});
+                if (sellerTimeRemaining === 0) {
+                    this.setState({sellerTimeRemainingFormat: ''});
+                    clearInterval(this.intervalName);
+                    setTimeout(() => {
+                        this.acknowledgeReceipt()
+                    }, 1000)
+                }
+            }, 1000);
+        }
+    }
+    loadStateButton = () =>{
+        //判断是买方还是卖方
+        let isBuy = false;
+        let {clientID,dataInfo} = this.props;
+        //该情况是处理自己买自己卖的行为
+        if ( clientID == dataInfo.clientID && clientID == dataInfo.tradingID) {
+            switch (dataInfo.state) {
+                case "0":
+                    return <div>
+                        <Button onClick={() => this.changModal({
+                            showMOdal: true,
+                            title: "如果您已经向卖家付款,请千万不要取消交易",
+                            msg: "取消规则:如果买方累计取消次数达" + dataInfo.cancelTime + "次,将会被限制买入功能",
+                            okText: '取消订单',
+                            canCelText: '我再想想',
+                            header: '确定取消订单?'
+                        })}>取消交易
+                        </Button>
+                        <Button type="primary" onClick={() => this.changModal({
+                                    showMOdal: true,
+                                    title: "请确认您已向卖家付款",
+                                    msg: "恶意点击将直接冻结账户",
+                                    okText: '确定付款',
+                                    canCelText: '取消',
+                                    header: '确定付款'
+                                })}>我已付款
+                        </Button>
+                    </div>
+                    break;
+                case "1":
+                    return <Button onClick={() => this.changModal({
+                        showMOdal: true,
+                        title: "已确定收到买家付款",
+                        okText: '确定收款',
+                        canCelText: '取消',
+                        header: '确定收款?'
+                    })}>确认收款</Button>
+                    break;
+                case "2":
+                    return <div>已完成</div>
+                    break;
+                default:
+                    break;
+            }
+            return;
+
+        }
+        //正常流程
+        if (clientID == dataInfo.clientID) {
+            if (dataInfo.businessType == "0") {
+                isBuy = true
+            }
+        } else {
+            if (dataInfo.businessType == "1") {
+                isBuy = true
+            }
+        }
+
+        if (isBuy == true) {
+            switch (dataInfo.state) {
+                case "0":
+                    return <div>
+                        <Button onClick={() => this.changModal({
+                            showMOdal: true,
+                            title: "如果您已经向卖家付款,请千万不要取消交易",
+                            msg: "取消规则:如果买方累计取消次数达" + dataInfo.cancelTime + "次,将会被限制买入功能",
+                            okText: '取消订单',
+                            canCelText: '我再想想',
+                            header: '确定取消订单?'
+                        })}>取消交易
+                        </Button>
+                        <Button 
+                            onClick={() => this.changModal({
+                                showMOdal: true,
+                                title: "请确认您已向卖家付款",
+                                msg: "恶意点击将直接冻结账户",
+                                okText: '确定付款',
+                                canCelText: '取消',
+                                header: '确定付款'
+                            })}>我已付款
+                        </Button>
+                    </div>
+                    break;
+                case "1":
+                    return <div>已付款,待确认</div>
+                    break;
+                case "2":
+                    return <div>已完成</div>
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (dataInfo.state) {
+                case "0":
+                    <div>
+                        <Button onClick={() => this.changModal({
+                            showMOdal: true,
+                            title: "如果您已经向卖家付款,请千万不要取消交易",
+                            msg: "取消规则:如果买方累计取消次数达" + dataInfo.cancelTime + "次,将会被限制买入功能",
+                            okText: '取消订单',
+                            canCelText: '我再想想',
+                            header: '确定取消订单?'
+                        })}>取消交易
+                        </Button>
+                        <Button 
+                                onClick={() => this.changModal({
+                                    showMOdal: true,
+                                    title: "请确认您已向卖家付款",
+                                    msg: "恶意点击将直接冻结账户",
+                                    okText: '确定付款',
+                                    canCelText: '取消',
+                                    header: '确定付款'
+                                })}>我已付款
+                        </Button>
+                    </div>
+                    break;
+                case "1":
+                    return <Button onClick={() => this.changModal({
+                        showMOdal: true,
+                        title: "已确定收到买家付款",
+                        okText: '确定收款',
+                        canCelText: '取消',
+                        header: '确定收款?'
+                    })}>确认收款</Button>
+                    break;
+                case "2":
+                    return <div>已完成</div>
+                default:
+                    break;
+            }
+
+        }
+
+    }
+
+    changModal = ({showMOdal,title,okText,canCelText,header,msg}) =>{
+        this.setState({
+            modal:{
+                visible:showMOdal,
+                okText:okText,
+                canCelText:canCelText,
+                title:header,
+                content:title,
+                msg:msg
+            }
+        })
+    }
+    sendOk = () =>{
+        this.setState({
+            modal: {
+                visible:false
+            }
+        })
+        this.acknowledgeReceipt()
+    }
+     //弹框确定事件
+    onOk = () =>{
+        let {dataInfo} = this.props;
+         //点击付款
+         switch (this.state.modal.okText) {
+            case "取消订单":
+                this.props.dispatch({
+                    type: "tradingDetail/buyerPayment",
+                    payload:{
+                        params: [dataInfo.orderID,'1','0',''],
+                        callback:this.sendOk
+                    }
+                })
+                break;
+            case "确定付款":
+                this.props.dispatch({
+                    type: "tradingDetail/buyerPayment",
+                    payload:{
+                        params: [dataInfo.orderID,'0','0',''],
+                        callback:this.sendOk
+                    }
+                })
+                break;
+            case "确定收款":
+                this.props.dispatch({
+                    type: "tradingDetail/collection",
+                    payload:{
+                        params: [dataInfo.orderID,''],
+                        callback:this.sendOk
+                    }
+                })
+                break;
+
+            default:
+                break;
+        }
+    }
+    onCancel = () =>{
+        this.setState({
+            modal:{
+                visible:false
+            }
         })
     }
     render() {
+        let { state } = this.props.dataInfo;
+        let stateTitle = null;
+        switch (state) {
+            case "0":
+                stateTitle = "待付款"
+                break;
+            case "1":
+                stateTitle = "确认收款"
+                break;
+            case "2":
+                stateTitle = "已完成"
+                break;
+            case "3":
+                stateTitle = "已取消"
+                break;
+            default:
+                break;
+        }
         return (
             <div className="tradingDetail" style={{ backgroundColor: "#F7F7F7" }}>
                 <Spin spinning={this.props.loading} size="large" >
@@ -26,7 +300,7 @@ class tradingDetail extends Component {
                         <div className="de_title">
                             <span>{this.props.dataInfo.businessType == "0" ? "买入" : "卖出"}{this.props.dataInfo.currency}</span>
                             <span style={{ marginLeft: "38px" }}>编号 {this.props.dataInfo.orderID}</span>
-                            <span style={{ float: "right" }}>3333</span>
+                            <span style={{ float: "right" }}>{stateTitle}{this.props.dataInfo.state == "1" ? this.state.sellerTimeRemainingFormat : this.state.timeRemainingFormat}</span>
                         </div>
                         <div style={{ marginTop: "34px" }}>
                             <Row gutter={16 + 8 * 2}>
@@ -120,11 +394,11 @@ class tradingDetail extends Component {
                                         <div className="box_item">
                                             <div className="box_itemlast">
                                                 <div>
-                                                    付款参考号，请务必备注在付款信息中 以便于收款方确认收款
-                                            </div>
-                                                <div>
-                                                    已付款，待确认
-                                            </div>
+                                                    付款参考号:{this.props.dataInfo.businessType == "0" ? "请务必备注在付款信息中,以便于收款方确认收款" : '便于收款方确认款项'}
+                                                </div>
+                                                <div className="box_itemlast_btn">
+                                                    {this.loadStateButton()}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -143,7 +417,17 @@ class tradingDetail extends Component {
                             </div>
 
                         </div>
-
+                        <QDModal
+                            visible = {this.state.modal.visible}
+                            title={this.state.modal.title}
+                            okText={this.state.modal.okText}
+                            cancelText={this.state.modal.cancelText}
+                            onOk={this.onOk}
+                            onCancel={this.onCancel}
+                        >
+                        <div style={{'textAlign':"center",'fontSize':"16px",color:"rgba(86,86,86,1)"}}>{this.state.modal.content}</div>
+                        <div style={{'marginTop':'8px','textAlign':"center",'fontSize':"16px",color:"rgba(255,25,0,1)"}}>{this.state.modal.msg}</div>
+                        </QDModal>
                     </div>
                 </Spin>
             </div>
@@ -152,8 +436,10 @@ class tradingDetail extends Component {
 }
 export default connect((state, props) => {
     let { loading, dataInfo } = state.tradingDetail
+    let {clientID} = state.user.userInfo
     return {
         loading,
-        dataInfo
+        dataInfo,
+        clientID
     }
 })(tradingDetail);

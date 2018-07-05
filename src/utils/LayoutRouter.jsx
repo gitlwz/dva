@@ -122,10 +122,6 @@ const LayoutRouter = [
         component: () => import('../routes/fabi/release/releaseResult'),
     },
     {
-        path: '/tradingCenter',  //法币  订单管理
-        models: () => [import('../models/fabi/tradingCenter')],
-        component: () => import('../routes/fabi/tradingCenter/tradingCenter'),
-    }, {
         path: '/tradingDetail/:orderID',  //法币  订单详情
         models: () => [import('../models/fabi/tradingDetail')],
         component: () => import('../routes/fabi/tradingDetail/tradingDetail'),
@@ -134,6 +130,10 @@ const LayoutRouter = [
         path: '/accoutSet',  //法币  账户管理
         models: () => [import('../models/fabi/release')],
         component: () => import('../routes/fabi/accountSeting/accountSeting'),
+    }, {
+        path: '/orderManager',  //法币  订单管理
+        models: () => [import('../models/fabi/orderManager')],
+        component: () => import('../routes/fabi/orderManager/orderManager'),
     }
 ]
 export default LayoutRouter;

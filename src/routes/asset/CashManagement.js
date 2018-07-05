@@ -207,14 +207,17 @@ class CashManagement extends Component {
     }
     render() {
         return (
-            <div style={{  paddingTop: '53px' }}>
+            <div style={{ position:"relative",  paddingTop: '53px' }}>
+                <div className={styleA.mark}>
+                    <div className={styleA.mark_text}>内测阶段该功能暂不开放</div>
+                </div> 
+                
                 <div className={style.right_title}>
                     充提管理
                 </div>
                 <div className={style.right_bz}>
                     <div className={styleA.card}>
                         <div className={styleA.card_title}>绑定银行卡</div>
-                        {/* <div className={styleA.card_content}>22222</div> */}
                         <Button className="asset_btn" type="primary">暂未开放</Button>
                     </div>
                     <div className={styleA.card}>
