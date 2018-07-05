@@ -29,6 +29,7 @@
                 padding-bottom: 40px;
             }
             .box_item{
+                white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
                 line-height: 80px;
                 border-top: solid 1px rgba(232,232,232,1);
                 font-size:14px;
@@ -36,10 +37,12 @@
                 color:rgba(86,86,86,1);
             }
             .box_item2{
+                white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
                 border-top: solid 1px rgba(232,232,232,1);
                 padding: 10px 0 10px 60px;
                 position: relative;
             }
+            
             .box_item2:before{
                 content: "";
                 display: inline-block;
@@ -56,13 +59,28 @@
             .box_item2.card:before{
                 background-image: url("../../../assets/card.png");
             }
+            .box_item2.tcard:before{
+                background-image: url("../../../assets/tcard.png");
+            }
             .box_item2.zf:before{
                 background-image: url("../../../assets/支付宝@3x.png");
+            }
+            .box_item2.tzf:before{
+                background-image: url("../../../assets/tzf.png");
             }
             .box_item2.wx:before{
                 background-image: url("../../../assets/微信@3x.png");
             }
-
+            .box_item2.twx:before{
+                background-image: url("../../../assets/twx.png");
+            }
+            .box_item22>div>span:nth-child(1){
+                display: inline-block;
+                width: 94px;
+                word-wrap: break-word;  
+                white-space: pre-wrap;  
+                line-height: 1;
+            }
             .box_item22{
                 line-height: 58px;
                 .QRCode{

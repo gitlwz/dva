@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
-import { Row, Col ,Spin} from 'antd';
+import { Row, Col, Spin } from 'antd';
 import "./tradingDetail.less";
 import IMGTS from "../../../assets/提示@3x.png"
 const QRCode = require('qrcode.react');
@@ -12,21 +12,21 @@ class tradingDetail extends Component {
         super(props);
 
     }
-    componentWillMount = () =>{
+    componentWillMount = () => {
         this.props.dispatch({
             type: "tradingDetail/acknowledgeReceipt",
             payload: this.props.match.params.orderID
         })
     }
     render() {
-
         return (
             <div className="tradingDetail" style={{ backgroundColor: "#F7F7F7" }}>
                 <Spin spinning={this.props.loading} size="large" >
                     <div className="de_content">
                         <div className="de_title">
-                            <span>买入{this.props.dataInfo.currency}</span>
+                            <span>{this.props.dataInfo.businessType == "0" ? "买入" : "卖出"}{this.props.dataInfo.currency}</span>
                             <span style={{ marginLeft: "38px" }}>编号 {this.props.dataInfo.orderID}</span>
+                            <span style={{ float: "right" }}>3333</span>
                         </div>
                         <div style={{ marginTop: "34px" }}>
                             <Row gutter={16 + 8 * 2}>
@@ -34,18 +34,18 @@ class tradingDetail extends Component {
                                     <div className="gutter-box">
                                         <div className="box_title">
                                             订单详情
-                                    </div>
+                                        </div>
                                         <div className="box_item">
                                             <span>交易金额（CNY）:</span>
-                                            <span style={{ marginLeft: "20px" }}>10.00</span>
+                                            <span style={{ marginLeft: "20px" }}>{this.props.dataInfo.amount}</span>
                                         </div>
                                         <div className="box_item">
                                             <span>数&#12288;&#12288;量（CNY）:</span>
-                                            <span style={{ marginLeft: "20px" }}>10.00</span>
+                                            <span style={{ marginLeft: "20px" }}>{this.props.dataInfo.number}</span>
                                         </div>
                                         <div className="box_item">
                                             <span>价&#12288;&#12288;格（CNY）:</span>
-                                            <span style={{ marginLeft: "20px" }}>10.00</span>
+                                            <span style={{ marginLeft: "20px" }}>{this.props.dataInfo.price}</span>
                                         </div>
                                     </div>
                                 </Col>
@@ -53,37 +53,59 @@ class tradingDetail extends Component {
                                     <div className="gutter-box">
                                         <div className="box_title">
                                             卖家信息
-                                    </div>
-                                        <div className="box_item2 card">
-                                            <div>
-                                                <span>姓名：</span>
-                                                <span>果果</span>
-                                            </div>
-                                            <div>
-                                                <span>银行信息：</span>
-                                                <span>招商阴撒打算</span>
-                                            </div>
-                                            <div>
-                                                <span>卡号：</span>
-                                                <span>1111111111111</span>
-                                            </div>
                                         </div>
-                                        <div className="box_item2 box_item22 zf">
-                                            <div>
-                                                <span>123@qq.com</span>
-                                                <span className="QRCode" style={{ marginLeft: "20px" }}>
-                                                    <QRCode size={60} value={"1111"} />
-                                                </span>
+                                        {
+                                            !!this.props.dataInfo.bankAccountID ?
+                                                <div className="box_item2 card">
+                                                    <div>
+                                                        <span>姓名：</span>
+                                                        <span>{this.props.dataInfo.realName}</span>
+                                                    </div>
+                                                    <div>
+                                                        <span>银行信息：</span>
+                                                        <span>{this.props.dataInfo.bankName}</span>
+                                                    </div>
+                                                    <div>
+                                                        <span>卡号：</span>
+                                                        <span>{this.props.dataInfo.bankAccountID}</span>
+                                                    </div>
+                                                </div> :
+                                                <div className="box_item2 box_item22 tcard">
+                                                    <div>
+                                                        对方暂未添加银行卡信息
+                                                </div>
+                                                </div>
+                                        }
+                                        {!!this.props.dataInfo.alipayAccount ?
+                                            <div className="box_item2 box_item22 zf">
+                                                <div>
+                                                    <span>{this.props.dataInfo.alipayAccount}</span>
+                                                    <span className="QRCode" style={{ marginLeft: "20px" }}>
+                                                        <QRCode size={60} value={this.props.dataInfo.alipayAccountPhoto} />
+                                                    </span>
+                                                </div>
+                                            </div> :
+                                            <div className="box_item2 box_item22 tzf">
+                                                <div>
+                                                    对方暂未添加支付宝信息
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="box_item2 box_item22 wx">
-                                            <div>
-                                                <span>123@qq.com</span>
-                                                <span className="QRCode" style={{ marginLeft: "20px" }}>
-                                                    <QRCode size={60} value={"1111"} />
-                                                </span>
+                                        }
+                                        {!!this.props.dataInfo.wechatAccount ?
+                                            <div className="box_item2 box_item22 wx">
+                                                <div>
+                                                    <span>{this.props.dataInfo.wechatAccount}</span>
+                                                    <span className="QRCode" style={{ marginLeft: "20px" }}>
+                                                        <QRCode size={60} value={this.props.dataInfo.wechatAccountPhoto} />
+                                                    </span>
+                                                </div>
+                                            </div> :
+                                            <div className="box_item2 box_item22 twx">
+                                                <div>
+                                                    对方暂未添加微信信息
+                                                </div>
                                             </div>
-                                        </div>
+                                        }
                                     </div>
                                 </Col>
                                 <Col md={24} lg={18} xl={8}>
@@ -93,7 +115,7 @@ class tradingDetail extends Component {
                                     </div>
                                         <div className="box_item">
                                             <span>付款参考号：</span>
-                                            <span style={{ marginLeft: "20px" }}>424042</span>
+                                            <span style={{ marginLeft: "20px" }}>{this.props.dataInfo.payment}</span>
                                         </div>
                                         <div className="box_item">
                                             <div className="box_itemlast">
@@ -109,7 +131,6 @@ class tradingDetail extends Component {
                                 </Col>
                             </Row>
                         </div>
-
                         <div className="de_footer">
                             <div>
                                 <img src={IMGTS} />
@@ -130,7 +151,7 @@ class tradingDetail extends Component {
     }
 }
 export default connect((state, props) => {
-    let {loading,dataInfo} = state.tradingDetail
+    let { loading, dataInfo } = state.tradingDetail
     return {
         loading,
         dataInfo
