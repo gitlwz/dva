@@ -1,5 +1,5 @@
 let baseURL = "http://47.75.170.16/sundax/";
-let baseIP = "/wxtoken/"  //wxtoken
+let baseIP = "/sundax/"  //wxtoken
 const apis = {
     "user": {
         "logon": { url: baseIP + 'logon', method: 'POST', description: '登陆' },
