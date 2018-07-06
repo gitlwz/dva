@@ -355,7 +355,7 @@ class tradingDetail extends Component {
                                                 <div>
                                                     <span>{this.props.dataInfo.alipayAccount}</span>
                                                     <span className="QRCode" style={{ marginLeft: "20px" }}>
-                                                        <QRCode size={60} value={this.props.dataInfo.alipayAccountPhoto} />
+                                                        {this.props.dataInfo.alipayAccountPhoto&&<QRCode size={60} value={this.props.dataInfo.alipayAccountPhoto} />}
                                                     </span>
                                                 </div>
                                             </div> :
@@ -370,7 +370,7 @@ class tradingDetail extends Component {
                                                 <div>
                                                     <span>{this.props.dataInfo.wechatAccount}</span>
                                                     <span className="QRCode" style={{ marginLeft: "20px" }}>
-                                                        <QRCode size={60} value={this.props.dataInfo.wechatAccountPhoto} />
+                                                       {this.props.dataInfo.wechatAccountPhoto&&<QRCode size={60} value={this.props.dataInfo.wechatAccountPhoto} />} 
                                                     </span>
                                                 </div>
                                             </div> :
