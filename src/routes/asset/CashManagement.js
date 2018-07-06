@@ -211,10 +211,12 @@ class CashManagement extends Component {
                 <div className={style.right_title}>
                     充提管理
                 </div>
-                <div className={style.right_bz}>
+                <div style={{fontSize:"20px",marginTop:"100px"}}>
+                    内侧阶段暂不开放！
+                </div>
+                {/* <div className={style.right_bz}>
                     <div className={styleA.card}>
                         <div className={styleA.card_title}>绑定银行卡</div>
-                        {/* <div className={styleA.card_content}>22222</div> */}
                         <Button className="asset_btn" type="primary">暂未开放</Button>
                     </div>
                     <div className={styleA.card}>
@@ -234,7 +236,7 @@ class CashManagement extends Component {
                             {this.TXotherAddress(this.props.TXotherAddress)}
                         </Collapse>
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     }
