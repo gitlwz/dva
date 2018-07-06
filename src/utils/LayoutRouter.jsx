@@ -94,7 +94,7 @@ const LayoutRouter = [
     }, {
         path: '/submitMessageCompany',  //机构
         models: () => [import('../models/submitMessage')],
-        component: () => import('../routes/submitMessage/submitMessage'),
+        component: () => import('../routes/submitMessageCompany/submitMessageCompany'),
     }, {
         path: '/otherPresent/:type',  //提现
         models: () => [import('../models/otherPresent')],
