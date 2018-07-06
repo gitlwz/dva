@@ -88,7 +88,7 @@ class TradeComponent extends React.Component {
     render() {
         const { dataList, titleList } = this.props;
         return (
-            <div className={styles.market}>
+            <div style={this.props.style} className={styles.market}>
                 <div className={styles.header + " " + styles.title}>
                     {titleList.map((item, index) => {
                         return <span key={item} style={{ textAlign: item == "时间" ? 'left' : '' }}>{item}</span>
