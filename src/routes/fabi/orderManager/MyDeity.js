@@ -10,34 +10,6 @@ const Option = Select.Option;
 const { RangePicker } = DatePicker;
 
 
-
-const dataSource = [{
-    key: '1',
-    name: '胡彦斌',
-    age: 32,
-    address: '西湖区湖底公园1号'
-}, {
-    key: '2',
-    name: '胡彦祖',
-    age: 42,
-    address: '西湖区湖底公园1号'
-}];
-
-const columns = [{
-    title: '姓名',
-    dataIndex: 'name',
-    key: 'name',
-}, {
-    title: '年龄',
-    dataIndex: 'age',
-    key: 'age',
-}, {
-    title: '住址',
-    dataIndex: 'address',
-    key: 'address',
-}];
-
-
 class MyDeity extends Component {
     constructor(props) {
         super(props);
@@ -65,15 +37,18 @@ class MyDeity extends Component {
             }, {
                 title: "数量",
                 dataIndex: "volume",
-                width: 80,
+                width: 120,
+                sorter: (a, b) => a.volume - b.volume,
             }, {
                 title: "最小交易量",
                 dataIndex: "limitVolume",
-                width: 120,
+                width: 150,
+                sorter: (a, b) => a.limitVolume - b.limitVolume,
             }, {
                 title: "单价",
                 dataIndex: "price",
-                width: 80,
+                width: 120,
+                sorter: (a, b) => a.price - b.price,
                 render: (item, record) => {
                     return <span>{record.price}CNY</span>
                 }
@@ -167,15 +142,18 @@ class MyDeity extends Component {
             }, {
                 title: "交易单价",
                 dataIndex: "price",
-                width: 100,
+                width: 150,
+                sorter: (a, b) => a.price - b.price,
             }, {
                 title: "数量",
                 dataIndex: "number",
-                width: 100,
+                width: 120,
+                sorter: (a, b) => a.number - b.number,
             }, {
                 title: "金额",
                 dataIndex: "amount",
-                width: 100,
+                width: 120,
+                sorter: (a, b) => a.amount - b.amount,
             }, {
                 title: "状态",
                 dataIndex: "state",
