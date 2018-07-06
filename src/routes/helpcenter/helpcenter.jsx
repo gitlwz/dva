@@ -46,7 +46,7 @@ class HelpCenter extends Component {
             <div style={{ backgroundColor: "#F7F7F7" }}>
                 <div className={styles.body}>
                     <div className={styles.title}>
-                        <span style={{fontWeight:"1000"}}>帮助中心</span> > <span>常见问题</span>
+                        <span style={{fontWeight:"1000"}}>帮助中心</span>
                         <div className={styles.searchcontent + " searchcontent"}>
                             <Search
                                 placeholder="输入搜索内容"

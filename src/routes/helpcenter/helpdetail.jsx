@@ -41,7 +41,7 @@ class HelpDetail extends Component {
                 <div className={styles.body}>
                     <div className={styles.left}>
                         <div>
-                            <span>帮助中心</span> > <span style={{fontWeight:"1000"}}>常见问题</span>
+                            <span style={{cursor:"pointer"}} onClick={()=>this.props.history.push("/helpcenter/")}>帮助中心</span> > <span style={{fontWeight:"1000"}}>{this.props.detail.questionType}</span>
                         </div>
                         <div className={styles.left_content}>
 
