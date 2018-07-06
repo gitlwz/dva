@@ -7,7 +7,8 @@ import md5 from "md5";
 import styles from './regisx.less';
 import singleStyle from './InputLabel.less';
 import languageData from '../../language/index'
-
+let languageFiag = localStorage.getItem("language") || "China";
+console.log(languageFiag)
 class Regis extends React.Component {
 
     constructor(props) {
@@ -18,7 +19,7 @@ class Regis extends React.Component {
             showWordMsg: false,
             showConformMsg: false,
 
-            country: '中国',
+            country: languageFiag == "China" ? '中国' : 'China',
             email: '',
             password: '',
             confirmWord: '',
@@ -123,12 +124,12 @@ class Regis extends React.Component {
         const divStyle = { fontSize: '13px', lineHeight: '24px', color: '#FFFFFF' }
         if (this.state.password != "" && this.state.showWordMsg == false) {
             return <div style={{ ...divStyle, marginTop: 80 }}>
-                <p style={{ color: '#FDCC39', fontSize: 16, textAlign: 'center' }}>提醒!</p>
+                <p style={{ color: '#FDCC39', fontSize: 16, textAlign: 'center' }}>{languageData.remind}!</p>
                 切勿将密码用于其他任何地方的交易所,尤其是您注册的电子邮件地址
             </div>
         }
         return <div style={{ ...divStyle }}>
-            <p style={{ color: '#FDCC39', fontSize: 16, textAlign: 'center' }}>提醒!</p>
+            <p style={{ color: '#FDCC39', fontSize: 16, textAlign: 'center' }}>{languageData.remind}!</p>
             {languageData.TX}
         </div>
     }
@@ -145,22 +146,22 @@ class Regis extends React.Component {
             <div>
                 <div className={styles.login}>
                     <div style={{ textAlign: 'center', display: 'flex', display: '-webkit-flex', flexDirection: 'row' }}>
-                      <label style={{ flex: 1 }} className={singleStyle.label}></label>
-                        <p className={styles.zc}>{languageData.YX}{languageData.signIn}</p>
+                        <label style={{ flex: 1 }} className={singleStyle.label}></label>
+                        <p className={styles.zc}>{languageData.YX} {languageData.signIn}</p>
                     </div>
 
                     <div className={styles.flex}>
-                        <label style={{ flex: 1 }}>国籍</label>
+                        <label style={{ flex: 1 }}>{languageData.conuntry}</label>
                         <select value={this.state.country} className={styles.select} onChange={e => this.inputChange({ value: e.target.value, name: 'country' })} style={{ border: showCountryMsg ? styles.errInput : '' }}>
-                            <option value="">请选择国籍</option>
+                            <option value="">{languageData.QXZGJ}</option>
                             {this.props.countryList.map(item => {
-                                return <option value={item.countryCN} key={item.id}>{item.countryCN}</option>
+                                return <option value={languageFiag == "China" ? item.countryCN : item.country} key={item.id}>{languageFiag == "China" ? item.countryCN : item.country}</option>
                             })}
                         </select>
                     </div>
-                    {showCountryMsg == true ? <p className={styles.errP}>请选择国籍</p> : ''}
+                    {showCountryMsg == true ? <p className={styles.errP}>{languageData.QXZGJ}</p> : ''}
 
-                    <InputLabel lab="邮箱地址" placeholder="请输入邮箱" value={this.state.email} inputChange={value => this.inputChange({ value: value, name: 'email' })} showBorder={showEmailMsg} />
+                    <InputLabel lab={languageData.YX} placeholder={languageData.QSSYX} value={this.state.email} inputChange={value => this.inputChange({ value: value, name: 'email' })} showBorder={showEmailMsg} />
 
                     {showEmailMsg == true ? <p className={styles.errP}>{languageData.QSRYXDYXDZ}</p> : ''}
 

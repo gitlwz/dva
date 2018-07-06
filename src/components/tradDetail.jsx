@@ -51,7 +51,7 @@ class TradeComponent extends React.Component {
         } else if (this.props.entrust) {
             return this.props.dataList.map((item, index) => {
                 return <div key={item.orderSysId} className={styles.header} onDoubleClick={() => this.orderAction(item)}>
-                    <span style={{ textAlign: 'left' }}> {item.insertTime}</span>
+                    <span style={{ textAlign: 'left' }}>{item.insertDate}  {item.insertTime}</span>
                     <span>{item.instrumentId}</span>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买入" : '卖出'}</span>
                     <span>{item.limitPrice}</span>

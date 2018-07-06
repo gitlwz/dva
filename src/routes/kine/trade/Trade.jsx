@@ -187,8 +187,8 @@ class Trade extends React.Component {
                     <Input suffix={<span >{BJInstrument}</span>} value={buyVolume} onChange={e => sliderChange({ buyVolume: this.formatNum({ value: e.target.value, max: format.buyMax(getButTotal, buyPrice), pointNum: 4 }) })} className={styles.input} />
                     <Slider step={0.0001} style={{ margin: '10px 0' }} max={format.buyMax(getButTotal, buyPrice)} value={Number(buyVolume)} onChange={value => sliderChange({ buyVolume: value })} className={styles.input} />
                     <Row>
-                        <Col span={12}>0</Col>
-                        <Col span={12} style={{ textAlign: 'right' }}>{format.buyMax(getButTotal, buyPrice)} {BJInstrument}</Col>
+                        <Col span={4}>0</Col>
+                        <Col span={18} style={{ textAlign: 'right' }}>{format.buyMax(getButTotal, buyPrice)} {BJInstrument}</Col>
                     </Row>
                     <div className={styles.sum}>交易额 {format.multiply(buyPrice, buyVolume)} {JJInstrument}</div>
                     <Spin spinning={this.state.buyloading}><button loading={this.props.loading} className={styles.sellButton} disabled={userId ? false : true} onClick={() => this.orderInsert("0")}>买入 {BJInstrument}</button></Spin>
@@ -207,8 +207,8 @@ class Trade extends React.Component {
                     <Input suffix={<span >{BJInstrument}</span>} value={sellVolume} onChange={e => sliderChange({ sellVolume: this.formatNum({ value: e.target.value, max: Number(getSellTotal), pointNum: 4 }) })} className={styles.input} />
                     <Slider step={0.0001} style={{ margin: '10px 0' }} max={Number(getSellTotal)} value={Number(sellVolume)} onChange={value => sliderChange({ sellVolume: this.formatNum({ value: value.toString(), max: Number(getSellTotal), pointNum: 4 }) })} />
                     <Row>
-                        <Col span={12}>0</Col>
-                        <Col span={12} style={{ textAlign: 'right' }}>{getSellTotal} {BJInstrument}</Col>
+                        <Col span={4}>0</Col>
+                        <Col span={18} style={{ textAlign: 'right' }}>{getSellTotal} {BJInstrument}</Col>
                     </Row>
                     <div className={styles.sum}>交易额 {format.multiply(sellPrice, sellVolume)} {JJInstrument}</div>
                     <Spin spinning={this.state.sellloading}><button disabled={userId ? false : true} className={styles.buyButton} onClick={() => this.orderInsert("1")}>卖出 {BJInstrument}</button></Spin>

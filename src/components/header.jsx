@@ -27,11 +27,15 @@ class Header extends Component {
         }
         this.currLanguage = window.localStorage.getItem("language") || 'China';
     }
+
     componentDidMount() {
         this.props.getUserId()
     }
 
     componentWillReceiveProps(next) {
+        if (this.state.selectMenu != window.location.hash.split("#")[1]) {
+            this.setState({ selectMenu: window.location.hash.split("#")[1] });
+        }
     }
 
     pushNewPage(pageName) {
@@ -158,16 +162,16 @@ class Header extends Component {
                     <div className={styles.language}>
                         <img src={languareBG} style={{ marginRight: 20, marginLeft: 10 }} />
                         <select value={this.currLanguage} onChange={this.currLanguageChange} style={{ height: "26px", border: "none", outline: 'none', fontSize: "18px", marginLeft: "-8px" }}>
-                          { this.currLanguage == "China" ?
-                            <option value="China">{this.currLanguage == "China" ? "中文" : 'China'}</option>
-                            :
-                            <option value="China">{this.currLanguage == "China" ? "China" : '中文'}</option>
-                          }
-                          { this.currLanguage == "China" ?
-                            <option value="English">{this.currLanguage == "English" ? "英文" : 'English'}</option>
-                            :
-                            <option value="English">{this.currLanguage == "English" ? "English" : '英文'}</option>
-                          }
+                            {this.currLanguage == "China" ?
+                                <option value="China">{this.currLanguage == "China" ? "中文" : 'China'}</option>
+                                :
+                                <option value="China">{this.currLanguage == "China" ? "China" : '中文'}</option>
+                            }
+                            {this.currLanguage == "China" ?
+                                <option value="English">{this.currLanguage == "English" ? "英文" : 'English'}</option>
+                                :
+                                <option value="English">{this.currLanguage == "English" ? "English" : '英文'}</option>
+                            }
                         </select>
                     </div>
                 </div>
