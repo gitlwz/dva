@@ -112,7 +112,7 @@ class Header extends Component {
     }
 
     loadMenuItem() {
-        const menuArray = [{ img: require("../assets/yinghe/home.png"), title: languageData.home, url: '/home', selectImg: require("../assets/yinghe/helpSelect.png") },
+        const menuArray = [{ img: require("../assets/yinghe/home.png"), title: languageData.home, url: '/home', selectImg: require("../assets/yinghe/homeSelect.png") },
         { img: require("../assets/yinghe/bibi.png"), title: languageData.BBJX, url: '/kine', selectImg: require("../assets/yinghe/bibiSelect.png") },
         { img: require("../assets/yinghe/notice.png"), title: languageData.PTGG, url: '/Platform', selectImg: require("../assets/yinghe/noticeSelect.png") },
         { img: require("../assets/yinghe/help.png"), title: languageData.BZZX, url: '/helpcenter', selectImg: require("../assets/yinghe/helpSelect.png") }]
@@ -122,7 +122,7 @@ class Header extends Component {
                     this.setState({ selectMenu: item.url });
                     this.pushNewPage(item.url)
                 }} key={item.title} >
-                    <img src={this.state.selectMenu == item.url ? item.selectImg : item.img} />
+                    <img src={this.state.selectMenu == item.url ? item.selectImg : item.img} style={{ width: 19, height: 19 }} />
                     <span style={{ color: this.state.selectMenu == item.url ? "#FECC39" : '' }}>{item.title}</span>
                 </div>
             })}

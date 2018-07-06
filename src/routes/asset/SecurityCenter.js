@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Row, Col, Button, Icon, Select, message } from 'antd';
 import style from './asset.less';
 import styleA from './SecurityCenter.less';
-import language from '../../language' 
+import language from '../../language'
 const Option = Select.Option;
 
 class SecurityCenter extends Component {
@@ -13,7 +13,7 @@ class SecurityCenter extends Component {
         this.selectValue = '1';
     }
     componentWillMount = () => {
-        
+
     }
     //发送验证邮箱
     sendEmil = () => {
@@ -27,7 +27,7 @@ class SecurityCenter extends Component {
     }
     selectOnClick = () => {
         let { applyStatus } = this.props.userInfo;
-        if(applyStatus <2 ){
+        if (applyStatus < 2) {
             message.warning("请先进行邮箱验证！")
             return;
         }
@@ -61,7 +61,7 @@ class SecurityCenter extends Component {
     //开启谷歌验证码
     openGo = (path) => {
         let { applyStatus } = this.props.userInfo;
-        if(applyStatus <3 ){
+        if (applyStatus < 3) {
             message.warning("请先进行身份证！")
             return;
         }
@@ -115,10 +115,7 @@ class SecurityCenter extends Component {
             return <div>
                 <div style={{ marginTop: "20px" }}>
                     {language.asset.AZXGBMGD}
-                        </div>
-                <div>
-                    请选择身份验证类型
-                        </div>
+                </div>
                 <div style={{ marginTop: "20px" }}>
                     <Select defaultValue={this.selectValue} style={{ width: '60%' }} onChange={this.SelecthandleChange}>
                         <Option value="1">{language.asset.SFYZ}</Option>
@@ -141,7 +138,7 @@ class SecurityCenter extends Component {
                 return (
                     <div>
                         <div style={{ marginTop: "20px" }}>
-                        {language.asset.OO}
+                            {language.asset.OO}
                         </div>
                         <div style={{ marginTop: "20px" }}>
                             <Button onClick={() => this.openGo("/reopenGoogle/" + this.props.userInfo.email)} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">{language.asset.KQGGLBYZ}</Button>
@@ -157,7 +154,7 @@ class SecurityCenter extends Component {
                     // <div>谷歌验证已开启 | 短信验证未开启</div>
                     <div>
                         <div style={{ marginTop: "20px" }}>
-                        {language.asset.OO}
+                            {language.asset.OO}
                         </div>
                         <div style={{ marginTop: "20px" }}>
                             <Button onClick={() => this.cloceCheck('4')} className="asset_btn SecurityCenter_btn_yz">{language.asset.GBGGLBYZ}</Button>
@@ -175,7 +172,7 @@ class SecurityCenter extends Component {
                     // <div>谷歌验证未开启 | 短信验证已开启</div>
                     <div>
                         <div style={{ marginTop: "20px" }}>
-                        {language.asset.OO}
+                            {language.asset.OO}
                         </div>
                         <div style={{ marginTop: "20px" }}>
                             <Button onClick={() => this.openGo("/reopenGoogle/" + this.props.userInfo.email)} className="asset_btn SecurityCenter_btn SecurityCenter_btn_yz" type="primary">{language.asset.KQGGLBYZ}</Button>
@@ -191,7 +188,7 @@ class SecurityCenter extends Component {
                     <div>
                         <div style={{ marginTop: "20px" }}>
                             {language.asset.OO}
-                    </div>
+                        </div>
                         <div style={{ marginTop: "20px" }}>
                             <Button onClick={() => this.cloceCheck('4')} className="asset_btn SecurityCenter_btn_yz">{language.asset.GBGGLBYZ}</Button>
                         </div>
