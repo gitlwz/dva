@@ -80,13 +80,13 @@ class Login extends React.Component {
         return (
             <div>
                 <div className={styles.login}>
-                    <div style={{ textAlign: "center", display: 'flex', display: '-webkit-flex',flexDirection: "row" }}>
-                      <label style={{ flex: 1 }} className={singleStyle.label}>  </label>
+                    <div style={{ textAlign: "center", display: 'flex', display: '-webkit-flex', flexDirection: "row" }}>
+                        <label style={{ flex: 1 }} className={singleStyle.label}>  </label>
                         <p className={styles.dl}>{languageData.Login}</p>
                     </div>
                     <input type="password" style={{ display: 'none' }} />
 
-                    <InputLabel lab={languageData.YX} placeholder="请输入邮箱" value={this.state.userName} inputChange={value => this.inputChange(value)} showBorder={this.state.showEmailMsg} />
+                    <InputLabel lab={languageData.YX} placeholder={languageData.QSSYX} value={this.state.userName} inputChange={value => this.inputChange(value)} showBorder={this.state.showEmailMsg} />
 
 
                     {this.state.showEmailMsg == true ? <p className={styles.errP}>{languageData.QSRYXDYXDZ}</p> : ''}

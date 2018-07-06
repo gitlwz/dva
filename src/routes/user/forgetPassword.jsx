@@ -27,7 +27,7 @@ class ForgetPassword extends React.Component {
     }
 
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         clearInterval(this.timer)
     }
 
@@ -165,17 +165,18 @@ class ForgetPassword extends React.Component {
             {this.state.showCodeMsg == true ? <p className={styles.errP}>请输入有效验证码</p> : ''}
             <input type="password" style={{ display: 'none' }} />
 
-            <InputLabel lab="新密码" placeholder="请输入密码" type value={this.state.password} inputChange={value => this.inputChange({ value: value, name: "password" })} showBorder={this.state.showWordMsg} />
             {this.state.showWordMsg == true ?
                 <div className={styleInput.flex}>
                     <div style={{ flex: 1 }}></div>
                     <div className={styles.mmbg}>
-                        <p><span>!</span>您的密码长度6-24个字符</p>
+                        <p><span>!</span>您的密码长度6-20个字符</p>
                         <p><span>!</span>必须包含大写字母</p>
                         <p><span>!</span>必须包含小写字母</p>
                         <p><span>!</span>必须包含数字</p>
                     </div>
                 </div> : ''}
+
+            <InputLabel lab="新密码" placeholder="请输入密码" type value={this.state.password} inputChange={value => this.inputChange({ value: value, name: "password" })} showBorder={this.state.showWordMsg} />
 
             <InputLabel lab="确认密码" placeholder="请输入密码" type value={this.state.confirmWord} inputChange={value => this.inputChange({ value: value, name: "confirmWord" })} showBorder={this.state.showConformMsg} />
             {this.state.showConformMsg == true ? <p className={styles.errP}>请输入相同密码</p> : ''}

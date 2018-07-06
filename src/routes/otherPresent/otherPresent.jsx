@@ -277,7 +277,7 @@ class otherPresent extends Component {
                                             message: "请输入资金密码"
                                         }],
                                     })(
-                                        <Input placeholder="请输入资金密码" />
+                                        <Input type="password" placeholder="请输入资金密码" />
                                     )}
                                 </FormItem>
                                 <div className={style.text}>

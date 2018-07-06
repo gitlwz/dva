@@ -235,7 +235,7 @@ class submitMessageForeign extends Component {
     }
 }
 export default connect((state, props) => {
-    let { loading } = state.submitMessageForeign
+    let { loading } = state.submitMessage
     let { userInfo = {} } = state.user
     return {
         userInfo,

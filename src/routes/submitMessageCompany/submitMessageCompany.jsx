@@ -294,7 +294,7 @@ class submitMessageCompany extends Component {
     }
 }
 export default connect((state, props) => {
-    let { loading } = state.submitMessageCompany
+    let { loading } = state.submitMessage
     let { userInfo = {} } = state.user
     return {
         userInfo,
