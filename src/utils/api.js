@@ -1,5 +1,5 @@
 let baseURL = "http://47.75.170.16/sundax/";
-let baseIP = "/wxtoken/"  //wxtoken
+let baseIP = "/sundax/"  //wxtoken
 const apis = {
     "user": {
         "logon": { url: baseIP + 'logon', method: 'POST', description: '登陆' },
@@ -12,7 +12,8 @@ const apis = {
         "findAllQuestions": { url: baseIP + '/service/webGeneralService/findAllQuestions', method: 'POST', description: '查询所有问题信息' },
         "customerProblems": { url: baseIP + '/service/webGeneralService/customerProblems', method: 'POST', description: '提交客户反馈' },
         "resetPassword": { url: baseIP + 'service/anonymousWebGeneralService/resetPassword', method: 'POST', description: '修改密码' },
-        "bindingToModify":{ url: baseIP + 'service/webGeneralService/bindingToModify', method: 'POST', description: '修改账户信息' },
+        "bindingToModify": { url: baseIP + 'service/webGeneralService/bindingToModify', method: 'POST', description: '修改账户信息' },
+        updateShow: { url: baseIP + 'service/webGeneralService/updateShow', method: 'POST', description: '控制是否展示支付方式' },
     },
     "trad": {
         rate: { url: baseIP + "service/webGeneralService/findAllFeeSet", method: 'POST', description: '查询费率' },
@@ -77,17 +78,17 @@ const apis = {
         findBySubBankAccount: { url: baseIP + "service/webGeneralService/findBySubBankAccount", method: 'POST', description: '查询绑定银行卡信息' },
     },
     //法币----订单详情
-    "tradingDetail":{
-        acknowledgeReceipt:{ url: baseIP + "service/webGeneralService/acknowledgeReceipt", method: 'POST', description: '订单详情根据ID查询详情' },
-        buyerPayment:{ url: baseIP + "service/webGeneralService/buyerPayment", method: 'POST', description: '取消订单/确认订单接口' },
-        collection:{ url: baseIP + "service/webGeneralService/collection", method: 'POST', description: ' 卖方收款' },
+    "tradingDetail": {
+        acknowledgeReceipt: { url: baseIP + "service/webGeneralService/acknowledgeReceipt", method: 'POST', description: '订单详情根据ID查询详情' },
+        buyerPayment: { url: baseIP + "service/webGeneralService/buyerPayment", method: 'POST', description: '取消订单/确认订单接口' },
+        collection: { url: baseIP + "service/webGeneralService/collection", method: 'POST', description: ' 卖方收款' },
     },
     //法币----账户管理
-    "orderManager":{
-        findAllCurrencys:{ url: baseIP + "service/webGeneralService/findAllCurrencys", method: 'POST', description: '查询所有货币' },
-        findMyBiddingPosters:{ url: baseIP + "service/webGeneralService/findMyBiddingPosters", method: 'POST', description: '查询挂单' },
-        cancelBiddingPosters:{ url: baseIP + "service/webGeneralService/cancelBiddingPosters", method: 'POST', description: '取消挂单' },
-        findOrderFormForWeb:{ url: baseIP + "service/webGeneralService/findOrderFormForWeb", method: 'POST', description: '查询交易订单' },
+    "orderManager": {
+        findAllCurrencys: { url: baseIP + "service/webGeneralService/findAllCurrencys", method: 'POST', description: '查询所有货币' },
+        findMyBiddingPosters: { url: baseIP + "service/webGeneralService/findMyBiddingPosters", method: 'POST', description: '查询挂单' },
+        cancelBiddingPosters: { url: baseIP + "service/webGeneralService/cancelBiddingPosters", method: 'POST', description: '取消挂单' },
+        findOrderFormForWeb: { url: baseIP + "service/webGeneralService/findOrderFormForWeb", method: 'POST', description: '查询交易订单' },
     },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
@@ -95,6 +96,7 @@ const apis = {
         findMessageList: { url: baseIP + "service/webGeneralService/findMessageAsPage", method: 'POST', description: '查询平台公告' },
         findAllExchangeRateUse: { url: baseIP + "service/webGeneralService/findAllExchangeRateUse", method: 'POST', description: '查询兑换人民币换算汇率' },
         getAllInstrument: { url: baseIP + "service/instrumentTradParamService/getAllInstrument", method: 'POST', description: '查询所有货币小数保存位数' },
+        getPhoto: { url: baseIP + "download/memberFileUploadService/downloadFile", method: 'GET', description: '去FTP下载图片' },
     }
 }
 export default apis;

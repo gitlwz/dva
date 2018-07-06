@@ -59,7 +59,7 @@ const LayoutRouter = [
     },
     {
         path: '/asset',  //资产管理
-        models: () => [import('../models/asset')],
+        models: () => [import('../models/asset'), import("../models/fabi/release")],
         component: () => import('../routes/asset/asset'),
     }, {
         path: '/otherRecharge/:type',  //其他货币充值
@@ -128,7 +128,6 @@ const LayoutRouter = [
     },
     {
         path: '/accoutSet',  //法币  账户管理
-        models: () => [import('../models/fabi/release')],
         component: () => import('../routes/fabi/accountSeting/accountSeting'),
     }, {
         path: '/orderManager',  //法币  订单管理

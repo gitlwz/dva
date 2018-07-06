@@ -115,7 +115,7 @@ class Asset extends Component {
                                 {this.props.currentSelect === language.ZCZL && <AssetView key="1" history={this.props.history} />}
                                 {this.props.currentSelect === language.AQZX && <SecurityCenter key="2" history={this.props.history} />}
                                 {this.props.currentSelect === language.asset.CTBGL && <CashManagement key="3" history={this.props.history} />}
-                                {this.props.currentSelect === "账户管理" && <AccountSetting key="4" history={this.props.history} />}
+                                {this.props.currentSelect === "账户管理" && <AccountSetting key="4" />}
                             </Col>
                         </Row>
                     </div>

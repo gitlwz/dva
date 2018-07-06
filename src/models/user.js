@@ -104,6 +104,12 @@ export default {
             const data = yield call(baseService, api.user.bindingToModify, payload.body);
             payload.callback(data)
         },
+
+        //控制是否显示支付方式
+        *updateShow({ payload }, { call, put }) {
+            const data = yield call(baseService, api.user.updateShow, payload.body);
+            payload.callback(data)
+        },
     },
 
     reducers: {

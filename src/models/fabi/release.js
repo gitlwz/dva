@@ -7,11 +7,7 @@ export default {
 
     namespace: 'release',
     state: {
-        subBankAccountInfo: {
-            bankAccountID:null,
-            alipayAccount:null,
-            wechatAccount:null
-        },
+        subBankAccountInfo: {},
         dataDetail: {}, //用户昵称和资金密码集合
         currencyList: [], //所有币种
         releaseData: {}

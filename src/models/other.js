@@ -83,6 +83,12 @@ export default {
                 })
             }
         },
+
+        //获取图片地址
+        // getPhoto({ payload }, { call, put }) {
+        //     const { data } = yield call(baseService, api.baseConfig.getPhoto, []);
+           
+        // },
     },
 
     reducers: {
