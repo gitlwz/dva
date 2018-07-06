@@ -10,7 +10,7 @@ export default {
 		GYConinX: '关于SUNDAX',
 		JRWM: '加入我们',
 		LXWM: '联系我们',
-		SSSQ: '上市申请',
+		SSSQ: '上币申请',
 		TKSM: '条款说明',
 		YHXY: '用户协议',
 		YSTK: '隐私保护',
@@ -51,10 +51,10 @@ export default {
 		CJYGZHJRSJ:'创建一个账户加入世界最活跃的交易平台',
 		TX:'提醒 您提供的电子邮件地址将成为您的SUNDAX的ID，并将用于未来的所有通信，包括账户恢复。 像保护你的SUNDAX账户一样保护你的电子邮件账户。 使用一次性电子邮件地址注册将被拒绝',
 		WYYDBTY:'我已阅读并同意',
-		
-		
-		
-		
+
+
+
+
 
 		kine: {
 			JZCZH: '净资产折合',
@@ -81,7 +81,7 @@ export default {
 			CXMR: '撤销买入',
 			CXMC: '撤销卖出',
 			CXSY: '撤销所有',
-			
+
 		},
 		asset: {
 			QB: '全部',
@@ -160,7 +160,7 @@ export default {
 			XSEWM:'显示二维码',
 			CZDZXUZSESG:'充值到账需要至少20个区块确认（大约5-30分钟）',
 			QXSZZJMM:'请先设置资金密码',
-			
+
 			ZBDDYSXFSZ:'找不到对应的手续费设置',
 			KGFSM:'矿工费说明在一个公有链上, 任何人都可以免费读写数据。 正常情况来说是可以免费将货币发送到任何地方，但实际情况不完全是这样。 在某些情况下你必须支付手续费才能完成转账，由于挖矿需要计算能力和电费, 所以矿工们的服务需要得到一定的报酬, 这也是矿工费的由来。 这里说的手续费就是矿工费。交易的过程一般需要支付一定量的手续费，如果选择不支付也是可以的。 但矿工会优先打包交易手续费高的交易，如果没有支付交易手续费，你的交易可能要等很久才会被打包。 也就是说一笔交易所产生的转账费用会奖励给打包包含这笔交易的区块的矿工',
 			QXZTXJE:'请选择提现金额',
@@ -171,19 +171,19 @@ export default {
 			TXSXF:'提现手续费',
             SRZJMM:'输入资金密码',
 			CTBGL:'充提币管理',
-			
-			
-			
-			
-			
-			
-			
 
 
-			
-			
-			
-			
+
+
+
+
+
+
+
+
+
+
+
 		},
 		record: {
 			CTBJT: '充提币记录',
@@ -302,7 +302,7 @@ export default {
 			CXMR: 'Revoke Buy',
 			CXMC: 'Revoke Sell',
 			CXSY: 'Revoke All',
-			
+
 		},
 		asset: {
 			QB: 'All',
@@ -377,7 +377,7 @@ export default {
 			QSRYXDSJHM:'Please enter a valid cell phone number',
 			DQHBZWKF:'The current currency is not open, please look forward to it',
 			QCZDYXDZ:'Please recharge * * * to the following address',
-			FZDZ:'Replicating address',	
+			FZDZ:'Replicating address',
 			XSEWM:'Display two-dimensional code',
 			CZDZXUZSESG:'Recharge to account requires at least 20 blocks to confirm (about 5-30 minutes).',
 			QXSZZJMM:'Please set up the cipher first',
@@ -390,9 +390,9 @@ export default {
 			KTXJE:'Available amount',
 			TXSXF:'Bill of charge',
             SRZJMM:'Input capital cipher',
-			
-			
-			
+
+
+
 		},
 
 		record: {

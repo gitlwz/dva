@@ -98,7 +98,7 @@ class Bibi extends React.Component {
         return <div style={{ padding: '10px 30px', backgroundColor: '#FFFFFF' }}>
             <Row>
                 <Col span="5">
-                    <div style={{ height: 90, borderRadius: '8px' }} className={bgColor} style={{ background: '#FFCD38' }}>
+                    <div style={{ height: 90, borderRadius: '8px', background: '#FFCD38' }} className={bgColor}>
                         <Row style={{ marginLeft: 20, height: '100%', padding: '18px 0' }} type="flex" justify="center">
                             <Col span={24}>
                                 <Row>

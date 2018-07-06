@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { message } from "antd"
+import { message, Icon } from "antd"
 import styles from './contactUs.less';
 import { connect } from 'dva';
 import UploadComponent from '../../components/upload';
@@ -43,7 +43,7 @@ class ContactUs extends Component {
       errTip3: !Validator.email(this.props.questionParams.email) ? '请输入正确的邮箱！' : '',
       errTip4: this.props.questionParams.problemBody == "" ? '请添加问题描述！' : ''
     })
-    if (this.props.questionParams.problemType && this.props.questionParams.problemPhoto && Validator.email(this.props.questionParams.email) && this.props.questionParams.problemBody) {
+    if (this.props.questionParams.problemType && this.props.questionParams.problemPhoto && Validator.email(this.props.questionParams.email) &&  this.props.questionParams.problemBody) {
       //problemPhoto
       this.setState({
         buttonDisabled: true
@@ -51,7 +51,7 @@ class ContactUs extends Component {
       this.props.dispatch({
         type: 'app/customerProblems',
         payload: {
-          body: [this.props.questionParams],
+          body:[this.props.questionParams],
           callback: (data) => {
             if (data.errorCode == "0") {
               message.success("感谢您的反馈！");
@@ -66,7 +66,7 @@ class ContactUs extends Component {
                   },
                 }
               })
-              this.setState({ buttonDisabled: false })
+              this.setState({ buttonDisabled:false })
             } else {
               this.setState({ errMsg: data.errorMsg, showWordMsg: true })
             }
@@ -129,13 +129,12 @@ class ContactUs extends Component {
               </select>
               <p style={{ color: '#FF4200', fontSize: '14px', marginTop: 10, position: 'absolute' }}>{this.state.errTip1}</p>
               <div className={styles.title} style={{ marginTop: 60 }}>添加附件</div>
-              <div className={styles.uiUpload}>
-                <UploadComponent callback={(data, img) => this.upLoadCallBack(data, img)}>
-                  <div className={styles.upload}>
-                    {this.props.questionParams.problemPhoto ? '重新上传' : '点击上传'}
-                  </div>
-                </UploadComponent>
-              </div>
+              <UploadComponent callback={(data, img) => this.upLoadCallBack(data, img)}>
+                <div className={styles.upload}>
+                  {this.props.questionParams.problemPhoto ? '重新上传' : '点击上传'}
+                  <Icon type="upload" />
+                </div>
+              </UploadComponent>
               <p style={{ color: '#FF4200', fontSize: '14px', marginTop: 10, position: 'absolute' }}>{this.state.errTip2}</p>
               <div className={styles.title} style={{ marginTop: 60 }}>邮件地址</div>
               <input
@@ -157,7 +156,7 @@ class ContactUs extends Component {
             </div>
           </div>
           <div style={{ textAlign: 'center', margin: '80px 0px' }}>
-            <button onClick={() => this.submit()} style={{ fontSize: '16px' }} disabled={this.state.buttonDisabled ? true : false} >确定</button>
+            <button onClick={() => this.submit()} style={{ fontSize: '16px', cursor: 'pointer' }} disabled={ this.state.buttonDisabled ? true: false } >确定</button>
           </div>
 
         </div>

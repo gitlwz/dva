@@ -142,7 +142,7 @@ class setMoneyPassword extends Component {
                     params: params
                 }
             })
-            
+
         })
     }
     componentWillReceiveProps = (nextProps) =>{
@@ -196,7 +196,7 @@ class setMoneyPassword extends Component {
                                             required:true,validator: this.handleConfirmPassword2
                                         }],
                                     })(
-                                        <Input placeholder="设置新的用户验证码" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" />
+                                        <Input placeholder="设置新的用户验证码" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)', marginLeft: '15px' }} />} type="password" />
                                     )}
                                 </FormItem>
                                 <div className={style.text}>
@@ -213,13 +213,13 @@ class setMoneyPassword extends Component {
                                         </RadioGroup>
                                     )}
                                 </FormItem>
-                                
+
                                 {this.state.radio1_i&&<FormItem>
                                     {getFieldDecorator('code1', {
                                         rules: [{ required: true, validator: this.code1 }],
                                     })(
                                         <Input placeholder="短信验证码" className={style.input} type="text" />
-                                        
+
                                     )}
                                     <Button onClick={this.getNoteCode} disabled={this.state.time > 0 ? true : false} className="hqbtn">{this.state.time > 0 ? this.state.time + "后重新发送" : "获取验证码"}</Button>
                                 </FormItem>}
