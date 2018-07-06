@@ -44,7 +44,7 @@ class Copyright extends Component {
                 <div className={styles.body}>
                     {!falg ? <div className={styles.item}>
                         <div className={styles.content} style={{ backgroundColor: "transparent" }}>
-                            <pre style={{ fontSize: '16px', whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+                            <pre style={{ fontFamily:"PingFangSC-Regular",fontSize: '16px', whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
                                 {data.content}
                             </pre>
                         </div>
@@ -56,7 +56,7 @@ class Copyright extends Component {
                                     {item.title}
                                 </div>
                                 <div className={styles.content} style={{ backgroundColor: "transparent" }}>
-                                    <pre style={{ fontSize: '16px', whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+                                    <pre style={{fontFamily:"PingFangSC-Regular", fontSize: '16px', whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
                                         {item.content}
                                     </pre>
                                 </div>

@@ -11,7 +11,7 @@ class JoinUs extends Component {
         return (
             <div>
                 <div>加入我们</div>
-                <div className={styles.body}>
+                <div style={{fontFamily:"PingFangSC-Regular"}} className={styles.body}>
                     {joinus.map((item, index) => {
                         return (
                             <div className={styles.item} key={index}>
@@ -20,7 +20,7 @@ class JoinUs extends Component {
                                     <span className={styles.jonp}>{item.title}</span>
                                 </div>
                                 <div className={styles.content}>
-                                    <pre style={{ fontSize: '16px', whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+                                    <pre style={{fontFamily:"PingFangSC-Regular", fontSize: '16px', whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
                                         {item.content}
                                     </pre>
                                 </div>
