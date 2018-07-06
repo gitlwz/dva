@@ -16,7 +16,7 @@ class AccoutSeting extends React.Component {
         super(props);
         this.state = {
             visible: false,
-            title: '',
+            title: "",
             type: '',
 
             realName: '',
@@ -314,6 +314,7 @@ class AccoutSeting extends React.Component {
                                         <span onClick={() => this.changModal({
                                             type: 'card',
                                             visible: true,
+                                            title: '银行卡账号',
                                             realName: subBankAccountInfo.realName,
                                             bankID: subBankAccountInfo.bankID,
                                             bankName: subBankAccountInfo.bankName,
@@ -321,6 +322,7 @@ class AccoutSeting extends React.Component {
                                         })}>修改</span> :
                                         <span onClick={() => this.changModal({
                                             type: "card",
+                                            title: '银行卡账号',
                                             visible: true,
                                             realName: subBankAccountInfo.realName,
                                         })}> 绑定</span>}</span></Col>
@@ -360,11 +362,12 @@ class AccoutSeting extends React.Component {
 
                             <Col span={22} >
                                 <Row style={{ borderBottom: '1px solid #EEEEEE' }}>
-                                    <Col span={20} className={styles.card_title}><div>支付宝账户</div></Col>
+                                    <Col span={20} className={styles.card_title}><div>支付宝账号</div></Col>
                                     <Col span={2} className={styles.card_title}><span style={{ color: '#FFBF00' }}>{!!subBankAccountInfo.alipayAccount ?
                                         <span onClick={() => this.changModal({
                                             type: 'zhifubao',
                                             visible: true,
+                                            title: '支付宝账号',
                                             realName: subBankAccountInfo.realName,
                                             alipayAccount: subBankAccountInfo.alipayAccount,
                                             alipayPhoto: subBankAccountInfo.alipayAccountPhoto
@@ -372,23 +375,24 @@ class AccoutSeting extends React.Component {
                                         <span onClick={() => this.changModal({
                                             type: "zhifubao",
                                             visible: true,
+                                            title: '支付宝账号',
                                             realName: subBankAccountInfo.realName,
                                         })}> 绑定</span>}</span></Col>
                                 </Row>
                                 {!!subBankAccountInfo.alipayAccount ?
                                     <div className={styles.content}>
                                         <div>姓名:{subBankAccountInfo.realName}</div>
-                                        <div>支付宝账户:{subBankAccountInfo.alipayAccount}  {subBankAccountInfo.alipayAccountShow == "1" ?
+                                        <div>支付宝账号:{subBankAccountInfo.alipayAccount}  {subBankAccountInfo.alipayAccountShow == "1" ?
                                             <span>隐藏<Icon type="eye-o" onClick={() => {
                                                 if (subBankAccountInfo.alipayAccount == null) {
-                                                    message.error("请先设置银行卡账号!")
+                                                    message.error("请先设置支付宝账号!")
                                                     return
                                                 } else {
                                                     this.checkChange("0", "alipayAccountShow")
                                                 }
                                             }} /></span> : <span>显示<Icon type="eye" onClick={() => {
                                                 if (subBankAccountInfo.alipayAccount == null) {
-                                                    message.error("请先设置银行卡账号!")
+                                                    message.error("请先设置支付宝账号!")
                                                     return
                                                 } else {
                                                     this.checkChange("1", "alipayAccountShow")
@@ -408,35 +412,37 @@ class AccoutSeting extends React.Component {
 
                             <Col span={22} >
                                 <Row style={{ borderBottom: '1px solid #EEEEEE' }}>
-                                    <Col span={20} className={styles.card_title}><div>微信账户</div></Col>
+                                    <Col span={20} className={styles.card_title}><div>微信账号</div></Col>
                                     <Col span={2} className={styles.card_title}><span style={{ color: '#FFBF00' }}>{!!subBankAccountInfo.wechatAccount ?
                                         <span onClick={() => this.changModal({
                                             type: 'weixin',
                                             visible: true,
                                             realName: subBankAccountInfo.realName,
+                                            title: "微信账号",
                                             wechatAccount: subBankAccountInfo.wechatAccount,
                                             wechatPhoto: "/sundax/download/memberFileUploadService/downloadFile?params=" + JSON.stringify(subBankAccountInfo.wechatAccountPhoto) + "&fileName=1.jpg&_=" + (new Date().getTime()),
                                         })}>修改</span> :
                                         <span onClick={() => this.changModal({
                                             type: "weixin",
                                             visible: true,
+                                            title: "微信账号",
                                             realName: subBankAccountInfo.realName,
                                         })}> 绑定</span>}</span></Col>
                                 </Row>
                                 {!!subBankAccountInfo.wechatAccount ?
                                     <div className={styles.content}>
                                         <div>姓名:{subBankAccountInfo.realName}</div>
-                                        <div>微信账户:{subBankAccountInfo.wechatAccount}  {subBankAccountInfo.wechatAccountShow == "1" ?
+                                        <div>微信账号:{subBankAccountInfo.wechatAccount}  {subBankAccountInfo.wechatAccountShow == "1" ?
                                             <span>隐藏<Icon type="eye-o" onClick={() => {
                                                 if (subBankAccountInfo.wechatAccount == null) {
-                                                    message.error("请先设置银行卡账号!")
+                                                    message.error("请先设置微信账号!")
                                                     return
                                                 } else {
                                                     this.checkChange("0", "wechatAccountShow")
                                                 }
                                             }} /></span> : <span>显示<Icon type="eye" onClick={() => {
                                                 if (subBankAccountInfo.wechatAccount == null) {
-                                                    message.error("请先设置银行卡账号!")
+                                                    message.error("请先设置微信账号!")
                                                     return
                                                 } else {
                                                     this.checkChange("1", "wechatAccountShow")
