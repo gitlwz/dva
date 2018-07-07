@@ -168,7 +168,7 @@ class Trade extends React.Component {
         const { decimalsPointList, currentInstrument } = this.props;
         if (decimalsPointList.length > 0) {
             let data = decimalsPointList.filter(item => item.instrumentID == currentInstrument)[0];
-            if (!!data) {
+            if (!!data && data[type]) {
                 return data[type]
             }
         }
