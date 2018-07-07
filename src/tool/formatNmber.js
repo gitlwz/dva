@@ -77,12 +77,13 @@ var format = {
      * @param {*} points  保留小数位数
      */
     multiply(num1, num2, points) {
+        console.log(points);
         //处理无价格情况
         if (num1 == "---" || num2 == "---") {
             return "---";
         }
         let Num = bigRat(num1).multiply(num2).toDecimal(points);
-
+        console.log(Num)
         if (Num.indexOf(".") > -1) {
             let s1 = Num.split(".")[1];
             for (var i = s1.length; i < points; i++) {
