@@ -212,7 +212,7 @@ class CashManagement extends Component {
                     充提管理
                 </div>
                 <div style={{fontSize:"20px",marginTop:"100px"}}>
-                    内侧阶段暂不开放！
+                    内测阶段暂不开放！
                 </div>
                 {/* <div className={style.right_bz}>
                     <div className={styleA.card}>
