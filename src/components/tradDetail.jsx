@@ -42,7 +42,7 @@ class TradeComponent extends React.Component {
         if (this.props.trade) {
             return this.props.dataList.map((item, index) => {
                 return <div key={item.id} className={styles.header}>
-                    <span style={{ textAlign: 'left', width: 50 }}> {item.tradeTime}</span>
+                    <span style={{ textAlign: 'left', width: 50 }}>{item.insertDate} {item.tradeTime}</span>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36', width: 50 }}>{item.direction == "0" ? "买入" : '卖出'}</span>
                     <span>{item.price}</span>
                     <span>{item.volume}</span>
@@ -88,7 +88,7 @@ class TradeComponent extends React.Component {
     render() {
         const { dataList, titleList } = this.props;
         return (
-            <div className={styles.market}>
+            <div style={this.props.style} className={styles.market}>
                 <div className={styles.header + " " + styles.title}>
                     {titleList.map((item, index) => {
                         return <span key={item} style={{ textAlign: item == "时间" ? 'left' : '' }}>{item}</span>

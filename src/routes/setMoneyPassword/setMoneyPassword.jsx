@@ -194,6 +194,9 @@ class setMoneyPassword extends Component {
                                     {getFieldDecorator('password2', {
                                         rules: [{
                                             required:true,validator: this.handleConfirmPassword2
+                                        },{
+                                            required:true,
+                                            message:"请输入6位数字密码"
                                         }],
                                     })(
                                         <Input placeholder="设置新的用户验证码" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)', marginLeft: '15px' }} />} type="password" />
@@ -205,6 +208,10 @@ class setMoneyPassword extends Component {
                                 <FormItem
                                 >
                                     {getFieldDecorator('radio',{
+                                        rules: [{
+                                            required:true,
+                                            message:"请选择验证方式"
+                                        }],
                                         onChange:this.radioChange
                                     })(
                                         <RadioGroup style={{textAlign:"center"}}>
