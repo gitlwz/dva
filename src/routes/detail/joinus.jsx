@@ -28,7 +28,7 @@ class JoinUs extends Component {
                         )
                     })}
                     <div className={styles.footer}>
-                        如果您有意向，请将个人简历投至hr@sundax.top
+                    若要申请上述职位，请将简历发送至：hr@sundax.top
                         </div>
                 </div>
             </div>
