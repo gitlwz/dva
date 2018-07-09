@@ -253,7 +253,7 @@ class AccoutSeting extends React.Component {
                         <p>姓名</p>
                         <Input placeholder="请输入姓名" value={this.state.realName} onChange={e => this.setState({ realName: e.target.value })} />
                         <p>{this.props.photoType}账号</p>
-                        <Input placeholder="请输入您的支付宝账号" value={this.state.wechatAccount} onChange={e => this.setState({ wechatAccount: e.target.value })} style={{ marginBottom: 15 }} />
+                        <Input placeholder="请输入您的微信账号" value={this.state.wechatAccount} onChange={e => this.setState({ wechatAccount: e.target.value })} style={{ marginBottom: 15 }} />
                         <UploadComponent callback={(data, img) => this.setState({ wechatAccountPhoto: data.path, wechatPhoto: img })}>
                             {!this.state.wechatPhoto ? <img src={chooseWX} style={{ width: 320, height: 150 }} /> : <img src={this.state.wechatPhoto} style={{ width: 320, height: 150 }} />}
                         </UploadComponent>
