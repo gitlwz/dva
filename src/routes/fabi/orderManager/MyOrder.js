@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
+import { routerRedux } from 'dva/router';
 import { Select, DatePicker, Divider, Button, Table } from 'antd';
 import style from './orderManager.less'
 import moment from 'moment';
@@ -91,11 +92,11 @@ class MyOrder extends Component {
                 render: (item, record) => {
                     switch (record.state) {
                         case '0':
-                            return (<a onClick={() => this.countermand(record)} style={{ color: "rgba(255,191,0,1)" }}>立即付款</a>)
+                            return (<a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }}>立即付款</a>)
                         case '1':
-                            return  (<a onClick={() => this.countermand(record)} style={{ color: "rgba(255,191,0,1)" }}>确认收款</a>)
+                            return  (<a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }}>确认收款</a>)
                         case '2':
-                            return  (<a onClick={() => this.countermand(record)} style={{ color: "rgba(255,191,0,1)" }}>已完成</a>)
+                            return  (<a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }}>已完成</a>)
                         case '3':
                             return (<div> --</div>)
                         default:
