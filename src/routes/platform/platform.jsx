@@ -68,7 +68,7 @@ class Platform extends Component {
       //this.setState({ detailData: dataList[0] || {} })
       return this.dataList.map((item) => {
         return <div className={styles.root} key={item.msgID} onClick={() => this.showDetail(item)}>
-          <div className={styles.no}>NO.{item.msgID}</div>
+          <div className={styles.no}>NO.{item.number}</div>
           <div className={styles.right}>
             <div className={styles.msg}>{item.msgTitle}</div>
             <div className={styles.time}>{item.operateDate + " " + item.operateTime}</div>
