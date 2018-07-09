@@ -3,7 +3,7 @@ import style from './asset.less';
 import styleA from './AssetView.less';
 import { connect } from 'dva';
 import { Row, Col, Select, Button, Table, Divider, message } from 'antd';
-import language from '../../language' 
+import language from '../../language'
 let accountPasswordGload = null;
 let _that = null;
 const Option = Select.Option;
@@ -13,15 +13,15 @@ const columns = [{
 }, {
     title: language.asset.KY,
     dataIndex: 'available',
-    render:(text)=>(text*1)
+    render: (text) => (text * 1)
 }, {
     title: language.asset.DJ,
     dataIndex: 'frozenMoney',
-    render:(text)=>(text*1)
+    render: (text) => (text * 1)
 }, {
     title: language.asset.ZE,
     dataIndex: 'balance',
-    render:(text)=>(text*1)
+    render: (text) => (text * 1)
 }, {
     title: language.asset.CZ,
     dataIndex: 'operation',
@@ -53,7 +53,7 @@ class AssetView extends Component {
             this.props.dispatch({
                 type: 'asset/currencyChange',
                 payload: {
-                    currency: [this.props.userInfo.clientID,this.props.userInfo.email]
+                    currency: [this.props.userInfo.clientID, this.props.userInfo.email]
                 }
             })
         }
@@ -63,7 +63,7 @@ class AssetView extends Component {
             this.props.dispatch({
                 type: 'asset/currencyChange',
                 payload: {
-                    currency: [nextProps.userInfo.clientID,nextProps.userInfo.email]
+                    currency: [nextProps.userInfo.clientID, nextProps.userInfo.email]
                 }
             })
         }
@@ -83,7 +83,7 @@ class AssetView extends Component {
             this.props.dispatch({
                 type: 'asset/currencyChange',
                 payload: {
-                    currency: [this.props.userInfo.clientID,this.props.userInfo.email]
+                    currency: [this.props.userInfo.clientID, this.props.userInfo.email]
                 }
             })
         }
@@ -105,8 +105,8 @@ class AssetView extends Component {
                     <span className={style.right_currtext}>{language.asset.BZ}</span>
                     <Select defaultValue={language.asset.QB} onChange={this.currencyChange} style={{ width: 200 }} >
                         <Option value={language.asset.QB}>{language.asset.QB}</Option>
-                        {this.props.dataSource.map((ele,index)=>{
-                            return <Option value={ele.currency}>{ele.currency}</Option>
+                        {this.props.dataSource.map((ele, index) => {
+                            return <Option value={ele.currency} key={ele.currency}>{ele.currency}</Option>
                         })}
                     </Select>
                     <span className={styleA.right_query}><Button onClick={this.queryClick}>{language.asset.CX}</Button></span>

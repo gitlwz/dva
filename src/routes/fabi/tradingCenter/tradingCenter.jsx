@@ -141,7 +141,7 @@ class tradingCenter extends Component {
         }
         this.props.dispatch({
             type: "tradingCenter/fiatDetails",
-            payload: [this.state.currentItem.postersID, this.state.modalData.money+"", this.state.modalData.surplusVolume+"", this.state.modalData.password+""]
+            payload: [this.state.currentItem.postersID, this.state.modalData.money + "", this.state.modalData.surplusVolume + "", this.state.modalData.password + ""]
         })
     }
     modalCancel = () => {
@@ -225,7 +225,7 @@ class tradingCenter extends Component {
                             </div>
                             {this.props.AllCurrencys.map(ele => {
                                 return (
-                                    <div className={this.state.currencys === ele ? "active" : ""} onClick={() => this.currencysClick(ele)}>{ele}</div>
+                                    <div key={ele} className={this.state.currencys === ele ? "active" : ""} onClick={() => this.currencysClick(ele)}>{ele}</div>
                                 )
                             })}
                         </div>

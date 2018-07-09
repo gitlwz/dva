@@ -244,10 +244,7 @@ class AccoutSeting extends React.Component {
                         </UploadComponent>
                         <input type="password" style={{ display: 'none' }} />
                         <p>资金密码</p>
-                        <Input placeholder="为保证您的资金安全，请输入资金密码" type="text" value={this.state.accountPassword} onChange={(e) => {
-                            e.target.type = "password";
-                            this.setState({ accountPassword: e.target.value })
-                        }} />
+                        <Input placeholder="为保证您的资金安全，请输入资金密码" type="password" value={this.state.accountPassword} onChange={(e) => this.setState({ accountPassword: e.target.value })} />
                     </div>
                 )
             case "weixin":
@@ -262,10 +259,7 @@ class AccoutSeting extends React.Component {
                         </UploadComponent>
                         <p>资金密码</p>
                         <input type="password" style={{ display: 'none' }} />
-                        <Input placeholder="为保证您的资金安全，请输入资金密码" type="text" value={this.state.accountPassword} onChange={(e) => {
-                            e.target.type = "password";
-                            this.setState({ accountPassword: e.target.value })
-                        }} />
+                        <Input placeholder="为保证您的资金安全，请输入资金密码" type="password" value={this.state.accountPassword} onChange={(e) => this.setState({ accountPassword: e.target.value })} />
                     </div>
                 )
             default:
@@ -277,7 +271,6 @@ class AccoutSeting extends React.Component {
     checkChange(checked, type) {
         let body = this.props.subBankAccountInfo;
         body[type] = (checked == true ? "1" : "0");
-        console.log(body)
         this.props.dispatch({
             type: "user/updateShow",
             payload: {
@@ -292,7 +285,6 @@ class AccoutSeting extends React.Component {
                 }
             }
         })
-        //userCenterService.updateShow(body).then(res => this.findBySubBankAccount()).catch(err => console.log(err));
     }
 
     render() {
