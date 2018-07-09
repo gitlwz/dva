@@ -362,7 +362,7 @@ class AccoutSeting extends React.Component {
                                             title: '支付宝账号',
                                             realName: subBankAccountInfo.realName,
                                             alipayAccount: subBankAccountInfo.alipayAccount,
-                                            alipayPhoto: subBankAccountInfo.alipayAccountPhoto
+                                            alipayPhoto: decodeURI(subBankAccountInfo.alipayAccountPhoto)
                                         })}>修改</span> :
                                         <span onClick={() => this.changModal({
                                             type: "zhifubao",
@@ -412,7 +412,7 @@ class AccoutSeting extends React.Component {
                                             realName: subBankAccountInfo.realName,
                                             title: "微信账号",
                                             wechatAccount: subBankAccountInfo.wechatAccount,
-                                            wechatPhoto: "/sundax/download/memberFileUploadService/downloadFile?params=" + JSON.stringify(subBankAccountInfo.wechatAccountPhoto) + "&fileName=1.jpg&_=" + (new Date().getTime()),
+                                            wechatPhoto: decodeURI(subBankAccountInfo.wechatAccountPhoto),
                                         })}>修改</span> :
                                         <span onClick={() => this.changModal({
                                             type: "weixin",
