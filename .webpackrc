@@ -12,7 +12,7 @@
   "theme": "./theme.js",
   "proxy": {
     "/sundax": {
-      "target": "http://www.sundax.top/",  
+      "target": "http://192.168.100.163:8080/",  
       "changeOrigin": true,
       "pathRewrite": {
         "": ""

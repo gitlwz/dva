@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
 import { Select, DatePicker, Divider, Button, Table } from 'antd';
+import { routerRedux } from 'dva/router';
 import style from './orderManager.less'
 import moment from 'moment';
 import QDModal from "../../../components/QDModal"
@@ -90,11 +91,11 @@ class MyDeity extends Component {
                             return (<div>
                                 <a onClick={() => this.countermand(record)} style={{ color: "rgba(255,191,0,1)" }}>取消</a>
                                 <Divider type="vertical" />
-                                <a style={{ color: "rgba(255,191,0,1)" }}>详情</a>
+                                <a style={{ color: "rgba(255,191,0,1)" }} onClick={() => this.props.dispatch(routerRedux.push("/releaseResult?postersID=" + record.postersID))}>详情</a>
                             </div>)
                         case '2':
                             return (<div>
-                                <a style={{ color: "rgba(255,191,0,1)" }}>修改</a>
+                                <a style={{ color: "rgba(255,191,0,1)" }} onClick={() => this.props.dispatch(routerRedux.push("/release?postersID=" + record.postersID))}>修改</a>
                             </div>)
                         case '3':
                             return (<div> --</div>)
