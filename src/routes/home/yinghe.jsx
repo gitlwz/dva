@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Carousel, Row, Col } from 'antd';
+import { routerRedux } from 'dva/router';
 import { connect } from 'dva';
 import Home from './home';
 
@@ -38,7 +39,7 @@ class YingHe extends Component {
             let data = noticeList[name];
             if (!!data && data.length > 0) {
                 return data.map(item => {
-                    return <div key={item.msgID} style={{ color: 'white', lineHeight: "60px",textAlign:'center' }}>{item.msgTitle}</div>
+                    return <div key={item.msgID} style={{ color: 'white', lineHeight: "60px", textAlign: 'center' }} onClick={() => this.props.dispatch(routerRedux.push("/Platform?msgID=" + item.msgID))}>{item.msgTitle}</div>
                 })
             }
         }
@@ -100,5 +101,6 @@ export default connect((state, props) => {
                 type: 'other/findPushNotice'
             })
         },
+        dispatch
     }
 })(YingHe);

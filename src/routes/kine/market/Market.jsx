@@ -50,13 +50,13 @@ class Market extends React.Component {
             <Spin spinning={this.props.markLoading}>
                 <TradeComponent dataList={this.props.sellList} sort={1} direction="1" handleOk={price => {
                     if (price != "---") {
-                        this.props.handleOk({ buyPrice: price })
+                        this.props.handleOk({ buyPrice: price, sellPrice: price })
                     }
                 }} />
                 <div style={{ height: '1px', width: '95%', background: '#D8D8D8', margin: '5px 10px' }}></div>
                 <TradeComponent dataList={this.props.buyList} sort={1} titleList={[]} direction="0" handleOk={price => {
                     if (price != "---") {
-                        this.props.handleOk({ sellPrice: price })
+                        this.props.handleOk({ sellPrice: price, buyPrice: price })
                     }
                 }} />
             </Spin>
