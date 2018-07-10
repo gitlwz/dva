@@ -145,13 +145,7 @@ class Header extends Component {
                             <span style={{ padding: '0 20px' }} onClick={() => this.pushNewPage("/user/regis")}>{languageData.signIn}</span>
                         </div> :
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <img src={selectBg} style={{ margin: '0 10px', width: 40 }} onClick={() => {
-                                if (this.props.userId) {
-                                    this.pushNewPage("/home")
-                                } else {
-                                    this.pushNewPage("/user/login")
-                                }
-                            }} />
+                            <img src={selectBg} style={{ margin: '0 10px', width: 40 }} />
                             <Dropdown overlay={this.menu()}>
                                 <span style={{ padding: '0 20px' }}>{this.props.userId}</span>
                             </Dropdown>
