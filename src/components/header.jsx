@@ -155,7 +155,7 @@ class Header extends Component {
                     }
                     <div className={styles.language}>
                         <img src={languareBG} style={{ marginRight: 20, marginLeft: 10 }} />
-                        <select value={this.currLanguage} onChange={this.currLanguageChange} style={{ height: "26px", border: "none", outline: 'none', fontSize: "18px", marginLeft: "-8px" }}>
+                        <select value={this.currLanguage} onChange={this.currLanguageChange} style={{ height: "26px", border: "none", outline: 'none', fontSize: "18px", marginLeft: "-8px", cursor: "pointer" }}>
                             {this.currLanguage == "China" ?
                                 <option value="China">{this.currLanguage == "China" ? "中文" : 'China'}</option>
                                 :

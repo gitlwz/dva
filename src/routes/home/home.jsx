@@ -77,7 +77,7 @@ class Home extends React.Component {
             dataArray.push(element);
         }
 
-        //读取缓存的数组 
+        //读取缓存的数组
         for (let i = 0; i < dataArray.length; i++) {
             for (let j = 0; j < checkedArray.length; j++) {
                 if (dataArray[i].instrumentId == checkedArray[j]) {
@@ -200,7 +200,7 @@ class Home extends React.Component {
                     {this.getHotInstrument()}
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'row', margin: '30px 0', justifyContent: 'center', }}>
+                <div style={{ display: 'flex', flexDirection: 'row', margin: '30px 0', justifyContent: 'center', cursor: "pointer"}}>
                     {this.loadSearCurrency()}
                     <div className={styles.currency} style={{ background: this.state.currency == "ZX" ? "gold" : '' }} onClick={() => this.setState({ currency: "ZX" })}>
                         <img src={require("../../assets/yinghe/自定义类目@2x.png")} />

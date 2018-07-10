@@ -55,7 +55,7 @@ class YingHe extends Component {
                     {this.loadBanner()}
                 </Carousel>
 
-                <div style={{ background: 'rgba(35,35,35,1)' }}>
+                <div style={{ background: 'rgba(35,35,35,1)', cursor: 'pointer' }}>
                     <Row type="flex" justify="space-around" align="middle" style={{ fontSize: 14, color: '#CDCDCD', height: 60 }}>
                         <Col span={8}>
                             <Carousel autoplay autoplaySpeed={4000} vertical dots={false} className={styles.carousel}>
