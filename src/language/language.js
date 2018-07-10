@@ -239,7 +239,7 @@ export default {
 		conuntry: 'Country',
 		remind: 'Remind',
 		QXZGJ:'Please choose your nationality',
-		signIn: 'Sign',
+		signIn: 'Sign In',
 		TC: 'Log Out',
 		GYConinX: 'About SUNDAX',
 		JRWM: 'Join Us',

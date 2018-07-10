@@ -109,33 +109,33 @@ let privacy = {
 
 四.关于信息的收集
 1.如果阁下愿意使用本网站提供的服务，阁下需要填写和提供以下两种信息：
-A.身份信息
+1)身份信息
 该信息可以帮助我们验证阁下是否有资格注册为本网站会员， 包括但不限于阁下的名字、阁下的邮寄地址、居住地址、阁下所属国家或政府签发的其他具有证明阁下身份信息的不同的证书以及涉及到的号码及所有其他可帮助我们验证阁下身份的信息（以下合称为“身份信息”）；
-B. 服务信息
+2)服务信息
 该信息帮助我们与阁下联系并顺利为阁下提供服务，包括但不限于阁下的电话号码、有效的电子邮件地址、邮寄地址、传真号码以及阁下的借记卡信息或其他帐户信息（以下合 称为“服务信息”）。
 2.当阁下使用本网站时，表示阁下同意我们开始使用cookies来追踪阁下的每一个动作，并收集和记住阁下留下的所有信息，其中包括但不限于阁下的IP地址，地理位置及其他资料；
 3.在阁下使用本网站或其提供的服务时，我们可能会因为以下原因通过本网站公示的专用的邮箱或其他我们认为合规的方式收集更多的、必要的信息：
-A.提升阁下在使用本网站或享受我们提供的服务时的体验以及该过程中安全性；
-B.改进本网站的功能；
-C.根据法院或可适用法律法规或有管辖权的其他政府机构的命令。
-4.如果阁下访问了在本网站上的其他第三方网站或合作的第三方的任何链接，表示阁下同意并遵守该第三方网单独和独立的隐私政策。我们对这些网站或合作方的内容及活动不承担任何责任。
+1)提升阁下在使用本网站或享受我们提供的服务时的体验以及该过程中安全性；
+2)改进本网站的功能；
+3)根据法院或可适用法律法规或有管辖权的其他政府机构的命令。
+4)如果阁下访问了在本网站上的其他第三方网站或合作的第三方的任何链接，表示阁下同意并遵守该第三方网单独和独立的隐私政策。我们对这些网站或合作方的内容及活动不承担任何责任。
 
 五.关于信息使用的用途
 1.我们使用阁下的信息的方式如下：
 通过我们的网站向阁下提供我们的各项服务时；
 2.我们使用阁下的信息的目的如下：
-A.为了当阁下使用我们的网站时, 能辨认及确认阁下的身份；
-B.为了改善和提高网站的服务质量；
-C.统计我们网站使用量的数据；
-D.政府机关、事业单位等合作的数据分析；
-E.满足个性化阁下的用户设置及体验。
-F.处理交易（阁下的信息，无论是公共或私人的，未经阁下的同意不会以任何理由被出售、交换、转移，或提供给任何其他公司，但除了为完成阁下所要求的交易的明确目的之外）；
-G.定期发送电子邮件（阁下提供订单处理的电子邮件地址，除了偶尔接收我们的新闻、更新、相关产品或服务的信息等，可用来向阁下发送信息和更新有关阁下的订单）；
-H.满足本网站用户协议规定的其他目的和为了满足该等目的的所有合法途径。
+1)为了当阁下使用我们的网站时, 能辨认及确认阁下的身份；
+2)为了改善和提高网站的服务质量；
+3)统计我们网站使用量的数据；
+4)政府机关、事业单位等合作的数据分析；
+5)满足个性化阁下的用户设置及体验。
+6)处理交易（阁下的信息，无论是公共或私人的，未经阁下的同意不会以任何理由被出售、交换、转移，或提供给任何其他公司，但除了为完成阁下所要求的交易的明确目的之外）；
+7)定期发送电子邮件（阁下提供订单处理的电子邮件地址，除了偶尔接收我们的新闻、更新、相关产品或服务的信息等，可用来向阁下发送信息和更新有关阁下的订单）；
+8)满足本网站用户协议规定的其他目的和为了满足该等目的的所有合法途径。
 3.我们不会向其他方出售、交易或以其他方式转让信息或允许他人收集、使用信息，但不包括以下其他方和以下信息：
-A.我们的关联方、帮助我们经营我们的网站、开展业务、或者向阁下提供服务的受信任的第三方，前提是这些当事方同意将这些信息保密；
-B.当我们相信披露的信息是适当的，是遵守法律、法规、规章制度的或来自于法院或他主管当局的命令、执行我们的网站策略，正常运行网站所需要，关联方提供服务所需或保护我们或他人的权利、财产或安全的;
-C.阁下的信息不会提供给其他方进行营销、广告或其他用途。
+1)我们的关联方、帮助我们经营我们的网站、开展业务、或者向阁下提供服务的受信任的第三方，前提是这些当事方同意将这些信息保密；
+2)当我们相信披露的信息是适当的，是遵守法律、法规、规章制度的或来自于法院或他主管当局的命令、执行我们的网站策略，正常运行网站所需要，关联方提供服务所需或保护我们或他人的权利、财产或安全的;
+3)阁下的信息不会提供给其他方进行营销、广告或其他用途。
 
 六.关于Cookies
 1.Cookies所搜集的资料是不记名的集体统计数据, 不载有个人资料。Cookie常用于记录访问者浏览我们网站上的各个项目时的习惯以及偏好；
@@ -185,13 +185,13 @@ let userAgreement = {
 4.成为本网站的会员后，阁下将获得一个会员帐号和密码，并由会员负责保管；会员应当对以其阁下帐号进行的所有活动和事件负法律责任。
 5.只有成为本网站的会员，才可使用我们提供的数字资产交易平台进行交易，享受网站规定的会员服务；会员外的其他人只可使用登陆、浏览网站和其他一些网站规定可获得的服务。
 6.通过注册和使用任何由本网站提供的服务和功能，阁下将被视为已阅读、理解并：
-(1)接受本协议所有条款及条件的约束。
-(2)确认注册时提供的信息是真实和准确的。
-(3)保证交易中涉及到的属于阁下的数字资产均为合法取得并所有。
-(4)同意为自身的交易或非交易行为承担全部责任和任何收益或亏损。
-(5)同意遵守任何有关法律的规定，就税务目的而言，包括报告任何交易利润。
-(6)确认阁下已年满十六周岁或根据可适用的法律规定的具有可订立合同的法定年龄。阁下在网站的注册、销售或购买、发布信息等接受网站服务的行为应当符合对阁下有管辖权的主权国家或地区相关法律法规，并有充分的能力接受这些条款，并订立交易，使用本网站进行数字资产交易。
-(7)本协议只是就阁下与我们之间达成的权利义务关系进行约束，并不涉及本网站用户之间、其他网站与阁下之间因数字资产交易而产生的法律关系及法律纠纷。
+1)接受本协议所有条款及条件的约束。
+2)确认注册时提供的信息是真实和准确的。
+3)保证交易中涉及到的属于阁下的数字资产均为合法取得并所有。
+4)同意为自身的交易或非交易行为承担全部责任和任何收益或亏损。
+5)同意遵守任何有关法律的规定，就税务目的而言，包括报告任何交易利润。
+6)确认阁下已年满十六周岁或根据可适用的法律规定的具有可订立合同的法定年龄。阁下在网站的注册、销售或购买、发布信息等接受网站服务的行为应当符合对阁下有管辖权的主权国家或地区相关法律法规，并有充分的能力接受这些条款，并订立交易，使用本网站进行数字资产交易。
+7)本协议只是就阁下与我们之间达成的权利义务关系进行约束，并不涉及本网站用户之间、其他网站与阁下之间因数字资产交易而产生的法律关系及法律纠纷。
 
 三.【协议修订】
 1.我们保留实时修订本协议、并以网站公示的方式进行公告、不再单独通知阁下的权利。变更后的协议会在本协议首页标注变更时间，一经在本网站公布，立即自动生效。
@@ -369,6 +369,9 @@ I.用作其他一切合法目的以及经阁下授权的其他用途。
 1.本协议于阁下点击本网站注册页面的同意注册并完成注册程序、获得网站账号和密码时生效，对网站和阁下均具有约束力。
 2.本协议的最终解释权归本网站所有。
 
+
+——————————————————————————————————————
+
 了解你的客户和反洗钱政策
 
 一.导言：
@@ -411,7 +414,8 @@ F.如果公司在本地的地址与它的主要营业地址不一致的，则被
 1.我们根据安全性和实际交易情况实时设置和调整日常交易和提币最高限额；
 2.如果交易频繁集中发生在某个注册用户，或存在超乎合理的情况，我们的专业团队将评估和判定他们是否可疑；
 3.经判定为可疑交易的情况，我们可能会采取暂停该交易、拒绝该交易等限制性措施。如果可能将尽快逆转该交易同时向主管部门报告，但不会通知阁下；
-4.我们保留拒绝来自于不符合国际反洗钱标准辖区的人或可被视为政治公众人物的人的注册申请，我们保留随时暂停或终止根据我们自身判断为可疑交易的交易，但我们这样做并不违反对阁下的任何义务和责任。`
+4.我们保留拒绝来自于不符合国际反洗钱标准辖区的人或可被视为政治公众人物的人的注册申请，我们保留随时暂停或终止根据我们自身判断为可疑交易的交易，但我们这样做并不违反对阁下的任何义务和责任。
+`
 }
 
 
@@ -419,26 +423,24 @@ let application = [
     {
         title: '币种上线条件',
         content: `为了最大限度地保护投资者的权益，SUNDAX会提前对申请上线的币种进行资产评估，所有上线交易的币种需要满足如下条件（包含但不限于）：
-
-A.该币种有专业、强力的技术团队进行维护；
-B.该币种社区有专业、强力的运营团队进行维护；
-C.该币种项目达到专业及合规的要求且无任何政策风险；
+1)该币种有专业、强力的技术团队进行维护；
+2)该币种社区有专业、强力的运营团队进行维护；
+3)该币种项目达到专业及合规的要求且无任何政策风险；
 该币种项目团队能按时、定时、及时披露包含项目白皮书、项目发展报告、项目进度报告在内的项目信息；
-D.该币种符合本平台其他的关于币种交易的要求。`
+4)该币种符合本平台其他的关于币种交易的要求。`
     }, {
         title: "币种下线说明",
         content: `为了最大限度的保护投资者的权益，SUNDAX会保留强制项目下线的权利。
 SUNDAX会对强制下线的项目提前5天发出下线公告，用户有30天的期限从钱包中移出资产。
 如项目方触发下述条件之一，我们会提前通知并强制项目下线（包含但不限于）：
-
-A.突然出现硬分叉；
-B.项目面临重大法律问题；
-C.项目面临重大政策问题；
-D.项目方公开披露的信息相较事实出现较大误差或信息造假；
-E.项目突然出现严重的技术问题或安全问题且无法及时解决；
-F.该项目币种连续7个交易日，每日成交额小于1万美金；
-G.项目方主动要求下线；
-H.无法支持继续交易的其他事项。`
+1)突然出现硬分叉；
+2)项目面临重大法律问题；
+3)项目面临重大政策问题；
+4)项目方公开披露的信息相较事实出现较大误差或信息造假；
+5)项目突然出现严重的技术问题或安全问题且无法及时解决；
+6)该项目币种连续7个交易日，每日成交额小于1万美金；
+7)项目方主动要求下线；
+8)无法支持继续交易的其他事项。`
     }, {
     title: "项目方请通过下方链接提交项目信息",
     content:`https://goo.gl/forms/bNNV7wuJeMnOrXfH2`
@@ -446,7 +448,8 @@ H.无法支持继续交易的其他事项。`
 ]
 
 //加入我们
-let joinusEn = [{
+let joinusEn = [
+  {
     title:"Product Manager",
     content:`
 [Responsibilities]
@@ -531,65 +534,65 @@ let copyrightEn = {
 let privacyEn = {
     title:"Privacy Policy",
     content:`1. Parties 
-  1.1 SUNDAX Global Limited. (hereinafter referred to as 'the Company') is a company which incorporated in the Republic of Singapore under the laws of Singapore, and operates the website https://www.allwin.world (hereinafter referred to as 'this Website' or 'the Website'), which is a platform dedicated to the trading of digital assets and the provision of related services (hereinafter referred to as 'the Service'). the company and the website are referred to as 'we' collectively or other applicable forms of first person pronouns in this agreement for the convenience of stating in this agreement. 
-  1.2 All natural persons or other subjects log onto this website shall be users of us. The users are referred to as 'you' or any other applicable forms of the second-person pronouns for the convenience of wording in this Agreement. 
-  1.3You and we are collectively referred to as “both parties”, and individually as “one party” for the convenience of wording in this agreement.
+1.1 SUNDAX Global Limited. (hereinafter referred to as 'the Company') is a company which incorporated in the Republic of Singapore under the laws of Singapore, and operates the website https://www.sundax.top (hereinafter referred to as 'this Website' or 'the Website'), which is a platform dedicated to the trading of digital assets and the provision of related services (hereinafter referred to as 'the Service'). the company and the website are referred to as 'we' collectively or other applicable forms of first person pronouns in this agreement for the convenience of stating in this agreement. 
+1.2 All natural persons or other subjects log onto this website shall be users of us. The users are referred to as 'you' or any other applicable forms of the second-person pronouns for the convenience of wording in this Agreement. 
+1.3 You and we are collectively referred to as “both parties”, and individually as “one party” for the convenience of wording in this agreement.
 2. Goal of the Privacy Policy 
 2.1 We only gather information through your log into this website, registration with the website or use the services we offer.
 2.2 The types of your information we collect.
 2.3 How we use and protect the information we collect.
-3 Your consent 
-  You will have full confidence in our handling of private data if you are advised to read and make full sense of the terms of this Privacy Policy. 
-  Attention please, you shall be deemed to accept, agree, undertake and confirm the following content once upon you log into our Website, regardless of whether you register with this Website or not. 
-  3.1You shall agree with all the terms and limitations of this Privacy Policy;
-  3.2You allow the our modification of the Private Policy in the future;
-  3.3 You comply with disclosure of your private information to us on the basis of your own free will and your requisite consent. 
+3. Your consent 
+You will have full confidence in our handling of private data if you are advised to read and make full sense of the terms of this Privacy Policy. 
+Attention please, you shall be deemed to accept, agree, undertake and confirm the following content once upon you log into our Website, regardless of whether you register with this Website or not. 
+3.1You shall agree with all the terms and limitations of this Privacy Policy;
+3.2You allow the our modification of the Private Policy in the future;
+3.3 You comply with disclosure of your private information to us on the basis of your own free will and your requisite consent. 
 3.4 You agree with we may collect your information through your log into this Website,  registration with this Website or your using the Services we offer. 
-  3.5 You allow our branches, affiliates and employees may get in touch with you about the products and services that you may be interested in (except you have indicated clearly that you do not want to receive any information from us).
+3.5 You allow our branches, affiliates and employees may get in touch with you about the products and services that you may be interested in (except you have indicated clearly that you do not want to receive any information from us).
 4. Information Collected 
-  4.1 If you are willing to use the services offered by us, you will be required to provide and fill in the following two categories of information: 
-    4.1.1 Identity Information. 
+4.1 If you are willing to use the services offered by us, you will be required to provide and fill in the following two categories of information: 
+4.1.1 Identity Information. 
 Such information could help us verify whether you are a qualified member of us. It includes but is not limited to your name, mailing address, residence address, other certificates and corresponding numbers that are issued by your government or country to certify your identity information, including all other information that can help us to verify your identity (hereinafter referred to as 'identity information'). 
-    4.1.2 Service information
+4.1.2 Service information
 Such information helps us to keep up with you and provide you with the Service, including but not limited to your valid email address, phone number, fax number and information about your debit card or other accounts (hereinafter collectively referred to as 'service information').
-  4.2 When you use this Website, you comply with permitting us to use cookies to track each of your actions and collect and store all your information leaving on this Website, including but not limited to your location, IP address and other personal information. 
-  4.3 When you use this Website or the services this Website offers, we may collect more necessary information from our exclusive mailboxes or in other manners that we consider as in compliance with relevant laws and regulations. Resulting from following goals:
-4.3.1Enhancing your experience of using services of this Website and the security 
-4.3.2Improving the functions of this Website
-4.3.3.It is required by any court order, relevant law, administrative regulation or any order of any other competent authorities. 
-  4.4 If you visit any of links to third-party websites as are listed on this Website or any links of our third-party partners, you shall comply with and agree to the Privacy Policy of such third party website separately and independently. We has no responsibility for the contents and activities of such websites or the partners.
+4.2 When you use this Website, you comply with permitting us to use cookies to track each of your actions and collect and store all your information leaving on this Website, including but not limited to your location, IP address and other personal information. 
+4.3 When you use this Website or the services this Website offers, we may collect more necessary information from our exclusive mailboxes or in other manners that we consider as in compliance with relevant laws and regulations. Resulting from following goals:
+4.3.1 Enhancing your experience of using services of this Website and the security 
+4.3.2 Improving the functions of this Website
+4.3.3 It is required by any court order, relevant law, administrative regulation or any order of any other competent authorities. 
+4.4 If you visit any of links to third-party websites as are listed on this Website or any links of our third-party partners, you shall comply with and agree to the Privacy Policy of such third party website separately and independently. We has no responsibility for the contents and activities of such websites or the partners.
 5. Purposes of Information 
-  5.1 We will use your personal information we collect for the following purposes or in the following ways: 
-    5.1.1 To identify and confirm your identity while you use our Website; 
-    5.1.2 To provide our Services to you through our Website; 
-    5.1.3 To statistics data relating to the use of our Website and to be used for data analysis from cooperation with public affairs institutions and government agencies; 
-    5.1.4 To improve and upgrade the services of the Website (your information and feedback we received can help us improve the service of the Website, so we can respond to your service requests and support your needs more effectively); 
-    5.1.5 To facilitate transactions (your public or private information will not be exchanged, transferred, sold or otherwise provided to any other companies on any situations without your consent, except for completing the transaction you require); 
-    5.1.6 To personalize your experience of our services(your information will help us to respond to your unique needs in a better way); 
-    5.1.7 To send e-mail regularly (the email address that you provide for handling orders may be used to receive information that we may send to you, like newsletters, updates, related products or services information, etc.) 
-    5.1.8 To meet other purposes as specified in the User Agreement of this Website and all legal ways adopted for satisfying such purposes.
-  5.2 We do not transfer, sell or trade information or allow other people to collect, use information of users; however, not involve the following parties or information: our related party, trusted third parties which help us provide services to users,  manage our business or operate our websites, provided that such parties agree to keep such information confidential;
-  5.2.1 If we do believe disclosure of information is appropriate, or it is required by any of related laws, regulations, rules or by any order of courts or other competent authorities;
-  5.2.2If it is necessary for operating the strategy of our Website and ensuring the proper functions of the Website, or it is necessary for the related parties to provide services, or for the protection of the safety, rights, or property of us or other persons. However, your information will not be provided to other parties for advertising, marketing or other purposes.
+5.1 We will use your personal information we collect for the following purposes or in the following ways: 
+5.1.1 To identify and confirm your identity while you use our Website; 
+5.1.2 To provide our Services to you through our Website; 
+5.1.3 To statistics data relating to the use of our Website and to be used for data analysis from cooperation with public affairs institutions and government agencies; 
+5.1.4 To improve and upgrade the services of the Website (your information and feedback we received can help us improve the service of the Website, so we can respond to your service requests and support your needs more effectively); 
+5.1.5 To facilitate transactions (your public or private information will not be exchanged, transferred, sold or otherwise provided to any other companies on any situations without your consent, except for completing the transaction you require); 
+5.1.6 To personalize your experience of our services(your information will help us to respond to your unique needs in a better way); 
+5.1.7 To send e-mail regularly (the email address that you provide for handling orders may be used to receive information that we may send to you, like newsletters, updates, related products or services information, etc.) 
+5.1.8 To meet other purposes as specified in the User Agreement of this Website and all legal ways adopted for satisfying such purposes.
+5.2 We do not transfer, sell or trade information or allow other people to collect, use information of users; however, not involve the following parties or information: our related party, trusted third parties which help us provide services to users,  manage our business or operate our websites, provided that such parties agree to keep such information confidential;
+5.2.1 If we do believe disclosure of information is appropriate, or it is required by any of related laws, regulations, rules or by any order of courts or other competent authorities;
+5.2.2 If it is necessary for operating the strategy of our Website and ensuring the proper functions of the Website, or it is necessary for the related parties to provide services, or for the protection of the safety, rights, or property of us or other persons. However, your information will not be provided to other parties for advertising, marketing or other purposes.
 6. Cookies 
-  6.1 Cookies are used to record the preferences and habits of users while browsing the content on our Website usually. The information collected by cookies is collective statistical and non-registered data which does not involve any personal data. 
-  6.2 When you browse our Website, we use information via cookies to record our performance and check the effect of online advertising. Cookies are a small amount of data that is sent to your browser, then it will be stored on your computer hard drive. The cookies can be sent to your computer hard drive only when you use your computer to access our Website. 
-  6.3 Cookies cannot be used to obtain data on your hard drive, your email address, or your personal data while make it possible the Website or service provider system to recognize your browser and capture and recall information. Most browsers are designed to accept cookies. You can make your browser to reject cookies, or to notify you if you are loaded on cookies as soon as possible. However, if you set your browser to disable cookies, you may not be able to launch or use some functions of our Website.
+6.1 Cookies are used to record the preferences and habits of users while browsing the content on our Website usually. The information collected by cookies is collective statistical and non-registered data which does not involve any personal data. 
+6.2 When you browse our Website, we use information via cookies to record our performance and check the effect of online advertising. Cookies are a small amount of data that is sent to your browser, then it will be stored on your computer hard drive. The cookies can be sent to your computer hard drive only when you use your computer to access our Website. 
+6.3 Cookies cannot be used to obtain data on your hard drive, your email address, or your personal data while make it possible the Website or service provider system to recognize your browser and capture and recall information. Most browsers are designed to accept cookies. You can make your browser to reject cookies, or to notify you if you are loaded on cookies as soon as possible. However, if you set your browser to disable cookies, you may not be able to launch or use some functions of our Website.
 7. Protection of Personal Data 
-  7.1 We safeguard and protect the security of your private information through several kinds of technical measures. We make sure any personal data collected through our Website will be far away from being subject to disturbance by any third party unrelated to us to the greatest extent possible. The security measures that we will take include but are not limited to: 
-    7.1.1The data which contain your personal information will be stored in computer systems and storage medias which are protected by strict login restrictions. 
-    7.1.2 Records with your private data will be stored in a properly place locked. 
-    7.1.3 Such encryption techniques will be used to convey your private data. 
-    7.1.4 Only employees of us duly authorized by us can access your personal data, and these employees shall agree with our privacy policy.
-    7.1.5 Our network servers are protected by proper 'firewall '.
-  7.2 If you are realize there are any security flaws in our Website, please contact us immediately so that we can take appropriate measures as quickly as possible. 
-  7.3 Even though we have the above-mentioned technical and security measures, we cannot make sure that the information transmitted through the Internet is definitely safe, so we cannot absolutely guarantee that the private data that you provide to us through our Website will be safe at any time. We are not responsible for any loss or damage caused by or arising from any event that may occur in connection with unauthorized access to your private data, and we are not responsible for compensation for such damage or loss.
-8 Modification to the Privacy Policy 
-1. We reserve the right to modify the Privacy Policy from time to time and at any time. 
-2. We will inform you of the modifications of the Privacy Policy by updating and publishing the effective date of the release of new versions hereof and highlighting the amendments. However, it is not an obligation for us to inform you of the modification made in the Privacy Policy. 
-3. You shall review the Privacy Policy regularly and focus on its modifications, and if you do not agree with such modifications, you shall immediately stop using this Website. 
-4. When an updated version of this Privacy Policy is released, your continued visit to this Website shall show and indicate that you agree to the update and agree to comply with the updated Privacy Policy.
-9 Communication with Us 
+7.1 We safeguard and protect the security of your private information through several kinds of technical measures. We make sure any personal data collected through our Website will be far away from being subject to disturbance by any third party unrelated to us to the greatest extent possible. The security measures that we will take include but are not limited to: 
+7.1.1 The data which contain your personal information will be stored in computer systems and storage medias which are protected by strict login restrictions. 
+7.1.2 Records with your private data will be stored in a properly place locked. 
+7.1.3 Such encryption techniques will be used to convey your private data. 
+7.1.4 Only employees of us duly authorized by us can access your personal data, and these employees shall agree with our privacy policy.
+7.1.5 Our network servers are protected by proper 'firewall '.
+7.2 If you are realize there are any security flaws in our Website, please contact us immediately so that we can take appropriate measures as quickly as possible. 
+7.3 Even though we have the above-mentioned technical and security measures, we cannot make sure that the information transmitted through the Internet is definitely safe, so we cannot absolutely guarantee that the private data that you provide to us through our Website will be safe at any time. We are not responsible for any loss or damage caused by or arising from any event that may occur in connection with unauthorized access to your private data, and we are not responsible for compensation for such damage or loss.
+8.Modification to the Privacy Policy 
+8.1 We reserve the right to modify the Privacy Policy from time to time and at any time. 
+8.2 We will inform you of the modifications of the Privacy Policy by updating and publishing the effective date of the release of new versions hereof and highlighting the amendments. However, it is not an obligation for us to inform you of the modification made in the Privacy Policy. 
+8.3 You shall review the Privacy Policy regularly and focus on its modifications, and if you do not agree with such modifications, you shall immediately stop using this Website. 
+8.4 When an updated version of this Privacy Policy is released, your continued visit to this Website shall show and indicate that you agree to the update and agree to comply with the updated Privacy Policy.
+9. Communication with Us 
 9.1 We only publish announcements and information on the basis of the valid and effective contact information on this Website or post announcements on this Website; So, we have no responsibility for any loss arising from your trust in the information that has not been obtained through the above-mentioned means.  
 9.2 If you have any comments and requests, you can send an email to support@sundax.top, which is the only official and valid email through which we keep in touch with you, so we will not undertake any liability for your failure to using effective contact information, any act or omission. 
 9.3 If you have any questions about our Privacy Policy, you are welcome to keep up with us at any time.`
@@ -598,42 +601,41 @@ Such information helps us to keep up with you and provide you with the Service, 
 let applicationEn = [
     {
         title:"Submission",
-        content:`To protect the right of investors extremely, SUNDAX is looking for tokens to be deployed if you could meet conditions, including but not limited to
-    Well maintained by a team with practical technology
-    High demanded and well managed by a strong and professional team
-    Meet the regulatory requirements without political risk
-    Status report and whitepaper must be submitted on time
-    Other requirements needed
+        content:`To protect the right of investors extremely, SUNDAX is looking for tokens to be deployed if you could meet conditions, including but not limited to:
+1)Well maintained by a team with practical technology;
+2)High demanded and well managed by a strong and professional team;
+3)Meet the regulatory requirements without political risk;
+4)Status report and whitepaper must be submitted on time;
+Other requirements needed.
         `
     },
     {
         title:"Removal Policy",
         content:`To protect the right of investors who're trading on SUNDAX platform, we reserve the right to keep or eliminate any token from our exchange, including but not limited to:
-    Fork without notifying in advance
-    The project’s facing significant legal issues
-    The project’s facing significant policy issues
-    Selectively value-relevant information communicated to the exchange or fraud
-    Security issue or technical issue which could not be solved
-    Operation team of project requested for removal from the exchange 
-    Daily volume less than 10 thousands US dollars in 7 consecutive days  
-    Daily volume less than 120 thousands US dollars in 30 consecutive days                                                                                                                    
-    Any other matters that do not meet the requirements of continuing trading.
+1)Fork without notifying in advance;
+2)The project’s facing significant legal issues;
+3)The project’s facing significant policy issues;
+4)Selectively value-relevant information communicated to the exchange or fraud;
+5)Security issue or technical issue which could not be solved;
+6)Daily volume less than 10 thousands US dollars in 7 consecutive days;                                                                                                                   
+7)Operation team of project requested for removal from the exchange; 
+Any other matters that do not meet the requirements of continuing trading.
         `
     },
     {
         title:"Please submit the project information through the link below",
-        content:`https://goo.gl/forms/HmKIe64LUZPfHj703`
+        content:`https://goo.gl/forms/bNNV7wuJeMnOrXfH2`
     }
 ]
 
 let userAgreementEn = {
     title:"Terms of User",
-    content:`SUNDAX(Singapore) Technology Group Pte.Ltd.(hereinafter referred to as "the company") is a company incorporated in Singapore under the laws of tSingapore, and operates the website https://www.allwin.world (hereinafter referred to as "this Website" or "the Website")，which is a platform dedicated to the transaction of digital assets and the provision of related services (hereinafter referred to as "the Service"). All content on this Website may be available in multiple languages. In case of any conflict between different language versions of such content or any omission in any language version，the Chinese version shall prevail.
+    content:`SUNDAX(Singapore) Technology Group Pte.Ltd.(hereinafter referred to as "the company") is a company incorporated in Singapore under the laws of tSingapore, and operates the website https://www.sundax.top (hereinafter referred to as "this Website" or "the Website")，which is a platform dedicated to the transaction of digital assets and the provision of related services (hereinafter referred to as "the Service"). All content on this Website may be available in multiple languages. In case of any conflict between different language versions of such content or any omission in any language version，the Chinese version shall prevail.
 
 1.【Definition】
 1.1 This Agreement：consists of the main body, Terms of Privacy, Understanding Your client and Anti-money-laundering Policy, as well as any rules, statements, instructions, etc. that this Website has published or may publish in the future.
 1.2 Your Mightiness(or any other applicable forms of the second-person pronouns):the users，natural person or other subject logging into the site
-1.3 We (or any other applicable forms of the first-person pronouns): SUNDAX(Singapore) Technology Group Pte.Ltd. 及 https://www.allwin.world 
+1.3 We (or any other applicable forms of the first-person pronouns): SUNDAX(Singapore) Technology Group Pte.Ltd. 及 https://www.sundax.top 
 1.4 Both Parties：you and us are collectively in the agreement
 1.5 One Party：you and us are individually in the agreement
 1.6 Member:users who have filling in the relevant information in accordance with the requirements of this Website, and have sucessfully registered after going through other relevant procedures
@@ -668,7 +670,7 @@ let userAgreementEn = {
 4.8 You are advised to carefully consider and use clear judgment to assess your financial position and the above-mentioned risks before making any decisions on buying and selling digital assets; any and all losses arising therefrom will be borne by you and we shall not be held liable in any manner whatsoever.
 
 5.【Website Rules】
-5.1 https://www.allwin.world is the sole official external information release platform for this Website.
+5.1 https://www.sundax.top is the sole official external information release platform for this Website.
 5.2 You understand that this Website is only intended to serve as a venue for you to obtain digital asset information, find trading counterparties, hold negotiations on and effect transactions of digital assets. This Website does not participate in any of your transactions, and therefore you shall, at your sole discretion, carefully assess the authenticity, legality and validity of relevant digital assets and/or information, and solely bear the responsibilities and losses that may arise therefrom.
 5.3 All opinions, information, discussions, analyses, prices, advice and other information on this Website are general market reviews and do not constitute any investment advice. We do not bear any loss arising directly or indirectly from reliance on the above-mentioned information, including but not limited to, any loss of profits.
 5.4 We have taken reasonable measures to ensure the accuracy of the information on the Website; however, we do not guarantee the degree of such accuracy, or bear any loss arising directly or indirectly from the information on this Website or from any delay or failure caused by failure to link up with the internet, transmit or receive any notice and information
@@ -739,7 +741,7 @@ You have the right to revoke or modify your transaction commission at any time b
 9.2 Shall you breach this Agreement or any applicable law or administrative regulation, you shall pay to us at least US$ Two million in compensation and bear all the expenses in connection with such breach (including attorney's fees, among others). If such compensation cannot cover the actual loss, you shall make up for the difference.
 
 10.【The Right to Injunctive Relief】
-    Both you and we acknowledge that common law remedies for breach of agreement or possible breach of contract may be insufficient to cover all the losses that we sustain; therefore, in the event of a breach of contract or a possible breach of contract, the non-breaching party shall have the right to seek injunctive relief as well as all other remedies that are permitted under common law or equity.
+ Both you and we acknowledge that common law remedies for breach of agreement or possible breach of contract may be insufficient to cover all the losses that we sustain; therefore, in the event of a breach of contract or a possible breach of contract, the non-breaching party shall have the right to seek injunctive relief as well as all other remedies that are permitted under common law or equity.
 11.【Limitation and Exemption of Liability】
 11.1 You understand and agree that under no circumstance will we be held liable for any of the following events:
 11.1.1 loss of income
@@ -800,7 +802,7 @@ You may not copy, modify, copy, transmit or use any of the foregoing materials o
 14.2.1.9 For all other legal purposes as well as other purposes authorized by you.
 14.2.2 This Website will not sell or lend your personal information to any other person unless your permission is obtained in advance. This Website also does not allow any third party to collect, edit, sell or gratuitously spread your personal information in any manner whatsoever.
 14.2.3 This Website shall keep confidential the customer identity information and transaction information that it obtains, and shall not provide any entity or individual with customer identification information or transaction information, except where any of the applicable laws, regulations, decrees, orders, etc., of relevant sovereign states or regions requires this Website to provide such information.
-15.【Calculation 】
+15.【Calculation】
 All the transaction calculations are verified by us, and all the calculation methods have been posted on the Website, but we can not ensure that your use of this Website will not be disturbed or free from errors.
 16.【Export Control】
 You understand and acknowledge that in accordance with relevant laws of Singapore, you shall not export, re-export, import or transfer any material (including software) on this Website; therefore, you hereby undertake that you will not voluntarily commit or assist or participate in any of the above export or related transfer or other violations of applicable laws and regulations; if you uncover any of the aforementioned events, you will report to us and assist us in handling them.
@@ -822,7 +824,7 @@ This Agreement in its entirety is a contract concluded under the laws of Singapo
 
 Know-your-customers and Anti-Money Laundering Policies
 1.【Preamble】
-    1.1 We ensure that we comply with know-your-customer and anti-money-laundering laws and regulations, and will not knowingly violate know-your-customers and anti-money-laundering policies. To the extent of our reasonable control, we will adopt necessary measures and technology to provide you with Services that are safe and secure, so as to protect you against the loss caused by money laundering to the greatest extent possible.
+ 1.1 We ensure that we comply with know-your-customer and anti-money-laundering laws and regulations, and will not knowingly violate know-your-customers and anti-money-laundering policies. To the extent of our reasonable control, we will adopt necessary measures and technology to provide you with Services that are safe and secure, so as to protect you against the loss caused by money laundering to the greatest extent possible.
 1.2 Our know-your-customer and anti-money-laundering policies are a comprehensive system of international policies, including the know-your-customer and anti-money-laundering policies of the jurisdictions to which you are subject to. Our robust compliance framework ensures that we meet regulatory requirements and regulatory standards on both the local and global levels, and ensure the operational sustainability of our website.
 2.【Content of Our Know-Your-Customer and Anti-Money-Laundering Policies】
 2.1 We promulgate and update know-your-customers and anti-money-laundering policies to meet the standards set by relevant laws and regulations;
