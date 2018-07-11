@@ -172,7 +172,7 @@ class Trade extends React.Component {
                 return data[type]
             }
         }
-        return 8;
+        return 4;
     }
 
 
