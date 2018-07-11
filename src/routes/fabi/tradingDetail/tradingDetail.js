@@ -36,12 +36,13 @@ class tradingDetail extends Component {
     }
     //加载定时器
     loadTimer = (dataInfo) =>{
+        clearInterval(this.intervalName);
         if (dataInfo.timeRemaining > 0) {
             let timeRemaining = dataInfo.timeRemaining;
             this.setState({
                 timeRemainingFormat: TimeFormat(timeRemaining)
             })
-            clearInterval(this.intervalName);
+            
             this.intervalName = setInterval(() => {
                 timeRemaining -= 1;
                 this.setState({timeRemainingFormat: TimeFormat(timeRemaining)});
@@ -55,12 +56,13 @@ class tradingDetail extends Component {
             }, 1000);
         }
 
+        clearInterval(this.intervalName);
         if (dataInfo.sellerTimeRemaining > 0) {
             let sellerTimeRemaining = dataInfo.sellerTimeRemaining;
             this.setState({
                 sellerTimeRemaining: TimeFormat(sellerTimeRemaining)
             })
-            clearInterval(this.intervalName);
+            
             this.intervalName = setInterval(() => {
                 sellerTimeRemaining -= 1;
                 this.setState({sellerTimeRemainingFormat: TimeFormat(sellerTimeRemaining)});
