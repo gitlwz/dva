@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import InputLabel from './InputLabel';
 import { routerRedux, Link } from 'dva/router';
+import { message } from 'antd';
 import Validator from '../../tool/Validator';
 import md5 from "md5";
 import styles from './regisx.less';
@@ -95,7 +96,10 @@ class Regis extends React.Component {
                     body: [this.state.email, md5(this.state.password), this.state.country],
                     callback: (data) => {
                         if (data.errorCode == "0") {
-                            this.pushRouter("/user/login")
+                            message.success("请前往注册邮箱进行邮箱验证")
+                            setTimeout = (() => {
+                                this.pushRouter("/user/login")
+                            }, 2000)
                         } else {
                             this.setState({ errMsg: data.errorMsg })
                         }

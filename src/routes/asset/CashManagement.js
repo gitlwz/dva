@@ -207,16 +207,12 @@ class CashManagement extends Component {
     }
     render() {
         return (
-            <div style={{ position:"relative",  paddingTop: '53px' }}>
-                <div className={styleA.mark}>
-                    <div className={styleA.mark_text}>内测阶段该功能暂不开放</div>
-                </div> 
-                
+            <div style={{  paddingTop: '53px' }}>
                 <div className={style.right_title}>
                     充提管理
                 </div>
                 <div style={{fontSize:"20px",marginTop:"100px"}}>
-                    内侧阶段暂不开放！
+                    内测阶段暂不开放！
                 </div>
                 {/* <div className={style.right_bz}>
                     <div className={styleA.card}>

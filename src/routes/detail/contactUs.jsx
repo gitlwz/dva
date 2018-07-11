@@ -118,7 +118,7 @@ class ContactUs extends Component {
             <div style={{ marginRight: 50, position: "relative" }}>
               <div className={styles.title}>问题分类</div>
               <select
-                className={styles.select} style={this.state.questionShow ? { ...inputStyle } : null}
+                className={styles.select + " " + styles.common} style={this.state.questionShow ? { ...inputStyle } : null}
                 value={this.props.questionParams.problemType}
                 onChange={e => { this.changeParams({ problemType: e.target.value }); this.changeStyle(e.target.value, 'question') }}
               >
@@ -138,6 +138,7 @@ class ContactUs extends Component {
               <p style={{ color: '#FF4200', fontSize: '14px', marginTop: 10, position: 'absolute' }}>{this.state.errTip2}</p>
               <div className={styles.title} style={{ marginTop: 60 }}>邮件地址</div>
               <input
+                className={styles.common}
                 style={this.state.emailShow ? { ...inputStyle } : null}
                 value={this.props.questionParams.email || ''}
                 onChange={e => { this.changeParams({ email: e.target.value }); this.changeStyle(e.target.value, 'email') }}
@@ -146,7 +147,7 @@ class ContactUs extends Component {
             </div>
             <div style={{ position: 'relative' }}>
               <div className={styles.title}>问题描述</div>
-              <textarea style={this.state.textShow ? { height: 335, padding: "20px", ...inputStyle } : { height: 335, padding: "20px" }} value={this.props.questionParams.problemBody} onChange={e => { this.changeParams({ problemBody: e.target.value }); this.changeStyle(e.target.value, 'text') }} />
+              <textarea className={styles.common} style={this.state.textShow ? { height: 335, padding: "20px", ...inputStyle } : { height: 335, padding: "20px" }} value={this.props.questionParams.problemBody} onChange={e => { this.changeParams({ problemBody: e.target.value }); this.changeStyle(e.target.value, 'text') }} />
               {
                 this.state.errTip4 == '' ?
                   <div className={styles.title} style={{ fontSize: 16, color: '#565656', position: 'absolute' }}>请详细描述你的问题，我们的工作人员会及时与您联系。</div>
