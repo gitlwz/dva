@@ -79,6 +79,7 @@ class SecurityCenter extends Component {
             </div>
         )
     }
+
     //重置资金密码
     resetPasswords = () => {
         this.props.history.push("/setMoneyPassword")
@@ -108,7 +109,27 @@ class SecurityCenter extends Component {
     }
     //身份验证
     _renderIDCardVerify = () => {
-        let { applyStatus } = this.props.userInfo;
+        let { applyStatus, checkStatus } = this.props.userInfo;
+        if (checkStatus == 1) {
+            return <div style={{ marginTop: "20px" }}>
+                工作人员正在审核中...
+            </div>
+        }
+        if (checkStatus == 3) {
+            return <div>
+                <div style={{ marginTop: "20px" }}>
+                    审核被驳回，请重新上传
+                </div>
+                <div style={{ marginTop: "20px" }}>
+                    <Select defaultValue={this.selectValue} style={{ width: '60%' }} onChange={this.SelecthandleChange}>
+                        <Option value="1">{language.asset.SFYZ}</Option>
+                        <Option value="2">{language.asset.HZYZ}</Option>
+                        <Option value="3">{language.asset.JGKHYZ}</Option>
+                    </Select>
+                    <Button onClick={this.selectOnClick} className="asset_btn SecurityCenter_btn" type="primary">提交验证文件</Button>
+                </div>
+            </div>
+        }
         if (applyStatus > 2) {
             return this.checkcOrrect();
         } else {

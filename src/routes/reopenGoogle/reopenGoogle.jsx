@@ -7,13 +7,21 @@ const QRCode = require('qrcode.react');
 /**
  * 资产管理
  */
+
+const qrStyle = { display: 'none' };
+var flag =0 ;
+
 class reopenGoogle extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+          visible:false
+        }
     }
     componentWillMount = () =>{
         this.findCode();
     }
+
     findCode = () =>{
         if(!this.props.match.params.name){
             message.warning("请先登录账号！")
@@ -68,6 +76,7 @@ class reopenGoogle extends Component {
         }
     }
     render() {
+      console.log(this.state.visible)
         return (
             <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
             <Spin spinning={this.props.loading} size="large" >
@@ -79,10 +88,13 @@ class reopenGoogle extends Component {
                         <div className={style.header_text}>
                             下载APP
                         </div>
-                        <div>
-                            <div className={style.imgIcon1}></div>
-                            <div className={style.imgIcon2}></div>
-                        </div>
+                      {this.state.visible==true ?  <div className={style.qrRoot} onClick={() => this.setState({visible: false})}>
+                        <QRCode className={style.qrCode} size={150} value={this.state.code}/>
+                      </div>:""}
+                      <div>
+                        <div className={style.imgIcon1} onClick={() => this.setState({visible: true,code:"https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8"})}></div>
+                        <div className={style.imgIcon2} onClick={() => this.setState({ visible: true,code:"https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"})}></div>
+                      </div>
                     </div>
                     <div className={style.detail}>
                         <div className={style.header_text +" " +style.header_tex2}>
@@ -118,7 +130,6 @@ class reopenGoogle extends Component {
                             <Button onClick={this.opentClick}  type="primary">开启谷歌验证</Button>
                         </div>
                     </div>
-                    
                 </div>
                 </Spin>
             </div>
