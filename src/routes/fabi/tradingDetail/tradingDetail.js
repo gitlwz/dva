@@ -54,6 +54,8 @@ class tradingDetail extends Component {
                     }, 1000)
                 }
             }, 1000);
+        }else{
+            this.setState({timeRemainingFormat: ''});
         }
 
         clearInterval(this.intervalName);
@@ -74,6 +76,8 @@ class tradingDetail extends Component {
                     }, 1000)
                 }
             }, 1000);
+        }else{
+            this.setState({sellerTimeRemainingFormat: ''});
         }
     }
     loadStateButton = () =>{
