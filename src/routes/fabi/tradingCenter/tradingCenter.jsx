@@ -200,7 +200,7 @@ class tradingCenter extends Component {
         this.setState({
             modalData: {
                 ...this.state.modalData,
-                password,
+                password:password.target.value,
             }
         })
     }

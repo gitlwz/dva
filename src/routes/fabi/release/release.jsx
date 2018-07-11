@@ -205,7 +205,7 @@ class Release extends React.Component {
                                 {this.loadPayment()}
                             </div>
                             <p>资金密码</p>
-                            <Input placeholder="未保证您的资金安全，请输入资金密码" value={this.state.password} onChange={e => {
+                            <Input type="password" placeholder="未保证您的资金安全，请输入资金密码" value={this.state.password} onChange={e => {
                                 this.setState({ password: e.target.value })
                             }} />
                             <Button disabled={this.state.disabled} className={styles.btn} onClick={() => this.saveBiddingPosters()}>提交</Button>
