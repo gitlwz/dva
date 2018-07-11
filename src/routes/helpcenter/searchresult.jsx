@@ -78,7 +78,7 @@ class SearchResult extends Component {
                             </Row>
                         </div>
                     </div>
-                    {/*<div className={stylesmy.bz}>备注：搜索结果内容往下衍生</div>*/}
+                    <div className={stylesmy.bz}>备注：搜索结果内容往下衍生</div>
                 </div>
             </div>
 

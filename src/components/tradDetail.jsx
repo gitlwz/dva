@@ -42,7 +42,7 @@ class TradeComponent extends React.Component {
         if (this.props.trade) {
             return this.props.dataList.map((item, index) => {
                 return <div key={item.id} className={styles.header}>
-                    <span style={{ textAlign: 'left', width: 50 }}>{this.props.tradeDate ? item.tradeDate : ""} {item.tradeTime}</span>
+                    <span style={{ textAlign: 'left', width: 50 }}>{item.insertDate} {item.tradeTime}</span>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36', width: 50 }}>{item.direction == "0" ? "买入" : '卖出'}</span>
                     <span>{item.price}</span>
                     <span>{item.volume}</span>
@@ -105,7 +105,6 @@ export default connect((state, props) => {
     return {
         instrumentIdData: state.kine.instrumentIdData,
         userId: state.user.userId,
-        tradeType: state.trade.tradeType,
         props
     }
 })(TradeComponent)

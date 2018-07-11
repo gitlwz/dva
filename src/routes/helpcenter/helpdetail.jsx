@@ -47,7 +47,9 @@ class HelpDetail extends Component {
 
                             <div style={{ margin: '0 auto', height: '60px', color: '#565656', background: '#FECC39', borderRadius: '10px', fontSize: "30px", display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 30 }}>{this.props.detail.helpTitle}</div>
                             <div className={styles.left_body}>
+                                <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
                                     <p dangerouslySetInnerHTML={{ __html: this.props.detail.helpBody }}  />
+                                </pre>
                             </div>
                         </div>
 

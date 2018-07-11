@@ -14,10 +14,9 @@ class PlatformDetail extends Component{
   render(){
 
     return (
-      <div className={styles.platform_content}>
-        {/* <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}> */}
-        <div className={styles.text} dangerouslySetInnerHTML={{ __html: this.props.item.msgBody }}/>
-        {/* </pre> */}
+      <div>
+        <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+        <div className={styles.text} dangerouslySetInnerHTML={{ __html: this.props.item.msgBody }}/></pre>
         <Row type="flex" justify="center" align="middle">
           <button className={styles.returnButton} onClick={this.props.onClick}>返回</button>
         </Row>

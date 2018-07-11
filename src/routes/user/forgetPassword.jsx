@@ -115,27 +115,24 @@ class ForgetPassword extends React.Component {
         }
         return <button className={styles.buttonCode} style={{ ...buttonStyle }} onClick={(e) => {
             if (this.state.email != "" && this.state.showEmailMsg == false) {
-                clearInterval(this.timer)
-                let index = 60;
-                this.setState({ buttonTitle: index + "重新发送" })
-                this.timer = setInterval(() => {
-                    index -= 1;
-                    if (index <= 0) {
-                        this.setState({ buttonTitle: "发送验证码" });
-                        buttonStyle = { background: '#FFD965' };
-                        clearInterval(this.timer)
-                    } else {
-                        this.setState({ buttonTitle: index + "重新发送" })
-                    }
-
-                }, 1000)
                 this.props.dispatch({
                     type: 'user/getVerification',
                     payload: {
                         email: [this.state.email],
                         callback: (data) => {
                             if (data.errorCode == "0") {
+                                let index = 60;
+                                this.timer = setInterval(() => {
+                                    index -= 1;
+                                    if (index <= 0) {
+                                        this.setState({ buttonTitle: "发送验证码" });
+                                        buttonStyle = { background: '#FFD965' };
+                                        clearInterval(this.timer)
+                                    } else {
+                                        this.setState({ buttonTitle: index + "重新发送" })
+                                    }
 
+                                }, 1000)
                             } else {
                                 this.setState({ errMsg: data.errorMsg })
                             }

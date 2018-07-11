@@ -37,13 +37,12 @@ var format = {
             }
         }
 
-
         if (max) {
-            if (parseFloat(value) > parseFloat(max)) {
+            if (parseFloat(value) >= parseFloat(max)) {
                 value = max;
                 message.error("超过最大值" + max + "请重新输入");
+                return max;
             }
-            return;
         }
         if (min) {
             if (parseFloat(value) < parseFloat(min)) {

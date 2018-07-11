@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Carousel, Row, Col } from 'antd';
-import { routerRedux } from 'dva/router';
 import { connect } from 'dva';
 import Home from './home';
 
@@ -39,7 +38,7 @@ class YingHe extends Component {
             let data = noticeList[name];
             if (!!data && data.length > 0) {
                 return data.map(item => {
-                    return <div key={item.msgID} style={{ color: 'white', lineHeight: "60px", textAlign: 'center' }} onClick={() => this.props.dispatch(routerRedux.push("/Platform?msgID=" + item.msgID))}>{item.msgTitle}</div>
+                    return <div key={item.msgID} style={{ color: 'white', lineHeight: "60px",textAlign:'center' }}>{item.msgTitle}</div>
                 })
             }
         }
@@ -55,7 +54,7 @@ class YingHe extends Component {
                     {this.loadBanner()}
                 </Carousel>
 
-                <div style={{ background: 'rgba(35,35,35,1)', cursor: 'pointer' }}>
+                <div style={{ background: 'rgba(35,35,35,1)' }}>
                     <Row type="flex" justify="space-around" align="middle" style={{ fontSize: 14, color: '#CDCDCD', height: 60 }}>
                         <Col span={8}>
                             <Carousel autoplay autoplaySpeed={4000} vertical dots={false} className={styles.carousel}>
@@ -101,6 +100,5 @@ export default connect((state, props) => {
                 type: 'other/findPushNotice'
             })
         },
-        dispatch
     }
 })(YingHe);
