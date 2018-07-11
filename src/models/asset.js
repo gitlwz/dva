@@ -18,15 +18,12 @@ export default {
 
         //安全中心
         userInfo: {},    //用户信息
-        findByUserID: {}, //用户资金密码
+        findByUserID:{}, //用户资金密码
 
         //提现管理
         QBotherAddress: {}, //其他充币地址
         TXotherAddress: {}, //其他提现地址
         currentCollapse: null, //当前打开的折叠面板
-
-        currencyList: [],
-        accountDeail: {}
     },
 
     effects: {
@@ -38,11 +35,11 @@ export default {
                 }
             })
             const { data } = yield call(baseService, api.asset.stopCheck, [...payload.params]);
-            if (!!data && data.result == 1) {
-                if (payload.params[1] == 5) {
+            if(!!data && data.result == 1){
+                if(payload.params[1] == 5){
                     message.success("短信验证关闭成功")
                 }
-                if (payload.params[1] == 4) {
+                if(payload.params[1] == 4){
                     message.success("谷歌验证关闭成功")
                 }
                 yield put({
@@ -51,10 +48,10 @@ export default {
                         loading: false
                     }
                 })
-                setTimeout(() => {
+                setTimeout(()=>{
                     window.location.reload();
-                }, 1000)
-            } else {
+                },1000)
+            }else{
                 yield put({
                     type: 'save',
                     payload: {
@@ -71,15 +68,15 @@ export default {
                 }
             })
             const { data } = yield call(baseService, api.asset.findByUserID, []);
-            if (!!data) {
+            if(!!data){
                 yield put({
                     type: 'save',
                     payload: {
-                        findByUserID: data,
+                        findByUserID:data,
                         loading: false
                     }
                 })
-            } else {
+            }else{
                 yield put({
                     type: 'save',
                     payload: {
@@ -169,47 +166,7 @@ export default {
             } catch (err) {
                 console.log(err)
             }
-        },
-
-        *findAllCurrencys({ payload }, { call, put }) {
-            const { data } = yield call(baseService, api.baseConfig.findAllCurrencys, []);
-            if (data != undefined)
-                yield put({
-                    type: 'save',
-                    payload: {
-                        currencyList: data
-                    }
-                })
-        },
-
-        *findAccountDetail({ payload }, { call, put }) {
-            const data = yield call(baseService, api.asset.findByOperTradingAccountAndFabiAccountCapital, payload.currency);
-            payload.callback(data);
-        },
-
-        *accountExchabge({ payload }, { call, put }) {
-            const data = yield call(baseService, api.asset.accountExchabge, payload.body);
-            payload.callback(data);
-        },
-
-        *findFabiAccountByClientId({ payload }, { call, put }) {
-            yield put({
-                type: 'save',
-                payload: {
-                    loading: true
-                }
-            })
-            const { data } = yield call(baseService, api.asset.findFabiAccountByClientId, payload);
-            if (data != undefined) {
-                yield put({
-                    type: 'save',
-                    payload: {
-                        dataSource: data,
-                        loading: false
-                    }
-                })
-            }
-        },
+        }
     },
 
     reducers: {
@@ -223,6 +180,6 @@ export default {
 
     subscriptions: {
 
-
+       
     },
 };
