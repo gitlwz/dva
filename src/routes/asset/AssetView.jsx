@@ -168,7 +168,7 @@ class AssetView extends Component {
                         <Divider type="vertical" />
                         <a style={{ color: "rgba(253,204,57,1)" }} onClick={() => this.findAccountDetail(record.currency)}>转到法币账户</a>
                     </div> :
-                        <div style={{ color: "rgba(253,204,57,1)" }} onClick={() => this.findAccountDetail(record.currency)}>转到币币账户</div>
+                        <a style={{ color: "rgba(253,204,57,1)" }} onClick={() => this.findAccountDetail(record.currency)}>转到币币账户</a>
                 )
             }
         }];
