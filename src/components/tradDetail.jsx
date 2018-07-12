@@ -56,7 +56,7 @@ class TradeComponent extends React.Component {
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买入" : '卖出'}</span>
                     <span>{item.limitPrice}</span>
                     <span>{item.volumeTotal}</span>
-                    <span>{item.totalPrice}</span>
+                    <span>{!!item.totalPrice ? item.totalPrice : "---"}</span>
                 </div>
             })
         }
@@ -70,16 +70,13 @@ class TradeComponent extends React.Component {
                     dataList.push({ price: "---", priceString: "---", volumeString: "---", direction: this.props.direction })
                 }
             }
-            //dataList = format.sort(dataList, this.props.sort);
-            // if (this.props.direction == '1') {
-            //     dataList = dataList.reverse()
-            // }
+
             return dataList.map((item, index) => {
                 return <div key={index} className={styles.header} onClick={() => this.props.handleOk(item.price)}>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买" + (index + 1) : '卖' + (this.props.dataList.length - index)}</span>
                     <span>{item.priceString}</span>
                     <span>{item.volumeString}</span>
-                    <span>{item.totalPrice}</span>
+                    <span>{!!item.totalPrice ? item.totalPrice : "---"}</span>
                 </div>
             })
         }
@@ -87,6 +84,7 @@ class TradeComponent extends React.Component {
     }
     render() {
         const { dataList, titleList } = this.props;
+        console.log(this.props.currentInstrument);
         return (
             <div style={this.props.style} className={styles.market}>
                 <div className={styles.header + " " + styles.title}>
@@ -106,6 +104,7 @@ export default connect((state, props) => {
         instrumentIdData: state.kine.instrumentIdData,
         userId: state.user.userId,
         tradeType: state.trade.tradeType,
+        currentInstrument: state.kine.currentInstrument,
         props
     }
 })(TradeComponent)

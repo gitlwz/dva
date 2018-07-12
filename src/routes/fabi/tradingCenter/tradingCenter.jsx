@@ -35,7 +35,7 @@ class tradingCenter extends Component {
             }, {
                 title: '数量',
                 sorter: (a, b) => a.surplusVolume - b.surplusVolume,
-                dataIndex: 'surplusVolume',
+                dataIndex: 'surplusVolumeStr',
             },
             {
                 title: '单价',
@@ -47,15 +47,15 @@ class tradingCenter extends Component {
             },
             {
                 title: '最小交易量',
-                dataIndex: 'limitVolume',
-                sorter: (a, b) => a.limitVolume - b.limitVolume,
+                dataIndex: 'limitVolumeStr',
+                sorter: (a, b) => a.limitVolumeStr - b.limitVolumeStr,
             },
             {
                 title: '单笔交易区间',
                 dataIndex: 'num',
                 render: (item, record, index) => {
                     return <div>
-                        {record.limitVolume * parseFloat(record.price)} ~ {record.surplusVolume * parseFloat(record.price)}CNY
+                        {record.limitVolumeStr * parseFloat(record.price)} ~ {record.surplusVolume * parseFloat(record.price)}CNY
                          </div>
                 }
             },
@@ -131,6 +131,10 @@ class tradingCenter extends Component {
             message.info("数量不能为空！")
             return
         }
+        if (this.state.modalData.surplusVolume < this.state.currentItem.limitVolume * 1) {
+            message.error("不能小于最小交易数量" + this.state.currentItem.limitVolume);
+            return;
+        }
         if (!this.state.modalData.money) {
             message.info("金额不能为空！")
             return
@@ -200,7 +204,7 @@ class tradingCenter extends Component {
         this.setState({
             modalData: {
                 ...this.state.modalData,
-                password:password.target.value,
+                password: password.target.value,
             }
         })
     }

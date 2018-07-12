@@ -39,7 +39,7 @@ class TradDetal extends React.Component {
     render() {
         return <Spin spinning={this.props.tradeDetailLoding}>
             <div style={{ height: "100%", paddingLeft: 20 }}>
-                <TradeComponent trade dataList={this.props.getTradeDetailList} titleList={this.state.titleList} handleOk={price => console.log(price)} />
+                <TradeComponent trade dataList={this.props.getTradeDetailList} titleList={["时间", "方向", "成交价" + "("+this.props.currentInstrument.split("-")[1]+")", "成交量" + "("+this.props.currentInstrument.split("-")[0]+")"]} handleOk={price => console.log(price)} />
             </div>
         </Spin>
     }

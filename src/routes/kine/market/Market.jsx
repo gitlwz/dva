@@ -46,9 +46,10 @@ class Market extends React.Component {
     }
 
     render() {
+        const titleList = ["", "价格" + (this.props.currentInstrument.split("-")[1]), "数量" + "("+this.props.currentInstrument.split("-")[0]+")", "总价" + "("+this.props.currentInstrument.split("-")[1]+")"];
         return <div style={{ height: '100%' }}>
             <Spin spinning={this.props.markLoading}>
-                <TradeComponent dataList={this.props.sellList} sort={1} direction="1" handleOk={price => {
+                <TradeComponent dataList={this.props.sellList} titleList={titleList} sort={1} direction="1" handleOk={price => {
                     if (price != "---") {
                         this.props.handleOk({ buyPrice: price, sellPrice: price })
                     }

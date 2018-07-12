@@ -324,21 +324,21 @@ class AccoutSeting extends React.Component {
                                         <div>姓名:{subBankAccountInfo.realName}</div>
                                         <Row type="flex" align="middle">
                                             银行信息:{subBankAccountInfo.bankName}  银行卡号:{subBankAccountInfo.bankAccountID} {subBankAccountInfo.bankAccountShow == "1" ?
-                                                <span>隐藏<Icon type="eye-o" onClick={() => {
+                                                <Icon type="eye-o" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
                                                     if (subBankAccountInfo.bankAccountID == null) {
                                                         message.error("请先设置银行卡账号!")
                                                         return
                                                     } else {
                                                         this.checkChange("0", "bankAccountShow")
                                                     }
-                                                }} /></span> : <span>显示<Icon type="eye" onClick={() => {
+                                                }} /> : <Icon type="eye" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
                                                     if (subBankAccountInfo.bankAccountID == null) {
                                                         message.error("请先设置银行卡账号!")
                                                         return
                                                     } else {
                                                         this.checkChange("1", "bankAccountShow")
                                                     }
-                                                }} /></span>}</Row>
+                                                }} />}</Row>
                                     </Row> :
                                     <div className={styles.content}>
                                         未绑定
@@ -375,21 +375,21 @@ class AccoutSeting extends React.Component {
                                     <div className={styles.content}>
                                         <div>姓名:{subBankAccountInfo.realName}</div>
                                         <div>支付宝账号:{subBankAccountInfo.alipayAccount}  {subBankAccountInfo.alipayAccountShow == "1" ?
-                                            <span>隐藏<Icon type="eye-o" onClick={() => {
+                                            <Icon type="eye-o" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
                                                 if (subBankAccountInfo.alipayAccount == null) {
                                                     message.error("请先设置支付宝账号!")
                                                     return
                                                 } else {
                                                     this.checkChange("0", "alipayAccountShow")
                                                 }
-                                            }} /></span> : <span>显示<Icon type="eye" onClick={() => {
+                                            }} /> : <Icon type="eye" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
                                                 if (subBankAccountInfo.alipayAccount == null) {
                                                     message.error("请先设置支付宝账号!")
                                                     return
                                                 } else {
                                                     this.checkChange("1", "alipayAccountShow")
                                                 }
-                                            }} /></span>}</div>
+                                            }} />}</div>
                                     </div> :
                                     <div className={styles.content}>
                                         未绑定
@@ -425,21 +425,21 @@ class AccoutSeting extends React.Component {
                                     <div className={styles.content}>
                                         <div>姓名:{subBankAccountInfo.realName}</div>
                                         <div>微信账号:{subBankAccountInfo.wechatAccount}  {subBankAccountInfo.wechatAccountShow == "1" ?
-                                            <span>隐藏<Icon type="eye-o" onClick={() => {
+                                            <Icon type="eye-o" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
                                                 if (subBankAccountInfo.wechatAccount == null) {
                                                     message.error("请先设置微信账号!")
                                                     return
                                                 } else {
                                                     this.checkChange("0", "wechatAccountShow")
                                                 }
-                                            }} /></span> : <span>显示<Icon type="eye" onClick={() => {
+                                            }} /> : <Icon type="eye" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
                                                 if (subBankAccountInfo.wechatAccount == null) {
                                                     message.error("请先设置微信账号!")
                                                     return
                                                 } else {
                                                     this.checkChange("1", "wechatAccountShow")
                                                 }
-                                            }} /></span>}</div>
+                                            }} />}</div>
                                     </div> :
                                     <div className={styles.content}>
                                         未绑定

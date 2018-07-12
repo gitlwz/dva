@@ -295,7 +295,6 @@ export default connect((state, props) => {
             })
         },
         savePrice: (parms) => {
-            console.log(parms)
             dispatch({
                 type: 'trade/save',
                 payload: {
