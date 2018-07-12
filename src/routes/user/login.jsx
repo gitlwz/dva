@@ -131,7 +131,7 @@ class Login extends React.Component {
                         >
                         <div style={{textAlign:"center"}}>
                             <img style={{marginBottom:"20px"}} src={Img}/>
-                            <SlidingValidation succeed={this.sliding}  succeedColr="#FDCC39"/>
+                            {this.state.visible&&<SlidingValidation succeed={this.sliding}  succeedColr="#FDCC39"/>}
                         </div>
                         
                     </Modal>
