@@ -77,7 +77,7 @@ class Home extends React.Component {
             dataArray.push(element);
         }
 
-        //读取缓存的数组 
+        //读取缓存的数组
         for (let i = 0; i < dataArray.length; i++) {
             for (let j = 0; j < checkedArray.length; j++) {
                 if (dataArray[i].instrumentId == checkedArray[j]) {
@@ -132,8 +132,8 @@ class Home extends React.Component {
                     <span>{item.instrumentId}</span>
                     {this.loadChangeVie(item)}
                 </div>
-                <div className={styles.text}>{item.closePrice != "---" ? parseFloat(item.closePrice.toFixed(4)) : ""}≈{format.convertCNY(this.props.RateUseList, item.closePrice, item.instrumentId)}</div>
-                <div className={styles.text}>24H量 {item.volume != "---" ? parseInt(item.volume) : '---'}</div>
+                <div className={styles.text}>{item.closePriceString != "---" ? item.closePriceString : ""}≈{item.convertCnyString} CNY</div>
+                <div className={styles.text}>24H量 {item.volumeString != "---" ? item.volumeString : '---'}</div>
             </div>
         })
     }
@@ -159,7 +159,7 @@ class Home extends React.Component {
                 dataIndex: 'closePrice',
                 render: (item) => {
                     if (item.closePrice != "---") {
-                        return <div>{parseFloat(item.closePrice.toFixed(4))}</div>
+                        return <div>{item.closePriceString}</div>
                     } else {
                         return <div>---</div>
                     }
@@ -176,18 +176,18 @@ class Home extends React.Component {
             },
             {
                 title: dataJSON.ZGJ,
-                dataIndex: 'highestPrice',
+                dataIndex: 'highestPriceString',
             },
             {
                 title: dataJSON.ZDJ,
-                dataIndex: 'lowestPrice',
+                dataIndex: 'lowestPriceString',
             },
             {
                 title: dataJSON.LXSCJ,
                 dataIndex: 'volume',
                 render: (item) => {
                     if (item.volume != "---") {
-                        return <div>{parseInt(item.volume)}</div>
+                        return <div>{item.volumeString}</div>
                     } else {
                         return <div>---</div>
                     }
@@ -200,7 +200,7 @@ class Home extends React.Component {
                     {this.getHotInstrument()}
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'row', margin: '30px 0', justifyContent: 'center', }}>
+                <div style={{ display: 'flex', flexDirection: 'row', margin: '30px 0', justifyContent: 'center', cursor: "pointer" }}>
                     {this.loadSearCurrency()}
                     <div className={styles.currency} style={{ background: this.state.currency == "ZX" ? "gold" : '' }} onClick={() => this.setState({ currency: "ZX" })}>
                         <img src={require("../../assets/yinghe/自定义类目@2x.png")} />

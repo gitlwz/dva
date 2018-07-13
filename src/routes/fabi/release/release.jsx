@@ -134,7 +134,7 @@ class Release extends React.Component {
             message.error("请输入交易密码!");
             return;
         }
-        if (this.state.limitVolume > this.state.volume) {
+        if (Number(this.state.limitVolume) > Number(this.state.volume)) {
             message.error("最小交易量不能大于挂单数量!");
             return;
         }
@@ -198,14 +198,14 @@ class Release extends React.Component {
                             <Input value={this.state.volume} onChange={e => this.reloadState(e.target.value, "volume")} />
                             <p>单价</p>
                             <Input suffix={<span>{this.state.currency}</span>} value={this.state.price} onChange={e => this.reloadState(e.target.value, "price")} />
-                            <p>最小交易额</p>
+                            <p>最小量</p>
                             <Input suffix={<span>{this.state.currency}</span>} value={this.state.limitVolume} onChange={e => this.reloadState(e.target.value, "limitVolume")} />
 
                             <div>
                                 {this.loadPayment()}
                             </div>
                             <p>资金密码</p>
-                            <Input placeholder="未保证您的资金安全，请输入资金密码" value={this.state.password} onChange={e => {
+                            <Input type="password" placeholder="未保证您的资金安全，请输入资金密码" value={this.state.password} onChange={e => {
                                 this.setState({ password: e.target.value })
                             }} />
                             <Button disabled={this.state.disabled} className={styles.btn} onClick={() => this.saveBiddingPosters()}>提交</Button>

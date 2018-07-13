@@ -29,6 +29,9 @@ const apis = {
         createAddress: { url: baseIP + "service/webGeneralService/createAddress", method: 'POST', description: '立即生效' },
         rechargeList: { url: baseIP + "service/webGeneralService/queryMoneyIO", method: 'POST', description: '充提币记录' },
         entrustList: { url: baseIP + "service/webGeneralService/queryOperTrade", method: 'POST', description: '成交查询' },
+        findFabiAccountByClientId: { url: baseIP + "service/webGeneralService/findFabiAccountByClientId", method: 'POST', description: '查询法币资金' },
+        findByOperTradingAccountAndFabiAccountCapital: { url: baseIP + "service/webGeneralService/findByOperTradingAccountAndFabiAccountCapital", method: 'POST', description: '查询资金' },
+        accountExchabge:{ url: baseIP + "service/webGeneralService/accountExchabge", method: 'POST', description: '资产互转' },
     },
     "helpcenter": {
         findAllPushHelpCenterByCondition: { url: baseIP + "service/anonymousWebGeneralService/findAllPushHelpCenterByCondition", method: 'POST', description: '帮助中心问题名称集合' },
@@ -97,6 +100,7 @@ const apis = {
         findAllExchangeRateUse: { url: baseIP + "service/webGeneralService/findAllExchangeRateUse", method: 'POST', description: '查询兑换人民币换算汇率' },
         getAllInstrument: { url: baseIP + "service/instrumentTradParamService/getAllInstrument", method: 'POST', description: '查询所有货币小数保存位数' },
         getPhoto: { url: baseIP + "download/memberFileUploadService/downloadFile", method: 'GET', description: '去FTP下载图片' },
+        findAllCurrencys: { url: baseIP + "service/webGeneralService/findAllCurrencys", method: 'POST', description: '查询所有币种集合' },
     }
 }
 export default apis;

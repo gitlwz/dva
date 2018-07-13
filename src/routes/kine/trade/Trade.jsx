@@ -49,7 +49,7 @@ class Trade extends React.Component {
     }
 
     //格式化数字
-    formatNum({ value, max, pointNum }) {
+    formatNum({ value, max, min, pointNum }) {
         if (max == 0) {
             return 0;
         }
@@ -58,12 +58,13 @@ class Trade extends React.Component {
             message.error("超过最大值" + max + "请重新输入");
             return value;
         }
+
         return format.NumberCheck({ value: value, pointNum: pointNum })
     }
 
 
     //下单操作
-    orderInsert(direction) {
+    orderInsert(direction, minimumTransactionQuantity) {
         const { userInfo, instrumentIdData, buyPrice, buyVolume, sellPrice, sellVolume, userId, currentInstrument } = this.props;
         let orderData = {};
         let limitPrice = "";
@@ -84,6 +85,10 @@ class Trade extends React.Component {
                 message.error("交易价格不能为0!")
                 return;
             }
+            if (buyVolume < minimumTransactionQuantity) {
+                message.error("买入数量不能小于" + minimumTransactionQuantity);
+                return;
+            }
         }
         if (direction == "1") {
             if (sellVolume == 0) {
@@ -94,7 +99,13 @@ class Trade extends React.Component {
                 message.error("交易价格不能为0!")
                 return;
             }
+            if (sellVolume < minimumTransactionQuantity) {
+                message.error("卖出数量不能小于" + minimumTransactionQuantity);
+                return;
+            }
         }
+
+
 
         if (userInfo && userInfo.id) {
             orderData.participantId = userInfo.clientID;
@@ -204,7 +215,8 @@ class Trade extends React.Component {
         let transactionQuantityDecimal = this.getDecimalsPoint("transactionQuantityDecimal");
         //获取交易金额小数位数
         let transactionAmount = Number(this.getDecimalsPoint("transactionAmount"));
-
+        //获取货币最小交易数量
+        let minimumTransactionQuantity = this.getDecimalsPoint("minimumTransactionQuantity");
         //获取当前可买数量
         const getMaxBuyTotal = format.buyMax(getButTotal, buyPrice, Number(transactionQuantityDecimal));
         return <Row type="flex" justify="space-between" style={{ color: '#565656' }}>
@@ -225,7 +237,7 @@ class Trade extends React.Component {
                         <Col span={18} style={{ textAlign: 'right' }}>{getMaxBuyTotal} {BJInstrument}</Col>
                     </Row>
                     <div className={styles.sum}>交易额 {format.multiply(buyPrice, buyVolume, transactionAmount)} {JJInstrument}</div>
-                    <Spin spinning={this.state.buyloading}><button loading={this.props.loading} className={styles.sellButton} disabled={userId ? false : true} onClick={() => this.orderInsert("0")}>买入 {BJInstrument}</button></Spin>
+                    <Spin spinning={this.state.buyloading}><button loading={this.props.loading} className={styles.sellButton} disabled={userId ? false : true} onClick={() => this.orderInsert("0", minimumTransactionQuantity)}>买入 {BJInstrument}</button></Spin>
                 </div>
             </Col>
 
@@ -245,7 +257,7 @@ class Trade extends React.Component {
                         <Col span={18} style={{ textAlign: 'right' }}>{getSellTotal} {BJInstrument}</Col>
                     </Row>
                     <div className={styles.sum}>交易额 {format.multiply(sellPrice, sellVolume, transactionAmount)} {JJInstrument}</div>
-                    <Spin spinning={this.state.sellloading}><button disabled={userId ? false : true} className={styles.buyButton} onClick={() => this.orderInsert("1")}>卖出 {BJInstrument}</button></Spin>
+                    <Spin spinning={this.state.sellloading}><button disabled={userId ? false : true} className={styles.buyButton} onClick={() => this.orderInsert("1", minimumTransactionQuantity)}>卖出 {BJInstrument}</button></Spin>
                 </div>
             </Col>
 
@@ -283,7 +295,6 @@ export default connect((state, props) => {
             })
         },
         savePrice: (parms) => {
-            console.log(parms)
             dispatch({
                 type: 'trade/save',
                 payload: {

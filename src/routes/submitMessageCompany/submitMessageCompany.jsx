@@ -10,7 +10,7 @@ const InputGroup = Input.Group;
 const Search = Input.Search;
 
 /**
- * 资产管理
+ * 机构验证
  */
 class submitMessageCompany extends Component {
     constructor(props) {
@@ -96,7 +96,7 @@ class submitMessageCompany extends Component {
                 return;
             }
             this.props.dispatch({
-                type: 'submitMessageCompany/authentication',
+                type: 'submitMessage/authentication',
                 payload: {
                     params: {
                         businessCardPhoto:this.state.data1,

@@ -103,9 +103,9 @@ class MyEntrust extends React.Component {
         return (
             <div style={{ height: '100%', padding: '0 20px' }}>
                 <Spin spinning={this.props.orderForClientLoading}>
-                    <div style={{ height: 300,width:"100%",overflowX:"auto", overflowY: 'scroll' }}>
-                        {this.props.tradeType == "0" ? <TradeComponent style={{minWidth:"800px"}} dataList={dataList} titleList={["时间", "货币对", "买卖", "委单价", "剩余委托数量", "总价"]} entrust /> :
-                            <TradeComponent trade dataList={dataList} titleList={["时间", "方向", "成交价", "成交量"]} handleOk={price => console.log(price)} />
+                    <div style={{ height: 300, width: "100%", overflowX: "auto", overflowY: 'scroll' }}>
+                        {this.props.tradeType == "0" ? <TradeComponent style={{ minWidth: "800px" }} dataList={dataList} titleList={["时间", "货币对", "买卖", "委单价"+ "("+this.props.currentInstrument.split("-")[1]+")", "剩余委托数量"+ "("+this.props.currentInstrument.split("-")[0]+")", "总价"+ "("+this.props.currentInstrument.split("-")[1]+")"]} entrust /> :
+                            <TradeComponent trade tradeDate dataList={dataList} titleList={["时间", "方向", "成交价" + (this.props.currentInstrument.split("-")[1]), "成交量" + "("+this.props.currentInstrument.split("-")[0]+")"]} handleOk={price => console.log(price)} />
                         }
                     </div>
                 </Spin>

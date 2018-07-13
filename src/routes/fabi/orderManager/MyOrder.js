@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
+import { routerRedux } from 'dva/router';
 import { Select, DatePicker, Divider, Button, Table } from 'antd';
 import style from './orderManager.less'
 import moment from 'moment';
@@ -19,7 +20,7 @@ class MyOrder extends Component {
                 dataIndex: "orderID",
                 width: 200,
                 fixed: 'left'
-            },{
+            }, {
                 title: "发布编号",
                 dataIndex: "postersID",
                 width: 200,
@@ -27,14 +28,14 @@ class MyOrder extends Component {
                 title: "创建时间",
                 dataIndex: "operateTime",
                 width: 200,
-                render: (item,record, index) => {
+                render: (item, record, index) => {
                     return <span>{record.operateDate} {record.operateTime}</span>
                 },
             }, {
                 title: "币种",
                 dataIndex: "currency",
                 width: 80,
-            },  {
+            }, {
                 title: "类型",
                 dataIndex: "businessType",
                 width: 90,
@@ -45,11 +46,11 @@ class MyOrder extends Component {
                         return <div style={{ color: 'rgba(52,155,0,1)' }}>卖出</div>
                     }
                 },
-            },{
+            }, {
                 title: "交易对象",
                 dataIndex: "tradingName",
-                width:100,
-            },  {
+                width: 100,
+            }, {
                 title: "交易单价",
                 dataIndex: "price",
                 width: 120,
@@ -57,7 +58,7 @@ class MyOrder extends Component {
                 render: (item, record) => {
                     return <span>{record.price}CNY</span>
                 }
-            },{
+            }, {
                 title: "数量",
                 dataIndex: "number",
                 width: 120,
@@ -91,11 +92,11 @@ class MyOrder extends Component {
                 render: (item, record) => {
                     switch (record.state) {
                         case '0':
-                            return (<a onClick={() => this.countermand(record)} style={{ color: "rgba(255,191,0,1)" }}>立即付款</a>)
+                            return (<a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }}>立即付款</a>)
                         case '1':
-                            return  (<a onClick={() => this.countermand(record)} style={{ color: "rgba(255,191,0,1)" }}>确认收款</a>)
+                            return (<a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }}>确认收款</a>)
                         case '2':
-                            return  (<a onClick={() => this.countermand(record)} style={{ color: "rgba(255,191,0,1)" }}>已完成</a>)
+                            return (<a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }}>已完成</a>)
                         case '3':
                             return (<div> --</div>)
                         default:
@@ -146,7 +147,7 @@ class MyOrder extends Component {
             }
         })
     }
-    
+
     //页码变化
     PaginationChange = (current, pageSize) => {
         let { currency, mmdata, rangeData, state } = this.state.query
@@ -179,17 +180,17 @@ class MyOrder extends Component {
                 </div>
                 <div className={style.right_bz}>
                     <div className="orderManager">
-                        
+
                         <div className="chaxun">
                             <div>
-                                <Select value={this.state.query.mmdata} onChange={(mmdata) => { this.setState({ query: { ...this.state.query, mmdata } }) }} style={{ width: 200 }}>
+                                <Select value={this.state.query.mmdata} onChange={(mmdata) => { this.setState({ query: { ...this.state.query, mmdata } }) }} style={{ width: 150 }}>
                                     <Option value="全部">全部买/卖</Option>
                                     <Option value="0">买入</Option>
                                     <Option value="1">卖出</Option>
                                 </Select>
                             </div>
                             <div>
-                                <Select value={this.state.query.currency} onChange={(currency) => { this.setState({ query: { ...this.state.query, currency } }) }} style={{ width: 200 }}>
+                                <Select value={this.state.query.currency} onChange={(currency) => { this.setState({ query: { ...this.state.query, currency } }) }} style={{ width: 150 }}>
                                     <Option value="全部">全部币种</Option>
                                     {this.props.currency.map((ele) => {
                                         return <Option key={ele} value={ele}>{ele}</Option>
@@ -200,7 +201,7 @@ class MyOrder extends Component {
                                 <RangePicker onChange={(rangeData) => { this.setState({ query: { ...this.state.query, rangeData } }) }} value={this.state.query.rangeData} />
                             </div>
                             <div>
-                                <Select value={this.state.query.state} onChange={(state) => { this.setState({ query: { ...this.state.query, state } }) }} style={{ width: 200 }}>
+                                <Select value={this.state.query.state} onChange={(state) => { this.setState({ query: { ...this.state.query, state } }) }} style={{ width: 150 }}>
                                     <Option value="全部">全部状态</Option>
                                     <Option value="0">待审核</Option>
                                     <Option value="1">审核通过</Option>

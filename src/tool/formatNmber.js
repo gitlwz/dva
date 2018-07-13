@@ -37,13 +37,12 @@ var format = {
             }
         }
 
-
         if (max) {
-            if (parseFloat(value) > parseFloat(max)) {
+            if (parseFloat(value) >= parseFloat(max)) {
                 value = max;
                 message.error("超过最大值" + max + "请重新输入");
+                return max;
             }
-            return;
         }
         if (min) {
             if (parseFloat(value) < parseFloat(min)) {
@@ -136,7 +135,6 @@ var format = {
 
     //计算货币转算成人民币
     convertCNY(rateUseList, closePrice, instrumentId) {
-
         const isExchangeRate = (currency) => {
             let newData = rateUseList.filter(item => item.currency == currency)[0];
             if (newData && newData["exchangeRate"]) {

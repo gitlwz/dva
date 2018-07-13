@@ -42,10 +42,10 @@ class TradeComponent extends React.Component {
         if (this.props.trade) {
             return this.props.dataList.map((item, index) => {
                 return <div key={item.id} className={styles.header}>
-                    <span style={{ textAlign: 'left', width: 50 }}>{item.insertDate} {item.tradeTime}</span>
+                    <span style={{ textAlign: 'left', width: 50 }}>{this.props.tradeDate ? item.tradeDate : ""} {item.tradeTime}</span>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36', width: 50 }}>{item.direction == "0" ? "买入" : '卖出'}</span>
-                    <span>{item.price}</span>
-                    <span>{item.volume}</span>
+                    <span>{item.priceString}</span>
+                    <span>{item.volumeString}</span>
                 </div>
             })
         } else if (this.props.entrust) {
@@ -56,7 +56,7 @@ class TradeComponent extends React.Component {
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买入" : '卖出'}</span>
                     <span>{item.limitPrice}</span>
                     <span>{item.volumeTotal}</span>
-                    <span>{format.multiply(item.limitPrice, item.volumeTotal, 14)}</span>
+                    <span>{!!item.totalPrice ? item.totalPrice : "---"}</span>
                 </div>
             })
         }
@@ -65,21 +65,18 @@ class TradeComponent extends React.Component {
             let dataList = this.props.dataList || [];
             for (let i = dataList.length; i < 7; i++) {
                 if (this.props.direction == "1") {
-                    dataList.unshift({ price: "---", volume: "---", direction: this.props.direction })
+                    dataList.unshift({ price: "---", priceString: "---", volumeString: "---", direction: this.props.direction })
                 } else {
-                    dataList.push({ price: "---", volume: "---", direction: this.props.direction })
+                    dataList.push({ price: "---", priceString: "---", volumeString: "---", direction: this.props.direction })
                 }
             }
-            //dataList = format.sort(dataList, this.props.sort);
-            // if (this.props.direction == '1') {
-            //     dataList = dataList.reverse()
-            // }
+
             return dataList.map((item, index) => {
-                return <div key={index} className={styles.header} onClick={() => this.props.handleOk(item.price)}>
+                return <div key={index} className={styles.header} onClick={() => this.props.handleOk(item.priceString)}>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买" + (index + 1) : '卖' + (this.props.dataList.length - index)}</span>
-                    <span>{item.price}</span>
-                    <span>{item.volume}</span>
-                    <span>{format.multiply(item.price, item.volume)}</span>
+                    <span>{item.priceString}</span>
+                    <span>{item.volumeString}</span>
+                    <span>{!!item.totalPrice ? item.totalPrice : "---"}</span>
                 </div>
             })
         }
@@ -105,6 +102,8 @@ export default connect((state, props) => {
     return {
         instrumentIdData: state.kine.instrumentIdData,
         userId: state.user.userId,
+        tradeType: state.trade.tradeType,
+        currentInstrument: state.kine.currentInstrument,
         props
     }
 })(TradeComponent)

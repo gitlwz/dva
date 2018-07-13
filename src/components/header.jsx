@@ -27,11 +27,15 @@ class Header extends Component {
         }
         this.currLanguage = window.localStorage.getItem("language") || 'China';
     }
+
     componentDidMount() {
         this.props.getUserId()
     }
 
     componentWillReceiveProps(next) {
+        if (this.state.selectMenu != window.location.hash.split("#")[1]) {
+            this.setState({ selectMenu: window.location.hash.split("#")[1] });
+        }
     }
 
     pushNewPage(pageName) {
@@ -140,7 +144,7 @@ class Header extends Component {
                     this.setState({ selectMenu: item.url });
                     this.pushNewPage(item.url)
                 }} key={item.title} >
-                    <img src={this.state.selectMenu == item.url ? item.selectImg : item.img} style={{ width: 21, height: 21 }} />
+                    <img src={this.state.selectMenu == item.url ? item.selectImg : item.img} style={{ width: 19, height: 19 }} />
                     <span style={{ color: this.state.selectMenu == item.url ? "#FECC39" : '' }}>{item.title}</span>
                 </div>
             })}
@@ -163,13 +167,7 @@ class Header extends Component {
                             <span style={{ padding: '0 20px' }} onClick={() => this.pushNewPage("/user/regis")}>{languageData.signIn}</span>
                         </div> :
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <img src={selectBg} style={{ margin: '0 10px', width: 40 }} onClick={() => {
-                                if (this.props.userId) {
-                                    this.pushNewPage("/home")
-                                } else {
-                                    this.pushNewPage("/user/login")
-                                }
-                            }} />
+                            <img src={selectBg} style={{ margin: '0 10px', width: 40 }} />
                             <Dropdown overlay={this.menu()}>
                                 <span style={{ padding: '0 20px' }}>{this.props.userId}</span>
                             </Dropdown>
@@ -179,16 +177,17 @@ class Header extends Component {
                     }
                     <div className={styles.language}>
                         <img src={languareBG} style={{ marginRight: 20, marginLeft: 10 }} />
-                        <select value={this.currLanguage} onChange={this.currLanguageChange} style={{ height: "26px", border: "none", outline: 'none', fontSize: "18px", marginLeft: "-8px" }}>
-                          { this.currLanguage == "China" ?
-                            <option value="China">{this.currLanguage == "China" ? "中文" : 'China'}</option>
-                            :
-                            <option value="China">{this.currLanguage == "China" ? "China" : '中文'}</option>
-                          }
-                          { this.currLanguage == "China" ?
-                            <option value="English">{this.currLanguage == "English" ? "英文" : 'English'}</option>
-                            :
-                            <option value="English">{this.currLanguage == "English" ? "English" : '英文'}</option>
+                        <select value={this.currLanguage} onChange={this.currLanguageChange} style={{ height: "26px", border: "none", outline: 'none', fontSize: "18px", marginLeft: "-8px", cursor: "pointer" }}>
+                            {this.currLanguage == "China" ?
+                                <option value="China">{this.currLanguage == "China" ? "中文" : 'China'}</option>
+                                :
+                                <option value="China">{this.currLanguage == "China" ? "China" : '中文'}</option>
+                            }
+                            {this.currLanguage == "China" ?
+                                <option value="English">{this.currLanguage == "English" ? "英文" : 'English'}</option>
+                                :
+                                <option value="English">{this.currLanguage == "English" ? "English" : '英文'}</option>
+                            }
                           }
                         </select>
                     </div>

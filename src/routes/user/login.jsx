@@ -4,10 +4,12 @@ import { routerRedux } from 'dva/router';
 import Validator from '../../tool/Validator';
 import { connect } from 'dva';
 import md5 from "md5";
+import { Modal } from 'antd';
 import languageData from '../../language/index'
 import styles from './login.less';
 import singleStyle from './InputLabel.less';
-
+import SlidingValidation from "../../components/sliding-validation"
+import Img from "../../assets/yinghe/矢量智能对象@2x.png"
 class Login extends React.Component {
 
     constructor(props) {
@@ -18,6 +20,8 @@ class Login extends React.Component {
             errMsg: '',
             userName: '',
             password: "",
+
+            visible:false
 
         }
     }
@@ -39,21 +43,33 @@ class Login extends React.Component {
         }
     }
 
-
-    LoginClick() {
-        if (this.state.userName != "" && this.state.password != "" && this.state.showEmailMsg == false) {
-            this.props.dispatch({
-                type: 'user/login',
-                payload: {
-                    body: { userName: this.state.userName, password: md5(this.state.password), verification_code: '1231', extends: JSON.stringify({ isTrader: "3" }) },
-                    callback: (data) => {
-                        if (data.errorCode == "0") {
-                            this.pushRouter("/home")
-                        } else {
-                            this.setState({ errMsg: data.errorMsg, showWordMsg: true })
-                        }
+    loginFun(){
+        this.props.dispatch({
+            type: 'user/login',
+            payload: {
+                body: { userName: this.state.userName, password: md5(this.state.password), verification_code: '1231', extends: JSON.stringify({ isTrader: "3" }) },
+                callback: (data) => {
+                    if (data.errorCode == "0") {
+                        this.pushRouter("/home")
+                    } else {
+                        this.setState({ errMsg: data.errorMsg, showWordMsg: true })
                     }
                 }
+            }
+        })
+    }
+    sliding = ()=>{
+        setTimeout(()=>{
+            this.loginFun()
+            this.setState({
+                visible:false
+            })
+        },500)
+    }
+    LoginClick() {
+        if (this.state.userName != "" && this.state.password != "" && this.state.showEmailMsg == false) {
+            this.setState({
+                visible:true
             })
         } else {
             if (this.state.userName == "") {
@@ -104,6 +120,21 @@ class Login extends React.Component {
                         <div>{languageData.CJYGZHJRSJ}</div>
                         <a style={{ color: '#FDCC39', textDecoration: 'underline' }} onClick={() => this.pushRouter("/user/regis")}>{languageData.DJZC}</a>
                     </div>
+                    <Modal
+                        width="354px"
+                        closable={false}
+                        footer={null}
+                        title=""
+                        visible={this.state.visible}
+                        onOk={()=>{}}
+                        onCancel={()=>this.setState({visible:false})}
+                        >
+                        <div style={{textAlign:"center"}}>
+                            <img style={{marginBottom:"20px"}} src={Img}/>
+                            {this.state.visible&&<SlidingValidation succeed={this.sliding}  succeedColr="#FDCC39"/>}
+                        </div>
+                        
+                    </Modal>
                 </div>
 
             </div>
