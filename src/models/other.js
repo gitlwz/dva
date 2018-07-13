@@ -73,7 +73,6 @@ export default {
         //查询货币对保留小数点位数
         *getAllInstrument({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.baseConfig.getAllInstrument, []);
-            console.log(data)
             if (data != undefined) {
                 yield put({
                     type: 'save',
@@ -83,12 +82,6 @@ export default {
                 })
             }
         },
-
-        //获取图片地址
-        // getPhoto({ payload }, { call, put }) {
-        //     const { data } = yield call(baseService, api.baseConfig.getPhoto, []);
-           
-        // },
     },
 
     reducers: {

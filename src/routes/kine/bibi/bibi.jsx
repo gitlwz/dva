@@ -127,7 +127,7 @@ class Bibi extends React.Component {
                 </Col>
                 <Col span="19">
                     <div style={{ marginLeft: 10 }}>
-                        <div className={cardHeader} style={{ color: '#565656', fontSize: 14 }}><span style={{ color: '#3E3E3E', fontSize: 22 }}> {currentInstrument} {dataByInstrumentId.closePrice}</span> ≈ {formatData.convertCNY(this.props.RateUseList, dataByInstrumentId.closePrice, dataByInstrumentId.instrumentId)} 涨幅 {formatData.changePrice(dataByInstrumentId.closePrice, dataByInstrumentId.openPrice)}  高 {dataByInstrumentId.highestPrice}  低 {dataByInstrumentId.lowestPrice} 24H量 {dataByInstrumentId.volume}</div>
+                        <div className={cardHeader} style={{ color: '#565656', fontSize: 14 }}><span style={{ color: '#3E3E3E', fontSize: 22 }}> {currentInstrument} {dataByInstrumentId.closePrice}</span> ≈ {formatData.convertCNY(this.props.RateUseList, dataByInstrumentId.closePrice, currentInstrument)} 涨幅 {formatData.changePrice(dataByInstrumentId.closePrice, dataByInstrumentId.openPrice)}  高 {dataByInstrumentId.highestPrice}  低 {dataByInstrumentId.lowestPrice} 24H量 {dataByInstrumentId.volume}</div>
                         <div style={{ height: '490px', ...borderRadius }} className={bgColor}>
                             {!!currentInstrument ? <TVChartContainer symbol={currentInstrument} /> : ''}
                         </div>

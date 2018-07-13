@@ -135,7 +135,6 @@ var format = {
 
     //计算货币转算成人民币
     convertCNY(rateUseList, closePrice, instrumentId) {
-
         const isExchangeRate = (currency) => {
             let newData = rateUseList.filter(item => item.currency == currency)[0];
             if (newData && newData["exchangeRate"]) {

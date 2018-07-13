@@ -46,18 +46,18 @@ class Market extends React.Component {
     }
 
     render() {
-        const titleList = ["", "价格" + (this.props.currentInstrument.split("-")[1]), "数量" + "("+this.props.currentInstrument.split("-")[0]+")", "总价" + "("+this.props.currentInstrument.split("-")[1]+")"];
+        const titleList = ["", "价格" + "(" + this.props.currentInstrument.split("-")[1] + ")", "数量" + "(" + this.props.currentInstrument.split("-")[0] + ")", "总价" + "(" + this.props.currentInstrument.split("-")[1] + ")"];
         return <div style={{ height: '100%' }}>
             <Spin spinning={this.props.markLoading}>
-                <TradeComponent dataList={this.props.sellList} titleList={titleList} sort={1} direction="1" handleOk={price => {
-                    if (price != "---") {
-                        this.props.handleOk({ buyPrice: price, sellPrice: price })
+                <TradeComponent dataList={this.props.sellList} titleList={titleList} sort={1} direction="1" handleOk={priceString => {
+                    if (priceString != "---") {
+                        this.props.handleOk({ buyPrice: priceString, sellPrice: priceString })
                     }
                 }} />
                 <div style={{ height: '1px', width: '95%', background: '#D8D8D8', margin: '5px 10px' }}></div>
-                <TradeComponent dataList={this.props.buyList} sort={1} titleList={[]} direction="0" handleOk={price => {
-                    if (price != "---") {
-                        this.props.handleOk({ sellPrice: price, buyPrice: price })
+                <TradeComponent dataList={this.props.buyList} sort={1} titleList={[]} direction="0" handleOk={priceString => {
+                    if (priceString != "---") {
+                        this.props.handleOk({ sellPrice: priceString, buyPrice: priceString })
                     }
                 }} />
             </Spin>

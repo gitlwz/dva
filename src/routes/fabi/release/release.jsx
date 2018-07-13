@@ -134,7 +134,7 @@ class Release extends React.Component {
             message.error("请输入交易密码!");
             return;
         }
-        if (this.state.limitVolume > this.state.volume) {
+        if (Number(this.state.limitVolume) > Number(this.state.volume)) {
             message.error("最小交易量不能大于挂单数量!");
             return;
         }

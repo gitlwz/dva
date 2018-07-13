@@ -135,7 +135,7 @@ class Indenture extends React.Component {
                             <span> {item.instrumentId.split("-")[0]}</span>
                         </div>
                     </Col>
-                    <Col className={styles.col} span={8} style={{ textAlign: 'center' }}>{item.closePrice}</Col>
+                    <Col className={styles.col} span={8} style={{ textAlign: 'center' }}>{item.closePriceString}</Col>
                     <Col className={styles.col} span={8} style={{ textAlign: 'right', paddingRight: 10 }}>{rose}</Col>
                 </Row>
             })

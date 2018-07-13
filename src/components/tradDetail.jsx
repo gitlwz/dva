@@ -44,8 +44,8 @@ class TradeComponent extends React.Component {
                 return <div key={item.id} className={styles.header}>
                     <span style={{ textAlign: 'left', width: 50 }}>{this.props.tradeDate ? item.tradeDate : ""} {item.tradeTime}</span>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36', width: 50 }}>{item.direction == "0" ? "买入" : '卖出'}</span>
-                    <span>{item.price}</span>
-                    <span>{item.volume}</span>
+                    <span>{item.priceString}</span>
+                    <span>{item.volumeString}</span>
                 </div>
             })
         } else if (this.props.entrust) {
@@ -72,7 +72,7 @@ class TradeComponent extends React.Component {
             }
 
             return dataList.map((item, index) => {
-                return <div key={index} className={styles.header} onClick={() => this.props.handleOk(item.price)}>
+                return <div key={index} className={styles.header} onClick={() => this.props.handleOk(item.priceString)}>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买" + (index + 1) : '卖' + (this.props.dataList.length - index)}</span>
                     <span>{item.priceString}</span>
                     <span>{item.volumeString}</span>
@@ -84,7 +84,6 @@ class TradeComponent extends React.Component {
     }
     render() {
         const { dataList, titleList } = this.props;
-        console.log(this.props.currentInstrument);
         return (
             <div style={this.props.style} className={styles.market}>
                 <div className={styles.header + " " + styles.title}>
