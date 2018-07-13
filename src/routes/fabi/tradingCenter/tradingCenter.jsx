@@ -80,9 +80,9 @@ class tradingCenter extends Component {
         ]
     }
     componentWillMount = () => {
-        this.props.dispatch({
-            type: "tradingCenter/findAllCurrencys",
-        })
+        // this.props.dispatch({
+        //     type: "tradingCenter/findAllCurrencys",
+        // })
         this.props.dispatch({
             type: "tradingCenter/findByBiddingPosters",
         })
@@ -252,13 +252,13 @@ class tradingCenter extends Component {
                             <div className="tr_item">
                                 <div>数量</div>
                                 <div >
-                                    <InputNumber min={this.state.currentItem.limitVolume * 1 || 0} className="tr_InputNumber" onChange={this.numChange} value={this.state.modalData.surplusVolume} max={this.state.currentItem.surplusVolume} />
+                                    <InputNumber min={this.state.currentItem.limitVolumeStr * 1 || 0} className="tr_InputNumber" onChange={this.numChange} value={this.state.modalData.surplusVolume} max={this.state.currentItem.surplusVolume} />
                                     <span onClick={() => {
                                         this.numChange(this.state.currentItem.surplusVolume)
                                     }} className="tr_qb">全部</span>
                                 </div>
                                 <div style={{ float: "right" }}>
-                                    (最小交易量：{this.state.currentItem.limitVolume + " " + this.state.currentItem.currency})
+                                    (最小交易量：{this.state.currentItem.limitVolumeStr + " " + this.state.currentItem.currency})
                                     </div>
                             </div>
 

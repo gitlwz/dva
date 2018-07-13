@@ -68,13 +68,13 @@ class Release extends React.Component {
     reloadState(e, type) {
         switch (type) {
             case "volume":
-                this.setState({ volume: format.NumberCheck({ value: e, pointNum: 14 }) })
+                this.setState({ volume: format.NumberCheck({ value: e, pointNum: 8 }) })
                 break;
             case "price":
                 this.setState({ price: format.NumberCheck({ value: e, pointNum: 2 }) })
                 break;
             case "limitVolume":
-                this.setState({ limitVolume: format.NumberCheck({ value: e, pointNum: 14 }) })
+                this.setState({ limitVolume: format.NumberCheck({ value: e, pointNum: 8 }) })
                 break;
             default:
                 break;
@@ -199,7 +199,7 @@ class Release extends React.Component {
                             <p>单价</p>
                             <Input suffix={<span>CNY</span>} value={this.state.price} onChange={e => this.reloadState(e.target.value, "price")} />
                             <p>最小量</p>
-                            <Input suffix={<span>CNY</span>} value={this.state.limitVolume} onChange={e => this.reloadState(e.target.value, "limitVolume")} />
+                            <Input suffix={<span>{this.state.currency}</span>} value={this.state.limitVolume} onChange={e => this.reloadState(e.target.value, "limitVolume")} />
 
                             <div>
                                 {this.loadPayment()}

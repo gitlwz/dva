@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'dva';
 import { Row, Col, Input, Select, message, Icon } from 'antd';
+import md5 from "md5";
 import QDModal from "../../../components/QDModal";
 import UploadComponent from '../../../components/upload';
 import card from '../../../assets/card.png';
@@ -75,19 +76,19 @@ class AccoutSeting extends React.Component {
                 body.bankID = this.state.bankID;
                 body.bankName = this.state.bankName;
                 body.bankAccountID = this.state.bankAccountID;
-                body.accountPassword = this.state.accountPassword;
+                body.accountPassword = md5(this.state.accountPassword);
                 this.props.dispatch({
                     type: 'user/bindingToModify',
                     payload: {
                         body: [body],
                         callback: (data) => {
                             if (data.errorCode == 0) {
-                                message.success("设置成功!")
+                                message.success("设置成功!");
+                                this.getSubBankAccout();
+                                this.modalCancel();
                             } else {
                                 message.error(data.errorMsg)
                             }
-                            this.getSubBankAccout();
-                            this.modalCancel();
                         }
                     }
                 })
@@ -96,7 +97,7 @@ class AccoutSeting extends React.Component {
                 let body1 = this.props.subBankAccountInfo;
                 body1.realName = this.state.realName;
                 body1.alipayAccount = this.state.alipayAccount;
-                body1.accountPassword = this.state.accountPassword;
+                body1.accountPassword = md5(this.state.accountPassword);
                 if (this.state.realName == "") {
                     message.error("请输入姓名!");
                     return;
@@ -120,12 +121,10 @@ class AccoutSeting extends React.Component {
                         body: [body1],
                         callback: (data) => {
                             if (data.errorCode == 0) {
-                                message.success("设置成功!")
-                            } else {
-                                message.error(data.errorMsg)
+                                message.success("设置成功!");
+                                this.getSubBankAccout();
+                                this.modalCancel();
                             }
-                            this.getSubBankAccout();
-                            this.modalCancel();
                         }
                     }
                 })
@@ -134,7 +133,7 @@ class AccoutSeting extends React.Component {
                 let body2 = this.props.subBankAccountInfo;
                 body2.realName = this.state.realName;
                 body2.wechatAccount = this.state.wechatAccount;
-                body2.accountPassword = this.state.accountPassword;
+                body2.accountPassword = md5(this.state.accountPassword);
                 if (!!this.state.wechatPhoto) {
                     body2.wechatAccountPhoto = this.state.wechatAccountPhoto
                 } else {
@@ -158,12 +157,10 @@ class AccoutSeting extends React.Component {
                         body: [body2],
                         callback: (data) => {
                             if (data.errorCode == 0) {
-                                message.success("设置成功!")
-                            } else {
-                                message.error(data.errorMsg)
+                                message.success("设置成功!");
+                                this.getSubBankAccout();
+                                this.modalCancel();
                             }
-                            this.getSubBankAccout();
-                            this.modalCancel();
                         }
                     }
                 })
@@ -193,7 +190,7 @@ class AccoutSeting extends React.Component {
 
             alipayPhoto: '',
             wechatPhoto: ''
-        })
+        }, () => this.getSubBankAccout())
     }
 
     changModal(parms) {
@@ -292,7 +289,7 @@ class AccoutSeting extends React.Component {
         return (
             <div style={{ paddingTop: '53px' }}>
                 <div className={styles.right_title}>
-                    充提管理
+                    账户管理
                 </div>
                 <div className={styles.right_bz} loading={this.props.loading}>
                     <div className={styles.card}>
