@@ -465,7 +465,6 @@ class AccoutSeting extends React.Component {
     }
 }
 export default connect((state, props) => {
-    console.log(state.release)
     return {
         subBankAccountInfo: state.release.subBankAccountInfo,
         props

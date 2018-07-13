@@ -166,7 +166,9 @@ class AssetView extends Component {
                             _that.props.history.push("/otherPresent/" + record.currency)
                         }} style={{ color: "rgba(253,204,57,1)" }}>提现</a>
                         <Divider type="vertical" />
-                        <a style={{ color: "rgba(253,204,57,1)" }} onClick={() => this.findAccountDetail(record.currency)}>转到法币账户</a>
+                        {(record.currency == "BTC" || record.currency == "USDT" || record.currency == "ETH") ?
+                            <a style={{ color: "rgba(253,204,57,1)" }} onClick={() => this.findAccountDetail(record.currency)}>转到法币账户</a> : ""
+                        }
                     </div> :
                         <a style={{ color: "rgba(253,204,57,1)" }} onClick={() => this.findAccountDetail(record.currency)}>转到币币账户</a>
                 )

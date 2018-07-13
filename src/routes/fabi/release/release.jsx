@@ -197,9 +197,9 @@ class Release extends React.Component {
                             <p>数量</p>
                             <Input value={this.state.volume} onChange={e => this.reloadState(e.target.value, "volume")} />
                             <p>单价</p>
-                            <Input suffix={<span>{this.state.currency}</span>} value={this.state.price} onChange={e => this.reloadState(e.target.value, "price")} />
+                            <Input suffix={<span>CNY</span>} value={this.state.price} onChange={e => this.reloadState(e.target.value, "price")} />
                             <p>最小量</p>
-                            <Input suffix={<span>{this.state.currency}</span>} value={this.state.limitVolume} onChange={e => this.reloadState(e.target.value, "limitVolume")} />
+                            <Input suffix={<span>CNY</span>} value={this.state.limitVolume} onChange={e => this.reloadState(e.target.value, "limitVolume")} />
 
                             <div>
                                 {this.loadPayment()}

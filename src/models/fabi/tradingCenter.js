@@ -92,7 +92,6 @@ export default {
             let { data } = yield call(baseService, api.tradingCenter.findBiddingPosters, [...payload]);
            
             if (!!data) {
-                console.log("**22222222222222222**", data.totalRecord)
                 yield put({
                     type: 'save',
                     payload: {

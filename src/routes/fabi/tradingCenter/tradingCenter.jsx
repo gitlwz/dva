@@ -34,13 +34,11 @@ class tradingCenter extends Component {
                 dataIndex: 'currency',
             }, {
                 title: '数量',
-                sorter: (a, b) => a.surplusVolume - b.surplusVolume,
                 dataIndex: 'surplusVolumeStr',
             },
             {
                 title: '单价',
                 dataIndex: 'price',
-                sorter: (a, b) => a.price - b.price,
                 render: (item) => {
                     return <span>{item}CNY</span>
                 }
@@ -48,16 +46,10 @@ class tradingCenter extends Component {
             {
                 title: '最小交易量',
                 dataIndex: 'limitVolumeStr',
-                sorter: (a, b) => a.limitVolumeStr - b.limitVolumeStr,
             },
             {
                 title: '单笔交易区间',
-                dataIndex: 'num',
-                render: (item, record, index) => {
-                    return <div>
-                        {record.limitVolumeStr * parseFloat(record.price)} ~ {record.surplusVolume * parseFloat(record.price)}CNY
-                         </div>
-                }
+                dataIndex: 'tradingRange',
             },
             {
                 title: '支付方式',
@@ -106,9 +98,6 @@ class tradingCenter extends Component {
         const { Bidding } = this.props;
         if (!Bidding.nickname || !Bidding.accountPassword) {
             message.error("请先设置昵称和资金密码!")
-            // setTimeout(() => {
-            //     FakeRouter.push("userCenter/userCenter.html");
-            // }, 2000)
             return;
         }
         let title = null;
@@ -298,7 +287,6 @@ class tradingCenter extends Component {
 }
 export default connect((state, props) => {
     let { loading, AllCurrencys, Bidding, current, total, pageSize, dataSource } = state.tradingCenter
-    console.log("state===", state.tradingCenter)
     return {
         loading,
         AllCurrencys,
