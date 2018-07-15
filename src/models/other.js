@@ -13,7 +13,8 @@ export default {
         messageList: [],   //平台公告
         RateUseList: [],  //汇率
         totalPage: 0,
-        decimalsPointList: []
+        decimalsPointList: [],
+        basePointList: []
     },
 
     effects: {
@@ -78,6 +79,19 @@ export default {
                     type: 'save',
                     payload: {
                         decimalsPointList: data
+                    }
+                })
+            }
+        },
+
+        *findAll({ payload }, { call, put }) {
+            const { data } = yield call(baseService, api.baseConfig.findAll, []);
+            console.log(data);
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        basePointList: data
                     }
                 })
             }

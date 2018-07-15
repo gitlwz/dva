@@ -37,26 +37,26 @@ class MyDeity extends Component {
                 width: 80,
             }, {
                 title: "数量",
-                dataIndex: "volume",
+                dataIndex: "volumeStr",
                 width: 120,
-                sorter: (a, b) => a.volume - b.volume,
             }, {
                 title: "最小交易量",
-                dataIndex: "limitVolume",
+                dataIndex: "limitVolumeStr",
                 width: 150,
-                sorter: (a, b) => a.limitVolume - b.limitVolume,
             }, {
                 title: "单价",
                 dataIndex: "price",
                 width: 120,
-                sorter: (a, b) => a.price - b.price,
                 render: (item, record) => {
                     return <span>{record.price}CNY</span>
                 }
             }, {
                 title: "创建时间",
                 dataIndex: "createDate",
-                width: 120,
+                width: 200,
+                render: (text, item) => {
+                    return <div>{item.createDate} {item.createTime}</div>
+                }
             }, {
                 title: "状态",
                 dataIndex: "state",
@@ -120,7 +120,10 @@ class MyDeity extends Component {
             }, {
                 title: "创建时间",
                 dataIndex: "operateTime",
-                width: 120,
+                width: 200,
+                render: (item, record, index) => {
+                    return <span>{record.operateDate} {record.operateTime}</span>
+                },
             }, {
                 title: "币种",
                 dataIndex: "currency",
@@ -144,17 +147,14 @@ class MyDeity extends Component {
                 title: "交易单价",
                 dataIndex: "price",
                 width: 150,
-                sorter: (a, b) => a.price - b.price,
             }, {
                 title: "数量",
                 dataIndex: "number",
                 width: 120,
-                sorter: (a, b) => a.number - b.number,
             }, {
                 title: "金额",
                 dataIndex: "amount",
                 width: 120,
-                sorter: (a, b) => a.amount - b.amount,
             }, {
                 title: "状态",
                 dataIndex: "state",

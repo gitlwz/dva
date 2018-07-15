@@ -49,12 +49,11 @@ class MyOrder extends Component {
             }, {
                 title: "交易对象",
                 dataIndex: "tradingName",
-                width: 100,
+                width: 120,
             }, {
                 title: "交易单价",
                 dataIndex: "price",
                 width: 120,
-                sorter: (a, b) => a.price - b.price,
                 render: (item, record) => {
                     return <span>{record.price}CNY</span>
                 }
@@ -62,7 +61,6 @@ class MyOrder extends Component {
                 title: "数量",
                 dataIndex: "number",
                 width: 120,
-                sorter: (a, b) => a.number - b.number,
             }, {
                 title: "状态",
                 dataIndex: "state",
