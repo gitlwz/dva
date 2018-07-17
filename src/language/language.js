@@ -226,8 +226,8 @@ export default {
 		
 		tradingCenter:{
 			FBJY:'法币交易',
-			WYM:'我要买',
-			WYM:'我要卖',
+			IWantToBuy:'我要买',
+			IWanoToSell:'我要卖',
 			SJ:'商家',
 			BZ:'币种',
 			SL:'数量',
@@ -539,8 +539,8 @@ export default {
 			
 		tradingCenter:{
 			FBJY:'OTC',
-			WYM:'BUY',
-			WYM:'SELL',
+			IWantToBuy:'BUY',
+			IWantToSell:'SELL',
 			SJ:'Merchant',
 			BZ:'Currency',
 			SL:'Amount',

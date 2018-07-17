@@ -213,8 +213,8 @@ class tradingCenter extends Component {
                     </div>
                     <div className="tr_content">
                         <div className="tr_select">
-                            <div onClick={() => this.selectClick('1')} className={this.state.key == 1 ? "active" : ""}><img src={IMG2} />{dataJSON.tradingCenter.WYM}</div>
-                            <div onClick={() => this.selectClick('0')} className={this.state.key == 0 ? "active" : ""}><img src={IMG3} />{dataJSON.tradingCenter.WYM}}</div>
+                            <div onClick={() => this.selectClick('1')} className={this.state.key == 1 ? "active" : ""}><img src={IMG2} />{dataJSON.tradingCenter.IWantToBuy}</div>
+                            <div onClick={() => this.selectClick('0')} className={this.state.key == 0 ? "active" : ""}><img src={IMG3} />{dataJSON.tradingCenter.IWanoToSell}}</div>
                         </div>
                         <div className="tr_neck">
                             <div className={this.state.currencys === "" ? "active" : ""} onClick={() => this.currencysClick("")}>
