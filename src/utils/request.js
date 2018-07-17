@@ -42,7 +42,6 @@ export default function request(url, options) {
                 return data
             }
         }).catch(err => {
-            console.log("network error")
             if (err != null) {
                 return "network error"
             }

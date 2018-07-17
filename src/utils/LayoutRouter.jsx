@@ -108,7 +108,7 @@ const LayoutRouter = [
         component: () => import('../routes/bindingAddress/bindingAddress'),
     }, {
         path: '/tradingCenter',  //法币交易中心
-        models: () => [import('../models/fabi/tradingCenter')],
+        models: () => [import('../models/fabi/tradingCenter'),import("../models/other")],
         component: () => import('../routes/fabi/tradingCenter/tradingCenter'),
     },
     {

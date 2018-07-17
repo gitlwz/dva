@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
 import { Table, Spin, Button, message, Input, InputNumber } from 'antd';
+import format from '../../../tool/formatNmber';
 import IMG from "../../../assets/tradingCenter.png"
 import IMG2 from "../../../assets/买入@3x.png";
 import IMG3 from "../../../assets/卖出2@3x.png";
@@ -88,6 +89,9 @@ class tradingCenter extends Component {
         // })
         this.props.dispatch({
             type: "tradingCenter/findByBiddingPosters",
+        });
+        this.props.dispatch({
+            type: 'other/findAll'
         })
         this.PaginationChange(1, 10);
     }
@@ -171,23 +175,40 @@ class tradingCenter extends Component {
             }]
         })
     }
+
+    //获取基础货币小数点位数
+    getDecimalsPoint() {
+        const { basePointList } = this.props;
+        const { currency } = this.state;
+        if (basePointList.length > 0) {
+            let data = basePointList.filter(item => item.currency == currency)[0];
+            if (!!data && data["decimalDigits"]) {
+                return data["decimalDigits"]
+            }
+        }
+        return 8;
+    }
+
+
     //数字变化
     numChange = (surplusVolume) => {
+        let points = this.getDecimalsPoint();
         this.setState({
             modalData: {
                 ...this.state.modalData,
-                surplusVolume,
-                money: this.state.currentItem.price * surplusVolume
+                surplusVolume: format.NumberCheck({ value: surplusVolume.toString(), pointNum: points }),
+                money: (this.state.currentItem.price * surplusVolume).toFixed(2)
             }
         })
     }
     //金额变化
     moneyChange = (money) => {
+        let points = this.getDecimalsPoint();
         this.setState({
             modalData: {
                 ...this.state.modalData,
-                money,
-                surplusVolume: money / this.state.currentItem.price
+                money: Number(format.NumberCheck({ value: money.toString(), pointNum: 2 })) || 0,
+                surplusVolume: Number(format.NumberCheck({ value: money / this.state.currentItem.price, pointNum: points })) || 0,
             }
         })
     }
@@ -214,7 +235,7 @@ class tradingCenter extends Component {
                     <div className="tr_content">
                         <div className="tr_select">
                             <div onClick={() => this.selectClick('1')} className={this.state.key == 1 ? "active" : ""}><img src={IMG2} />{dataJSON.tradingCenter.WYM}</div>
-                            <div onClick={() => this.selectClick('0')} className={this.state.key == 0 ? "active" : ""}><img src={IMG3} />{dataJSON.tradingCenter.WYM}}</div>
+                            <div onClick={() => this.selectClick('0')} className={this.state.key == 0 ? "active" : ""}><img src={IMG3} />{dataJSON.tradingCenter.WYM}</div>
                         </div>
                         <div className="tr_neck">
                             <div className={this.state.currencys === "" ? "active" : ""} onClick={() => this.currencysClick("")}>
@@ -269,17 +290,15 @@ class tradingCenter extends Component {
                                 <div className="tr_item">
                                     <div>{dataJSON.tradingCenter.JE}</div>
                                     <div>
-                                        <InputNumber min={0} className="tr_InputNumber" max={this.state.currentItem.surplusVolume * this.state.currentItem.price} value={this.state.modalData.money} onChange={this.moneyChange} />
+                                        <Input min={0} step={0.01} className="tr_InputNumber" max={this.state.currentItem.surplusVolume * this.state.currentItem.price} value={this.state.modalData.money} onChange={this.moneyChange} />
                                         <span className="tr_name">CNY</span>
                                     </div>
                                 </div>
                                 {
                                     this.state.currentItem.postersType != 1 &&
                                     <div className="tr_item">
-                                        <div>资金密码</div>
                                         <input type="password" style={{ display: 'none' }} />
                                         <div>{dataJSON.tradingCenter.ZJMM}</div>
-                                        <Input type="password" style={{ display: 'none' }} />
                                         <div>
                                             <Input type="text" value={this.state.modalData.password} onChange={this.passwordChange} />
                                         </div>
@@ -299,6 +318,7 @@ export default connect((state, props) => {
         loading,
         AllCurrencys,
         current,
+        basePointList: state.other.basePointList,
         total,
         pageSize,
         dataSource,

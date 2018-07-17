@@ -154,7 +154,10 @@ class MyDeity extends Component {
             }, {
                 title: "金额",
                 dataIndex: "amount",
-                width: 120,
+                render: (item, record) => {
+                    return <span>{record.amount}CNY</span>
+                },
+                width: 150,
             }, {
                 title: "状态",
                 dataIndex: "state",
