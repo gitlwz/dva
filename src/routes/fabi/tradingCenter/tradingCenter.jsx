@@ -266,7 +266,6 @@ class tradingCenter extends Component {
                                         ({dataJSON.tradingCenter.ZXJYL}：{this.state.currentItem.limitVolumeStr + " " + this.state.currentItem.currency})
                                     </div>
                                 </div>
-                                <input type="password" style={{ display: 'none' }} />
                                 <div className="tr_item">
                                     <div>{dataJSON.tradingCenter.JE}</div>
                                     <div>
@@ -277,6 +276,8 @@ class tradingCenter extends Component {
                                 {
                                     this.state.currentItem.postersType != 1 &&
                                     <div className="tr_item">
+                                        <div>资金密码</div>
+                                        <input type="password" style={{ display: 'none' }} />
                                         <div>{dataJSON.tradingCenter.ZJMM}</div>
                                         <Input type="password" style={{ display: 'none' }} />
                                         <div>
