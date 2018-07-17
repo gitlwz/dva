@@ -263,7 +263,6 @@ class tradingCenter extends Component {
                                         (最小交易量：{this.state.currentItem.limitVolumeStr + " " + this.state.currentItem.currency})
                                     </div>
                                 </div>
-                                <input type="password" style={{ display: 'none' }} />
                                 <div className="tr_item">
                                     <div>金额</div>
                                     <div>
@@ -275,7 +274,7 @@ class tradingCenter extends Component {
                                     this.state.currentItem.postersType != 1 &&
                                     <div className="tr_item">
                                         <div>资金密码</div>
-                                        <Input type="password" style={{ display: 'none' }} />
+                                        <input type="password" style={{ display: 'none' }} />
                                         <div>
                                             <Input type="text" value={this.state.modalData.password} onChange={this.passwordChange} />
                                         </div>
