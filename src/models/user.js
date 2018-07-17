@@ -8,7 +8,8 @@ export default {
 
     state: {
         userInfo: {
-            clientID: null
+            clientID: null,
+            nickName: null,
         },//用户信息
         countryList: [],
         isLogin: false,

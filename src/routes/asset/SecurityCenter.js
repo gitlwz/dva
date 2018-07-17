@@ -223,8 +223,14 @@ class SecurityCenter extends Component {
                 break;
         }
     }
+
+    //昵称修改
+    changeNickName(){
+        console.log("昵称修改")
+    }
+
     render() {
-        let { clientID, clientName, registeredName, applyStatus } = this.props.userInfo;
+        let { clientID, clientName, nickName ,registeredName, applyStatus } = this.props.userInfo;
         if (!!clientName) {
             clientName = "**" + clientName.substr(clientName.length - 1, 1);
         } else {
@@ -248,6 +254,16 @@ class SecurityCenter extends Component {
                             <Col className={styleA.rowF_title} span={4}>{language.asset.XM}</Col>
                             <Col span={20}>{clientName}</Col>
                         </Row>
+
+
+                        <Row className={styleA.rowF}>
+                            <Col className={styleA.rowF_title} span={4}>昵称</Col>
+                            <Col span={20}>
+                            <span>{nickName}</span>
+                            <Button onClick={() => this.changeNickName()} className="asset_btn SecurityCenter_btn" type="primary">修改昵称</Button>
+                            </Col>
+                        </Row>
+
                         <Row className={styleA.rowF}>
                             <Col className={styleA.rowF_title} span={4}>{language.asset.YHID}</Col>
                             <Col span={20}>{clientID}</Col>
