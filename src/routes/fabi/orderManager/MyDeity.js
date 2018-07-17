@@ -1,4 +1,4 @@
-//我的挂单
+//我的发布
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
@@ -297,7 +297,7 @@ class MyDeity extends Component {
         return (
             <div style={{ paddingTop: '53px' }}>
                 <div className={style.right_title}>
-                    我的挂单
+                    我的发布
                 </div>
                 <div className={style.right_bz}>
                     <div className="orderManager">
