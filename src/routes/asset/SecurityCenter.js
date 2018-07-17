@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Button, Icon, Select, message } from 'antd';
+import { Row, Col, Button, Icon, Select, message, Input } from 'antd';
 import style from './asset.less';
 import styleA from './SecurityCenter.less';
 import language from '../../language'
@@ -225,8 +225,19 @@ class SecurityCenter extends Component {
     }
 
     //昵称修改
-    changeNickName(){
-        console.log("昵称修改")
+    saveNickname(){
+        console.log("修改昵称")
+        this.props.dispatch({
+            type: 'user/saveNickname',
+            payload: {
+                body: {nickName: this.props.userInfo.nickName},
+                callback: (data) => {
+                    if(data.errCode === '0'){
+                        message.success("修改成功！")
+                    }
+                }
+            }
+        })
     }
 
     render() {
@@ -259,8 +270,8 @@ class SecurityCenter extends Component {
                         <Row className={styleA.rowF}>
                             <Col className={styleA.rowF_title} span={4}>昵称</Col>
                             <Col span={20}>
-                            <span>{nickName}</span>
-                            <Button onClick={() => this.changeNickName()} className="asset_btn SecurityCenter_btn" type="primary">修改昵称</Button>
+                            <Input value={nickName} style={{width: 100}} onChange={e => this.props.dispatch({ type: 'user/save', payload: { userInfo: {nickName: e.target.value} } })}/>
+                            <Button onClick={() => this.saveNickname()} className="asset_btn SecurityCenter_btn" type="primary">修改昵称</Button>
                             </Col>
                         </Row>
 

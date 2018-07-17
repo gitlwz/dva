@@ -14,6 +14,7 @@ const apis = {
         "resetPassword": { url: baseIP + 'service/anonymousWebGeneralService/resetPassword', method: 'POST', description: '修改密码' },
         "bindingToModify": { url: baseIP + 'service/webGeneralService/bindingToModify', method: 'POST', description: '修改账户信息' },
         updateShow: { url: baseIP + 'service/webGeneralService/updateShow', method: 'POST', description: '控制是否展示支付方式' },
+        "saveNickname": { url: baseIP + 'service/webGeneralService/saveNickname', method: 'POST', description: '修改昵称' },
     },
     "trad": {
         rate: { url: baseIP + "service/webGeneralService/findAllFeeSet", method: 'POST', description: '查询费率' },
