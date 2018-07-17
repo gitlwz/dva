@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import style from './orderManager.less'
 import { connect } from 'dva';
 import { Row, Col,Spin } from 'antd';
-import MyDeity from './MyDeity' ;  //我的挂单
+import MyDeity from './MyDeity' ;  //我的发布
 import MyOrder from './MyOrder'; // 我的订单
 /**
  * 订单管理
@@ -11,8 +11,8 @@ class orderManager extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            leftMenu: ["我的挂单", "我的订单"],
-            currentSelect:"我的挂单"
+            leftMenu: ["我的发布", "我的订单"],
+            currentSelect:"我的发布"
         }
     }
     componentWillMount = () => {
@@ -47,7 +47,7 @@ class orderManager extends Component {
                                 </div>
                             </Col>
                             <Col className="gutter-row" span={18}>
-                                {this.state.currentSelect === "我的挂单" && <MyDeity key="1" history={this.props.history} />}
+                                {this.state.currentSelect === "我的发布" && <MyDeity key="1" history={this.props.history} />}
                                 {this.state.currentSelect === "我的订单" && <MyOrder key="2" history={this.props.history} />}
                             </Col>
                         </Row>
