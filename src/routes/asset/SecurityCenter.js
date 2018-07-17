@@ -1,15 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Button, Icon, Select, message } from 'antd';
+import { Row, Col, Button, Icon, Select, message, Input, Modal } from 'antd';
 import style from './asset.less';
 import styleA from './SecurityCenter.less';
 import language from '../../language'
+import { transpileModule } from '../../../node_modules/typescript';
 const Option = Select.Option;
 
 class SecurityCenter extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            visible: false
+        }
         this.selectValue = '1';
     }
     componentWillMount = () => {
@@ -225,12 +229,28 @@ class SecurityCenter extends Component {
     }
 
     //昵称修改
-    changeNickName(){
-        console.log("昵称修改")
+    saveNickname() {
+        this.props.dispatch({
+            type: 'user/saveNickname',
+            payload: {
+                body: [this.props.userInfo.nickname],
+                callback: (data) => {
+                    if (data.errorCode == 0) {
+                        message.success("修改成功！")
+                        this.setState({
+                            visible: false
+                        })
+                        this.props.dispatch({
+                            type: 'user/findUserInfo'
+                        })
+                    }
+                }
+            }
+        })
     }
 
     render() {
-        let { clientID, clientName, nickName ,registeredName, applyStatus } = this.props.userInfo;
+        let { clientID, clientName, nickname, registeredName, applyStatus } = this.props.userInfo;
         if (!!clientName) {
             clientName = "**" + clientName.substr(clientName.length - 1, 1);
         } else {
@@ -243,8 +263,28 @@ class SecurityCenter extends Component {
             accountPassword = "未设置";
         }
         return (
-            <div style={{ paddingTop: '53px' }}>
 
+            <div style={{ paddingTop: '53px' }}>
+                {
+                    this.state.visible ?
+                        <Modal
+                            title="修改昵称"
+                            visible={this.state.visible}
+                            onOk={() => this.saveNickname()}
+                            onCancel={() => { this.setState({ visible: false }) }}
+                            width={400}
+                        >
+                            <Input value={this.props.userInfo.nickname} onChange={e => this.props.dispatch({
+                                type: 'user/save',
+                                payload: {
+                                    userInfo: {
+                                        nickname: e.target.value
+                                    }
+                                }
+                            })} />
+                        </Modal>
+                        : null
+                }
                 <div className={style.right_title}>
                     {language.AQZX}
                 </div>
@@ -259,8 +299,8 @@ class SecurityCenter extends Component {
                         <Row className={styleA.rowF}>
                             <Col className={styleA.rowF_title} span={4}>昵称</Col>
                             <Col span={20}>
-                            <span>{nickName}</span>
-                            <Button onClick={() => this.changeNickName()} className="asset_btn SecurityCenter_btn" type="primary">修改昵称</Button>
+                                <span>{nickname}</span>
+                                <Button onClick={() => this.setState({ visible: true })} className="asset_btn SecurityCenter_btn" type="primary">修改昵称</Button>
                             </Col>
                         </Row>
 

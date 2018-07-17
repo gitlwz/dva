@@ -341,7 +341,7 @@ class tradingDetail extends Component {
                                                 <div className="box_item2 card">
                                                     <div>
                                                         <span>姓名：</span>
-                                                        <span>{this.props.dataInfo.realName}</span>
+                                                        <span>{this.props.dataInfo.nickname}</span>
                                                     </div>
                                                     <div>
                                                         <span>银行信息：</span>

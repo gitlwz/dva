@@ -9,7 +9,7 @@ export default {
     state: {
         userInfo: {
             clientID: null,
-            nickName: null,
+            nickname: null,
         },//用户信息
         countryList: [],
         isLogin: false,
@@ -112,6 +112,11 @@ export default {
             const data = yield call(baseService, api.user.updateShow, payload.body);
             payload.callback(data)
         },
+        //修改昵称
+        *saveNickname({payload},{call, put}){
+            const data = yield call(baseService, api.user.saveNickname, payload.body);
+            payload.callback(data)
+        }
     },
 
     reducers: {

@@ -146,6 +146,9 @@ class MyDeity extends Component {
             }, {
                 title: "交易单价",
                 dataIndex: "price",
+                render: (item, record) => {
+                    return <span>{record.price}CNY</span>
+                },
                 width: 150,
             }, {
                 title: "数量",

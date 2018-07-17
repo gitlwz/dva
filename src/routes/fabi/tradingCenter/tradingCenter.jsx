@@ -22,7 +22,7 @@ class tradingCenter extends Component {
         this.state = {
             key: "1",
             currencys: "",
-
+            title: "",
             visible: false,
             currentItem: {},
 
@@ -107,15 +107,15 @@ class tradingCenter extends Component {
             message.error(dataJSON.tradingCenter.QXSZNCHZJMM)
             return;
         }
-        let title = null;
-        if (item.postersType == "1") {
+        let title = "";
+        if (item.postersType == 1) {
             title = dataJSON.tradingCenter.MR + item.currency
         } else {
             title = dataJSON.tradingCenter.MC + item.currency
         }
         this.setState({
             visible: true,
-            title,
+            title: title,
             currentItem: item,
             modalData: {
                 password: ""
@@ -191,24 +191,24 @@ class tradingCenter extends Component {
 
 
     //数字变化
-    numChange = (surplusVolume) => {
+    numChange = ({ value, max }) => {
         let points = this.getDecimalsPoint();
         this.setState({
             modalData: {
                 ...this.state.modalData,
-                surplusVolume: format.NumberCheck({ value: surplusVolume.toString(), pointNum: points }),
-                money: (this.state.currentItem.price * surplusVolume).toFixed(2)
+                surplusVolume: format.NumberCheck({ value: value, max: max, pointNum: points }),
+                money: (this.state.currentItem.price * (format.NumberCheck({ value: value, max: max, pointNum: points }))).toFixed(2)
             }
         })
     }
     //金额变化
-    moneyChange = (money) => {
+    moneyChange = ({ value, max }) => {
         let points = this.getDecimalsPoint();
         this.setState({
             modalData: {
                 ...this.state.modalData,
-                money: Number(format.NumberCheck({ value: money.toString(), pointNum: 2 })) || 0,
-                surplusVolume: Number(format.NumberCheck({ value: money / this.state.currentItem.price, pointNum: points })) || 0,
+                money: format.NumberCheck({ value: value.toString(), max: max.toString(), pointNum: 2 }),
+                surplusVolume: format.NumberCheck({ value: (value / this.state.currentItem.price).toString(), pointNum: points }),
             }
         })
     }
@@ -234,8 +234,8 @@ class tradingCenter extends Component {
                     </div>
                     <div className="tr_content">
                         <div className="tr_select">
-                            <div onClick={() => this.selectClick('1')} className={this.state.key == 1 ? "active" : ""}><img src={IMG2} />{dataJSON.tradingCenter.WYM}</div>
-                            <div onClick={() => this.selectClick('0')} className={this.state.key == 0 ? "active" : ""}><img src={IMG3} />{dataJSON.tradingCenter.WYM}</div>
+                            <div onClick={() => this.selectClick('1')} className={this.state.key == 1 ? "active" : ""}><img src={IMG2} />{dataJSON.tradingCenter.IWantToBuy}</div>
+                            <div onClick={() => this.selectClick('0')} className={this.state.key == 0 ? "active" : ""}><img src={IMG3} />{dataJSON.tradingCenter.IWanoToSell}</div>
                         </div>
                         <div className="tr_neck">
                             <div className={this.state.currencys === "" ? "active" : ""} onClick={() => this.currencysClick("")}>
@@ -278,10 +278,18 @@ class tradingCenter extends Component {
                                 <div className="tr_item">
                                     <div>{dataJSON.tradingCenter.SL}</div>
                                     <div >
-                                        <InputNumber min={this.state.currentItem.limitVolumeStr * 1 || 0} className="tr_InputNumber" onChange={this.numChange} value={this.state.modalData.surplusVolume} max={this.state.currentItem.surplusVolume} />
-                                        <span onClick={() => {
-                                            this.numChange(this.state.currentItem.surplusVolume)
-                                        }} className="tr_qb">{dataJSON.tradingCenter.QB}</span>
+                                        <Input min={this.state.currentItem.limitVolumeStr * 1 || 0} onChange={e => this.numChange({ value: e.target.value, max: this.state.currentItem.surplusVolume })} value={this.state.modalData.surplusVolume}
+                                            suffix={<span onClick={() => {
+                                                this.setState({
+                                                    modalData: {
+                                                        ...this.state.modalData,
+                                                        surplusVolume: this.state.currentItem.surplusVolume,
+                                                        money: (this.state.currentItem.surplusVolume * this.state.currentItem.price).toFixed(2)
+                                                    }
+                                                })
+                                                //this.numChange({})
+                                            }} className="tr_qb">{dataJSON.tradingCenter.QB}</span>} />
+
                                     </div>
                                     <div style={{ float: "right" }}>
                                         ({dataJSON.tradingCenter.ZXJYL}：{this.state.currentItem.limitVolumeStr + " " + this.state.currentItem.currency})
@@ -290,8 +298,8 @@ class tradingCenter extends Component {
                                 <div className="tr_item">
                                     <div>{dataJSON.tradingCenter.JE}</div>
                                     <div>
-                                        <Input min={0} step={0.01} className="tr_InputNumber" max={this.state.currentItem.surplusVolume * this.state.currentItem.price} value={this.state.modalData.money} onChange={this.moneyChange} />
-                                        <span className="tr_name">CNY</span>
+                                        <Input value={this.state.modalData.money} onChange={e => this.moneyChange({ value: e.target.value, max: this.state.currentItem.surplusVolume * this.state.currentItem.price })}
+                                            suffix={<span className="tr_name">CNY</span>} />
                                     </div>
                                 </div>
                                 {
