@@ -9,6 +9,9 @@ import IMGZFB from "../../../assets/支付宝@3x.png";
 import IMGCAED from "../../../assets/card.png"
 import "./tradingCenter.less"
 import QDModal from "../../../components/QDModal"
+
+import dataJSON from '../../../language/index'
+
 /**
  * 法币交易中心
  */
@@ -27,32 +30,32 @@ class tradingCenter extends Component {
         }
         this.columns = [
             {
-                title: '商家',
+                title: dataJSON.tradingCenter.SJ,
                 dataIndex: 'nickName'
             }, {
-                title: '币种',
+                title: dataJSON.tradingCenter.BZ,
                 dataIndex: 'currency',
             }, {
-                title: '数量',
+                title: dataJSON.tradingCenter.SL,
                 dataIndex: 'surplusVolumeStr',
             },
             {
-                title: '单价',
+                title: dataJSON.tradingCenter.DJ,
                 dataIndex: 'price',
                 render: (item) => {
                     return <span>{item}CNY</span>
                 }
             },
             {
-                title: '最小交易量',
+                title: dataJSON.tradingCenter.ZXJYL,
                 dataIndex: 'limitVolumeStr',
             },
             {
-                title: '单笔交易区间',
+                title: dataJSON.tradingCenter.DBJYQJ,
                 dataIndex: 'tradingRange',
             },
             {
-                title: '支付方式',
+                title: dataJSON.tradingCenter.ZFFS,
                 dataIndex: 'shouxufei',
                 render: (item, record, index) => {
                     return <div className="payment">
@@ -67,7 +70,7 @@ class tradingCenter extends Component {
             },
 
             {
-                title: '操作',
+                title: dataJSON.tradingCenter.CZ,
                 dataIndex: 'action',
                 render: (item, record, index) => {
                     return <div className="payment">
@@ -97,14 +100,14 @@ class tradingCenter extends Component {
 
         const { Bidding } = this.props;
         if (!Bidding.nickname || !Bidding.accountPassword) {
-            message.error("请先设置昵称和资金密码!")
+            message.error(dataJSON.tradingCenter.QXSZNCHZJMM)
             return;
         }
         let title = null;
         if (item.postersType == "1") {
-            title = "买入" + item.currency
+            title = dataJSON.tradingCenter.MR + item.currency
         } else {
-            title = "卖出" + item.currency
+            title = dataJSON.tradingCenter.MC + item.currency
         }
         this.setState({
             visible: true,
@@ -210,12 +213,12 @@ class tradingCenter extends Component {
                     </div>
                     <div className="tr_content">
                         <div className="tr_select">
-                            <div onClick={() => this.selectClick('1')} className={this.state.key == 1 ? "active" : ""}><img src={IMG2} />我要买</div>
-                            <div onClick={() => this.selectClick('0')} className={this.state.key == 0 ? "active" : ""}><img src={IMG3} />我要卖</div>
+                            <div onClick={() => this.selectClick('1')} className={this.state.key == 1 ? "active" : ""}><img src={IMG2} />{dataJSON.tradingCenter.WYM}</div>
+                            <div onClick={() => this.selectClick('0')} className={this.state.key == 0 ? "active" : ""}><img src={IMG3} />{dataJSON.tradingCenter.WYM}}</div>
                         </div>
                         <div className="tr_neck">
                             <div className={this.state.currencys === "" ? "active" : ""} onClick={() => this.currencysClick("")}>
-                                全部
+                                {dataJSON.tradingCenter.QB}
                             </div>
                             {this.props.AllCurrencys.map(ele => {
                                 return (
@@ -245,27 +248,27 @@ class tradingCenter extends Component {
                             <div style={{ padding: "0 40px" }}>
                                 <div className="tr_item">
 
-                                    <div>交易价格</div>
+                                    <div>{dataJSON.tradingCenter.JYJG}</div>
                                     <div>
                                         <Input disabled value={this.state.currentItem.price} />
                                     </div>
                                 </div>
 
                                 <div className="tr_item">
-                                    <div>数量</div>
+                                    <div>{dataJSON.tradingCenter.SL}</div>
                                     <div >
                                         <InputNumber min={this.state.currentItem.limitVolumeStr * 1 || 0} className="tr_InputNumber" onChange={this.numChange} value={this.state.modalData.surplusVolume} max={this.state.currentItem.surplusVolume} />
                                         <span onClick={() => {
                                             this.numChange(this.state.currentItem.surplusVolume)
-                                        }} className="tr_qb">全部</span>
+                                        }} className="tr_qb">{dataJSON.tradingCenter.QB}</span>
                                     </div>
                                     <div style={{ float: "right" }}>
-                                        (最小交易量：{this.state.currentItem.limitVolumeStr + " " + this.state.currentItem.currency})
+                                        ({dataJSON.tradingCenter.ZXJYL}：{this.state.currentItem.limitVolumeStr + " " + this.state.currentItem.currency})
                                     </div>
                                 </div>
                                 <input type="password" style={{ display: 'none' }} />
                                 <div className="tr_item">
-                                    <div>金额</div>
+                                    <div>{dataJSON.tradingCenter.JE}</div>
                                     <div>
                                         <InputNumber min={0} className="tr_InputNumber" max={this.state.currentItem.surplusVolume * this.state.currentItem.price} value={this.state.modalData.money} onChange={this.moneyChange} />
                                         <span className="tr_name">CNY</span>
@@ -274,7 +277,7 @@ class tradingCenter extends Component {
                                 {
                                     this.state.currentItem.postersType != 1 &&
                                     <div className="tr_item">
-                                        <div>资金密码</div>
+                                        <div>{dataJSON.tradingCenter.ZJMM}</div>
                                         <Input type="password" style={{ display: 'none' }} />
                                         <div>
                                             <Input type="text" value={this.state.modalData.password} onChange={this.passwordChange} />
