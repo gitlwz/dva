@@ -32,6 +32,7 @@ const apis = {
         findFabiAccountByClientId: { url: baseIP + "service/webGeneralService/findFabiAccountByClientId", method: 'POST', description: '查询法币资金' },
         findByOperTradingAccountAndFabiAccountCapital: { url: baseIP + "service/webGeneralService/findByOperTradingAccountAndFabiAccountCapital", method: 'POST', description: '查询资金' },
         accountExchabge: { url: baseIP + "service/webGeneralService/accountExchabge", method: 'POST', description: '资产互转' },
+        getTraderAssetOverview: { url: baseIP + "service/pollingService/getTraderAssetOverview", method: 'POST', description: '我的资产界面资金查询' },
     },
     "helpcenter": {
         findAllPushHelpCenterByCondition: { url: baseIP + "service/anonymousWebGeneralService/findAllPushHelpCenterByCondition", method: 'POST', description: '帮助中心问题名称集合' },

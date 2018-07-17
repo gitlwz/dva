@@ -43,11 +43,15 @@ class Platform extends Component {
   }
 
   showDetail = (item) => {
-    this.setState({
-      showDetail: true,
-      msgID: item.msgID
-    })
-    singleItem = item;
+    if (this.state.showDetail == false) {
+      this.setState({
+        showDetail: true,
+        msgID: item.msgID
+      })
+      singleItem = item;
+    } else {
+      this.toMainPage()
+    }
   }
 
   toMainPage = () => {

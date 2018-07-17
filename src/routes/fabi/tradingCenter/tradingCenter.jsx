@@ -189,11 +189,12 @@ class tradingCenter extends Component {
         })
     }
     //资金密码
-    passwordChange = (password) => {
+    passwordChange = (e) => {
+        e.target.type = "password";
         this.setState({
             modalData: {
                 ...this.state.modalData,
-                password: password.target.value,
+                password: e.target.value,
             }
         })
     }
@@ -241,43 +242,46 @@ class tradingCenter extends Component {
                             onOk={this.modalOk}
                             onCancel={this.modalCancel}
                         >
-
-                            <div className="tr_item">
-                                <div>交易价格</div>
-                                <div>
-                                    <Input disabled value={this.state.currentItem.price} />
-                                </div>
-                            </div>
-
-                            <div className="tr_item">
-                                <div>数量</div>
-                                <div >
-                                    <InputNumber min={this.state.currentItem.limitVolumeStr * 1 || 0} className="tr_InputNumber" onChange={this.numChange} value={this.state.modalData.surplusVolume} max={this.state.currentItem.surplusVolume} />
-                                    <span onClick={() => {
-                                        this.numChange(this.state.currentItem.surplusVolume)
-                                    }} className="tr_qb">全部</span>
-                                </div>
-                                <div style={{ float: "right" }}>
-                                    (最小交易量：{this.state.currentItem.limitVolumeStr + " " + this.state.currentItem.currency})
-                                    </div>
-                            </div>
-
-                            <div className="tr_item">
-                                <div>金额</div>
-                                <div>
-                                    <InputNumber min={0} className="tr_InputNumber" max={this.state.currentItem.surplusVolume * this.state.currentItem.price} value={this.state.modalData.money} onChange={this.moneyChange} />
-                                    <span className="tr_name">CNY</span>
-                                </div>
-                            </div>
-                            {
-                                this.state.currentItem.postersType != 1 &&
+                            <div style={{ padding: "0 40px" }}>
                                 <div className="tr_item">
-                                    <div>资金密码</div>
+
+                                    <div>交易价格</div>
                                     <div>
-                                        <Input type="password" value={this.state.modalData.password} onChange={this.passwordChange} />
+                                        <Input disabled value={this.state.currentItem.price} />
                                     </div>
                                 </div>
-                            }
+
+                                <div className="tr_item">
+                                    <div>数量</div>
+                                    <div >
+                                        <InputNumber min={this.state.currentItem.limitVolumeStr * 1 || 0} className="tr_InputNumber" onChange={this.numChange} value={this.state.modalData.surplusVolume} max={this.state.currentItem.surplusVolume} />
+                                        <span onClick={() => {
+                                            this.numChange(this.state.currentItem.surplusVolume)
+                                        }} className="tr_qb">全部</span>
+                                    </div>
+                                    <div style={{ float: "right" }}>
+                                        (最小交易量：{this.state.currentItem.limitVolumeStr + " " + this.state.currentItem.currency})
+                                    </div>
+                                </div>
+                                <input type="password" style={{ display: 'none' }} />
+                                <div className="tr_item">
+                                    <div>金额</div>
+                                    <div>
+                                        <InputNumber min={0} className="tr_InputNumber" max={this.state.currentItem.surplusVolume * this.state.currentItem.price} value={this.state.modalData.money} onChange={this.moneyChange} />
+                                        <span className="tr_name">CNY</span>
+                                    </div>
+                                </div>
+                                {
+                                    this.state.currentItem.postersType != 1 &&
+                                    <div className="tr_item">
+                                        <div>资金密码</div>
+                                        <Input type="password" style={{ display: 'none' }} />
+                                        <div>
+                                            <Input type="text" value={this.state.modalData.password} onChange={this.passwordChange} />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </QDModal>
                     </div>
                 </Spin>

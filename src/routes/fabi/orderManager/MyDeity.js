@@ -186,8 +186,7 @@ class MyDeity extends Component {
                             return <a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }}>{record.businessType == "0" ? '立即付款' : '查看详情'}</a>
                             break;
                         case '1':
-                            return <a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }} style={{ color: "rgba(255,191,0,1)" }}>确认收款</a>
-
+                            return <a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }} style={{ color: "rgba(255,191,0,1)" }}>{record.businessType == "0" ? '查看详情' : '确认收款'}</a>
                             break;
                         case '2':
                             return <a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }} style={{ color: "rgba(255,191,0,1)" }}>已完成</a>

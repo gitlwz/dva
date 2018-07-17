@@ -8,7 +8,6 @@ import QDModal from '../../components/QDModal/index';
 import Tabs from "../../components/tabs";
 import language from '../../language'
 let accountPasswordGload = null;
-let _that = null;
 const Option = Select.Option;
 
 class AssetView extends Component {
@@ -64,10 +63,8 @@ class AssetView extends Component {
     getAccount() {
         if (!!this.props.userInfo.clientID) {
             this.props.dispatch({
-                type: 'asset/currencyChange',
-                payload: {
-                    currency: [this.props.userInfo.clientID, this.props.userInfo.email]
-                }
+                type: 'asset/getTraderAssetOverview',
+                payload: [this.props.userInfo.clientID, this.props.userInfo.email]
             })
         }
     }
@@ -163,7 +160,7 @@ class AssetView extends Component {
                                 message.info(language.asset.QXSZZJMM)
                                 return
                             }
-                            _that.props.history.push("/otherPresent/" + record.currency)
+                            this.props.history.push("/otherPresent/" + record.currency)
                         }} style={{ color: "rgba(253,204,57,1)" }}>提现</a>
                         <Divider type="vertical" />
                         {(record.currency == "BTC" || record.currency == "USDT" || record.currency == "ETH") ?
@@ -175,7 +172,6 @@ class AssetView extends Component {
             }
         }];
         let dataSource = this.props.dataSource;
-        dataSource = dataSource.filter(item => item.ifTotal != true);
         if (this.state.tab == "币币交易账户") {
             dataSource = dataSource.filter((item, index) => {
                 item.key = index;

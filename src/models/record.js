@@ -12,6 +12,7 @@ export default {
         entrustData: {
             content: []
         },
+        loading: false
     },
 
     subscriptions: {
@@ -43,7 +44,8 @@ export default {
             yield put({
                 type: "save",
                 payload: {
-                    entrustData: { "pageNo": 1, "pageSize": 10, "totalRecord": 0, "totalPage": 0, "content": [] }
+                    entrustData: { "pageNo": 1, "pageSize": 10, "totalRecord": 0, "totalPage": 0, "content": [] },
+                    loading: true
                 }
             })
             const { data } = yield call(baseService, api.asset.entrustList, payload);
@@ -51,7 +53,8 @@ export default {
                 yield put({
                     type: 'save',
                     payload: {
-                        entrustData: data
+                        entrustData: data,
+                        loading: false
                     }
                 })
             }
@@ -62,7 +65,8 @@ export default {
             yield put({
                 type: "save",
                 payload: {
-                    entrustData: { "pageNo": 1, "pageSize": 10, "totalRecord": 0, "totalPage": 0, "content": [] }
+                    entrustData: { "pageNo": 1, "pageSize": 10, "totalRecord": 0, "totalPage": 0, "content": [] },
+                    loading: true
                 }
             })
             const { data } = yield call(baseService, kineApi.trade.queryOrderForClient, payload);
@@ -70,7 +74,8 @@ export default {
                 yield put({
                     type: 'save',
                     payload: {
-                        entrustData: data
+                        entrustData: data,
+                        loading: false
                     }
                 })
             }

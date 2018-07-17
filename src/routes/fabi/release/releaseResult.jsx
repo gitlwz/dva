@@ -10,7 +10,7 @@ class ReleaseResult extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            publishState: '3'
+            publishState: '1'
         }
     }
 

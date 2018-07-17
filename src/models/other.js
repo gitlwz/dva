@@ -86,7 +86,6 @@ export default {
 
         *findAll({ payload }, { call, put }) {
             const { data } = yield call(baseService, api.baseConfig.findAll, []);
-            console.log(data);
             if (data != undefined) {
                 yield put({
                     type: 'save',
