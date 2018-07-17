@@ -12,7 +12,8 @@ export default {
         },//用户信息
         countryList: [],
         isLogin: false,
-        userId: null
+        userId: null,
+        accountList: []
     },
 
     effects: {

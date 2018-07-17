@@ -8,7 +8,7 @@ export default {
 
     state: {
         loading: false,
-        AllCurrencys: [],
+        AllCurrencys: ["BTC", "USDT", "ETH"],
         current: 1,
         total: 0,
         pageSize: 10,
@@ -32,7 +32,7 @@ export default {
             if (data !== undefined) {
                 if (!!data) {
                     message.success("交易成功!");
-                    yield  put(routerRedux.push("/tradingDetail/"+data))
+                    yield put(routerRedux.push("/tradingDetail/" + data))
 
                 }
                 yield put({
@@ -62,24 +62,24 @@ export default {
                 })
             }
         },
-        *findAllCurrencys({ payload }, { call, put }) {
-            yield put({
-                type: 'save',
-                payload: {
-                    loading: true
-                }
-            })
-            let { data } = yield call(baseService, api.tradingCenter.findAllCurrencys, []);
-            if (!!data && data.length > 0) {
-                yield put({
-                    type: 'save',
-                    payload: {
-                        loading: false,
-                        AllCurrencys: data
-                    }
-                })
-            }
-        },
+        // *findAllCurrencys({ payload }, { call, put }) {
+        //     yield put({
+        //         type: 'save',
+        //         payload: {
+        //             loading: true
+        //         }
+        //     })
+        //     let { data } = yield call(baseService, api.tradingCenter.findAllCurrencys, []);
+        //     if (!!data && data.length > 0) {
+        //         yield put({
+        //             type: 'save',
+        //             payload: {
+        //                 loading: false,
+        //                 AllCurrencys: data
+        //             }
+        //         })
+        //     }
+        // },
         *findBiddingPosters({ payload }, { call, put }) {
             yield put({
                 type: 'save',
@@ -90,9 +90,8 @@ export default {
                 }
             })
             let { data } = yield call(baseService, api.tradingCenter.findBiddingPosters, [...payload]);
-           
+
             if (!!data) {
-                console.log("**22222222222222222**", data.totalRecord)
                 yield put({
                     type: 'save',
                     payload: {

@@ -3,6 +3,16 @@
     height: 100%;
 }
 
+:global{
+    .ant-carousel .slick-dots li button{
+        width: 32px;
+        height: 6px;
+    }
+    .ant-carousel .slick-dots li.slick-active button{
+        width: 32px;
+    }
+}
+
 .carousel{
     :global{
         .ant-carousel .slick-slider {
@@ -15,5 +25,6 @@
           .slick-list{
             height: 60px;
           }
+         
         }
 }

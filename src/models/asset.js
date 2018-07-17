@@ -88,6 +88,33 @@ export default {
                 })
             }
         },
+
+        *getTraderAssetOverview({ payload }, { call, put }) {
+            yield put({
+                type: 'save',
+                payload: {
+                    loading: true
+                }
+            })
+            const { data } = yield call(baseService, api.asset.getTraderAssetOverview, payload);
+            if (data != undefined) {
+                yield put({
+                    type: "save",
+                    payload: {
+                        dataSource: data,
+                        loading: false
+                    }
+                })
+            } else { // 不知名错误
+                yield put({
+                    type: 'save',
+                    payload: {
+                        loading: false
+                    }
+                })
+            }
+        },
+
         *currencyChange({ payload }, { call, put }) {
             yield put({
                 type: 'save',

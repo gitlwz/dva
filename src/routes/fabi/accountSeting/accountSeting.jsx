@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'dva';
 import { Row, Col, Input, Select, message, Icon } from 'antd';
+import md5 from "md5";
 import QDModal from "../../../components/QDModal";
 import UploadComponent from '../../../components/upload';
 import card from '../../../assets/card.png';
@@ -75,19 +76,19 @@ class AccoutSeting extends React.Component {
                 body.bankID = this.state.bankID;
                 body.bankName = this.state.bankName;
                 body.bankAccountID = this.state.bankAccountID;
-                body.accountPassword = this.state.accountPassword;
+                body.accountPassword = md5(this.state.accountPassword);
                 this.props.dispatch({
                     type: 'user/bindingToModify',
                     payload: {
                         body: [body],
                         callback: (data) => {
                             if (data.errorCode == 0) {
-                                message.success("设置成功!")
+                                message.success("设置成功!");
+                                this.getSubBankAccout();
+                                this.modalCancel();
                             } else {
                                 message.error(data.errorMsg)
                             }
-                            this.getSubBankAccout();
-                            this.modalCancel();
                         }
                     }
                 })
@@ -96,7 +97,7 @@ class AccoutSeting extends React.Component {
                 let body1 = this.props.subBankAccountInfo;
                 body1.realName = this.state.realName;
                 body1.alipayAccount = this.state.alipayAccount;
-                body1.accountPassword = this.state.accountPassword;
+                body1.accountPassword = md5(this.state.accountPassword);
                 if (this.state.realName == "") {
                     message.error("请输入姓名!");
                     return;
@@ -120,12 +121,10 @@ class AccoutSeting extends React.Component {
                         body: [body1],
                         callback: (data) => {
                             if (data.errorCode == 0) {
-                                message.success("设置成功!")
-                            } else {
-                                message.error(data.errorMsg)
+                                message.success("设置成功!");
+                                this.getSubBankAccout();
+                                this.modalCancel();
                             }
-                            this.getSubBankAccout();
-                            this.modalCancel();
                         }
                     }
                 })
@@ -134,7 +133,7 @@ class AccoutSeting extends React.Component {
                 let body2 = this.props.subBankAccountInfo;
                 body2.realName = this.state.realName;
                 body2.wechatAccount = this.state.wechatAccount;
-                body2.accountPassword = this.state.accountPassword;
+                body2.accountPassword = md5(this.state.accountPassword);
                 if (!!this.state.wechatPhoto) {
                     body2.wechatAccountPhoto = this.state.wechatAccountPhoto
                 } else {
@@ -158,12 +157,10 @@ class AccoutSeting extends React.Component {
                         body: [body2],
                         callback: (data) => {
                             if (data.errorCode == 0) {
-                                message.success("设置成功!")
-                            } else {
-                                message.error(data.errorMsg)
+                                message.success("设置成功!");
+                                this.getSubBankAccout();
+                                this.modalCancel();
                             }
-                            this.getSubBankAccout();
-                            this.modalCancel();
                         }
                     }
                 })
@@ -193,7 +190,7 @@ class AccoutSeting extends React.Component {
 
             alipayPhoto: '',
             wechatPhoto: ''
-        })
+        }, () => this.getSubBankAccout())
     }
 
     changModal(parms) {
@@ -244,7 +241,10 @@ class AccoutSeting extends React.Component {
                         </UploadComponent>
                         <input type="password" style={{ display: 'none' }} />
                         <p>资金密码</p>
-                        <Input placeholder="为保证您的资金安全，请输入资金密码" type="password" value={this.state.accountPassword} onChange={(e) => this.setState({ accountPassword: e.target.value })} />
+                        <Input placeholder="为保证您的资金安全，请输入资金密码" type="text" value={this.state.accountPassword} onChange={(e) => {
+                            e.target.type = "password";
+                            this.setState({ accountPassword: e.target.value })
+                        }} />
                     </div>
                 )
             case "weixin":
@@ -259,7 +259,10 @@ class AccoutSeting extends React.Component {
                         </UploadComponent>
                         <p>资金密码</p>
                         <input type="password" style={{ display: 'none' }} />
-                        <Input placeholder="为保证您的资金安全，请输入资金密码" type="password" value={this.state.accountPassword} onChange={(e) => this.setState({ accountPassword: e.target.value })} />
+                        <Input placeholder="为保证您的资金安全，请输入资金密码" type="text" value={this.state.accountPassword} onChange={(e) => {
+                            e.target.type = "password";
+                            this.setState({ accountPassword: e.target.value })
+                        }} />
                     </div>
                 )
             default:
@@ -292,7 +295,7 @@ class AccoutSeting extends React.Component {
         return (
             <div style={{ paddingTop: '53px' }}>
                 <div className={styles.right_title}>
-                    充提管理
+                    账户管理
                 </div>
                 <div className={styles.right_bz} loading={this.props.loading}>
                     <div className={styles.card}>
@@ -323,7 +326,8 @@ class AccoutSeting extends React.Component {
                                     <Row className={styles.content}>
                                         <div>姓名:{subBankAccountInfo.realName}</div>
                                         <Row type="flex" align="middle">
-                                            银行信息:{subBankAccountInfo.bankName}  银行卡号:{subBankAccountInfo.bankAccountID} {subBankAccountInfo.bankAccountShow == "1" ?
+                                            银行信息:{subBankAccountInfo.bankName}  银行卡号:{subBankAccountInfo.bankAccountID}
+                                            {/*subBankAccountInfo.bankAccountShow == "1" ?
                                                 <Icon type="eye-o" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
                                                     if (subBankAccountInfo.bankAccountID == null) {
                                                         message.error("请先设置银行卡账号!")
@@ -338,7 +342,7 @@ class AccoutSeting extends React.Component {
                                                     } else {
                                                         this.checkChange("1", "bankAccountShow")
                                                     }
-                                                }} />}</Row>
+                                                }} />*/}</Row>
                                     </Row> :
                                     <div className={styles.content}>
                                         未绑定
@@ -374,22 +378,23 @@ class AccoutSeting extends React.Component {
                                 {!!subBankAccountInfo.alipayAccount ?
                                     <div className={styles.content}>
                                         <div>姓名:{subBankAccountInfo.realName}</div>
-                                        <div>支付宝账号:{subBankAccountInfo.alipayAccount}  {subBankAccountInfo.alipayAccountShow == "1" ?
-                                            <Icon type="eye-o" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
-                                                if (subBankAccountInfo.alipayAccount == null) {
-                                                    message.error("请先设置支付宝账号!")
-                                                    return
-                                                } else {
-                                                    this.checkChange("0", "alipayAccountShow")
-                                                }
-                                            }} /> : <Icon type="eye" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
-                                                if (subBankAccountInfo.alipayAccount == null) {
-                                                    message.error("请先设置支付宝账号!")
-                                                    return
-                                                } else {
-                                                    this.checkChange("1", "alipayAccountShow")
-                                                }
-                                            }} />}</div>
+                                        <div>支付宝账号:{subBankAccountInfo.alipayAccount}
+                                            {/*subBankAccountInfo.alipayAccountShow == "1" ?
+                                                <Icon type="eye-o" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
+                                                    if (subBankAccountInfo.alipayAccount == null) {
+                                                        message.error("请先设置支付宝账号!")
+                                                        return
+                                                    } else {
+                                                        this.checkChange("0", "alipayAccountShow")
+                                                    }
+                                                }} /> : <Icon type="eye" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
+                                                    if (subBankAccountInfo.alipayAccount == null) {
+                                                        message.error("请先设置支付宝账号!")
+                                                        return
+                                                    } else {
+                                                        this.checkChange("1", "alipayAccountShow")
+                                                    }
+                                                }} />*/}</div>
                                     </div> :
                                     <div className={styles.content}>
                                         未绑定
@@ -424,22 +429,23 @@ class AccoutSeting extends React.Component {
                                 {!!subBankAccountInfo.wechatAccount ?
                                     <div className={styles.content}>
                                         <div>姓名:{subBankAccountInfo.realName}</div>
-                                        <div>微信账号:{subBankAccountInfo.wechatAccount}  {subBankAccountInfo.wechatAccountShow == "1" ?
-                                            <Icon type="eye-o" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
-                                                if (subBankAccountInfo.wechatAccount == null) {
-                                                    message.error("请先设置微信账号!")
-                                                    return
-                                                } else {
-                                                    this.checkChange("0", "wechatAccountShow")
-                                                }
-                                            }} /> : <Icon type="eye" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
-                                                if (subBankAccountInfo.wechatAccount == null) {
-                                                    message.error("请先设置微信账号!")
-                                                    return
-                                                } else {
-                                                    this.checkChange("1", "wechatAccountShow")
-                                                }
-                                            }} />}</div>
+                                        <div>微信账号:{subBankAccountInfo.wechatAccount}
+                                            {/*subBankAccountInfo.wechatAccountShow == "1" ?
+                                                <Icon type="eye-o" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
+                                                    if (subBankAccountInfo.wechatAccount == null) {
+                                                        message.error("请先设置微信账号!")
+                                                        return
+                                                    } else {
+                                                        this.checkChange("0", "wechatAccountShow")
+                                                    }
+                                                }} /> : <Icon type="eye" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
+                                                    if (subBankAccountInfo.wechatAccount == null) {
+                                                        message.error("请先设置微信账号!")
+                                                        return
+                                                    } else {
+                                                        this.checkChange("1", "wechatAccountShow")
+                                                    }
+                                                }} />*/}</div>
                                     </div> :
                                     <div className={styles.content}>
                                         未绑定
@@ -465,7 +471,6 @@ class AccoutSeting extends React.Component {
     }
 }
 export default connect((state, props) => {
-    console.log(state.release)
     return {
         subBankAccountInfo: state.release.subBankAccountInfo,
         props

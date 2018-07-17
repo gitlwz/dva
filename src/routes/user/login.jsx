@@ -4,7 +4,7 @@ import { routerRedux } from 'dva/router';
 import Validator from '../../tool/Validator';
 import { connect } from 'dva';
 import md5 from "md5";
-import { Modal } from 'antd';
+import { Modal, Tooltip } from 'antd';
 import languageData from '../../language/index'
 import styles from './login.less';
 import singleStyle from './InputLabel.less';
@@ -21,7 +21,8 @@ class Login extends React.Component {
             userName: '',
             password: "",
 
-            visible:false
+            visible: false,
+            tooltipVisible:false
 
         }
     }
@@ -43,7 +44,7 @@ class Login extends React.Component {
         }
     }
 
-    loginFun(){
+    loginFun() {
         this.props.dispatch({
             type: 'user/login',
             payload: {
@@ -58,18 +59,18 @@ class Login extends React.Component {
             }
         })
     }
-    sliding = ()=>{
-        setTimeout(()=>{
+    sliding = () => {
+        setTimeout(() => {
             this.loginFun()
             this.setState({
-                visible:false
+                visible: false
             })
-        },500)
+        }, 500)
     }
     LoginClick() {
         if (this.state.userName != "" && this.state.password != "" && this.state.showEmailMsg == false) {
             this.setState({
-                visible:true
+                visible: true
             })
         } else {
             if (this.state.userName == "") {
@@ -92,6 +93,23 @@ class Login extends React.Component {
     componentWillUnmount = () => {
         document.removeEventListener("keydown", this.onkeydownEvent)
     }
+    // ((uniCode >= 97 && uniCode <= 122) && shifKey)
+    passwordChange = (value) =>{
+        if(!!value && value.length >= this.state.password.length){
+            let uniCode = value.charCodeAt(value.length-1);
+            if(uniCode >= 65 && uniCode <= 90){
+                this.setState({
+                    tooltipVisible:true
+                })
+            }else if(uniCode >= 97 && uniCode <= 122 || uniCode >= 48 && uniCode <= 57){
+                this.setState({
+                    tooltipVisible:false
+                })
+            }
+        }
+        
+        this.setState({ password: value, showWordMsg: false })
+    }
     render() {
         return (
             <div>
@@ -108,8 +126,11 @@ class Login extends React.Component {
                     {this.state.showEmailMsg == true ? <p className={styles.errP}>{languageData.QSRYXDYXDZ}</p> : ''}
 
 
-                    <InputLabel lab={languageData.MM} placeholder={languageData.QSRMM} value={this.state.password} type inputChange={value => this.setState({ password: value, showWordMsg: false })} showBorder={this.state.showWordMsg} />
 
+                    <InputLabel lab={languageData.MM} placeholder={languageData.QSRMM} value={this.state.password} type inputChange={this.passwordChange } showBorder={this.state.showWordMsg} />
+                    <Tooltip overlayClassName={styles.Tooltip} visible={this.state.tooltipVisible} placement="bottomLeft" title={"已锁定大写"}>
+                        <div style={{ marginLeft: "86px", position: 'relative', top: '-28px' }}></div>
+                    </Tooltip>
                     {this.state.showWordMsg == true ? <p className={styles.errP}>{this.state.errMsg}</p> : ""}
 
                     <InputLabel isButton buttonName={languageData.Login} buttonClick={() => this.LoginClick()} />
@@ -126,14 +147,14 @@ class Login extends React.Component {
                         footer={null}
                         title=""
                         visible={this.state.visible}
-                        onOk={()=>{}}
-                        onCancel={()=>this.setState({visible:false})}
-                        >
-                        <div style={{textAlign:"center"}}>
-                            <img style={{marginBottom:"20px"}} src={Img}/>
-                            {this.state.visible&&<SlidingValidation succeed={this.sliding}  succeedColr="#FDCC39"/>}
+                        onOk={() => { }}
+                        onCancel={() => this.setState({ visible: false })}
+                    >
+                        <div style={{ textAlign: "center" }}>
+                            <img style={{ marginBottom: "20px" }} src={Img} />
+                            {this.state.visible && <SlidingValidation succeed={this.sliding} succeedColr="#FDCC39" />}
                         </div>
-                        
+
                     </Modal>
                 </div>
 

@@ -63,18 +63,36 @@ class Release extends React.Component {
         this.props.dispatch({
             type: 'release/findBySubBankAccount'
         })
+        this.props.dispatch({
+            type: 'other/findAll'
+        })
     }
 
+    //获取基础货币小数点位数
+    getDecimalsPoint() {
+        const { basePointList } = this.props;
+        const { currency } = this.state;
+        if (basePointList.length > 0) {
+            let data = basePointList.filter(item => item.currency == currency)[0];
+            if (!!data && data["decimalDigits"]) {
+                return data["decimalDigits"]
+            }
+        }
+        return 8;
+    }
+
+
     reloadState(e, type) {
+        let points = this.getDecimalsPoint();
         switch (type) {
             case "volume":
-                this.setState({ volume: format.NumberCheck({ value: e, pointNum: 14 }) })
+                this.setState({ volume: format.NumberCheck({ value: e, pointNum: points }) })
                 break;
             case "price":
                 this.setState({ price: format.NumberCheck({ value: e, pointNum: 2 }) })
                 break;
             case "limitVolume":
-                this.setState({ limitVolume: format.NumberCheck({ value: e, pointNum: 14 }) })
+                this.setState({ limitVolume: format.NumberCheck({ value: e, pointNum: points }) })
                 break;
             default:
                 break;
@@ -197,7 +215,7 @@ class Release extends React.Component {
                             <p>数量</p>
                             <Input value={this.state.volume} onChange={e => this.reloadState(e.target.value, "volume")} />
                             <p>单价</p>
-                            <Input suffix={<span>{this.state.currency}</span>} value={this.state.price} onChange={e => this.reloadState(e.target.value, "price")} />
+                            <Input suffix={<span>CNY</span>} value={this.state.price} onChange={e => this.reloadState(e.target.value, "price")} />
                             <p>最小量</p>
                             <Input suffix={<span>{this.state.currency}</span>} value={this.state.limitVolume} onChange={e => this.reloadState(e.target.value, "limitVolume")} />
 
@@ -221,6 +239,7 @@ export default connect((state, props) => {
         subBankAccountInfo: state.release.subBankAccountInfo,
         releaseData: state.release.releaseData,
         currencyList: state.release.currencyList,
+        basePointList: state.other.basePointList,
         dataDetail: state.release.dataDetail,
     }
 })(Release);

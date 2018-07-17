@@ -63,12 +63,15 @@ export class TVChartContainer extends React.PureComponent {
 		// });
 	}
 	componentWillReceiveProps = (nextProps) => {
-		if (nextProps.symbol !== this.props.symbol && !!widget) {
-			widget.chart().setSymbol(nextProps.symbol, () => {
-				if (typeof this.props.symbolChange === "function") {
-					this.props.symbolChange();
-				}
-			})
+		if (nextProps.symbol !== this.props.symbol && !!widget && !!widget.chart) {
+			clearTimeout(this.setTimeoutName)
+			this.setTimeoutName =  setTimeout(()=>{
+				widget.chart().setSymbol(nextProps.symbol, () => {
+					if (typeof this.props.symbolChange === "function") {
+						this.props.symbolChange();
+					}
+				})
+			},500)
 		}
 	}
 	addMa = (num, widget) => {

@@ -3,7 +3,7 @@ import style from '../asset/asset.less'
 import styleA from './Recharge.less';
 import { connect } from 'dva';
 import DataFormatter from '../../tool/dataFormat';
-import { Table } from 'antd';
+import { Table, Spin } from 'antd';
 import Tabs from '../../components/tabs';
 
 
@@ -151,48 +151,49 @@ class Entrust extends Component {
             }];
 
         return (
-            <div className={style.gutte_right}>
-                <div className={style.right_title}> 交易记录查询 </div>
-                <div className={style.right_bz}>
-                    <Tabs tabList={[{ title: "委托查询", tradeTimeFlag: '3' }, { title: "当日成交", tradeTimeFlag: '1' }, { title: "历史成交", tradeTimeFlag: '2' }, { title: "未成交委托查询", tradeTimeFlag: '4' }]}
-                        tab={this.state.tab} tabChange={item => this.setState({ tab: item.title, tradeTimeFlag: item.tradeTimeFlag, pageNo: 1 }, () => {
-                            this.props.dispatch({
-                                type: 'record/save',
-                                payload: {
-                                    entrustData: {
-                                        content: []
+            <Spin spinning={this.props.loading}>
+                <div className={style.gutte_right}>
+                    <div className={style.right_title}> 交易记录查询 </div>
+                    <div className={style.right_bz}>
+                        <Tabs tabList={[{ title: "委托查询", tradeTimeFlag: '3' }, { title: "当日成交", tradeTimeFlag: '1' }, { title: "历史成交", tradeTimeFlag: '2' }, { title: "未成交委托查询", tradeTimeFlag: '4' }]}
+                            tab={this.state.tab} tabChange={item => this.setState({ tab: item.title, tradeTimeFlag: item.tradeTimeFlag, pageNo: 1 }, () => {
+                                this.props.dispatch({
+                                    type: 'record/save',
+                                    payload: {
+                                        entrustData: {
+                                            content: []
+                                        }
                                     }
-                                }
-                            })
-                            this.getEntrustList()
-                        })} />
+                                })
+                                this.getEntrustList()
+                            })} />
+                    </div>
+                    <div className={styleA.right_table + " AssetView"}>
+                        {(this.state.tradeTimeFlag == "3" || this.state.tradeTimeFlag == "4") ?
+                            <Table
+                                rowKey="id"
+                                columns={columns1}
+                                dataSource={this.props.entrustData.content}
+                                pagination={pagination}
+                            /> :
+                            <Table
+                                rowKey="id"
+                                columns={columns2}
+                                dataSource={this.props.entrustData.content}
+                                pagination={pagination}
+                            />
+                        }
+                    </div>
                 </div>
-                <div className={styleA.right_table + " AssetView"}>
-                    {(this.state.tradeTimeFlag == "3" || this.state.tradeTimeFlag == "4") ?
-                        <Table
-                            rowKey="id"
-                            columns={columns1}
-                            dataSource={this.props.entrustData.content}
-                            pagination={pagination}
-                            loading={this.props.loading}
-                        /> :
-                        <Table
-                            rowKey="id"
-                            columns={columns2}
-                            dataSource={this.props.entrustData.content}
-                            pagination={pagination}
-                            loading={this.props.loading}
-                        />
-                    }
-                </div>
-            </div>
+            </Spin>
         )
     }
 }
 export default connect((state, props) => {
+    console.log(state.record.loading)
     return {
         entrustData: state.record.entrustData,
-        loading: state.loading.models.record,
+        loading: state.record.loading,
         userInfo: state.user.userInfo,
         props
     }

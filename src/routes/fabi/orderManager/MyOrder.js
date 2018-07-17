@@ -49,12 +49,11 @@ class MyOrder extends Component {
             }, {
                 title: "交易对象",
                 dataIndex: "tradingName",
-                width: 100,
+                width: 120,
             }, {
                 title: "交易单价",
                 dataIndex: "price",
                 width: 120,
-                sorter: (a, b) => a.price - b.price,
                 render: (item, record) => {
                     return <span>{record.price}CNY</span>
                 }
@@ -62,7 +61,6 @@ class MyOrder extends Component {
                 title: "数量",
                 dataIndex: "number",
                 width: 120,
-                sorter: (a, b) => a.number - b.number,
             }, {
                 title: "状态",
                 dataIndex: "state",
@@ -92,9 +90,9 @@ class MyOrder extends Component {
                 render: (item, record) => {
                     switch (record.state) {
                         case '0':
-                            return (<a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }}>立即付款</a>)
+                            return <a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }}>{record.businessType == "0" ? '立即付款' : '查看详情'}</a>
                         case '1':
-                            return (<a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }}>确认收款</a>)
+                            return <a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }} style={{ color: "rgba(255,191,0,1)" }}>{record.businessType == "0" ? '查看详情' : '确认收款'}</a>
                         case '2':
                             return (<a onClick={() => this.props.dispatch(routerRedux.push("/tradingDetail/" + record.orderID))} style={{ color: "rgba(255,191,0,1)" }}>已完成</a>)
                         case '3':
