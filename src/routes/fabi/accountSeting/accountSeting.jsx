@@ -80,6 +80,7 @@ class AccoutSeting extends React.Component {
                 body.bankName = this.state.bankName;
                 body.bankAccountID = this.state.bankAccountID;
                 body.accountPassword = md5(this.state.accountPassword);
+
                 this.props.dispatch({
                     type: 'user/bindingToModify',
                     payload: {
@@ -371,7 +372,7 @@ class AccoutSeting extends React.Component {
                                             title: '支付宝账号',
                                             alipayRealName: subBankAccountInfo.alipayRealName,
                                             alipayAccount: subBankAccountInfo.alipayAccount,
-                                            alipayPhoto: decodeURI(subBankAccountInfo.alipayAccountPhoto)
+                                            alipayPhoto: "/sundax/download/memberFileUploadService/downloadFile?params=[" + subBankAccountInfo.alipayAccountPhoto + "]"
                                         })}>修改</span> :
                                         <span onClick={() => this.changModal({
                                             type: "zhifubao",
@@ -422,7 +423,7 @@ class AccoutSeting extends React.Component {
                                             wechatRealName: subBankAccountInfo.wechatRealName,
                                             title: "微信账号",
                                             wechatAccount: subBankAccountInfo.wechatAccount,
-                                            wechatPhoto: decodeURI(subBankAccountInfo.wechatAccountPhoto),
+                                            wechatPhoto: "/sundax/download/memberFileUploadService/downloadFile?params=[" + subBankAccountInfo.wechatAccountPhoto + "]",
                                         })}>修改</span> :
                                         <span onClick={() => this.changModal({
                                             type: "weixin",
