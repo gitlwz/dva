@@ -5,6 +5,7 @@ import style from './asset.less';
 import styleA from './SecurityCenter.less';
 import language from '../../language'
 import { transpileModule } from '../../../node_modules/typescript';
+import QDModal from '../../components/QDModal/index';
 const Option = Select.Option;
 
 class SecurityCenter extends Component {
@@ -262,35 +263,40 @@ class SecurityCenter extends Component {
         } else {
             accountPassword = "未设置";
         }
+
+        const children = <Input value={this.props.userInfo.nickname} onChange={e => this.props.dispatch({
+            type: 'user/save',
+            payload: {
+                userInfo: {
+                    nickname: e.target.value
+                }
+            }
+        })} />
+
         return (
 
             <div style={{ paddingTop: '53px' }}>
-                {
-                    this.state.visible ?
-                        <Modal
-                            title="修改昵称"
-                            visible={this.state.visible}
-                            onOk={() => this.saveNickname()}
-                            onCancel={() => { this.setState({ visible: false }) }}
-                            width={400}
-                        >
-                            <Input value={this.props.userInfo.nickname} onChange={e => this.props.dispatch({
-                                type: 'user/save',
-                                payload: {
-                                    userInfo: {
-                                        nickname: e.target.value
-                                    }
-                                }
-                            })} />
-                        </Modal>
-                        : null
+
+                <QDModal
+                    title="修改昵称"
+                    visible={this.state.visible}
+                    onOk={() => this.saveNickname()}
+                    onCancel={() => { this.setState({ visible: false }) }}
+                    width={400}
+                    okText="确认"
+                    cancelText="取消"
+                    children={children}
+                />
+
+
+
                 }
                 <div className={style.right_title}>
                     {language.AQZX}
                 </div>
                 <div className={style.right_bz}>
                     <div className={styleA.card}>
-                        <Row className={styleA.rowF}>
+                        <Row className={styleA.rowF} type="flex" justify="center" align="top">
                             <Col className={styleA.rowF_title} span={4}>{language.asset.XM}</Col>
                             <Col span={20}>{clientName}</Col>
                         </Row>

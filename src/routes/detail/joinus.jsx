@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-//import NationTitle from '../common/NationTitle';
+import NationTitle from '../../components/nationTitle';
 import styles from './joinus.less';
 import { joinus } from '../../dataJson/userData';
 
@@ -10,7 +10,8 @@ class JoinUs extends Component {
     render() {
         return (
             <div>
-                <div>加入我们</div>
+                {/* <div>加入我们</div> */}
+                <NationTitle title="加入我们"/>
                 <div style={{fontFamily:"PingFangSC-Regular"}} className={styles.body}>
                     {joinus.map((item, index) => {
                         return (
