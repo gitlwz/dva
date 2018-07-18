@@ -226,12 +226,12 @@ class tradingCenter extends Component {
         return (
             <div className="tradingCenter" style={{ backgroundColor: "#F7F7F7", color: "black" }}>
                 <Spin spinning={this.props.loading} size="large" >
-                    <div className="tr_gg">
+                    {/* <div className="tr_gg">
                         <img style={{ marginTop: '-1px' }} src={IMG} alt="" />
                         <span>
                             公告：「重要通知」关于大宗交易区用户审核优化的通知
                         </span>
-                    </div>
+                    </div> */}
                     <div className="tr_content">
                         <div className="tr_select">
                             <div onClick={() => this.selectClick('1')} className={this.state.key == 1 ? "active" : ""}><img src={IMG2} />{dataJSON.tradingCenter.IWantToBuy}</div>

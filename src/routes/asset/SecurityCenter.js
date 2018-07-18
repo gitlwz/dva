@@ -288,9 +288,6 @@ class SecurityCenter extends Component {
                     children={children}
                 />
 
-
-
-                }
                 <div className={style.right_title}>
                     {language.AQZX}
                 </div>

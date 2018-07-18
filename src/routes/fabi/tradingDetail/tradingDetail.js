@@ -5,6 +5,8 @@ import QDModal from '../../../components/QDModal';
 import "./tradingDetail.less";
 import IMGTS from "../../../assets/提示@3x.png"
 import TimeFormat from '../../../tool/TimeFormat'
+import style from './tradingDetail.less'
+
 const QRCode = require('qrcode.react');
 /**
  * 订单详情
@@ -112,7 +114,7 @@ class tradingDetail extends Component {
                     </div>
                     break;
                 case "1":
-                    return <Button onClick={() => this.changModal({
+                    return <Button className={style.confirmButton} type="primary" onClick={() => this.changModal({
                         showMOdal: true,
                         title: "已确定收到买家付款",
                         okText: '确定收款',
@@ -200,7 +202,7 @@ class tradingDetail extends Component {
                     </div>
                     break;
                 case "1":
-                    return <Button onClick={() => this.changModal({
+                    return <Button className={style.confirmButton} type="primary" onClick={() => this.changModal({
                         showMOdal: true,
                         title: "已确定收到买家付款",
                         okText: '确定收款',

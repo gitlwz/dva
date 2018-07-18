@@ -20,7 +20,10 @@ class AccoutSeting extends React.Component {
             title: "",
             type: '',
 
-            realName: '',
+            bankRealName: '',
+            alipayRealName: '',
+            wechatRealName: '',
+
             bankID: '',
             bankName: '',
             bankAccountID: '',
@@ -53,7 +56,7 @@ class AccoutSeting extends React.Component {
     modalOk = () => {
         switch (this.state.type) {
             case "card":
-                if (this.state.realName == "") {
+                if (this.state.bankRealName == "") {
                     message.error("请输入姓名!");
                     return;
                 }
@@ -72,7 +75,7 @@ class AccoutSeting extends React.Component {
                 }
 
                 let body = this.props.subBankAccountInfo;
-                body.realName = this.state.realName;
+                body.bankRealName = this.state.bankRealName;
                 body.bankID = this.state.bankID;
                 body.bankName = this.state.bankName;
                 body.bankAccountID = this.state.bankAccountID;
@@ -95,10 +98,10 @@ class AccoutSeting extends React.Component {
                 break;
             case "zhifubao":
                 let body1 = this.props.subBankAccountInfo;
-                body1.realName = this.state.realName;
+                body1.alipayRealName = this.state.alipayRealName;
                 body1.alipayAccount = this.state.alipayAccount;
                 body1.accountPassword = md5(this.state.accountPassword);
-                if (this.state.realName == "") {
+                if (this.state.alipayRealName == "") {
                     message.error("请输入姓名!");
                     return;
                 }
@@ -131,7 +134,7 @@ class AccoutSeting extends React.Component {
                 break;
             case "weixin":
                 let body2 = this.props.subBankAccountInfo;
-                body2.realName = this.state.realName;
+                body2.wechatRealName = this.state.wechatRealName;
                 body2.wechatAccount = this.state.wechatAccount;
                 body2.accountPassword = md5(this.state.accountPassword);
                 if (!!this.state.wechatPhoto) {
@@ -139,7 +142,7 @@ class AccoutSeting extends React.Component {
                 } else {
                     body2.wechatAccountPhoto = this.props.subBankAccountInfo.wechatAccountPhoto;
                 }
-                if (this.state.realName == "") {
+                if (this.state.wechatRealName == "") {
                     message.error("请输入姓名!");
                     return;
                 }
@@ -173,7 +176,9 @@ class AccoutSeting extends React.Component {
     modalCancel = () => {
         this.setState({
             visible: false,
-            realName: '',
+            bankRealName: '',
+            alipayRealName: '',
+            wechatRealName: '',
             bankID: '',
             bankName: '',
             bankAccountID: '',
@@ -207,7 +212,7 @@ class AccoutSeting extends React.Component {
                 return (
                     <div className={styles.modalContent}>
                         <p>姓名</p>
-                        <Input placeholder="请输入姓名" value={this.state.realName} onChange={e => { this.setState({ realName: e.target.value }) }} />
+                        <Input placeholder="请输入姓名" value={this.state.bankRealName} onChange={e => { this.setState({ bankRealName: e.target.value }) }} />
                         <p>开户银行</p>
                         <Select value={this.state.bankID} onChange={e => this.setState({ bankID: e })} style={{ width: '100%' }}>
                             <Select.Option value="1">招商</Select.Option>
@@ -232,7 +237,7 @@ class AccoutSeting extends React.Component {
                 return (
                     <div className={styles.modalContent}>
                         <p>姓名</p>
-                        <Input placeholder="请输入姓名" value={this.state.realName} onChange={e => this.setState({ realName: e.target.value })} />
+                        <Input placeholder="请输入姓名" value={this.state.alipayRealName} onChange={e => this.setState({ alipayRealName: e.target.value })} />
                         <p>{this.props.photoType}账号</p>
                         <Input placeholder="请输入您的支付宝账号" value={this.state.alipayAccount} onChange={e => this.setState({ alipayAccount: e.target.value })} style={{ marginBottom: 15 }} />
 
@@ -251,7 +256,7 @@ class AccoutSeting extends React.Component {
                 return (
                     <div className={styles.modalContent}>
                         <p>姓名</p>
-                        <Input placeholder="请输入姓名" value={this.state.realName} onChange={e => this.setState({ realName: e.target.value })} />
+                        <Input placeholder="请输入姓名" value={this.state.wechatRealName} onChange={e => this.setState({ wechatRealName: e.target.value })} />
                         <p>{this.props.photoType}账号</p>
                         <Input placeholder="请输入您的微信账号" value={this.state.wechatAccount} onChange={e => this.setState({ wechatAccount: e.target.value })} style={{ marginBottom: 15 }} />
                         <UploadComponent callback={(data, img) => this.setState({ wechatAccountPhoto: data.path, wechatPhoto: img })}>
@@ -310,7 +315,7 @@ class AccoutSeting extends React.Component {
                                             type: 'card',
                                             visible: true,
                                             title: '银行卡账号',
-                                            realName: subBankAccountInfo.realName,
+                                            bankRealName: subBankAccountInfo.bankRealName,
                                             bankID: subBankAccountInfo.bankID,
                                             bankName: subBankAccountInfo.bankName,
                                             bankAccountID: subBankAccountInfo.bankAccountID,
@@ -319,12 +324,12 @@ class AccoutSeting extends React.Component {
                                             type: "card",
                                             title: '银行卡账号',
                                             visible: true,
-                                            realName: subBankAccountInfo.realName,
+                                            bankRealName: subBankAccountInfo.bankRealName,
                                         })}> 绑定</span>}</span></Col>
                                 </Row>
                                 {!!subBankAccountInfo.bankAccountID ?
                                     <Row className={styles.content}>
-                                        <div>姓名:{subBankAccountInfo.realName}</div>
+                                        <div>姓名:{subBankAccountInfo.bankRealName}</div>
                                         <Row type="flex" align="middle">
                                             银行信息:{subBankAccountInfo.bankName}  银行卡号:{subBankAccountInfo.bankAccountID}
                                             {/*subBankAccountInfo.bankAccountShow == "1" ?
@@ -364,7 +369,7 @@ class AccoutSeting extends React.Component {
                                             type: 'zhifubao',
                                             visible: true,
                                             title: '支付宝账号',
-                                            realName: subBankAccountInfo.realName,
+                                            alipayRealName: subBankAccountInfo.alipayRealName,
                                             alipayAccount: subBankAccountInfo.alipayAccount,
                                             alipayPhoto: decodeURI(subBankAccountInfo.alipayAccountPhoto)
                                         })}>修改</span> :
@@ -372,12 +377,12 @@ class AccoutSeting extends React.Component {
                                             type: "zhifubao",
                                             visible: true,
                                             title: '支付宝账号',
-                                            realName: subBankAccountInfo.realName,
+                                            alipayRealName: subBankAccountInfo.alipayRealName,
                                         })}> 绑定</span>}</span></Col>
                                 </Row>
                                 {!!subBankAccountInfo.alipayAccount ?
                                     <div className={styles.content}>
-                                        <div>姓名:{subBankAccountInfo.realName}</div>
+                                        <div>姓名:{subBankAccountInfo.alipayRealName}</div>
                                         <div>支付宝账号:{subBankAccountInfo.alipayAccount}
                                             {/*subBankAccountInfo.alipayAccountShow == "1" ?
                                                 <Icon type="eye-o" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
@@ -414,7 +419,7 @@ class AccoutSeting extends React.Component {
                                         <span onClick={() => this.changModal({
                                             type: 'weixin',
                                             visible: true,
-                                            realName: subBankAccountInfo.realName,
+                                            wechatRealName: subBankAccountInfo.wechatRealName,
                                             title: "微信账号",
                                             wechatAccount: subBankAccountInfo.wechatAccount,
                                             wechatPhoto: decodeURI(subBankAccountInfo.wechatAccountPhoto),
@@ -423,12 +428,12 @@ class AccoutSeting extends React.Component {
                                             type: "weixin",
                                             visible: true,
                                             title: "微信账号",
-                                            realName: subBankAccountInfo.realName,
+                                            wechatRealName: subBankAccountInfo.wechatRealName,
                                         })}> 绑定</span>}</span></Col>
                                 </Row>
                                 {!!subBankAccountInfo.wechatAccount ?
                                     <div className={styles.content}>
-                                        <div>姓名:{subBankAccountInfo.realName}</div>
+                                        <div>姓名:{subBankAccountInfo.wechatRealName}</div>
                                         <div>微信账号:{subBankAccountInfo.wechatAccount}
                                             {/*subBankAccountInfo.wechatAccountShow == "1" ?
                                                 <Icon type="eye-o" style={{ fontSize: 24, marginLeft: 50 }} onClick={() => {
