@@ -101,12 +101,39 @@ class tradingCenter extends Component {
             message.error("当前可交易数量不足!");
             return
         }
-
-        const { Bidding } = this.props;
-        if (!Bidding.nickname || !Bidding.accountPassword) {
-            message.error(dataJSON.tradingCenter.QXSZNCHZJMM)
+        const { Bidding, userId } = this.props;
+        const { applyStatus } = this.props.userInfo;
+        if (userId == null) {
+            this.props.history.push("/user/login")
+            return
+        }
+        if (applyStatus <= 1) {
+            message.error("请先完成邮箱验证");
+            this.props.history.push("/asset?type=2")
             return;
         }
+        if (applyStatus == 2) {
+            message.error("请先完成身份验证");
+            this.props.history.push("/asset?type=2")
+            return;
+        }
+        if (applyStatus == 3) {
+            message.error("当前未完成两步验证");
+            this.props.history.push("/asset?type=2")
+            return;
+        }
+
+        if (!Bidding.nickname) {
+            message.error("请先设置昵称!");
+            this.props.history.push("/asset?type=4")
+            return;
+        }
+        if (!Bidding.accountPassword) {
+            message.error("请先设置资金密码!");
+            this.props.history.push("/asset?type=2")
+            return;
+        }
+
         let title = "";
         if (item.postersType == 1) {
             title = dataJSON.tradingCenter.MR + item.currency
@@ -118,7 +145,7 @@ class tradingCenter extends Component {
             title: title,
             currentItem: item,
             modalData: {
-                password: ""
+                password: "",
             }
         })
     }
@@ -288,9 +315,12 @@ class tradingCenter extends Component {
                                                     }
                                                 })
                                                 //this.numChange({})
-                                            }} className="tr_qb">{dataJSON.tradingCenter.QB}</span>} />
+                                            }} className="tr_qb">{dataJSON.tradingCenter.QB}</span>}
+                                            placeholder={"最大可" + (this.state.currentItem.postersType == 1 ? "买" : "卖") + "数量:" + this.state.currentItem.surplusVolume}
+                                        />
 
                                     </div>
+
                                     <div style={{ float: "right" }}>
                                         ({dataJSON.tradingCenter.ZXJYL}：{this.state.currentItem.limitVolumeStr + " " + this.state.currentItem.currency})
                                     </div>
@@ -327,6 +357,8 @@ export default connect((state, props) => {
         AllCurrencys,
         current,
         basePointList: state.other.basePointList,
+        userInfo: state.user.userInfo,
+        userId: state.user.userId,
         total,
         pageSize,
         dataSource,

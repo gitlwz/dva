@@ -28,12 +28,11 @@ export default {
                     loading: true
                 }
             })
-            let { data } = yield call(baseService, api.tradingCenter.fiatDetails, [...payload]);
+            let data = yield call(baseService, api.tradingCenter.fiatDetails, [...payload]);
             if (data !== undefined) {
-                if (!!data) {
-                    message.success("交易成功!");
-                    yield put(routerRedux.push("/tradingDetail/" + data))
-
+                if (data.errorCode == 0) {
+                    message.success("下单成功!");
+                    yield put(routerRedux.push("/tradingDetail/" + data.data))
                 }
                 yield put({
                     type: 'save',

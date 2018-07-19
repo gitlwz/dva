@@ -218,7 +218,13 @@ class tradingDetail extends Component {
 
         }
 
+        //this.orderBuy = isBuy
     }
+
+    loadPrompt() {
+
+    }
+
 
     changModal = ({ showMOdal, title, okText, canCelText, header, msg }) => {
         this.setState({
@@ -420,11 +426,18 @@ class tradingDetail extends Component {
                                 <img src={IMGTS} />
                                 <span style={{ marginLeft: "8px" }}>交易提示：</span>
                             </div>
-                            <div>
-                                <p>1、您的汇款将直接进入买方账户，交易过程中卖方出售的数字资产由平台托管保护。</p>
-                                <p>2、请在规定时间内完成付款，并务必点击“我已付款”，卖方确认收款后，系统会将数字资产划转到您的账户。</p>
-                                <p>3、如果买方当日取消订单达3次，将会被限制当日的买入功能。</p>
-                            </div>
+                            {this.props.dataInfo.businessType == "0" ?
+                                <div>
+                                    <p>1、您的汇款将直接进入买方账户，交易过程中卖方出售的数字资产由平台托管保护。</p>
+                                    <p>2、请在规定时间内完成付款，并务必点击“我已付款”，卖方确认收款后，系统会将数字资产划转到您的账户。</p>
+                                    <p>3、如果买方当日取消订单达3次，将会被限制当日的买入功能。</p>
+                                </div> :
+                                <div>
+                                    <p>1、您的数字资产由平台托管保护,买方直接汇入您的账户。</p>
+                                    <p>2、请在规定时间内完成收款,并务必点击"确认收款",如没有收到款,请联系客服4000-0000-1234</p>
+                                </div>
+                            }
+
 
                         </div>
                         <QDModal

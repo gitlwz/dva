@@ -42,6 +42,13 @@ class Asset extends Component {
                     currentSelect: language.asset.CTBGL
                 }
             })
+        } else if (this.props.history.location.search === "?type=4") {
+            this.props.dispatch({
+                type: 'asset/selectMenu',
+                payload: {
+                    currentSelect: "账户管理"
+                }
+            })
         } else {
             this.props.dispatch({
                 type: 'asset/selectMenu',
@@ -87,6 +94,13 @@ class Asset extends Component {
             topError = {
                 show: true,
                 content: "身份验证审核中"
+            }
+        }
+
+        if (this.props.userInfo.applyStatus == 3) {
+            topError = {
+                show: true,
+                content: "当前未完成两步验证!"
             }
         }
 

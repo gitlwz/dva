@@ -243,7 +243,9 @@ class AccoutSeting extends React.Component {
                         <Input placeholder="请输入您的支付宝账号" value={this.state.alipayAccount} onChange={e => this.setState({ alipayAccount: e.target.value })} style={{ marginBottom: 15 }} />
 
                         <UploadComponent callback={(data, img) => this.setState({ alipayAccountPhoto: data.path, alipayPhoto: img })}>
-                            {!this.state.alipayPhoto ? <img src={chooseZFB} style={{ width: 320, height: 150 }} /> : <img src={this.state.alipayPhoto} style={{ width: 320, height: 150 }} />}
+                            <div style={{ textAlign: 'center', width: 320 }}>
+                                {!this.state.alipayPhoto ? <img src={chooseZFB} style={{ width: 320, height: 150 }} /> : <img src={this.state.alipayPhoto} style={{ maxWidth: 320 }} />}
+                            </div>
                         </UploadComponent>
                         <input type="password" style={{ display: 'none' }} />
                         <p>资金密码</p>
@@ -261,7 +263,9 @@ class AccoutSeting extends React.Component {
                         <p>{this.props.photoType}账号</p>
                         <Input placeholder="请输入您的微信账号" value={this.state.wechatAccount} onChange={e => this.setState({ wechatAccount: e.target.value })} style={{ marginBottom: 15 }} />
                         <UploadComponent callback={(data, img) => this.setState({ wechatAccountPhoto: data.path, wechatPhoto: img })}>
-                            {!this.state.wechatPhoto ? <img src={chooseWX} style={{ width: 320, height: 150 }} /> : <img src={this.state.wechatPhoto} style={{ width: 320, height: 150 }} />}
+                            <div style={{ width: 320, textAlign: 'center' }}>
+                                {!this.state.wechatPhoto ? <img src={chooseWX} style={{ width: 320, height: 150 }} /> : <img src={this.state.wechatPhoto} style={{ maxWidth: 320 }} />}
+                            </div>
                         </UploadComponent>
                         <p>资金密码</p>
                         <input type="password" style={{ display: 'none' }} />
