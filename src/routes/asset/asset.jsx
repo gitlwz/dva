@@ -100,7 +100,7 @@ class Asset extends Component {
         if (this.props.userInfo.applyStatus == 3) {
             topError = {
                 show: true,
-                content: "当前未完成两步验证!"
+                content: "当前未完成两步验证,为了您的资金与账号安全,请至少绑定一种手机/谷歌验证"
             }
         }
 

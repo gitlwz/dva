@@ -24,8 +24,9 @@ class tradingCenter extends Component {
             currencys: "",
             title: "",
             visible: false,
+            nickVisible: false,
             currentItem: {},
-
+            nickname: "",
             modalData: {}
 
         }
@@ -102,38 +103,34 @@ class tradingCenter extends Component {
             return
         }
         const { Bidding, userId } = this.props;
-        const { applyStatus } = this.props.userInfo;
+        const { applyStatus, nickname } = this.props.userInfo;
+
         if (userId == null) {
             this.props.history.push("/user/login")
             return
         }
         if (applyStatus <= 1) {
-            message.error("请先完成邮箱验证");
             this.props.history.push("/asset?type=2")
             return;
         }
         if (applyStatus == 2) {
-            message.error("请先完成身份验证");
             this.props.history.push("/asset?type=2")
             return;
         }
         if (applyStatus == 3) {
-            message.error("当前未完成两步验证");
             this.props.history.push("/asset?type=2")
             return;
         }
 
-        if (!Bidding.nickname) {
-            message.error("请先设置昵称!");
-            this.props.history.push("/asset?type=4")
-            return;
-        }
         if (!Bidding.accountPassword) {
             message.error("请先设置资金密码!");
             this.props.history.push("/asset?type=2")
             return;
         }
-
+        if (!nickname) {
+            this.setState({ nickVisible: true })
+            return;
+        }
         let title = "";
         if (item.postersType == 1) {
             title = dataJSON.tradingCenter.MR + item.currency
@@ -249,6 +246,28 @@ class tradingCenter extends Component {
             }
         })
     }
+
+    //昵称修改
+    saveNickname() {
+        this.props.dispatch({
+            type: 'user/saveNickname',
+            payload: {
+                body: [this.state.nickname],
+                callback: (data) => {
+                    if (data.errorCode == 0) {
+                        message.success("设置成功！")
+                        this.setState({
+                            nickVisible: false
+                        })
+                        this.props.dispatch({
+                            type: 'user/findUserInfo'
+                        })
+                    }
+                }
+            }
+        })
+    }
+
     render() {
         return (
             <div className="tradingCenter" style={{ backgroundColor: "#F7F7F7", color: "black" }}>
@@ -259,6 +278,17 @@ class tradingCenter extends Component {
                             公告：「重要通知」关于大宗交易区用户审核优化的通知
                         </span>
                     </div> */}
+                    <QDModal
+                        title="设置昵称"
+                        visible={this.state.nickVisible}
+                        onOk={() => this.saveNickname()}
+                        onCancel={() => { this.setState({ nickVisible: false }) }}
+                        width={400}
+                        okText="确认"
+                        cancelText="取消"
+                    >
+                        <Input value={this.state.nickname} onChange={e => this.setState({ nickname: e.target.value })} />
+                    </QDModal>
                     <div className="tr_content">
                         <div className="tr_select">
                             <div onClick={() => this.selectClick('1')} className={this.state.key == 1 ? "active" : ""}><img src={IMG2} />{dataJSON.tradingCenter.IWantToBuy}</div>
