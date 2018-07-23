@@ -73,7 +73,24 @@
     color: #565656;
 }
 
+
 .result{
     margin-top: 100px;
     text-align: center;
+    div{
+        margin: 100px 0;
+    }
+    :global{
+        .ant-btn{
+            background-color: #FDCC39;
+            border-color: #FDCC39;
+        }
+        .ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn.active{
+            background:#FDCC39;
+        }
+        .ant-btn:hover, .ant-btn:focus{
+            color:#565656;
+            border-color: #FDCC39;
+        }
+    }
 }

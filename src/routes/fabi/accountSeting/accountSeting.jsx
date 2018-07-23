@@ -305,7 +305,7 @@ class AccoutSeting extends React.Component {
         return (
             <div style={{ paddingTop: '53px' }}>
                 <div className={styles.right_title}>
-                    账户管理
+                    法币收款账户
                 </div>
                 <div className={styles.right_bz} loading={this.props.loading}>
                     <div className={styles.card}>

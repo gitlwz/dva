@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from 'antd'
 import flow2 from '../../../assets/fabi/flow2.png';
 import flow3 from '../../../assets/fabi/flow3.png';
 import { connect } from "dva";
@@ -29,6 +30,10 @@ class ReleaseResult extends React.Component {
         }
     }
 
+    jumpTo() {
+        this.props.history.push("/orderManager?key=2")
+    }
+
     //渲染审核界面
     loadPublishContent(publishState) {
         switch (publishState) {
@@ -37,13 +42,15 @@ class ReleaseResult extends React.Component {
                     <div>
                         <img src={flow2} />
                         <div className={styles.result}> 审核中...</div>
+                        <Button onClick={() => this.jumpTo()}>我的发布</Button>
                     </div>)
                 break;
             case '1':
                 return (
-                    <div>
+                    <div className={styles.result}>
                         <img src={flow3} />
-                        <div className={styles.result}> 审核成功</div>
+                        <div > 审核成功</div>
+                        <Button onClick={() => this.jumpTo()}>我的发布</Button>
                     </div>)
                 break;
             case '3':
@@ -51,6 +58,7 @@ class ReleaseResult extends React.Component {
                     <div>
                         <img src={flow3} />
                         <div className={styles.result}> 审核失败</div>
+                        <Button onClick={() => this.jumpTo()}>我的发布</Button>
                     </div>)
 
                 break;

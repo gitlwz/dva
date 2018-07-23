@@ -65,6 +65,9 @@ class Release extends React.Component {
         })
         this.props.dispatch({
             type: 'other/findAll'
+        });
+        this.props.dispatch({
+            type: "release/serviceCharge"
         })
     }
 
@@ -184,9 +187,7 @@ class Release extends React.Component {
                             price: '',
                             currency: "",
                         })
-                        setTimeout(() => {
-
-                        }, 2000)
+                        this.props.history.push("/releaseResult?postersID=" + data.data.postersID)
                     }
                 }
             }
@@ -194,6 +195,7 @@ class Release extends React.Component {
     }
 
     render() {
+        let currentPoundage = this.props.serviceChargeList.filter(item => { return item.currency == this.state.currency })[0] || {};
         return (
             <div style={{ background: "#F4F4F4" }}>
                 <div className={styles.root}>
@@ -201,9 +203,9 @@ class Release extends React.Component {
                         <div className={styles.wyfb}>我要发布</div>
                         <div className={styles.wan}>认证的信息越完善，审核的速度越快哦</div>
                     </div>
-                    <img src={require("../../../assets/fabi/flow1.png")} />
+                    {/*<img src={require("../../../assets/fabi/flow1.png")} />*/}
                     <div className={styles.content}>
-                        <Tabs tab={this.state.upNavSelected == "0" ? "我要买" : "我要卖"} tabList={[{ title: '我要买', upNavSelected: "0" }, { title: "我要卖", upNavSelected: "1" }]} tabChange={item => this.setState({ upNavSelected: item.upNavSelected })} />
+                        <Tabs tab={this.state.upNavSelected == "0" ? "我要购买" : "我要出售"} tabList={[{ title: '我要购买', upNavSelected: "0" }, { title: "我要出售", upNavSelected: "1" }]} tabChange={item => this.setState({ upNavSelected: item.upNavSelected })} />
 
                         <div className={styles.Release}>
                             <p>币种</p>
@@ -222,6 +224,7 @@ class Release extends React.Component {
                             <div>
                                 {this.loadPayment()}
                             </div>
+                            {currentPoundage ? (<p>手续费：{format.multiply(currentPoundage.poundage, this.state.volume, this.getDecimalsPoint())}</p>) : ""}
                             <p>资金密码</p>
                             <input type="password" style={{ display: "none" }} />
                             <Input type="text" placeholder="未保证您的资金安全，请输入资金密码" value={this.state.password} onChange={e => {
@@ -242,6 +245,7 @@ export default connect((state, props) => {
         releaseData: state.release.releaseData,
         currencyList: state.release.currencyList,
         basePointList: state.other.basePointList,
+        serviceChargeList: state.release.serviceChargeList,
         dataDetail: state.release.dataDetail,
     }
 })(Release);

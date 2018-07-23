@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Button, Icon, Select, message, Input, Modal } from 'antd';
-import style from './asset.less';
+import style from './userCenter.less';
+import "../asset/CashManagement.less";
 import styleA from './SecurityCenter.less';
-import language from '../../language'
-import { transpileModule } from '../../../node_modules/typescript';
+import language from '../../language';
 import QDModal from '../../components/QDModal/index';
 const Option = Select.Option;
 
@@ -87,6 +87,19 @@ class SecurityCenter extends Component {
 
     //重置资金密码
     resetPasswords = () => {
+        let { applyStatus } = this.props.userInfo;
+        if (applyStatus <= 1) {
+            message.error("请先完成邮箱验证")
+            return;
+        }
+        if (applyStatus == 2) {
+            message.error("请先完成身份验证")
+            return;
+        }
+        if (applyStatus == 3) {
+            message.error("为了您的资金与账号安全,请至少绑定一种手机/谷歌验证")
+            return;
+        }
         this.props.history.push("/setMoneyPassword")
     }
     //邮箱验证
@@ -231,6 +244,10 @@ class SecurityCenter extends Component {
 
     //昵称修改
     saveNickname() {
+        if (this.props.userInfo.nickname == "") {
+            message.error("请输入有效的昵称");
+            return
+        }
         this.props.dispatch({
             type: 'user/saveNickname',
             payload: {
@@ -281,7 +298,13 @@ class SecurityCenter extends Component {
                     title="修改昵称"
                     visible={this.state.visible}
                     onOk={() => this.saveNickname()}
-                    onCancel={() => { this.setState({ visible: false }) }}
+                    onCancel={() => {
+                        this.setState({ visible: false }, () => {
+                            this.props.dispatch({
+                                type: 'user/findUserInfo'
+                            })
+                        })
+                    }}
                     width={400}
                     okText="确认"
                     cancelText="取消"
@@ -289,7 +312,7 @@ class SecurityCenter extends Component {
                 />
 
                 <div className={style.right_title}>
-                    {language.AQZX}
+                    安全设置
                 </div>
                 <div className={style.right_bz}>
                     <div className={styleA.card}>
@@ -326,7 +349,8 @@ class SecurityCenter extends Component {
                             <Col className={styleA.rowF_title} span={4}>{language.asset.ZJMM}</Col>
                             <Col span={20}>
                                 <span>{accountPassword}</span>
-                                {this.props.userInfo.applyStatus >= 4 ? <Button onClick={this.resetPasswords} className="asset_btn SecurityCenter_btn" type="primary">{language.asset.CZMM}</Button> : null}
+                                {this.props.userInfo.applyStatus >= 4 ? <Button onClick={this.resetPasswords} className="asset_btn SecurityCenter_btn" type="primary">{language.asset.CZMM}</Button> :
+                                    <Button onClick={this.resetPasswords} className="asset_btn SecurityCenter_btn" type="primary">去设置</Button>}
                             </Col>
                         </Row>
                     </div>

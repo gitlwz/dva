@@ -58,6 +58,11 @@ const LayoutRouter = [
         component: () => import('../routes/text')
     },
     {
+        path: "/userCenter",
+        models: () => [import('../models/asset'), import("../models/fabi/release")],
+        component: () => import('../routes/userCenter/userCenter')
+    },
+    {
         path: '/asset',  //资产管理
         models: () => [import('../models/asset'), import("../models/fabi/release")],
         component: () => import('../routes/asset/asset'),
@@ -108,12 +113,12 @@ const LayoutRouter = [
         component: () => import('../routes/bindingAddress/bindingAddress'),
     }, {
         path: '/tradingCenter',  //法币交易中心
-        models: () => [import('../models/fabi/tradingCenter'),import("../models/other")],
+        models: () => [import('../models/fabi/tradingCenter'), import("../models/other")],
         component: () => import('../routes/fabi/tradingCenter/tradingCenter'),
     },
     {
         path: '/release',  //法币我要发布
-        models: () => [import('../models/fabi/release'),import("../models/other")],
+        models: () => [import('../models/fabi/release'), import("../models/other")],
         component: () => import('../routes/fabi/release/release'),
     },
     {

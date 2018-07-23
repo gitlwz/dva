@@ -97,9 +97,7 @@ class Regis extends React.Component {
                     callback: (data) => {
                         if (data.errorCode == "0") {
                             message.success("请前往注册邮箱进行邮箱验证")
-                            setTimeout = (() => {
-                                this.pushRouter("/user/login")
-                            }, 2000)
+                            this.pushRouter("/user/login")
                         } else {
                             this.setState({ errMsg: data.errorMsg })
                         }

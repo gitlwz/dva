@@ -77,7 +77,7 @@ export default {
                         }
                     })
                     message.success("验证成功")
-                    yield  put(routerRedux.push("/asset?type=2"))
+                    yield  put(routerRedux.push("/userCenter"))
                 }
             }else{                      //不知名失败
                 yield put({

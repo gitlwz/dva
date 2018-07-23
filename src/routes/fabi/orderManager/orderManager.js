@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import style from './orderManager.less'
 import { connect } from 'dva';
-import { Row, Col,Spin } from 'antd';
-import MyDeity from './MyDeity' ;  //我的发布
+import { Row, Col, Spin } from 'antd';
+import MyDeity from './MyDeity';  //我的发布
 import MyOrder from './MyOrder'; // 我的订单
 /**
  * 订单管理
@@ -11,12 +11,15 @@ class orderManager extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            leftMenu: ["我的发布", "我的订单"],
-            currentSelect:"我的发布"
+            leftMenu: ["我的订单", "我的发布"],
+            currentSelect: "我的订单"
         }
     }
     componentWillMount = () => {
-        
+        let currentSelect = window.location.href.split("=")[1];
+        if (!!currentSelect && currentSelect == 2) {
+            this.setState({ currentSelect: "我的发布" })
+        }
     }
     callback = (key) => {
         console.log(key)
@@ -24,7 +27,7 @@ class orderManager extends Component {
     //左边menu点击事件
     leftMenuClick = (men) => {
         this.setState({
-            currentSelect:men
+            currentSelect: men
         })
     }
     render() {
@@ -47,8 +50,8 @@ class orderManager extends Component {
                                 </div>
                             </Col>
                             <Col className="gutter-row" span={18}>
-                                {this.state.currentSelect === "我的发布" && <MyDeity key="1" history={this.props.history} />}
                                 {this.state.currentSelect === "我的订单" && <MyOrder key="2" history={this.props.history} />}
+                                {this.state.currentSelect === "我的发布" && <MyDeity key="1" history={this.props.history} />}
                             </Col>
                         </Row>
                     </div>
@@ -59,7 +62,7 @@ class orderManager extends Component {
     }
 }
 export default connect((state, props) => {
-    let {loading} = state.orderManager
+    let { loading } = state.orderManager
     return {
         loading
     }

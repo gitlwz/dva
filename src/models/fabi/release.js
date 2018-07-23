@@ -10,7 +10,8 @@ export default {
         subBankAccountInfo: {},
         dataDetail: {}, //用户昵称和资金密码集合
         currencyList: [], //所有币种
-        releaseData: {}
+        releaseData: {},
+        serviceChargeList: []
     },
 
     effects: {
@@ -43,7 +44,7 @@ export default {
                     type: 'save',
                     payload: {
                         dataDetail: data,
-                        currencyList: data.currencyList
+                        currencyList: data.currencyList || []
                     }
                 })
             }
@@ -60,6 +61,19 @@ export default {
                     }
                 })
                 payload.callback(data)
+            }
+        },
+
+        //查询手续费
+        *serviceCharge({ payload }, { call, put }) {
+            const { data } = yield call(baseService, api.release.serviceCharge, []);
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        serviceChargeList: data || []
+                    }
+                })
             }
         },
     },

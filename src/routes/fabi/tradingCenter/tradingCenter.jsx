@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
-import { Table, Spin, Button, message, Input, InputNumber } from 'antd';
+import { Table, Spin, Button, message, Input, InputNumber, Row, Col } from 'antd';
 import format from '../../../tool/formatNmber';
 import IMG from "../../../assets/tradingCenter.png"
 import IMG2 from "../../../assets/买入@3x.png";
@@ -110,21 +110,21 @@ class tradingCenter extends Component {
             return
         }
         if (applyStatus <= 1) {
-            this.props.history.push("/asset?type=2")
+            this.props.history.push("/userCenter")
             return;
         }
         if (applyStatus == 2) {
-            this.props.history.push("/asset?type=2")
+            this.props.history.push("/userCenter")
             return;
         }
         if (applyStatus == 3) {
-            this.props.history.push("/asset?type=2")
+            this.props.history.push("/userCenter")
             return;
         }
 
         if (!Bidding.accountPassword) {
             message.error("请先设置资金密码!");
-            this.props.history.push("/asset?type=2")
+            this.props.history.push("/userCenter")
             return;
         }
         if (!nickname) {
@@ -247,6 +247,39 @@ class tradingCenter extends Component {
         })
     }
 
+    jumpTo() {
+        const { Bidding, userId } = this.props;
+        const { applyStatus, nickname } = this.props.userInfo;
+
+        if (userId == null) {
+            this.props.history.push("/user/login")
+            return
+        }
+        if (applyStatus <= 1) {
+            this.props.history.push("/userCenter")
+            return;
+        }
+        if (applyStatus == 2) {
+            this.props.history.push("/userCenter")
+            return;
+        }
+        if (applyStatus == 3) {
+            this.props.history.push("/userCenter")
+            return;
+        }
+
+        if (!Bidding.accountPassword) {
+            message.error("请先设置资金密码!");
+            this.props.history.push("/userCenter")
+            return;
+        }
+        if (!nickname) {
+            this.setState({ nickVisible: true })
+            return;
+        }
+        this.props.history.push("/release")
+    }
+
     //昵称修改
     saveNickname() {
         this.props.dispatch({
@@ -290,10 +323,18 @@ class tradingCenter extends Component {
                         <Input value={this.state.nickname} onChange={e => this.setState({ nickname: e.target.value })} />
                     </QDModal>
                     <div className="tr_content">
-                        <div className="tr_select">
-                            <div onClick={() => this.selectClick('1')} className={this.state.key == 1 ? "active" : ""}><img src={IMG2} />{dataJSON.tradingCenter.IWantToBuy}</div>
-                            <div onClick={() => this.selectClick('0')} className={this.state.key == 0 ? "active" : ""}><img src={IMG3} />{dataJSON.tradingCenter.IWanoToSell}</div>
-                        </div>
+                        <Row type="flex" align="middle" justify="space-between">
+                            <Col>
+                                <div className="tr_select">
+                                    <div onClick={() => this.selectClick('1')} className={this.state.key == 1 ? "active" : ""}><img src={IMG2} />{dataJSON.tradingCenter.IWantToBuy}</div>
+                                    <div onClick={() => this.selectClick('0')} className={this.state.key == 0 ? "active" : ""}><img src={IMG3} />{dataJSON.tradingCenter.IWanoToSell}</div>
+                                </div>
+                            </Col>
+                            <Col>
+                                <div className="payment">
+                                    <Button type="primary" onClick={(ev) => this.jumpTo()}>+我要发布</Button></div>
+                            </Col>
+                        </Row>
                         <div className="tr_neck">
                             <div className={this.state.currencys === "" ? "active" : ""} onClick={() => this.currencysClick("")}>
                                 {dataJSON.tradingCenter.QB}

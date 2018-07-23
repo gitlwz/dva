@@ -10,7 +10,7 @@ export default {
     state: {
         loading: false,
 
-        currentSelect: "账户管理",
+        currentSelect: "资产总览",
 
         //资产总览字段
         currency: null, //全部

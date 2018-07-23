@@ -54,7 +54,7 @@ class Header extends Component {
                 this.props.dispatch(routerRedux.push("/record?type=1"))
                 break;
             case "4":
-                this.props.dispatch(routerRedux.push("/asset?type=2"))
+                this.props.dispatch(routerRedux.push("/userCenter"))
                 //安全中心
                 break;
             case "release":
@@ -83,7 +83,7 @@ class Header extends Component {
             <Menu onClick={this.menuClick} className="header_dropdown">
                 <Menu.Item key="0">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_zc}>{languageData.ZCZL}</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_zc}>{languageData.ZCGL}</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
@@ -111,11 +111,7 @@ class Header extends Component {
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
-                <Menu.Item key="release">
-                    <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>我要发布</span>
-                    </div>
-                </Menu.Item>
+               
                 <Menu.Divider />
                 <Menu.Item key="orderManager">
                     <div className={styles.header_dropdown_item}>
