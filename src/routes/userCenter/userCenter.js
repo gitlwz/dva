@@ -15,7 +15,7 @@ class UserCenter extends Component {
         super(props);
 
         this.state = {
-            leftMenu: ["安全设置", "账户设置"],
+            leftMenu: ["安全设置", "法币收款账户"],
             currentSelect: "安全设置"
         }
 
@@ -93,7 +93,7 @@ class UserCenter extends Component {
                             </Col>
                             <Col className="gutter-row" span={18}>
                                 {this.state.currentSelect === "安全设置" && <SecurityCenter key="2" history={this.props.history} />}
-                                {this.state.currentSelect === "账户设置" && <AccountSetting key="4" />}
+                                {this.state.currentSelect === "法币收款账户" && <AccountSetting key="4" />}
                             </Col>
                         </Row>
                     </div>

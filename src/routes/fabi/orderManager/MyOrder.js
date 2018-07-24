@@ -174,7 +174,7 @@ class MyOrder extends Component {
         return (
             <div style={{ paddingTop: '53px' }}>
                 <div className={style.right_title}>
-                    我的订单
+                    
                 </div>
                 <div className={style.right_bz}>
                     <div className="orderManager">

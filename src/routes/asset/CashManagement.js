@@ -209,7 +209,7 @@ class CashManagement extends Component {
         return (
             <div style={{  paddingTop: '53px' }}>
                 <div className={style.right_title}>
-                    充提管理
+                    
                 </div>
                 <div style={{fontSize:"20px",marginTop:"100px"}}>
                     内测阶段暂不开放！

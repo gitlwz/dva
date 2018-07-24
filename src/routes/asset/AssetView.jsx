@@ -184,7 +184,7 @@ class AssetView extends Component {
         return (
             <div className={style.gutte_right}>
                 <div className={style.right_title}>
-                    {language.ZCZL}
+                    {/*language.ZCZL*/}
                 </div>
                 <div className={style.right_bz}>
                     <Row>

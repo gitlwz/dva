@@ -243,8 +243,8 @@ class AccoutSeting extends React.Component {
                         <Input placeholder="请输入您的支付宝账号" value={this.state.alipayAccount} onChange={e => this.setState({ alipayAccount: e.target.value })} style={{ marginBottom: 15 }} />
 
                         <UploadComponent callback={(data, img) => this.setState({ alipayAccountPhoto: data.path, alipayPhoto: img })}>
-                            <div style={{ textAlign: 'center', width: 320 }}>
-                                {!this.state.alipayPhoto ? <img src={chooseZFB} style={{ width: 320, height: 150 }} /> : <img src={this.state.alipayPhoto} style={{ maxWidth: 320 }} />}
+                            <div style={{ textAlign: 'center', width: 400 }}>
+                                {!this.state.alipayPhoto ? <img src={chooseZFB} style={{ width: 400, height: 150 }} /> : <img src={this.state.alipayPhoto} style={{ maxWidth: 400 }} />}
                             </div>
                         </UploadComponent>
                         <input type="password" style={{ display: 'none' }} />
@@ -263,8 +263,8 @@ class AccoutSeting extends React.Component {
                         <p>{this.props.photoType}账号</p>
                         <Input placeholder="请输入您的微信账号" value={this.state.wechatAccount} onChange={e => this.setState({ wechatAccount: e.target.value })} style={{ marginBottom: 15 }} />
                         <UploadComponent callback={(data, img) => this.setState({ wechatAccountPhoto: data.path, wechatPhoto: img })}>
-                            <div style={{ width: 320, textAlign: 'center' }}>
-                                {!this.state.wechatPhoto ? <img src={chooseWX} style={{ width: 320, height: 150 }} /> : <img src={this.state.wechatPhoto} style={{ maxWidth: 320 }} />}
+                            <div style={{ width: 400, textAlign: 'center' }}>
+                                {!this.state.wechatPhoto ? <img src={chooseWX} style={{ width: 400, height: 150 }} /> : <img src={this.state.wechatPhoto} style={{ maxWidth: 400 }} />}
                             </div>
                         </UploadComponent>
                         <p>资金密码</p>
@@ -305,7 +305,7 @@ class AccoutSeting extends React.Component {
         return (
             <div style={{ paddingTop: '53px' }}>
                 <div className={styles.right_title}>
-                    法币收款账户
+                    
                 </div>
                 <div className={styles.right_bz} loading={this.props.loading}>
                     <div className={styles.card}>
@@ -471,7 +471,7 @@ class AccoutSeting extends React.Component {
                         onOk={this.modalOk}
                         onCancel={this.modalCancel}
                     >
-                        <div style={{ padding: "0px 40px" }}>
+                        <div style={{ padding: "0px 0px" }}>
                             {this.loadModalContent()}
                         </div>
                     </QDModal>

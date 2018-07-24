@@ -312,7 +312,7 @@ class SecurityCenter extends Component {
                 />
 
                 <div className={style.right_title}>
-                    安全设置
+
                 </div>
                 <div className={style.right_bz}>
                     <div className={styleA.card}>
@@ -349,7 +349,7 @@ class SecurityCenter extends Component {
                             <Col className={styleA.rowF_title} span={4}>{language.asset.ZJMM}</Col>
                             <Col span={20}>
                                 <span>{accountPassword}</span>
-                                {this.props.userInfo.applyStatus >= 4 ? <Button onClick={this.resetPasswords} className="asset_btn SecurityCenter_btn" type="primary">{language.asset.CZMM}</Button> :
+                                {this.props.userInfo.applyStatus > 5 ? <Button onClick={this.resetPasswords} className="asset_btn SecurityCenter_btn" type="primary">{language.asset.CZMM}</Button> :
                                     <Button onClick={this.resetPasswords} className="asset_btn SecurityCenter_btn" type="primary">去设置</Button>}
                             </Col>
                         </Row>

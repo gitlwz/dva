@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import style from './asset.less'
 import { Row, Col, Select, Alert, Spin, Icon } from 'antd';
 import AssetView from './AssetView';
+import Recharge from '../recordSearch/Recharge';
 import CashManagement from './CashManagement';
 import { connect } from 'dva';
 import language from '../../language'
@@ -14,12 +15,12 @@ class Asset extends Component {
         super(props);
 
         this.state = {
-            leftMenu: [language.ZCZL, language.asset.CTBGL]
+            leftMenu: [language.ZCZL, language.asset.CTBGL, "充提币记录"]
         }
 
     }
     componentWillMount = () => {
-       
+
         this.props.dispatch({
             type: 'asset/findByUserID'
         })
@@ -40,11 +41,11 @@ class Asset extends Component {
         })
     }
     render() {
-       
+
         return (
             <Spin size="large" spinning={this.props.loading} >
                 <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
-                   
+
                     <div className={style.accounContent}>
                         <Row gutter={16}>
                             <Col className="gutter-row" span={6}>
@@ -62,6 +63,7 @@ class Asset extends Component {
                             </Col>
                             <Col className="gutter-row" span={18}>
                                 {this.props.currentSelect === language.ZCZL && <AssetView key="1" history={this.props.history} />}
+                                {this.props.currentSelect === "充提币记录" && <Recharge key="2" history={this.props.history} />}
 
                                 {this.props.currentSelect === language.asset.CTBGL && <CashManagement key="3" history={this.props.history} />}
 

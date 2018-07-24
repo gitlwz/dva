@@ -39,9 +39,9 @@ class ReleaseResult extends React.Component {
         switch (publishState) {
             case '0':
                 return (
-                    <div>
+                    <div className={styles.result}>
                         <img src={flow2} />
-                        <div className={styles.result}> 审核中...</div>
+                        <div> 审核中...</div>
                         <Button onClick={() => this.jumpTo()}>我的发布</Button>
                     </div>)
                 break;
@@ -55,9 +55,9 @@ class ReleaseResult extends React.Component {
                 break;
             case '3':
                 return (
-                    <div>
+                    <div className={styles.result}>
                         <img src={flow3} />
-                        <div className={styles.result}> 审核失败</div>
+                        <div > 审核失败</div>
                         <Button onClick={() => this.jumpTo()}>我的发布</Button>
                     </div>)
 

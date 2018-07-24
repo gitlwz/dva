@@ -26,7 +26,8 @@ class Regis extends React.Component {
             confirmWord: '',
             check: true,
 
-            errMsg: ''
+            errMsg: '',
+            disabled: false
         }
     }
 
@@ -90,6 +91,7 @@ class Regis extends React.Component {
         }
         if (this.state.country != "" && this.state.email != "" && this.state.password != "" & this.state.confirmWord != "" && this.state.showConformMsg == false &&
             this.state.showCountryMsg == false && this.state.showEmailMsg == false && this.state.showWordMsg == false) {
+            this.setState({ disabled: "disabled" })
             this.props.dispatch({
                 type: 'user/regis',
                 payload: {
@@ -99,9 +101,8 @@ class Regis extends React.Component {
                             message.success("请前往注册邮箱进行邮箱验证")
                             this.pushRouter("/user/login")
                         } else {
-                            this.setState({ errMsg: data.errorMsg })
+                            this.setState({ errMsg: data.errorMsg, disabled: false })
                         }
-
                     }
                 }
             })
@@ -143,6 +144,7 @@ class Regis extends React.Component {
         document.removeEventListener("keydown", this.onkeydownEvent)
     }
     render() {
+        console.log(this.state.disabled)
         const { showConformMsg, showCountryMsg, showEmailMsg, showWordMsg } = this.state;
         return (
             <div>
@@ -201,7 +203,7 @@ class Regis extends React.Component {
                             <p style={{ width: '336px' }} className={styles.errP}>{this.state.errMsg}</p>
                         </div> : ''}
 
-                    <InputLabel isButton buttonName={languageData.signIn} buttonClick={() => this.regis()} />
+                    <InputLabel isButton buttonName={languageData.signIn} buttonClick={() => this.regis()} disabled={this.state.disabled} />
 
 
                     <div className={styles.errP}>

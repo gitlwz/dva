@@ -64,7 +64,7 @@ class Header extends Component {
             case "orderManager":
                 this.pushNewPage("/orderManager");
                 break;
-                
+
             case "5":
                 this.props.logout();
                 //安全中心
@@ -87,11 +87,11 @@ class Header extends Component {
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
-                <Menu.Item key="1">
+                {/*<Menu.Item key="1">
                     <div className={styles.header_dropdown_item}>
                         <span className={styles.header_dropdown_text + " " + styles.header_dropdown_dd}>{languageData.JYJLXC}</span>
                     </div>
-                </Menu.Item>
+                </Menu.Item>*/}
                 <Menu.Divider />
                 <Menu.Item key="2">
                     <div className={styles.header_dropdown_item}>
@@ -111,7 +111,7 @@ class Header extends Component {
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
-               
+
                 <Menu.Divider />
                 <Menu.Item key="orderManager">
                     <div className={styles.header_dropdown_item}>
@@ -184,7 +184,7 @@ class Header extends Component {
                                 :
                                 <option value="English">{this.currLanguage == "English" ? "English" : '英文'}</option>
                             }
-                          }
+                            }
                         </select>
                     </div>
                 </div>

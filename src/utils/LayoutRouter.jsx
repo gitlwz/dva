@@ -64,7 +64,7 @@ const LayoutRouter = [
     },
     {
         path: '/asset',  //资产管理
-        models: () => [import('../models/asset'), import("../models/fabi/release")],
+        models: () => [import('../models/asset'), import("../models/fabi/release"),import('../models/record')],
         component: () => import('../routes/asset/asset'),
     }, {
         path: '/otherRecharge/:type',  //其他货币充值

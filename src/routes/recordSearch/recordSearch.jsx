@@ -14,19 +14,19 @@ class Record extends Component {
         super(props);
 
         this.state = {
-            leftMenu: ["充提币记录", "交易记录查询"],
-            currentSelect: '充提币记录'
+            leftMenu: ["交易记录查询"],
+            currentSelect: '交易记录查询'
         }
 
     }
     componentWillMount = () => {
-        if (this.props.history.location.search === "?type=1") {
-            this.setState({ currentSelect: "充提币记录" })
-        } else if (this.props.history.location.search === "?type=2") {
-            this.setState({ currentSelect: "交易记录查询" })
-        } else {
-            this.setState({ currentSelect: "充提币记录" })
-        }
+        // if (this.props.history.location.search === "?type=1") {
+        //     this.setState({ currentSelect: "充提币记录" })
+        // } else if (this.props.history.location.search === "?type=2") {
+        //     this.setState({ currentSelect: "交易记录查询" })
+        // } else {
+        //     this.setState({ currentSelect: "充提币记录" })
+        // }
     }
     callback = (key) => {
         console.log(key)
@@ -45,7 +45,7 @@ class Record extends Component {
                                 <div className={style.left_card}>
                                     {this.state.leftMenu.map((item, index) => {
                                         let _style = style.left_item;
-                                        if (item === this.state.currentSelect) {
+                                        if (item == this.state.currentSelect) {
                                             _style = _style + " " + style.left_active;
                                         }
                                         return <div onClick={() => this.leftMenuClick(item)} className={_style} key={item}>{item}</div>

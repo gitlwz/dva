@@ -153,7 +153,7 @@ class Entrust extends Component {
         return (
             <Spin spinning={this.props.loading}>
                 <div className={style.gutte_right}>
-                    <div className={style.right_title}> 交易记录查询 </div>
+                    <div className={style.right_title}>  </div>
                     <div className={style.right_bz}>
                         <Tabs tabList={[{ title: "委托查询", tradeTimeFlag: '3' }, { title: "当日成交", tradeTimeFlag: '1' }, { title: "历史成交", tradeTimeFlag: '2' }, { title: "未成交委托查询", tradeTimeFlag: '4' }]}
                             tab={this.state.tab} tabChange={item => this.setState({ tab: item.title, tradeTimeFlag: item.tradeTimeFlag, pageNo: 1 }, () => {
@@ -190,7 +190,6 @@ class Entrust extends Component {
     }
 }
 export default connect((state, props) => {
-    console.log(state.record.loading)
     return {
         entrustData: state.record.entrustData,
         loading: state.record.loading,

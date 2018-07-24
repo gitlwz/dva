@@ -332,7 +332,7 @@ class tradingCenter extends Component {
                             </Col>
                             <Col>
                                 <div className="payment">
-                                    <Button type="primary" onClick={(ev) => this.jumpTo()}>+我要发布</Button></div>
+                                    <Button type="primary" onClick={(ev) => this.jumpTo()}>我要发布</Button></div>
                             </Col>
                         </Row>
                         <div className="tr_neck">

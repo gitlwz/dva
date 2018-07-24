@@ -6,7 +6,7 @@ import dataFormat from '../../tool/dataFormat';
 import Tabs from '../../components/tabs';
 import { Table } from 'antd';
 
-
+//充提币记录
 class Recharge extends Component {
     constructor(props) {
         super(props);
@@ -131,7 +131,7 @@ class Recharge extends Component {
             }];
         return (
             <div className={style.gutte_right} style={{ overflowX: 'scroll' }}>
-                <div className={style.right_title}> 充提币记录 </div>
+                <div className={style.right_title}>  </div>
                 <div className={style.right_bz}>
                     <Tabs tabList={[{ title: "充币记录", orderStatus: '0' }, { title: "提币记录", orderStatus: '1' }]} tab={this.state.tab} tabChange={item =>
                         this.setState({ tab: item.title, orderStatus: item.orderStatus, pageNo: 1 }, () => this.getRechargeList())} />
