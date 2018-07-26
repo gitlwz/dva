@@ -79,6 +79,15 @@ class Bibi extends React.Component {
         })
     }
 
+    changOrderType() {
+        this.props.dispatch({
+            type: 'kine/save',
+            payload: {
+                orderPriceType: this.props.orderPriceType == "0" ? "1" : "0"
+            }
+        })
+    }
+
     //获取资产
     getAccount() {
         let account = this.props.dataSource;
@@ -136,7 +145,7 @@ class Bibi extends React.Component {
                                 {/*下单操作*/}
                                 <Col span="14">
                                     <div style={{ height: '470px' }}>
-                                        <div className={cardHeader}>限价交易<span style={{ color: '#565656' }}></span></div>
+                                        <div className={cardHeader}><span style={{ color: this.props.orderPriceType == "1" ? '#747474' : '', cursor: 'pointer' }} onClick={() => this.changOrderType()}>限价交易</span> <span style={{ color: this.props.orderPriceType == "0" ? '#747474' : '', cursor: 'pointer' }} onClick={() => this.changOrderType()}>市价交易</span></div>
                                         <div className={bgColor} style={{ height: "420px", ...borderRadius }}>
                                             <Trade />
                                         </div>
@@ -192,6 +201,7 @@ export default connect((state, props) => {
         dataSource: state.kine.dataSource,
         RateUseList: state.other.RateUseList,
         tradeType: state.trade.tradeType,
+        orderPriceType: state.kine.orderPriceType,
         props
     }
 }, (dispatch, props) => {

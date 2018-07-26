@@ -51,6 +51,7 @@ class Asset extends Component {
                             <Col className="gutter-row" span={6}>
                                 <div className={style.gutter_letft}>
                                     <div className={style.left_card}>
+                                        <div className={style.nav_title}>{language.ZCGL}</div>
                                         {this.state.leftMenu.map((item, index) => {
                                             let _style = style.left_item;
                                             if (item === this.props.currentSelect) {

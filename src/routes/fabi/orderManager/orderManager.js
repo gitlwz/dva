@@ -4,6 +4,7 @@ import { connect } from 'dva';
 import { Row, Col, Spin } from 'antd';
 import MyDeity from './MyDeity';  //我的发布
 import MyOrder from './MyOrder'; // 我的订单
+import language from '../../../language'
 /**
  * 订单管理
  */
@@ -39,6 +40,7 @@ class orderManager extends Component {
                             <Col className="gutter-row" span={6}>
                                 <div className={style.gutter_letft}>
                                     <div className={style.left_card}>
+                                        <div className={style.nav_title}>{language.tradingCenter.DDGL}</div>
                                         {this.state.leftMenu.map((item, index) => {
                                             let _style = style.left_item;
                                             if (item === this.state.currentSelect) {

@@ -42,7 +42,7 @@ export default {
             const { data } = yield call(baseService, api.setMoneyPassword.setAccountPassword, [...payload.params]);
             if(!!data && data.result == 1){  //改过
                 message.success(data.message)
-                yield  put(routerRedux.push("/asset"))
+                yield  put(routerRedux.push("/userCenter"))
             }
             yield put({
                 type: 'save',

@@ -95,7 +95,7 @@ class Header extends Component {
                 <Menu.Divider />
                 <Menu.Item key="2">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_tcb}>{languageData['CB&TB']}</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_tcb}>{languageData.record.JYJL}</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
@@ -115,7 +115,7 @@ class Header extends Component {
                 <Menu.Divider />
                 <Menu.Item key="orderManager">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>订单管理</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>{languageData.tradingCenter.DDGL}</span>
                     </div>
                 </Menu.Item>
                 <Menu.Divider />

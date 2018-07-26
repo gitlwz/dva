@@ -15,6 +15,7 @@ export default {
         instrumentIdData: {}, //合约详情
         sellList: [],
         buyList: [],
+        orderPriceType:"0", //限价  市价
         markLoading: true,
         search: '',
         dataByInstrumentId: {}, //合约深度行情

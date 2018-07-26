@@ -122,6 +122,11 @@ class tradingCenter extends Component {
             return;
         }
 
+        if (this.props.userInfo.clientID == item.clientID) {
+            message.error("不能买/卖自已发布的订单!");
+            return;
+        }
+
         if (!Bidding.accountPassword) {
             message.error("请先设置资金密码!");
             this.props.history.push("/userCenter")
@@ -131,6 +136,7 @@ class tradingCenter extends Component {
             this.setState({ nickVisible: true })
             return;
         }
+
         let title = "";
         if (item.postersType == 1) {
             title = dataJSON.tradingCenter.MR + item.currency

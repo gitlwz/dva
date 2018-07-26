@@ -37,9 +37,9 @@ class Indenture extends React.Component {
     }
 
     loadCurrencys() {
-        const currencys = ["BTC", "USDT", "ETH"];
+        const currencys = ["BTC", "USDT", "ETH","SDAX"];
         return <div>{currencys.map(item => {
-            return <span className={styles.currency} style={{ marginRight: '15px', borderBottom: this.state.currency == item ? '2px solid #FFCD38' : '' }} onClick={() => this.setState({ currency: item })} key={item}>{item}</span>
+            return <span className={styles.currency} style={{ marginRight: '10px', borderBottom: this.state.currency == item ? '2px solid #FFCD38' : '' }} onClick={() => this.setState({ currency: item })} key={item}>{item}</span>
         })}
         </div>
     }

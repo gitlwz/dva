@@ -131,6 +131,10 @@ class Release extends React.Component {
                             alipayAccount: this.state.alipayAccount == "alipayAccount" ? null : "alipayAccount"
                         })
                     }} /> : null}
+                {
+                    (subBankAccountInfo.bankAccountShow == "0" && subBankAccountInfo.wechatAccountShow == "0" && subBankAccountInfo.alipayAccountShow == "0") ?
+                        <img className={styles.paymentImg} src={require("../../../assets/fabi/ic_add.png")} onClick={() => this.props.history.push("/userCenter?menu=2")} /> : ""
+                }
             </div>
         );
     }

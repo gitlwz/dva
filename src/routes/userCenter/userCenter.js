@@ -21,7 +21,10 @@ class UserCenter extends Component {
 
     }
     componentWillMount = () => {
-
+        let selectMenu = window.location.href.split("=")[1];
+        if (selectMenu != undefined) {
+            this.setState({ currentSelect: "法币收款账户" })
+        }
         this.props.dispatch({
             type: 'asset/findByUserID'
         })
@@ -77,10 +80,13 @@ class UserCenter extends Component {
                         {topError.content}
                     </div>
                     <div className={style.accounContent}>
+
                         <Row gutter={16}>
+
                             <Col className="gutter-row" span={6}>
                                 <div className={style.gutter_letft}>
                                     <div className={style.left_card}>
+                                        <div className={style.nav_title}>{language.AQZX}</div>
                                         {this.state.leftMenu.map((item, index) => {
                                             let _style = style.left_item;
                                             if (item === this.state.currentSelect) {

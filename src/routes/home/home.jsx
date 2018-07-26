@@ -116,7 +116,7 @@ class Home extends React.Component {
 
 
     loadSearCurrency() {
-        let currencys = ["BTC", "USDT", "ETH"];
+        let currencys = ["BTC", "USDT", "ETH","SDAX"];
         return currencys.map(item => {
             return <button className={styles.currency} key={item.currency} style={{ background: this.state.currency == item ? "gold" : '' }}
                 onClick={() => this.setState({ currency: item })} key={item}>{item}</button>

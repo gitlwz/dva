@@ -199,7 +199,7 @@ class setMoneyPassword extends Component {
                                             message:"请输入6位数字密码"
                                         }],
                                     })(
-                                        <Input placeholder="设置新的用户验证码" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)', marginLeft: '15px' }} />} type="password" />
+                                        <Input placeholder="设置新的用户验证码" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" />
                                     )}
                                 </FormItem>
                                 <div className={style.text}>
