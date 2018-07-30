@@ -77,7 +77,7 @@ const LayoutRouter = [
     },
     {
         path: '/record',  //
-        models: () => [import('../models/record')],
+        models: () => [import('../models/record'),import("../models/asset")],
         component: () => import('../routes/recordSearch/recordSearch'),
     }, {
         path: '/smSverification',  //短信验证开启页

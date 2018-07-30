@@ -305,7 +305,7 @@ class AccoutSeting extends React.Component {
         return (
             <div style={{ paddingTop: '53px' }}>
                 <div className={styles.right_title}>
-                    
+
                 </div>
                 <div className={styles.right_bz} loading={this.props.loading}>
                     <div className={styles.card}>
@@ -376,7 +376,7 @@ class AccoutSeting extends React.Component {
                                             title: '支付宝账号',
                                             alipayRealName: subBankAccountInfo.alipayRealName,
                                             alipayAccount: subBankAccountInfo.alipayAccount,
-                                            alipayPhoto: "/sundax/download/memberFileUploadService/downloadFile?params=[" + subBankAccountInfo.alipayAccountPhoto + "]"
+                                            alipayPhoto: subBankAccountInfo.alipayAccountPhoto
                                         })}>修改</span> :
                                         <span onClick={() => this.changModal({
                                             type: "zhifubao",
@@ -427,7 +427,7 @@ class AccoutSeting extends React.Component {
                                             wechatRealName: subBankAccountInfo.wechatRealName,
                                             title: "微信账号",
                                             wechatAccount: subBankAccountInfo.wechatAccount,
-                                            wechatPhoto: "/sundax/download/memberFileUploadService/downloadFile?params=[" + subBankAccountInfo.wechatAccountPhoto + "]",
+                                            wechatPhoto: subBankAccountInfo.wechatAccountPhoto,
                                         })}>修改</span> :
                                         <span onClick={() => this.changModal({
                                             type: "weixin",

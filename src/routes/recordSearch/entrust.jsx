@@ -2,10 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import style from '../asset/asset.less'
 import styleA from './Recharge.less';
 import { connect } from 'dva';
+import moment from 'moment';
 import DataFormatter from '../../tool/dataFormat';
-import { Table, Spin } from 'antd';
+import { Table, Spin, Form, Select, Button, DatePicker } from 'antd';
 import Tabs from '../../components/tabs';
-
+const { RangePicker } = DatePicker
 
 //委托查询
 class Entrust extends Component {
@@ -15,22 +16,35 @@ class Entrust extends Component {
             pageNo: 1,
             pageSize: 10,
             tab: '委托查询',
+            state: "",
+            rangeData: [moment().subtract(1, 'week'), moment()],
+            currency: "",
+            direction: "",
+
             tradeTimeFlag: '3',
             orderStatus: "0"
         }
     }
 
     componentDidMount() {
-        this.getEntrustList();
+        this.props.dispatch({
+            type: "asset/findAllCurrencys",
+        });
+        this.getEntrustList(this.props.userInfo);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.userInfo != nextProps.userInfo && !!nextProps.userInfo.clientID) {
+            this.getEntrustList(nextProps.userInfo);
+        }
     }
 
     //查询委托列表
-    getEntrustList() {
-        const { registeredName, clientId, clientName } = this.props.userInfo;
+    getEntrustList(userInfo) {
+        const { registeredName, clientID, clientName } = userInfo;
         // tradeTimeFlag 1:全部  2.当天   3:历史
         // type 
-
-        if (this.props.userInfo && !!this.props.userInfo.clientID) {
+        if (!!clientID) {
             let action = 'record/entrustList';
             if (this.state.tradeTimeFlag == "3" || this.state.tradeTimeFlag == "4") {
                 action = 'record/queryOrderForClient';
@@ -41,13 +55,13 @@ class Entrust extends Component {
                     {
                         "registeredName": registeredName,
                         "tradeTimeFlag": this.state.tradeTimeFlag,
-                        "clientId": clientId,
+                        "clientId": clientID,
                         "clientName": clientName,
-                        "direction": "",
-                        "instrumentId": "",
-                        "orderStatus": "",
-                        "tradingdayStart": "",
-                        "tradingdayEnd": ""
+                        "direction": this.state.direction,
+                        "instrumentId": this.state.currency,
+                        "orderStatus": this.state.state,
+                        "tradingdayStart": this.state.rangeData[0].format("YYYYMMDD"),
+                        "tradingdayEnd": this.state.rangeData[1].format("YYYYMMDD"),
                     },
                     { "pageNo": this.state.pageNo, "pageSize": this.state.pageSize }, 5, 2]
             })
@@ -62,10 +76,10 @@ class Entrust extends Component {
             showSizeChanger: true,
             showQuickJumper: true,
             onShowSizeChange: (page, pageSize) => {
-                this.setState({ pageNo: page, pageSize: pageSize }, () => this.getEntrustList())
+                this.setState({ pageNo: page, pageSize: pageSize }, () => this.getEntrustList(this.props.userInfo))
             },
             onChange: (page, pageSize) => {
-                this.setState({ pageNo: page, pageSize: pageSize }, () => this.getEntrustList())
+                this.setState({ pageNo: page, pageSize: pageSize }, () => this.getEntrustList(this.props.userInfo))
             }
         }
 
@@ -157,17 +171,51 @@ class Entrust extends Component {
                     <div className={style.right_bz}>
                         <Tabs tabList={[{ title: "委托查询", tradeTimeFlag: '3' }, { title: "当日成交", tradeTimeFlag: '1' }, { title: "历史成交", tradeTimeFlag: '2' }, { title: "未成交委托查询", tradeTimeFlag: '4' }]}
                             tab={this.state.tab} tabChange={item => this.setState({ tab: item.title, tradeTimeFlag: item.tradeTimeFlag, pageNo: 1 }, () => {
-                                this.props.dispatch({
-                                    type: 'record/save',
-                                    payload: {
-                                        entrustData: {
-                                            content: []
-                                        }
-                                    }
+                                this.setState({
+                                    state: "",
+                                    rangeData: [moment().subtract(1, 'week'), moment()],
+                                    currency: "",
+                                    direction: "",
                                 })
-                                this.getEntrustList()
+                                this.getEntrustList(this.props.userInfo)
                             })} />
                     </div>
+                    <Form layout="inline" style={{ marginTop: 15 }}>
+                        <Form.Item>
+                            <Select value={this.state.currency} onChange={value => this.setState({ currency: value })} style={{ width: 150 }} >
+                                <Select.Option value="">全部币种</Select.Option>
+                                {this.props.currencyList.map((ele, index) => {
+                                    return <Select.Option value={ele} key={ele}>{ele}</Select.Option>
+                                })}
+                            </Select>
+                        </Form.Item>
+                        <Form.Item>
+                            <Select value={this.state.direction} onChange={(direction) => this.setState({ direction })} style={{ width: 150 }}>
+                                <Select.Option value="">全部买/卖</Select.Option>
+                                <Select.Option value="0">买</Select.Option>
+                                <Select.Option value="1">卖</Select.Option>
+                            </Select>
+                        </Form.Item>
+                        {this.state.tradeTimeFlag == "3" ?
+                            <Form.Item>
+                                <Select value={this.state.state} onChange={(state) => this.setState({ state })} style={{ width: 150 }}>
+                                    <Select.Option value="">全部</Select.Option>
+                                    <Select.Option value="1">部分成交</Select.Option>
+                                    <Select.Option value="0">全部成交</Select.Option>
+                                    <Select.Option value="3">未成交</Select.Option>
+                                    <Select.Option value="5">已撤单</Select.Option>
+                                </Select>
+                            </Form.Item> : null
+                        }
+                        {this.state.tradeTimeFlag != "1" ?
+                            <Form.Item>
+                                <RangePicker onChange={(rangeData) => { this.setState({ rangeData: rangeData }) }} value={this.state.rangeData} />
+                            </Form.Item> : null
+                        }
+                        <Form.Item>
+                            <Button onClick={() => this.getEntrustList(this.props.userInfo)}>查询</Button>
+                        </Form.Item>
+                    </Form>
                     <div className={styleA.right_table + " AssetView"}>
                         {(this.state.tradeTimeFlag == "3" || this.state.tradeTimeFlag == "4") ?
                             <Table
@@ -194,6 +242,7 @@ export default connect((state, props) => {
         entrustData: state.record.entrustData,
         loading: state.record.loading,
         userInfo: state.user.userInfo,
+        currencyList: state.asset.currencyList,
         props
     }
 })(Entrust);
