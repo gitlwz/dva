@@ -36,6 +36,7 @@ class MyModal extends React.Component {
             //弹出Modal
             default:
                 return <Modal
+                    closable={false}
                     title={title}
                     visible={visible}
                     onOk={handleOk}

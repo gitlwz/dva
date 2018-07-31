@@ -33,9 +33,10 @@ class LayoutPage extends React.Component {
             <Layout>
                 <Header />
                 <ThemeSet />
-                <Layout.Content style={{ minHeight: 700, background: "rgb(247, 247, 247)" }}>
+                <Layout.Content style={{ minHeight: 700 ,padding:0}}>
                     {this.props.children}
                 </Layout.Content>
+                
                 <Layout.Footer style={{ padding: 0, margin: 0 }}>
                     <Footer />
                 </Layout.Footer>

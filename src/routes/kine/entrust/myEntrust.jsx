@@ -101,21 +101,21 @@ class MyEntrust extends React.Component {
         const IconStyle = { color: '#6C7F9C', fontSize: 16, marginLeft: 20 }
         let dataList = this.props.tradeType == "0" ? this.props.orderForClientList : this.props.operTradeList;
         return (
-            <div style={{ height: '100%', padding: '0 20px' }}>
+            <div style={{ height: '100%', padding: '0 0px' }}>
                 <Spin spinning={this.props.orderForClientLoading}>
                     <div style={{ height: 300, width: "100%", overflowX: "auto", overflowY: 'scroll' }}>
-                        {this.props.tradeType == "0" ? <TradeComponent style={{ minWidth: "800px" }} dataList={dataList} titleList={["时间", "货币对", "买卖", "委单价"+ "("+this.props.currentInstrument.split("-")[1]+")", "剩余委托数量"+ "("+this.props.currentInstrument.split("-")[0]+")", "总价"+ "("+this.props.currentInstrument.split("-")[1]+")"]} entrust /> :
-                            <TradeComponent trade tradeDate dataList={dataList} titleList={["时间", "方向", "成交价" + (this.props.currentInstrument.split("-")[1]), "成交量" + "("+this.props.currentInstrument.split("-")[0]+")"]} handleOk={price => console.log(price)} />
+                        {this.props.tradeType == "0" ? <TradeComponent style={{ minWidth: "800px" }} dataList={dataList} titleList={["时间", "货币对", "买卖", "委单价" + "(" + this.props.currentInstrument.split("-")[1] + ")", "剩余委托数量" + "(" + this.props.currentInstrument.split("-")[0] + ")", "总价" + "(" + this.props.currentInstrument.split("-")[1] + ")"]} entrust /> :
+                            <TradeComponent trade tradeDate dataList={dataList} titleList={["时间", "方向", "成交价" + (this.props.currentInstrument.split("-")[1]), "成交量" + "(" + this.props.currentInstrument.split("-")[0] + ")"]} handleOk={price => console.log(price)} />
                         }
                     </div>
                 </Spin>
                 <div style={{ height: '1px', background: '#233044', margin: '15px 30px 10px 0' }}></div>
-                <div className={styles.action}>
+                {this.props.tradeType == "0" ? <div className={styles.action}>
                     <span>撤单提示(双击单笔委托可撤单)</span>
                     <Icon type="delete" style={{ ...IconStyle }} /><span onClick={() => this.batchOrderAction("0")}>撤销买入</span>
                     <Icon type="delete" style={{ ...IconStyle }} /> <span onClick={() => this.batchOrderAction("1")}>撤销卖出</span>
                     <Icon type="delete" style={{ ...IconStyle }} /><span onClick={() => this.batchOrderAction("")}>撤销所有</span>
-                </div>
+                </div> : ""}
             </div>
 
         )

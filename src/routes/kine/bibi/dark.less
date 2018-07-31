@@ -1,0 +1,100 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.bgColor{
+    background: #202637;
+    color: #A1B2C4;
+    font-family:PingFangSC-Regular;
+    ::-webkit-scrollbar {
+         width: 0px;
+         height: 0px;
+        // height:10px;
+        //background: #FFA711;
+    }
+         
+    ::-webkit-scrollbar-thumb,
+    ::-webkit-scrollbar-thumb:horizontal {
+        border-radius: 6px;
+        background:rgba(203,229,255,0.22);
+    }
+    //::-webkit-scrollbar-thumb,
+    ::-webkit-scrollbar-thumb:hover {
+        border-radius: 6px;
+        background:rgba(203,229,255,0.36);
+    }
+
+    ::-webkit-scrollbar-button {
+        display: none;
+    }
+         
+    ::-webkit-scrollbar-track,
+    ::-webkit-scrollbar-track-piece {
+        //background:#0E1B2F;
+    }     
+}
+
+.CardBgColor{
+    background: #000D21;
+}
+
+.CardHeader{
+    line-height: 50px;
+    height: 50px;
+    background:#0E1B2F;
+    border-radius:8px 8px 0px 0px;
+    padding-left: 20px;
+    font-size:16px;
+    color:rgba(120,173,255,1);
+}
+
+.lastDayKine{
+    font-size:22px;
+    font-family:PingFangSC-Medium;
+    color: #78ADFF;
+    span{
+        color: #6C7F9C;
+        font-size: 14px;
+        font-family:PingFangTC-Regular;
+    }
+}
+
+.assetDiv{
+    height:22px;
+    font-size:16px;
+    line-height:22px;
+    color: #78ADFF;
+    .asset{
+        cursor:pointer;
+    }
+}
+
+.asset{
+    height:22px;
+    font-size:14px;
+    line-height:22px;
+    color: #A1B2C4;
+}
+
+.search{
+    width: 140px;
+    height: 26px;
+    float: right;
+    border-radius:3px;
+    border: none;
+    outline: none;
+    display: block;
+    margin-top: 12px;
+    padding-left: 10px;
+    margin-right: 20px;
+    background:#0E1B2F;
+    border:1px solid rgba(81,110,155,1);
+    font-size:14px;
+    
+    color:#516E9B;
+}
+
+.search:focus{
+    border:1px solid rgba(81,110,155,1);
+}

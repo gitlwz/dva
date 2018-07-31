@@ -11,7 +11,8 @@ import MyEntrust from '../entrust/myEntrust';
 import Notice from '../notice/notice';
 import { TVChartContainer } from '../../../components/TVChartContainer'
 import PubSub from "pubsub-js";
-import styles from './bibi.less';
+import light from './light.less';
+import dark from './dark.less';
 /**
  * 币币主页布局
  */
@@ -99,45 +100,46 @@ class Bibi extends React.Component {
     }
 
     render() {
-        let bgColor = (this.props.theme == "white" ? styles.bgDarkColor : styles.bgWhiteColor);
-        let cardHeader = (this.props.theme == "white" ? styles.darkCardHeader : styles.whiteCardHeader);
+        let styles = this.props.theme == "dark" ? dark : light;
+        let CardBgColor = styles.CardBgColor;
+        let CardHeader = styles.CardHeader;
         const borderRadius = { borderRadius: '0 0 8px 8px' }
         const { userId, search, searchByInstrum, currentInstrument, dataByInstrumentId } = this.props;
         let Account = this.getAccount();
-        return <div style={{ padding: '10px 30px', backgroundColor: '#FFFFFF' }}>
+        return <div style={{ padding: '10px 30px' }} className={styles.bgColor}>
             <Row>
                 <Col span="5">
-                    <div style={{ height: 90, borderRadius: '8px', background: '#FFCD38' }} className={bgColor}>
+                    <div style={{ height: 90, borderRadius: '8px' }} className={styles.CardBgColor}>
                         <Row style={{ marginLeft: 20, height: '100%', padding: '18px 0' }} type="flex" justify="center">
                             <Col span={24}>
                                 <Row>
-                                    <Col span={12}><div className={styles.assetDiv} style={{ color: '#3E3E3E' }}>净资产折合</div></Col>
+                                    <Col span={12}><div className={styles.assetDiv}>净资产折合</div></Col>
                                     <Col span={12}>{this.state.isLook ? <Icon type="eye" style={{ fontSize: 24, color: '#565656' }} onClick={() => this.changLook()} /> : <Icon type="eye-o" style={{ fontSize: 24, color: '#08c' }} onClick={() => this.changLook()} />} </Col>
                                 </Row>
                             </Col>
                             {userId ?
-                                <Col span={24}><div className={styles.assetDiv}>{this.state.isLook ? "******" : Account["btcCount"]} BTC ≈ {this.state.isLook ? "******" : Account["cnyCount"]} CNY</div></Col> :
+                                <Col span={24}><div className={styles.asset}>{this.state.isLook ? "******" : Account["btcCount"]} BTC ≈ {this.state.isLook ? "******" : Account["cnyCount"]} CNY</div></Col> :
                                 <Col span={24}><LoginTooltip /></Col>
                             }
                         </Row>
                     </div>
                     {/*合约*/}
-                    <div style={{ height: 320, marginTop: 10, borderRadius: '8px' }} className={bgColor}>
-                        <div className={cardHeader}> 市场 <input placeholder="搜索" className={styles.search} value={search} onChange={e => searchByInstrum(e.target.value.toUpperCase())} /> </div>
+                    <div style={{ height: 320, marginTop: 10, borderRadius: '8px' }} className={CardBgColor}>
+                        <div className={CardHeader}> 市场 <input placeholder="搜索" className={styles.search} value={search} onChange={e => searchByInstrum(e.target.value.toUpperCase())} /> </div>
                         <div style={{ margin: "10px 20px", overflowY: 'scroll', height: 250 }}>
                             <Indenture />
                         </div>
                     </div>
                     {/*公告栏*/}
-                    <div style={{ height: 900, marginTop: 10, borderRadius: '8px' }} className={bgColor}>
-                        <div className={cardHeader}>公告栏</div>
+                    <div style={{ height: 900, marginTop: 10, borderRadius: '8px' }} className={CardBgColor}>
+                        <div className={CardHeader}>公告栏</div>
                         <Notice />
                     </div>
                 </Col>
                 <Col span="19">
                     <div style={{ marginLeft: 10 }}>
-                        <div className={cardHeader} style={{ color: '#565656', fontSize: 14 }}><span style={{ color: '#3E3E3E', fontSize: 22 }}> {currentInstrument} {dataByInstrumentId.closePriceString}</span> ≈ {formatData.convertCNY(this.props.RateUseList, dataByInstrumentId.closePriceString, currentInstrument)} 涨幅 {formatData.changePrice(dataByInstrumentId.closePrice, dataByInstrumentId.openPriceString)}  高 {dataByInstrumentId.highestPriceString}  低 {dataByInstrumentId.lowestPriceString} 24H量 {dataByInstrumentId.volumeString}</div>
-                        <div style={{ height: '490px', ...borderRadius }} className={bgColor}>
+                        <div className={CardHeader} className={styles.lastDayKine}> {currentInstrument} {dataByInstrumentId.closePriceString} <span>≈ {formatData.convertCNY(this.props.RateUseList, dataByInstrumentId.closePriceString, currentInstrument)} 涨幅 {formatData.changePrice(dataByInstrumentId.closePriceString, dataByInstrumentId.openPriceString)}  高 {dataByInstrumentId.highestPriceString}  低 {dataByInstrumentId.lowestPriceString} 24H量 {dataByInstrumentId.volumeString}</span></div>
+                        <div style={{ height: '490px', ...borderRadius }} className={CardBgColor}>
                             {!!currentInstrument ? <TVChartContainer symbol={currentInstrument} /> : ''}
                         </div>
                         <div style={{ marginTop: 10 }}>
@@ -145,8 +147,8 @@ class Bibi extends React.Component {
                                 {/*下单操作*/}
                                 <Col span="14">
                                     <div style={{ height: '470px' }}>
-                                        <div className={cardHeader}><span style={{ color: this.props.orderPriceType == "1" ? '#747474' : '', cursor: 'pointer' }} onClick={() => this.changOrderType()}>限价交易</span> <span style={{ color: this.props.orderPriceType == "0" ? '#747474' : '', cursor: 'pointer' }} onClick={() => this.changOrderType()}>市价交易</span></div>
-                                        <div className={bgColor} style={{ height: "420px", ...borderRadius }}>
+                                        <div className={CardHeader}><span style={{ color: this.props.orderPriceType == "1" ? '#747474' : '', cursor: 'pointer' }} onClick={() => this.changOrderType()}>限价交易</span> <span style={{ color: this.props.orderPriceType == "0" ? '#747474' : '', cursor: 'pointer' }} onClick={() => this.changOrderType()}>市价交易</span></div>
+                                        <div className={CardBgColor} style={{ height: "420px", ...borderRadius }}>
                                             <Trade />
                                         </div>
                                     </div>
@@ -154,8 +156,8 @@ class Bibi extends React.Component {
                                 {/*七档行情*/}
                                 <Col span="10">
                                     <div style={{ marginLeft: 10 }}>
-                                        <div className={cardHeader}>七档行情</div>
-                                        <div className={bgColor} style={{ height: "420px", ...borderRadius }}>
+                                        <div className={CardHeader}>七档行情</div>
+                                        <div className={CardBgColor} style={{ height: "420px", ...borderRadius }}>
                                             <Market />
                                         </div>
                                     </div>
@@ -166,16 +168,16 @@ class Bibi extends React.Component {
                             <Row>
                                 {/*我的委托*/}
                                 <Col span="15">
-                                    <div className={cardHeader}><span style={{ color: this.props.tradeType == "1" ? '#747474' : '', cursor: 'pointer' }} onClick={() => this.changTradeType()}>我的委托</span> <span style={{ color: this.props.tradeType == "0" ? '#747474' : '', cursor: 'pointer' }} onClick={() => this.changTradeType()}>我的成交</span></div>
-                                    <div className={bgColor} style={{ height: '360px', ...borderRadius }}>
+                                    <div className={CardHeader}><span style={{ color: this.props.tradeType == "1" ? '#747474' : '', cursor: 'pointer' }} onClick={() => this.changTradeType()}>我的委托</span> <span style={{ color: this.props.tradeType == "0" ? '#747474' : '', cursor: 'pointer' }} onClick={() => this.changTradeType()}>我的成交</span></div>
+                                    <div className={CardBgColor} style={{ height: '360px', ...borderRadius }}>
                                         <MyEntrust />
                                     </div>
                                 </Col>
                                 {/*成交明细*/}
                                 <Col span="9">
                                     <div style={{ marginLeft: '10px' }}>
-                                        <div className={cardHeader}>成交明细</div>
-                                        <div className={bgColor} style={{ height: '360px', ...borderRadius, overflowY: 'scroll' }}>
+                                        <div className={CardHeader}>成交明细</div>
+                                        <div className={CardBgColor} style={{ height: '360px', ...borderRadius, overflowY: 'scroll' }}>
                                             <TradDetal />
                                         </div>
                                     </div>

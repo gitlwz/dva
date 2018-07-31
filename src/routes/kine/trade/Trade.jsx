@@ -3,7 +3,9 @@ import { connect } from 'dva';
 import { Row, Col, Input, Slider, message, Spin } from 'antd';
 import LoginTooltip from '../../../components/loginTooltip'
 import format from '../../../tool/formatNmber';
-import styles from './Trade.less';
+import light from './light.less';
+import dark from './dark.less';
+
 /**
  * 模块:下单买卖操作
  */
@@ -33,7 +35,6 @@ class Trade extends React.Component {
 
             }
         }
-
 
         if (this.props.sellList != nextProps.sellList && this.props.currentInstrument != nextProps.currency) {
             if (this.props.setBuyPrice == false) {
@@ -195,7 +196,6 @@ class Trade extends React.Component {
             }
         }
 
-
         //orderPriceType 1:市价  2：限价
         if (userInfo && userInfo.id) {
             orderData.participantId = userInfo.clientID;
@@ -288,6 +288,7 @@ class Trade extends React.Component {
     }
 
     render() {
+        let styles = this.props.theme == "dark" ? dark : light;
         const { buyPrice, buyVolume, sellPrice, sellVolume, sliderChange, userId, currentInstrument, dataSource } = this.props;
         //报价货币
         let BJInstrument = currentInstrument.split("-")[0];
@@ -310,7 +311,7 @@ class Trade extends React.Component {
         const getMaxBuyTotal = format.buyMax(getButTotal, buyPrice, Number(transactionQuantityDecimal));
         return <div>
             {this.props.orderPriceType == "0" ?
-                <Row type="flex" justify="space-between" style={{ color: '#565656' }}>
+                <Row type="flex" justify="space-between" className={styles.root}>
                     <Col span="11">
                         <div style={{ marginLeft: 20 }}>
                             {userId ? <div className={styles.usable}>可用 {getButTotal}  {JJInstrument}</div> : <div className={styles.usable} > <LoginTooltip /></div>}
@@ -341,7 +342,7 @@ class Trade extends React.Component {
                                 <div className={styles.fold}>≈ {format.convertCNY(this.props.RateUseList, sellPrice, currentInstrument)}</div>
                             </div>
                             <div className={styles.tradAction} style={{ marginTop: 35 }}>卖出量</div>
-                            <Input suffix={<span >{BJInstrument}</span>} value={sellVolume} onChange={e => sliderChange({ sellVolume: this.formatNum({ value: e.target.value, max: Number(getSellTotal), pointNum: 4 }) })} className={styles.input} />
+                            <Input suffix={BJInstrument} value={sellVolume} onChange={e => sliderChange({ sellVolume: this.formatNum({ value: e.target.value, max: Number(getSellTotal), pointNum: 4 }) })} className={styles.input} />
                             <Slider step={this.getSliderPoints(transactionQuantityDecimal)} style={{ margin: '10px 0' }} max={Number(getSellTotal)} value={Number(sellVolume)} onChange={value => sliderChange({ sellVolume: this.formatNum({ value: value.toString(), max: Number(getSellTotal), pointNum: transactionQuantityDecimal }) })} />
                             <Row>
                                 <Col span={4}>0</Col>
@@ -354,7 +355,7 @@ class Trade extends React.Component {
 
                 </Row> :
                 <Row>
-                    <Row type="flex" justify="space-between" style={{ color: '#565656' }}>
+                    <Row type="flex" justify="space-between">
                         <Col span="11">
                             <div style={{ marginLeft: 20 }}>
                                 {userId ? <div className={styles.usable}>可用 {getButTotal}  {JJInstrument}</div> : <div className={styles.usable} > <LoginTooltip /></div>}
@@ -418,6 +419,7 @@ export default connect((state, props) => {
         setBuyPrice: state.kine.setBuyPrice,
         orderPriceType: state.kine.orderPriceType,
         decimalsPointList: state.other.decimalsPointList,
+        theme: state.app.theme,
         props
     }
 }, (dispatch, props) => {

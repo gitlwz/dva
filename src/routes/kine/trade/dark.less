@@ -1,0 +1,125 @@
+
+.root{
+    font-family:PingFangTC-Regular;
+    color:#A1B2C4;
+    :global{
+        .ant-slider-rail{
+            background: #CBE5FF;
+        };
+        .ant-slider-track{
+            background: #78ADFF;
+        }
+        .ant-slider:hover .ant-slider-track:hover .ant-slider-rail{
+            background: #78ADFF;
+        };
+        .ant-slider:hover .ant-slider-track{
+            background: #78ADFF;
+        }
+    }
+}
+.input{
+    :global{
+        .ant-input{
+            background-color:#202637;
+            border:1px solid rgba(120,173,255,1);
+            border-radius:4px;
+            height:38px;
+            width: 100%;
+            font-size:16px;
+            font-family:PingFangSC-Regular;
+            color:#78ADFF;
+            span{
+                color: #6C7F9C;
+            }
+        }
+
+        .ant-input:focus{
+            background:#202637;
+            border:1px solid rgba(120,173,255,1);
+        }
+        .ant-input-affix-wrapper .ant-input-suffix{
+            color: #FFF
+        }
+    }
+}
+
+.usable{
+    margin-top: 14px;
+    line-height: 22px;
+    height: 22px;
+    width: 100%;
+    font-size:16px;
+}
+
+.tradAction{
+    height: 20px;
+    margin: 10px 0;
+    line-height: 20px;
+    font-size:12px;
+    color:#516E9B;
+}
+
+.fold{
+    width:100%;
+    height:26px;
+    background:rgba(203,229,255,0.14);
+    border-radius:4px;
+    padding: 4px 11px;
+}
+
+.sum{
+    height:52px;
+    font-size:16px;
+    line-height:22px;
+    padding: 15px 0;
+}
+
+button{
+    outline: none;
+    border: none;
+}
+
+.sellButton{
+    width:100%;
+    height:40px;
+    background:#5ABC29;
+    width: 100%;
+    font-size:16px;
+    font-family:PingFangSC-Regular;
+    color:#FFFFFF;
+    border-radius:4px;
+  cursor: pointer;
+}
+
+.sellButton:hover{
+    background:#349B00;
+}
+.sellButton:disabled{
+    //background:rgba(0,0,0,0.3);
+    cursor:not-allowed;
+}
+
+.buyButton{
+    width:100%;
+    height:40px;
+    background:#FF6E3B;
+    width: 100%;
+    font-size:16px;
+    font-family:PingFangSC-Regular;
+    color:#FFFFFF;
+    border-radius:4px;
+  cursor: pointer;
+}
+
+.buyButton:hover{
+    background:#FF4200;
+}
+
+.buyButton:disabled{
+    cursor:not-allowed;
+}
+
+button:active{
+    position: relative;
+    top: 1px
+}

@@ -5,7 +5,8 @@ import PubSub from "pubsub-js";
 import formatData from '../../../tool/formatNmber';
 import star from "../../../assets/yinghe/形状 2 副本@2x.png";
 import selectStar from "../../../assets/yinghe/形状 2@2x.png";
-import styles from './indenture.less';
+import dark from './dark.less';
+import light from './light.less';
 
 /**
  * 模块:全部市场  合约
@@ -37,9 +38,10 @@ class Indenture extends React.Component {
     }
 
     loadCurrencys() {
-        const currencys = ["BTC", "USDT", "ETH","SDAX"];
+        const currencys = ["BTC", "USDT", "ETH", "SDAX"];
+        let styles = this.props.theme == "dark" ? dark : light;
         return <div>{currencys.map(item => {
-            return <span className={styles.currency} style={{ marginRight: '10px', borderBottom: this.state.currency == item ? '2px solid #FFCD38' : '' }} onClick={() => this.setState({ currency: item })} key={item}>{item}</span>
+            return <span className={this.state.currency == item ? styles.seleCurrency : styles.currency} style={{ marginRight: '10px' }} onClick={() => this.setState({ currency: item })} key={item}>{item}</span>
         })}
         </div>
     }
@@ -128,6 +130,7 @@ class Indenture extends React.Component {
                 }
             }).map(item => {
                 let rose = formatData.changePrice(item.closePrice, item.openPrice);
+                let styles = this.props.theme == "dark" ? dark : light;
                 return <Row className={styles.row} key={item.instrumentId} onClick={() => this.changeInstrum(item.instrumentId)}>
                     <Col className={styles.col} span={8}>
                         <div style={{ display: "flex", alignItems: 'center' }}>
@@ -144,6 +147,7 @@ class Indenture extends React.Component {
     }
 
     render() {
+        let styles = this.props.theme == "dark" ? dark : light;
         return <div className={styles.root} style={{ height: '100%' }}>
             <Spin spinning={this.props.loading}>
                 <Row type="flex" justify="space-between">
@@ -167,6 +171,7 @@ class Indenture extends React.Component {
 
 export default connect((state, props) => {
     return {
+        theme: state.app.theme,
         instrumentIds: state.kine.instrumentIds,
         list24HVolumeList: state.kine.list24HVolumeList,
         loading: state.kine.loading,

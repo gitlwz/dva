@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from './notice.less';
 import { routerRedux } from 'dva/router';
 import { connect } from 'dva';
+import dark from './dark.less';
+import light from './light.less';
 
 class Notice extends React.Component {
     componentDidMount() {
@@ -12,6 +13,7 @@ class Notice extends React.Component {
     }
 
     loadMessage() {
+        let styles = this.props.theme == "dark" ? dark : light;
         if (this.props.messageList.length > 0) {
             return this.props.messageList.map(item => {
                 return <div className={styles.root} key={item.msgID} onClick={() => this.props.dispatch(routerRedux.push("/Platform?msgID=" + item.msgID))}>
@@ -33,6 +35,7 @@ class Notice extends React.Component {
 
 export default connect((state, props) => {
     return {
+        theme: state.app.theme,
         messageList: state.other.messageList,
         props
     }

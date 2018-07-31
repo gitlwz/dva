@@ -149,7 +149,7 @@ class Header extends Component {
 
     // 渲染
     render() {
-        const dataJSON = {}
+        const { handleOk } = this.props;
         return (
             <div className={styles.headerNa}>
                 <div className={styles.leftNav}>
@@ -161,16 +161,17 @@ class Header extends Component {
                         <div>
                             <span style={{ borderRight: '1px solid rgba(86,86,86,1)', padding: '0 20px' }} onClick={() => this.pushNewPage("/user/login")}>{languageData.Login}</span>
                             <span style={{ padding: '0 20px' }} onClick={() => this.pushNewPage("/user/regis")}>{languageData.signIn}</span>
+                            <span style={{ padding: '0 20px', borderLeft: '1px solid rgba(86,86,86,1)', }} onClick={handleOk}>设置</span>
                         </div> :
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <img src={selectBg} style={{ margin: '0 10px', width: 40 }} />
                             <Dropdown overlay={this.menu()}>
                                 <span style={{ padding: '0 20px' }}>{this.props.userId}</span>
                             </Dropdown>
-
-
+                            <span style={{ padding: '0 20px', borderLeft: '1px solid rgba(86,86,86,1)', }} onClick={handleOk}>设置</span>
                         </div>
                     }
+
                     <div className={styles.language}>
                         <img src={languareBG} style={{ marginRight: 20, marginLeft: 10 }} />
                         <select value={this.currLanguage} onChange={this.currLanguageChange} style={{ height: "26px", border: "none", outline: 'none', fontSize: "18px", marginLeft: "-8px", cursor: "pointer" }}>
@@ -203,6 +204,14 @@ export default connect((state, props) => {
         getUserId: () => {
             dispatch({
                 type: 'user/getUserId'
+            })
+        },
+        handleOk: () => {
+            dispatch({
+                type: 'app/save',
+                payload: {
+                    visible: true
+                }
             })
         },
         logout: () => dispatch({

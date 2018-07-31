@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from 'prop-types';
 import format from '../tool/formatNmber';
 import { message } from "antd";
-import styles from './tradDetail.less';
+import light from './tradeLight.less';
+import dark from './tradeDrak.less';
 import { connect } from "dva";
 
 /**
@@ -39,10 +40,11 @@ class TradeComponent extends React.Component {
 
     //返回是七档行情还是成交明细,因匹配字段不同，改地方可以封装成动态化匹配字段
     isTradeDetail() {
+        let styles = this.props.theme == "dark" ? dark : light;
         if (this.props.trade) {
             return this.props.dataList.map((item, index) => {
                 return <div key={item.id} className={styles.header}>
-                    <span style={{ textAlign: 'left', width: 50 }}>{this.props.tradeDate ? item.tradeDate : ""} {item.tradeTime}</span>
+                    <span>{this.props.tradeDate ? item.tradeDate : ""} {item.tradeTime}</span>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36', width: 50 }}>{item.direction == "0" ? "买入" : '卖出'}</span>
                     <span>{item.priceString}</span>
                     <span>{item.volumeString}</span>
@@ -51,7 +53,7 @@ class TradeComponent extends React.Component {
         } else if (this.props.entrust) {
             return this.props.dataList.map((item, index) => {
                 return <div key={item.orderSysId} className={styles.header} onDoubleClick={() => this.orderAction(item)}>
-                    <span style={{ textAlign: 'left' }}>{item.insertDate}  {item.insertTime}</span>
+                    <span>{item.insertDate}  {item.insertTime}</span>
                     <span>{item.instrumentId}</span>
                     <span style={{ color: item.direction == "0" ? "#5CAF70" : '#DD5D36' }}>{item.direction == "0" ? "买入" : '卖出'}</span>
                     <span>{item.limitPrice}</span>
@@ -84,11 +86,12 @@ class TradeComponent extends React.Component {
     }
     render() {
         const { dataList, titleList } = this.props;
+        let styles = this.props.theme == "dark" ? dark : light;
         return (
             <div style={this.props.style} className={styles.market}>
                 <div className={styles.header + " " + styles.title}>
                     {titleList.map((item, index) => {
-                        return <span key={item} style={{ textAlign: item == "时间" ? 'left' : '' }}>{item}</span>
+                        return <span key={item}>{item}</span>
                     })}
                 </div>
                 {this.isTradeDetail()}
@@ -99,9 +102,11 @@ class TradeComponent extends React.Component {
 
 
 export default connect((state, props) => {
+
     return {
         instrumentIdData: state.kine.instrumentIdData,
         userId: state.user.userId,
+        theme: state.app.theme,
         tradeType: state.trade.tradeType,
         currentInstrument: state.kine.currentInstrument,
         props
