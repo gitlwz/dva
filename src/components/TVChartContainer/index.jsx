@@ -3,20 +3,20 @@ import { UDFCompatibleDatafeed } from '../UDFCompatibleDatafeed/udf-compatible-d
 const language = !!window.localStorage.getItem("language")&&window.localStorage.getItem("language") == "English"?'en':'zh';
 let widget = null;
 let widgetOptions = {
-	overrides: {
-		'paneProperties.background': "#181B2A",
-		'paneProperties.vertGridProperties.color': '#1D263D',
-		'paneProperties.horzGridProperties.color': '#1D263D',
-		'scalesProperties.textColor': "#61688A",
-		'scalesProperties.showStudyLastValue': true,
-		linetoolbarspattern: {
-			singleChartOnly: true,
-			color: 'rgba( 255, 0, 0, 1)',
-			mode: 0,
-			mirrored: false,
-			flipped: false
-		}
-	},
+	// overrides: {
+	// 	'paneProperties.background': "#181B2A",
+	// 	'paneProperties.vertGridProperties.color': '#1D263D',
+	// 	'paneProperties.horzGridProperties.color': '#1D263D',
+	// 	'scalesProperties.textColor': "#61688A",
+	// 	'scalesProperties.showStudyLastValue': true,
+	// 	linetoolbarspattern: {
+	// 		singleChartOnly: true,
+	// 		color: 'rgba( 255, 0, 0, 1)',
+	// 		mode: 0,
+	// 		mirrored: false,
+	// 		flipped: false
+	// 	}
+	// },
 	interval: '1',
 	// toolbar_bg: '#1D263D',
 	container_id: "tv_chart_container",
@@ -61,7 +61,25 @@ export class TVChartContainer extends React.PureComponent {
 			this.addMa(30, widget)
 		})
 		// });
+		setTimeout(()=>{
+			widget.addCustomCSSFile("./css/dark.css")
+			widget.applyOverrides({
+				'paneProperties.background': "#181B2A",
+				'paneProperties.vertGridProperties.color': '#1D263D',
+				'paneProperties.horzGridProperties.color': '#1D263D',
+				'scalesProperties.textColor': "#61688A",
+				'scalesProperties.showStudyLastValue': true,
+				linetoolbarspattern: {
+					singleChartOnly: true,
+					color: 'rgba( 255, 0, 0, 1)',
+					mode: 0,
+					mirrored: false,
+					flipped: false
+				}
+			})
+		},10000)
 	}
+	
 	componentWillReceiveProps = (nextProps) => {
 		if (nextProps.symbol !== this.props.symbol && !!widget && !!widget.chart) {
 			clearTimeout(this.setTimeoutName)
