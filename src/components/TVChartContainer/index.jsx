@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { UDFCompatibleDatafeed } from '../UDFCompatibleDatafeed/udf-compatible-datafeed';
-const language = !!window.localStorage.getItem("language")&&window.localStorage.getItem("language") == "English"?'en':'zh';
+const language = !!window.localStorage.getItem("language") && window.localStorage.getItem("language") == "English" ? 'en' : 'zh';
 let widget = null;
 let widgetOptions = {
 	// overrides: {
@@ -61,7 +61,7 @@ export class TVChartContainer extends React.PureComponent {
 			this.addMa(30, widget)
 		})
 		// });
-		setTimeout(()=>{
+		setTimeout(() => {
 			widget.addCustomCSSFile("./css/dark.css")
 			widget.applyOverrides({
 				'paneProperties.background': "#181B2A",
@@ -77,19 +77,58 @@ export class TVChartContainer extends React.PureComponent {
 					flipped: false
 				}
 			})
-		},10000)
+		}, 1000)
 	}
-	
+
 	componentWillReceiveProps = (nextProps) => {
 		if (nextProps.symbol !== this.props.symbol && !!widget && !!widget.chart) {
 			clearTimeout(this.setTimeoutName)
-			this.setTimeoutName =  setTimeout(()=>{
+			this.setTimeoutName = setTimeout(() => {
 				widget.chart().setSymbol(nextProps.symbol, () => {
 					if (typeof this.props.symbolChange === "function") {
 						this.props.symbolChange();
 					}
 				})
-			},500)
+			}, 500)
+		}
+
+		if (this.props.theme != nextProps.theme && nextProps.theme == "white") {
+			setTimeout(() => {
+				widget.addCustomCSSFile("")
+				widget.applyOverrides({
+					'paneProperties.background': "#FFF",
+					'paneProperties.vertGridProperties.color': '',
+					'paneProperties.horzGridProperties.color': '',
+					'scalesProperties.textColor': "",
+					'scalesProperties.showStudyLastValue': true,
+					linetoolbarspattern: {
+						singleChartOnly: true,
+						color: '',
+						mode: 0,
+						mirrored: false,
+						flipped: false
+					}
+				})
+			}, 1000)
+		}
+		if (this.props.theme != nextProps.theme && nextProps.theme == "dark") {
+			setTimeout(() => {
+				widget.addCustomCSSFile("./css/dark.css")
+				widget.applyOverrides({
+					'paneProperties.background': "#181B2A",
+					'paneProperties.vertGridProperties.color': '#1D263D',
+					'paneProperties.horzGridProperties.color': '#1D263D',
+					'scalesProperties.textColor': "#61688A",
+					'scalesProperties.showStudyLastValue': true,
+					linetoolbarspattern: {
+						singleChartOnly: true,
+						color: 'rgba( 255, 0, 0, 1)',
+						mode: 0,
+						mirrored: false,
+						flipped: false
+					}
+				})
+			}, 1000)
 		}
 	}
 	addMa = (num, widget) => {
@@ -97,13 +136,13 @@ export class TVChartContainer extends React.PureComponent {
 			console.log(guid);
 		})
 	}
-	componentWillUnmount = () =>{
-		if(!window.TVChartContainer){
-            window.TVChartContainer = [];
-        }
-        window.TVChartContainer.forEach((ele)=>{
-            window.clearInterval(ele);
-        })
+	componentWillUnmount = () => {
+		if (!window.TVChartContainer) {
+			window.TVChartContainer = [];
+		}
+		window.TVChartContainer.forEach((ele) => {
+			window.clearInterval(ele);
+		})
 	}
 	//添加分时按钮
 	insertBeforeBtn = () => {
