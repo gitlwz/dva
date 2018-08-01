@@ -7,11 +7,17 @@ import MyModal from '../../components/Modal'
  * 模块设置页面主题
  */
 class ThemeSet extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            theme: props.theme
+        }
+    }
     render() {
-        const { radioChange, handleOk } = this.props;
-        return <MyModal visible={this.props.visible} title="设置" handleOk={handleOk} handleCancel={handleOk}>
+        const { radioChange } = this.props;
+        return <MyModal visible={this.props.visible} title="设置" handleOk={() => this.props.handleOk(this.state.theme)} handleCancel={() => this.props.handleOk(this.state.theme)}>
             <p>主题</p>
-            <Radio.Group onChange={radioChange} value={this.props.theme}>
+            <Radio.Group onChange={e => this.setState({ theme: e.target.value })} value={this.state.theme}>
                 <Radio value="dark">黑色</Radio>
                 <Radio value="white">白色</Radio>
             </Radio.Group>
@@ -27,22 +33,15 @@ export default connect((state, props) => {
     }
 }, (dispatch, props) => {
     return {
-        handleOk: () => {
+        handleOk: (theme) => {
             dispatch({
                 type: 'app/save',
                 payload: {
+                    theme: theme,
                     visible: false
                 }
             })
         },
-        radioChange: (e) => {
-            dispatch({
-                type: 'app/save',
-                payload: {
-                    theme: e.target.value
-                }
-            })
-        }
     }
 
 })(ThemeSet)

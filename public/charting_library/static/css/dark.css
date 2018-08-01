@@ -292,3 +292,7 @@
 .chart-page .button.active svg {
     fill: #181B2A;
 }
+
+.chart-page .header-chart-panel .group .apply-common-tooltip{
+    background: #181B2A;
+  }

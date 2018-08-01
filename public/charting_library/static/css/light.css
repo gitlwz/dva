@@ -1,0 +1,165 @@
+.chart-page {
+    background: #ffffff; }
+    .chart-page .pane-legend-icon-container svg {
+      fill: #9194a4; }
+    .chart-page .tv-side-toolbar .tools-group .button {
+      background-color: #ffffff;
+      border-color: #ffffff; }
+      .chart-page .tv-side-toolbar .tools-group .button .main.text-as-icon {
+        color: #9194a4; }
+      .chart-page .tv-side-toolbar .tools-group .button svg {
+        fill: #9194a4; }
+      .chart-page .tv-side-toolbar .tools-group .button.selected, .chart-page .tv-side-toolbar .tools-group .button:hover, .chart-page .tv-side-toolbar .tools-group .button:active {
+        background-color: #9194a4;
+        border-color: #9194a4; }
+        .chart-page .tv-side-toolbar .tools-group .button.selected svg, .chart-page .tv-side-toolbar .tools-group .button:hover svg, .chart-page .tv-side-toolbar .tools-group .button:active svg {
+          fill: #ffffff; }
+        .chart-page .tv-side-toolbar .tools-group .button.selected .main.text-as-icon, .chart-page .tv-side-toolbar .tools-group .button:hover .main.text-as-icon, .chart-page .tv-side-toolbar .tools-group .button:active .main.text-as-icon {
+          color: #ffffff; }
+        .chart-page .tv-side-toolbar .tools-group .button.selected .side, .chart-page .tv-side-toolbar .tools-group .button:hover .side, .chart-page .tv-side-toolbar .tools-group .button:active .side {
+          border-left: 1px solid transparent; }
+      .chart-page .tv-side-toolbar .tools-group .button:active svg {
+        fill: #9194a4; }
+    .chart-page .charts-popup-list {
+      background-color: #ffffff;
+      color: #9194a4;
+      border-color: #9194a4; }
+      .chart-page .charts-popup-list .separator {
+        border-top: 1px solid white; }
+      .chart-page .charts-popup-list .item {
+        background-color: #ffffff;
+        color: #9194a4; }
+        .chart-page .charts-popup-list .item.active {
+          background-color: #9194a4;
+          color: #ffffff; }
+      .chart-page .charts-popup-list .icon-wrap svg {
+        fill: #9194a4; }
+    .chart-page .list-inner .item {
+      background-color: #ffffff; }
+      .chart-page .list-inner .item.active {
+        background-color: #9194a4; }
+        .chart-page .list-inner .item.active svg {
+          fill: #ffffff; }
+        .chart-page .list-inner .item.active span.title {
+          color: #ffffff; }
+      .chart-page .list-inner .item span.title {
+        color: #9194a4; }
+    .chart-page .favored-list-container span:hover {
+      background-color: #9194a4; }
+    .chart-page .tv-floating-toolbar {
+      background-color: #9194a4;
+      border-color: #ffffff; }
+      .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper .tv-floating-toolbar__drag, .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper input {
+        background-color: #ffffff; }
+        .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper .tv-floating-toolbar__drag svg, .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper input svg {
+          fill: #9194a4; }
+      .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper .tv-floating-toolbar__widget {
+        border-color: #ffffff; }
+        .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper .tv-floating-toolbar__widget svg {
+          fill: #9194a4; }
+        .chart-page .tv-floating-toolbar .tv-floating-toolbar__widget-wrapper .tv-floating-toolbar__widget .bg {
+          fill: #ffffff; }
+    .chart-page .apply-common-tooltip {
+      background-color: #ffffff;
+      border: 1px solid transparent;
+      color: #9194a4; }
+      .chart-page .apply-common-tooltip:before {
+        border: 1px solid transparent; }
+      .chart-page .apply-common-tooltip svg {
+        fill: #9194a4; }
+    .chart-page .layout__area--left [class^="drawingToolbar-"] {
+      background: #ffffff !important; }
+    .chart-page .layout__area--left [class^="separator-"] {
+      opacity: .2; }
+    .chart-page [class^="menu-"] {
+      background: #ffffff !important; }
+    .chart-page [class^="item-"] {
+      background: transparent !important; }
+    .chart-page [class^="labelRow-"], .chart-page [class^="icon-"] {
+      color: #9194a4; }
+      .chart-page [class^="labelRow-"] svg, .chart-page [class^="icon-"] svg {
+        fill: #9194a4; }
+    .chart-page [class*="isActive-"]:hover [class^="bg-"] {
+      background: #ffffff !important; }
+    .chart-page [class*="isActive-"] [class^="bg-"] {
+      background: transparent; }
+    .chart-page .chart-controls-bar {
+      background-color: #ffffff; }
+    .chart-page .tv-side-toolbar .tools-group .button:hover,
+    .chart-page .header-chart-panel .tools-group .button:hover {
+      background-color: #9194a4; }
+    .chart-page .tv-side-toolbar .button:hover,
+    .chart-page .header-chart-panel .button:hover {
+      background: #9194a4; }
+    .chart-page .tv-side-toolbar .group,
+    .chart-page .header-chart-panel .group {
+      float: left; }
+      .chart-page .tv-side-toolbar .group .button,
+      .chart-page .header-chart-panel .group .button {
+        font-weight: normal;
+        color: #9194a4; }
+        .chart-page .tv-side-toolbar .group .button svg,
+        .chart-page .header-chart-panel .group .button svg {
+          fill: #9194a4; }
+        .chart-page .tv-side-toolbar .group .button:hover, .chart-page .tv-side-toolbar .group .button.selected,
+        .chart-page .header-chart-panel .group .button:hover,
+        .chart-page .header-chart-panel .group .button.selected {
+          background: #9194a4;
+          color: #ffffff; }
+          .chart-page .tv-side-toolbar .group .button:hover svg, .chart-page .tv-side-toolbar .group .button.selected svg,
+          .chart-page .header-chart-panel .group .button:hover svg,
+          .chart-page .header-chart-panel .group .button.selected svg {
+            fill: #ffffff; }
+        .chart-page .tv-side-toolbar .group .button:active,
+        .chart-page .header-chart-panel .group .button:active {
+          color: #9194a4; }
+          .chart-page .tv-side-toolbar .group .button:active svg,
+          .chart-page .header-chart-panel .group .button:active svg {
+            fill: #9194a4; }
+    .chart-page .tv-side-toolbar .header-group-fullscreen,
+    .chart-page .header-chart-panel .header-group-fullscreen {
+      float: right;
+      padding-right: 5px; }
+    .chart-page .tv-side-toolbar .header-group-properties, .chart-page .tv-side-toolbar .header-group-indicators,
+    .chart-page .header-chart-panel .header-group-properties,
+    .chart-page .header-chart-panel .header-group-indicators {
+      float: none; }
+    .chart-page .tv-side-toolbar .tools-group:not(:first-child):not(.no-delimiter):before {
+      background: #9194a4; }
+    .chart-page .button svg {
+      fill: #9194a4; }
+    .chart-page .tv-side-toolbar {
+      border-right: 1px solid #ffffff;
+      background-color: #ffffff; }
+      .chart-page .tv-side-toolbar .tools-group .button.selected .side {
+        border-left: 1ps solid transparent; }
+      .chart-page .tv-side-toolbar .tools-group .button.selected .side, .chart-page .tv-side-toolbar .tools-group .button.selected .main {
+        background: #9194a4; }
+    .chart-page .chart-container {
+      background-color: #ffffff;
+      border: 1px solid transparent; }
+    .chart-page .tv-close-panel {
+      background-color: white;
+      border: none; }
+    .chart-page .button {
+      background-color: #ffffff;
+      border-color: #ffffff; }
+      .chart-page .button:hover {
+        background-color: #9194a4; }
+      .chart-page .button.selected, .chart-page .button.active {
+        background-color: #9194a4 !important; }
+        .chart-page .button.selected svg, .chart-page .button.active svg {
+          fill: #ffffff; }
+
+          .chart-page .header-chart-panel .group .apply-common-tooltip{
+            background: #ffffff;
+          }
+          .chart-page .header-chart-panel .group .apply-common-tooltip.selected{
+            background:#9194a4;
+            color: #ffffff;
+          }
+          .chart-page .header-chart-panel .group .apply-common-tooltip:hover{
+            background:#9194a4;
+            color: #ffffff;
+          }
+  

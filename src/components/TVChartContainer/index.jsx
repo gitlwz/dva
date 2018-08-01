@@ -59,25 +59,22 @@ export class TVChartContainer extends React.PureComponent {
 			this.addMa(10, widget)
 			this.addMa(20, widget)
 			this.addMa(30, widget)
+			// widget.addCustomCSSFile("./css/light.css")
+			// widget.applyOverrides({
+			// 	'paneProperties.background': "#181B2A",
+			// 	'paneProperties.vertGridProperties.color': '#1D263D',
+			// 	'paneProperties.horzGridProperties.color': '#1D263D',
+			// 	'scalesProperties.textColor': "#61688A",
+			// 	'scalesProperties.showStudyLastValue': true,
+			// 	linetoolbarspattern: {
+			// 		singleChartOnly: true,
+			// 		color: 'rgba( 255, 0, 0, 1)',
+			// 		mode: 0,
+			// 		mirrored: false,
+			// 		flipped: false
+			// 	}
+			// })
 		})
-		// });
-		setTimeout(() => {
-			widget.addCustomCSSFile("./css/dark.css")
-			widget.applyOverrides({
-				'paneProperties.background': "#181B2A",
-				'paneProperties.vertGridProperties.color': '#1D263D',
-				'paneProperties.horzGridProperties.color': '#1D263D',
-				'scalesProperties.textColor': "#61688A",
-				'scalesProperties.showStudyLastValue': true,
-				linetoolbarspattern: {
-					singleChartOnly: true,
-					color: 'rgba( 255, 0, 0, 1)',
-					mode: 0,
-					mirrored: false,
-					flipped: false
-				}
-			})
-		}, 1000)
 	}
 
 	componentWillReceiveProps = (nextProps) => {
@@ -94,22 +91,22 @@ export class TVChartContainer extends React.PureComponent {
 
 		if (this.props.theme != nextProps.theme && nextProps.theme == "white") {
 			setTimeout(() => {
-				widget.addCustomCSSFile("")
+				widget.addCustomCSSFile("./css/light.css")
 				widget.applyOverrides({
-					'paneProperties.background': "#FFF",
-					'paneProperties.vertGridProperties.color': '',
-					'paneProperties.horzGridProperties.color': '',
-					'scalesProperties.textColor': "",
-					'scalesProperties.showStudyLastValue': true,
+					'paneProperties.background': "#ffffff",
+					'paneProperties.vertGridProperties.color': '#E6E6E6',
+					'paneProperties.horzGridProperties.color': '#E6E6E6',
+					'scalesProperties.textColor': "#555",
+					'scalesProperties.showStudyLastValue': false,
 					linetoolbarspattern: {
 						singleChartOnly: true,
-						color: '',
+						color: 'rgba( 255, 0, 0, 1)',
 						mode: 0,
 						mirrored: false,
 						flipped: false
 					}
 				})
-			}, 1000)
+			}, 100)
 		}
 		if (this.props.theme != nextProps.theme && nextProps.theme == "dark") {
 			setTimeout(() => {
@@ -128,7 +125,7 @@ export class TVChartContainer extends React.PureComponent {
 						flipped: false
 					}
 				})
-			}, 1000)
+			}, 100)
 		}
 	}
 	addMa = (num, widget) => {

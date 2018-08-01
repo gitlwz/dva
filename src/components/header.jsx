@@ -150,6 +150,7 @@ class Header extends Component {
     // 渲染
     render() {
         const { handleOk } = this.props;
+        console.log()
         return (
             <div className={styles.headerNa}>
                 <div className={styles.leftNav}>
@@ -161,14 +162,14 @@ class Header extends Component {
                         <div>
                             <span style={{ borderRight: '1px solid rgba(86,86,86,1)', padding: '0 20px' }} onClick={() => this.pushNewPage("/user/login")}>{languageData.Login}</span>
                             <span style={{ padding: '0 20px' }} onClick={() => this.pushNewPage("/user/regis")}>{languageData.signIn}</span>
-                            <span style={{ padding: '0 20px', borderLeft: '1px solid rgba(86,86,86,1)', }} onClick={handleOk}>设置</span>
+                            {this.state.selectMenu == "/kine" ? <span style={{ padding: '0 20px', borderLeft: '1px solid rgba(86,86,86,1)', }} onClick={handleOk}>设置</span> : null}
                         </div> :
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <img src={selectBg} style={{ margin: '0 10px', width: 40 }} />
                             <Dropdown overlay={this.menu()}>
                                 <span style={{ padding: '0 20px' }}>{this.props.userId}</span>
                             </Dropdown>
-                            <span style={{ padding: '0 20px', borderLeft: '1px solid rgba(86,86,86,1)', }} onClick={handleOk}>设置</span>
+                            {this.state.selectMenu == "/kine" ? <span style={{ padding: '0 20px', borderLeft: '1px solid rgba(86,86,86,1)', }} onClick={handleOk}>设置</span> : null}
                         </div>
                     }
 

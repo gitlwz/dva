@@ -7,7 +7,7 @@ export default {
 
   namespace: 'app',
   state: {
-    theme: 'dark', //当前主题颜色
+    theme: 'white', //当前主题颜色
     visible: false,
     currtLanguage: 'China',
     imgList: [],
