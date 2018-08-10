@@ -209,7 +209,7 @@ class Trade extends React.Component {
             orderData.combHedgeFlag = '1';
             orderData.limitPrice = limitPrice;
             orderData.volumeTotalOriginal = volumeTotalOriginal;
-            orderData.timeCondition = '3';
+            orderData.timeCondition = '1';
             orderData.volumeCondition = '1';
             orderData.contingentCondition = '1';
             orderData.forceCloseReason = '0';

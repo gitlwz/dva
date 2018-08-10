@@ -106,11 +106,12 @@ class Regis extends React.Component {
                 payload: {
                     body: [this.state.email, md5(this.state.password), this.state.country, this.state.code],
                     callback: (data) => {
+                        this.setState({ disabled: false })
                         if (data.errorCode == "0") {
                             message.success("请前往注册邮箱进行邮箱验证")
                             this.pushRouter("/user/login")
                         } else {
-                            this.setState({ errMsg: data.errorMsg, disabled: false })
+                            this.setState({ errMsg: data.errorMsg })
                         }
                     }
                 }
