@@ -76,7 +76,6 @@ class reopenGoogle extends Component {
         }
     }
     render() {
-      console.log(this.state.visible)
         return (
             <div style={{ backgroundColor: "#F7F7F7", color: "black" }}>
             <Spin spinning={this.props.loading} size="large" >

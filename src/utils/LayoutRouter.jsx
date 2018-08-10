@@ -64,7 +64,7 @@ const LayoutRouter = [
     },
     {
         path: '/asset',  //资产管理
-        models: () => [import('../models/asset'), import("../models/fabi/release"),import('../models/record')],
+        models: () => [import('../models/asset'), import("../models/fabi/release"), import('../models/record')],
         component: () => import('../routes/asset/asset'),
     }, {
         path: '/otherRecharge/:type',  //其他货币充值
@@ -77,7 +77,7 @@ const LayoutRouter = [
     },
     {
         path: '/record',  //
-        models: () => [import('../models/record'),import("../models/asset")],
+        models: () => [import('../models/record'), import("../models/asset")],
         component: () => import('../routes/recordSearch/recordSearch'),
     }, {
         path: '/smSverification',  //短信验证开启页
@@ -138,6 +138,11 @@ const LayoutRouter = [
         path: '/orderManager',  //法币  订单管理
         models: () => [import('../models/fabi/orderManager')],
         component: () => import('../routes/fabi/orderManager/orderManager'),
+    },
+    {
+        path: '/rebate',  //法币  订单管理
+        models: () => [import('../models/rebate')],
+        component: () => import('../routes/rebate/rebate'),
     }
 ]
 export default LayoutRouter;

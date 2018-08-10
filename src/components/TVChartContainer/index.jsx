@@ -52,29 +52,32 @@ export class TVChartContainer extends React.PureComponent {
 		widget = window.tvWidget = new window.TradingView.widget(widgetOptions);
 		localStorage.setItem("tradingview.IntervalWidget.quicks", JSON.stringify({ "1": true, "15": true, "30": true, "60": true, "240": true, "1D": true, "5D": true, "1W": true, "1M": true }))
 		widget.onChartReady(() => {
-
+			setTimeout(() => {
+				widget.addCustomCSSFile("./css/light.css")
+				widget.applyOverrides({
+					'paneProperties.background': "#ffffff",
+					'paneProperties.vertGridProperties.color': '#E6E6E6',
+					'paneProperties.horzGridProperties.color': '#E6E6E6',
+					'scalesProperties.textColor': "#555",
+					'scalesProperties.showStudyLastValue': false,
+					linetoolbarspattern: {
+						singleChartOnly: true,
+						color: 'rgba( 255, 0, 0, 1)',
+						mode: 0,
+						mirrored: false,
+						flipped: false
+					}
+				})
+			}, 100)
 			//添加分时按钮
 			this.insertBeforeBtn();
 			this.addMa(5, widget)
 			this.addMa(10, widget)
 			this.addMa(20, widget)
 			this.addMa(30, widget)
-			// widget.addCustomCSSFile("./css/light.css")
-			// widget.applyOverrides({
-			// 	'paneProperties.background': "#181B2A",
-			// 	'paneProperties.vertGridProperties.color': '#1D263D',
-			// 	'paneProperties.horzGridProperties.color': '#1D263D',
-			// 	'scalesProperties.textColor': "#61688A",
-			// 	'scalesProperties.showStudyLastValue': true,
-			// 	linetoolbarspattern: {
-			// 		singleChartOnly: true,
-			// 		color: 'rgba( 255, 0, 0, 1)',
-			// 		mode: 0,
-			// 		mirrored: false,
-			// 		flipped: false
-			// 	}
-			// })
+
 		})
+
 	}
 
 	componentWillReceiveProps = (nextProps) => {

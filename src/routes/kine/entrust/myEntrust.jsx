@@ -81,10 +81,10 @@ class MyEntrust extends React.Component {
                     callback: (data) => {
                         if (data.errorCode == '0') {
                             message.success("撤销成功!");
-                            this.props.dispatch({
-                                type: 'trade/queryOrderForClient',
-                                payload: [userId, currentInstrument, { "pageNo": 1, "pageSize": 10 }]
-                            })
+                            // this.props.dispatch({
+                            //     type: 'trade/queryOrderForClient',
+                            //     payload: [userId, currentInstrument, { "pageNo": 1, "pageSize": 10 }]
+                            // })
                         } else {
                             message.success("撤销失败!");
                         }

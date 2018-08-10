@@ -27,7 +27,16 @@ class Regis extends React.Component {
             check: true,
 
             errMsg: '',
-            disabled: false
+            disabled: false,
+            showCode: false,
+            code: ""
+        }
+    }
+
+    componentWillMount() {
+        if (!!window.location.hash.split("?")[1]) {
+            console.log(window.location.hash.split("#")[1])
+            this.setState({ showCode: true, code: window.location.hash.split("?")[1] })
         }
     }
 
@@ -95,7 +104,7 @@ class Regis extends React.Component {
             this.props.dispatch({
                 type: 'user/regis',
                 payload: {
-                    body: [this.state.email, md5(this.state.password), this.state.country],
+                    body: [this.state.email, md5(this.state.password), this.state.country, this.state.code],
                     callback: (data) => {
                         if (data.errorCode == "0") {
                             message.success("请前往注册邮箱进行邮箱验证")
@@ -144,7 +153,6 @@ class Regis extends React.Component {
         document.removeEventListener("keydown", this.onkeydownEvent)
     }
     render() {
-        console.log(this.state.disabled)
         const { showConformMsg, showCountryMsg, showEmailMsg, showWordMsg } = this.state;
         return (
             <div>
@@ -187,6 +195,8 @@ class Regis extends React.Component {
 
                     {showConformMsg == true ? <p className={styles.errP}>{languageData.QSRXTMM}</p> : ''}
 
+                    <InputLabel lab="邀请码" placeholder="邀请码" value={this.state.code} inputChange={value => this.setState({ code: value })} />
+
                     <div className={styles.flex}>
                         <label style={{ flex: 1 }}></label>
                         <div style={{ color: '#FFF', fontSize: '13px', width: '336px', marginTop: 15, display: "flex", flexDirection: "row", alignItems: "center" }}>
@@ -202,9 +212,7 @@ class Regis extends React.Component {
                             <label style={{ flex: 1 }}></label>
                             <p style={{ width: '336px' }} className={styles.errP}>{this.state.errMsg}</p>
                         </div> : ''}
-
                     <InputLabel isButton buttonName={languageData.signIn} buttonClick={() => this.regis()} disabled={this.state.disabled} />
-
 
                     <div className={styles.errP}>
                         <Link to="/stipulation?copyright">{languageData.FLSML}</Link>

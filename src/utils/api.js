@@ -95,6 +95,11 @@ const apis = {
         cancelBiddingPosters: { url: baseIP + "service/webGeneralService/cancelBiddingPosters", method: 'POST', description: '取消挂单' },
         findOrderFormForWeb: { url: baseIP + "service/webGeneralService/findOrderFormForWeb", method: 'POST', description: '查询交易订单' },
     },
+    "promotion": {
+        findByPromotionCode: { url: baseIP + "service/webGeneralService/findByPromotionCode", method: 'POST', description: '查询返佣记录排行榜以及个人推广码' },
+        findByInvitationToReturnMoneyResponse: { url: baseIP + "service/webGeneralService/findByInvitationToReturnMoneyResponse", method: 'POST', description: '查询邀请情况' },
+        findByCommissionexDividend: { url: baseIP + "service/webGeneralService/findByCommissionexDividend", method: 'POST', description: '查询邀请情况' },
+    },
     baseConfig: {
         findAllSlideshow: { url: baseIP + "service/webGeneralService/findAllSlideshow", method: 'POST', description: '查询主页轮播图片列表' },
         findPushNotice: { url: baseIP + "service/anonymousWebGeneralService/findPushNotice", method: 'POST', description: '查询轮播公告' },
