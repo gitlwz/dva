@@ -4,6 +4,7 @@ import { connect } from 'dva';
 import copy from 'copy-to-clipboard';
 import styles from "./rebate.less";
 import moment from 'moment';
+import dataFormat from "../../tool/dataFormat"
 const QRCode = require('qrcode.react');
 const { RangePicker } = DatePicker
 const { Option } = Select
@@ -29,6 +30,9 @@ class Rebase extends React.Component {
         });
         this.getYQRecord();
         this.getDataliat();
+        this.props.dispatch({
+            type: "rebate/findAllCurrencys"
+        })
     }
 
     getYQRecord() {
@@ -110,7 +114,10 @@ class Rebase extends React.Component {
             title: '类型',
             dataIndex: 'dividendType',
             key: 'dividendType',
-            width: "25%"
+            width: "25%",
+            render: (text, item) => {
+                return dataFormat.dividendType(text)
+            }
         }, {
             title: '币种',
             dataIndex: 'currency',
@@ -154,7 +161,7 @@ class Rebase extends React.Component {
             <div style={{ background: "#F4F4F4" }}>
                 <div className={styles.root}>
                     <Row type="flex" align="middle" style={{ marginTop: 50 }}>
-                        <img src={require("../../assets/ic_ranking@2x.png")} />   <span style={{ fontSize: 20 }}>  2018年6月 邀请榜单</span>
+                        <img src={require("../../assets/ic_ranking@2x.png")} />   <span style={{ fontSize: 20 }}>  2018年{(new Date).getMonth() + 1}月 邀请榜单</span>
                     </Row>
                     <Card className={styles.card}>
                         {this.loadRank()}
@@ -211,16 +218,15 @@ class Rebase extends React.Component {
                                         <Option value="2">注册送币记录</Option>
                                         <Option value="1">交易挖矿</Option>
                                         <Option value="0">持币分红</Option>
-                                        <Option value="5">邀请返币</Option>
+                                        <Option value="4">邀请返币</Option>
                                     </Select>
                                 </Form.Item>
                                 <Form.Item label="币种">
                                     <Select value={this.state.currency} onChange={(currency) => this.setState({ currency })} style={{ width: 150 }}>
                                         <Option value="">全部</Option>
-                                        <Option value="BTC">BTC</Option>
-                                        <Option value="USDT">USDT</Option>
-                                        <Option value="ETH">ETH</Option>
-                                        <Option value="SUNDAX">SUNDAX</Option>
+                                        {this.props.currencysList.map(item => {
+                                            return <Option value={item} key={item}>{item}</Option>
+                                        })}
                                     </Select>
                                 </Form.Item>
                                 <Form.Item>
@@ -243,6 +249,7 @@ export default connect((state, props) => {
         dataList: state.rebate.dataList,
         InvitedList: state.rebate.InvitedList,
         loading: state.loading.models.rebate,
+        currencysList: state.rebate.currencysList,
         props
     }
 })(Rebase)

@@ -10,7 +10,8 @@ export default {
         loading: false,
         recordList: [],
         dataList: [],
-        InvitedList:{}
+        InvitedList: {},
+        currencysList: []
     },
 
     subscriptions: {
@@ -65,6 +66,18 @@ export default {
                 })
             }
         },
+
+        *findAllCurrencys({ payload }, { call, put }) {
+            const { data } = yield call(baseService, api.baseConfig.findAllCurrencys, []);
+            if (data != undefined) {
+                yield put({
+                    type: 'save',
+                    payload: {
+                        currencysList: data
+                    }
+                })
+            }
+        }
     },
 
     reducers: {

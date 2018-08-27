@@ -178,7 +178,7 @@ export default {
                     }
                 })
             } else { //失败
-                message.success('邮件发送失败！');
+                message.error('邮件发送失败！');
                 yield put({
                     type: 'save',
                     payload: {

@@ -93,7 +93,12 @@ class Bibi extends React.Component {
         this.props.dispatch({
             type: 'kine/save',
             payload: {
-                orderPriceType: this.props.orderPriceType == "0" ? "1" : "0"
+                orderPriceType: this.props.orderPriceType == "0" ? "1" : "0",
+                markLoading: true,
+                setSellPrice: false,
+                setBuyPrice: false,
+                buyList: [],
+                sellList: []
             }
         })
     }

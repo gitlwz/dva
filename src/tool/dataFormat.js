@@ -60,7 +60,24 @@ var dataFormat = {
             default:
                 break;
         }
+    },
+    dividendType(status) {
+        switch (status) {
+            case "0":
+                return "持币分红"
+            case "1":
+                return "交易挖矿"
+            case "2":
+                return "注册送币记录"
+            case "3":
+                return "返佣记录"
+            case "4":
+                return "邀请返币"
+            default:
+                break;
+        }
     }
+
 }
 
 export default dataFormat

@@ -53,6 +53,9 @@ class Header extends Component {
             case "2":
                 this.props.dispatch(routerRedux.push("/record?type=1"))
                 break;
+            case "3":
+                this.props.dispatch(routerRedux.push("/rebate"))
+                break;
             case "4":
                 this.props.dispatch(routerRedux.push("/userCenter"))
                 //安全中心
@@ -99,12 +102,12 @@ class Header extends Component {
                     </div>
                 </Menu.Item>
                 <Menu.Divider />
-                {/* <Menu.Item key="3">
+                <Menu.Item key="3">
                     <div className={styles.header_dropdown_item}>
-                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_sf}>身份认证</span>
+                        <span className={styles.header_dropdown_text + " " + styles.header_dropdown_sf}>我的邀请</span>
                     </div>
                 </Menu.Item>
-                <Menu.Divider /> */}
+                <Menu.Divider />
                 <Menu.Item key="4">
                     <div className={styles.header_dropdown_item}>
                         <span className={styles.header_dropdown_text + " " + styles.header_dropdown_aq}>{languageData.AQZX}</span>
@@ -150,7 +153,6 @@ class Header extends Component {
     // 渲染
     render() {
         const { handleOk } = this.props;
-        console.log()
         return (
             <div className={styles.headerNa}>
                 <div className={styles.leftNav}>
@@ -187,6 +189,7 @@ class Header extends Component {
                                 <option value="English">{this.currLanguage == "English" ? "English" : '英文'}</option>
                             }
                             }
+                           
                         </select>
                     </div>
                 </div>
